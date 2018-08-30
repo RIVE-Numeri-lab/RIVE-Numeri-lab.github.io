@@ -86,9 +86,9 @@ og_image                 : # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : Organization # Person or Organization (defaults to Person)
-  name                   : RIVE# If the user or organization name differs from the site's name
-  links: https://oraprdnt.uqtr.uquebec.ca/pls/public/gscw030?owa_no_site=2137 # An array of links to social media profiles
+  type                   : "Organization" # Person or Organization (defaults to Person)
+  name                   : "RIVE" # If the user or organization name differs from the site's name
+  links: "https://oraprdnt.uqtr.uquebec.ca/pls/public/gscw030?owa_no_site=2137" # An array of links to social media profiles
 
 # Analytics
 analytics:
@@ -103,10 +103,10 @@ author:
   name             : #"Your Name"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "An insight into computing and statistics for ecologists"
-  location         : #"Somewhere"
+  location         : "Trois-Rivières"
   email            :
   uri              :
-  home             : https://oraprdnt.uqtr.uquebec.ca/pls/public/gscw030?owa_no_site=2137 # null (default), "absolute or relative url to link to author home"
+  home             : "https://oraprdnt.uqtr.uquebec.ca/pls/public/gscw030?owa_no_site=2137" # null (default), "absolute or relative url to link to author home"
   bitbucket        :
   codepen          :
   dribbble         :
