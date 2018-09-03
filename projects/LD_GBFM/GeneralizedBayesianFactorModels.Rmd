@@ -1,6 +1,9 @@
 ---
 output: html_document
-author: Lucas Deschamps
+title: "Generalized Bayesian Factor Model"
+subtitle: "Fitting a Generalized Bayesian Factor Model with stan"
+author: "Lucas Deschamps"
+date: "03/09/2018"
 bibliography: biblio_GBFM.bib
 ---
 
@@ -13,14 +16,14 @@ stanhl_html()
 
 **What you need and what you get** : The model presented above takes as input a community data matrix, with a row per site/replicate and a column per species. It will return sites' scores, representing the position of each site in a new space defined by a chosen number of dimensions. It also provides loadings, which represents the relationship of each species to latent variables, and allow to estimate covariance or correlation between species abundances. It is easy to add a *X* matrix of covariates, and to model residual correlations after accounting for this observed variables.
 
-Projected posts (links will be activated when available, if I succeed :D ) :
-<ol>
-  <li>Bayesian Factor Models with stan</li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-</ol>
+<!-- Projected posts (links will be activated when available) : -->
+<!-- <ol> -->
+<!--   <li>Bayesian Factor Models with stan</li> -->
+<!--   <li></li> -->
+<!--   <li></li> -->
+<!--   <li></li> -->
+<!--   <li></li> -->
+<!-- </ol> -->
 
 # Introduction
 Multivariate datasets contain a lot of information on their own. Community matrices, representing the abundances or presence of species (in column) at each sites (in row), are typical examples of multivariate datasets of interest in ecology. A lot of procedures tried to exploit the underlying information of those matrices to understand how the world is structured. Some were based on linear algebra, creating new axis maximazing variance (PCA) or preserving chi-squared distances (CA). Other algorithmic approaches aimed to attribute new coordinates to each data point, preserving whatever distances between sites or species by iterations (NMDS).
@@ -317,7 +320,7 @@ Now it is time to sample from the posterior... Reparametrized code is downloadab
 D_stan <- list(Y = Y, N = nrow(Y), S = S, D = D)
 
 ## Fit the model
-BFS <- stan("Poisson_BFS_reparam.stan", data = D_stan,
+GBFM <- stan("PoissonGBFM_reparam.stan", data = D_stan,
             pars = c("Mu", "d0_raw", "L_lower_unif", "L_diag_unif", "sigma_d_unif",
                      "mu_low_unif", "tau_low_unif", "log_lik1"), include = F,
             iter = 2000, init = 0, chains = parallel::detectCores()-1,
@@ -326,22 +329,22 @@ BFS <- stan("Poisson_BFS_reparam.stan", data = D_stan,
 ```
 Loadings effective sample sizes are not great, but rhats are corrects for all loadings (<1.2)
 ```{r include=FALSE}
-BFS <- readRDS("/home/lucasd/GoogleDrive/Biologie/00_Statistique/00_Blog/180509_LVM/BFS.Rdata")
+GBFM <- readRDS("GBFM.Rdata")
 ```
 ```{r, echo = T}
-print(BFS, pars = "L")
+print(GBFM, pars = "L")
 ```
 And traceplots look good!
 
 ```{r, echo = T, fig.align='center'}
-traceplot(BFS, pars = "L", inc_warmup = T)
+traceplot(GBFM, pars = "L", inc_warmup = T)
 ```
 
 Now, let's see if we were able to recover the loadings!
 
 ```{r, echo = T, fig.align='center'}
 ## Compare estimated to simulated loadings
-mod_L <- summary(BFS, pars = "L")$summary # Extract the mean loadings values
+mod_L <- summary(GBFM, pars = "L")$summary # Extract the mean loadings values
 head(mod_L)
 plot(mod_L[,1] ~ c(t(L)), cex = 2, pch = 16, col = "dark gray",
      xlab = "Simulated loadings", ylab = "Estimated loadings") # Plot the estimated loadings against the simulated ones
@@ -354,7 +357,7 @@ And, more importantly : were we able to recover covariances among species?
 
 ```{r, echo = T, fig.align='center'}
 ## Extract the estimated covariance matrix (we will use the median of post warm-up samples)
-cov_L <- summary(BFS, pars = "cov_L")$summary
+cov_L <- summary(GBFM, pars = "cov_L")$summary
 mean_cov_L <- matrix(cov_L[,1], nrow = S, ncol = S)
 
 ## Compare the covariance plots
@@ -368,7 +371,7 @@ par(mfrow = c(1,1))
 The model seems to be far more sensible to species correlations than the spearman rank based method are!
 ```{r, echo = T, fig.align='center'}
 ## Extract the estimated correlation matrix (we will use the median of post warm-up samples)
-cor_L <- summary(BFS, pars = "cor_L")$summary
+cor_L <- summary(GBFM, pars = "cor_L")$summary
 mean_cor_L <- matrix(cor_L[,1], nrow = S, ncol = S)
 
 ## Compare the correlation plots
@@ -383,7 +386,7 @@ par(mfrow = c(1,1))
 Finally, let's look at the estimated biplot!
 ```{r, echo = T, fig.align='center'}
 ## Extract the factor scores
-mod_FS <- summary(BFS, pars = "FS")$summary
+mod_FS <- summary(GBFM, pars = "FS")$summary
 mean_FS <- matrix(mod_FS[,1],nrow = N, ncol = D)
 mean_L <- matrix(mod_L[,1], nrow = S, ncol = D)
 
