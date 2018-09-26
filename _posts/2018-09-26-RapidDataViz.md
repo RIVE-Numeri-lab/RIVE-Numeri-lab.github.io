@@ -17,7 +17,7 @@ Clarification
 Tout ce que nous ferons aujourd'hui pourrait aussi s'accomplir avec les
 graphiques de base de R.
 
-L'avantage de ggplot2 est qu'on passe moins de temps à programmer 
+L'avantage de ggplot2 est qu'on passe moins de temps à programmer
 (création de boucles, gestion de tableaux, conditions etc.) et plus de temps
 à visualiser les données.
 
@@ -43,10 +43,10 @@ summary(msleep)
  Length:83          Length:83          Length:83         
  Class :character   Class :character   Class :character  
  Mode  :character   Mode  :character   Mode  :character  
-                                                         
-                                                         
-                                                         
-                                                         
+
+
+
+
     order           conservation        sleep_total      sleep_rem    
  Length:83          Length:83          Min.   : 1.90   Min.   :0.100  
  Class :character   Class :character   1st Qu.: 7.85   1st Qu.:0.900  
@@ -67,12 +67,12 @@ summary(msleep)
 
 83 observations tirées de la littérature sur le temps de sommeil des mammifères.
 
-* Entre autres des mesures sur le sommeil (en heures) : 
+* Entre autres des mesures sur le sommeil (en heures) :
     + `sleep_total`
     + `sleep_rem` (temps de sommeil paradoxal)
     + `sleep_cycle`
     + `awake`
-* Et sur d'autres caractéristiques (en kg) : 
+* Et sur d'autres caractéristiques (en kg) :
     * `brainwt`
     * `bodywt`
 
@@ -89,9 +89,9 @@ ggplot(data = msleep) +
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-![](RapidDataViz_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](/assets/RapidDataViz_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
-NB on peut insérer des sauts de lignes et des tabulations 
+NB on peut insérer des sauts de lignes et des tabulations
 n'importe où dans le code R, du moment que c'est clair pour R qu'il faut qu'il attende la suite de l'instruction.
 
 `ggplot` : créé l'objet graphique et y associe le tableau de données.
@@ -132,7 +132,7 @@ ggplot(data = msleep) +
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 Pour modifier l'ensemble des points
 ===============
@@ -155,7 +155,7 @@ ggplot(data = msleep) +
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 Exercice #1
 ===============
@@ -182,7 +182,7 @@ ggplot(data = msleep) +
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
 Ajouter une couleur par type d'alimentation (`vore`)
 
@@ -200,7 +200,7 @@ ggplot(data = msleep) +
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
 Maintenant un collègue passe derrière-vous et se demande si le graphique serait plus clair avec un panneau par type d'alimentation
 
@@ -217,7 +217,7 @@ ggplot(data = msleep) +
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
 >Ok, non, finalement c'était mieux dans un seul graphique, mais peux-tu ajouter une courbe de lissage par groupe pour voir si la tendance est la même?
 
@@ -241,7 +241,7 @@ ggplot(data = msleep) +
 `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
 >Ouin, c'est trop un fouilli, peux-tu me mettre juste des régressions linéaires finalement?
 
@@ -272,7 +272,7 @@ Warning: Removed 22 rows containing non-finite values (stat_smooth).
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 Pour éviter la duplication, les *mappings* globaux
 ---------
@@ -308,7 +308,7 @@ Vous pouvez profiter du fait que dans R, le nom des arguments est optionel, du m
 >
 >`ggplot(data = NULL, mapping = aes(), ..., environment = parent.frame())`
 
-Ce qui permet de faire : 
+Ce qui permet de faire :
 
 ```r
 ggplot(msleep, aes(
@@ -348,7 +348,7 @@ ggplot(msleep) +
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 Prenez note de l'avertissement pour le nombre de bandes de l'histogramme
 
 Une variable catégorique / discrète
@@ -359,9 +359,9 @@ ggplot(msleep) +
   geom_bar(aes(x = vore))
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
-Attention, si vos valeurs sont déjà compilées, il faut plutôt passer par un autre *geom*, p. ex. 
+Attention, si vos valeurs sont déjà compilées, il faut plutôt passer par un autre *geom*, p. ex.
 
 ```r
 x <- data.frame(
@@ -372,7 +372,7 @@ ggplot(x) +
   geom_col(aes(x = etiquettes, y = totaux))
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
 
 Deux variables continues
 ----------
@@ -386,7 +386,7 @@ ggplot( msleep) +
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
 On peut aussi remplacer les points par du texte
 
@@ -399,7 +399,7 @@ ggplot(msleep) +
 Warning: Removed 22 rows containing missing values (geom_text).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
 
 Une variable continue et une discrète
 ------------------
@@ -410,7 +410,7 @@ ggplot(msleep) +
   geom_boxplot(aes(x = vore, y = awake))
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 Ou de plus en plus utilisé, le violin plot
 
@@ -421,7 +421,7 @@ ggplot(msleep) +
   )
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
 
 
 ```r
@@ -437,7 +437,7 @@ ggplot(msleep) +
 `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
 
 Deux variables discrètes
 ------
@@ -447,7 +447,7 @@ ggplot(msleep) +
   geom_bar(aes(x = vore, fill = conservation))
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
 ### Modificateurs de position
 On peut utiliser le modificateur de position pour organiser le diagramme à bandes d'autres façons
@@ -460,7 +460,7 @@ ggplot(msleep) +
   )
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
 
 ```r
 ggplot(msleep) +
@@ -470,7 +470,7 @@ ggplot(msleep) +
   )
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-22-2.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-22-2.png" style="display: block; margin: auto;" />
 
 Si vous avez des millions de points
 =============
@@ -488,7 +488,7 @@ df <- data.frame(
 ggplot(df,aes(x = x, y = y)) + geom_bin2d()
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
 
 Visualisation de l'incertitude
 ===============
@@ -508,7 +508,7 @@ ggplot(df, aes(x = x, y = y)) +
   )
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
 
 ```r
 ggplot(df, aes(x = x, y = y)) +
@@ -518,22 +518,22 @@ ggplot(df, aes(x = x, y = y)) +
   )
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-24-2.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-24-2.png" style="display: block; margin: auto;" />
 
 ```r
 ggplot(df, aes(x = x, y = y)) +
   geom_ribbon(
-    aes(ymin = y - se, ymax = y + se), 
+    aes(ymin = y - se, ymax = y + se),
     fill = "tomato"
   ) +
   geom_line()
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-24-3.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-24-3.png" style="display: block; margin: auto;" />
 
 Exercice #2
 ============
-À l'aide des outils vus dans les dernières sections, reproduisez cette façon classique (mais peu recommandable!) de visualiser la différence entre les groupes, à l'aide des données suivantes : 
+À l'aide des outils vus dans les dernières sections, reproduisez cette façon classique (mais peu recommandable!) de visualiser la différence entre les groupes, à l'aide des données suivantes :
 
 ```r
 df <- data.frame(
@@ -542,7 +542,7 @@ df <- data.frame(
   se = c(0.4, 0.5, 0.7, 0.5)
 )
 ```
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
 
 L'outil d'exploration ultime
 ==============
@@ -552,13 +552,13 @@ library(GGally)
 ggpairs(msleep[,-c(1,2,4)])
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
 
 ```r
 ggpairs(msleep[,-c(1,2,4)], aes(col = vore))
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-27-2.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-27-2.png" style="display: block; margin: auto;" />
 
 Transformations rapides (sans toucher aux données)
 ==========
@@ -573,7 +573,7 @@ ggplot(msleep) +
 Warning: Removed 27 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
 
 ```r
 ggplot(msleep) +
@@ -586,7 +586,7 @@ ggplot(msleep) +
 Warning: Removed 27 rows containing missing values (geom_point).
 ```
 
-<img src="RapidDataViz_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" />
+<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" />
 
 Il existe aussi `scale_x_reverse` et `scale_x_sqrt`
 
@@ -601,7 +601,7 @@ ggplot(msleep) +
 ```
 
 ```r
-ggsave(filename = "Resultats/Fig1.jpg")
+ggsave(filename = "/assets/RapidDataViz_files/Resultats/Fig1.jpg")
 ```
 
 ```
@@ -617,12 +617,12 @@ Pas d'autres solutions que d'y aller par essai/erreur. ggplot change la taille r
 
 
 ```r
-ggsave(filename = "Resultats/2x2.jpg", width = 2, height = 2)
-ggsave(filename = "Resultats/8x8.jpg", width = 8, height = 8)
+ggsave(filename = "/assets/RapidDataViz_files/Resultats/2x2.jpg", width = 2, height = 2)
+ggsave(filename = "/assets/RapidDataViz_files/Resultats/8x8.jpg", width = 8, height = 8)
 ```
 
-<img src="Resultats/2x2.jpg" style="float:left;width:50%" >
-<img src="Resultats/8x8.jpg" style="float:left;width:50%">
+<img src="/assets/RapidDataViz_files/Resultats/2x2.jpg" style="float:left;width:50%" >
+<img src="/assets/RapidDataViz_files/Resultats/8x8.jpg" style="float:left;width:50%">
 <br clear = "both"/>
 
 Par défaut les unités sont en pouces, mais vous pouvez les changer pour de cm avec l'argument `units="cm"`
@@ -632,11 +632,11 @@ Par défaut les unités sont en pouces, mais vous pouvez les changer pour de cm 
 Pour les fichiers qui ne sont pas vectoriels (p. ex. jpg, png), vous pouvez aussi spécifier la qualité d'image, en nombre de points par pouces (dot per inches; dpi)
 
 ```r
-ggsave(filename = "Resultats/72.jpg", width = 2, height = 2, dpi = 72)
-ggsave(filename = "Resultats/1200.jpg", width = 2, height = 2, dpi = 1200)
+ggsave(filename = "/assets/RapidDataViz_files/Resultats/72.jpg", width = 2, height = 2, dpi = 72)
+ggsave(filename = "/assets/RapidDataViz_files/Resultats/1200.jpg", width = 2, height = 2, dpi = 1200)
 ```
-<img src="Resultats/72.jpg" style="float:left;width:50%" >
-<img src="Resultats/1200.jpg" style="float:left;width:50%">
+<img src="/assets/RapidDataViz_files/Resultats/72.jpg" style="float:left;width:50%" >
+<img src="/assets/RapidDataViz_files/Resultats/1200.jpg" style="float:left;width:50%">
 <br clear = "both"/>
 
 On recommande souvent 300 dpi pour des graphiques qui seront reproduits en version papier...
@@ -651,7 +651,7 @@ ggplot(msleep) +
   theme_classic()
 ```
 
-![](RapidDataViz_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
+![](/assets/RapidDataViz_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
 
 ```r
 ggplot(msleep) +
@@ -659,7 +659,7 @@ ggplot(msleep) +
   theme_dark()
 ```
 
-![](RapidDataViz_files/figure-html/unnamed-chunk-33-2.png)<!-- -->
+![](/assets/RapidDataViz_files/figure-html/unnamed-chunk-33-2.png)<!-- -->
 
 ```r
 ggplot(msleep) +
@@ -667,4 +667,4 @@ ggplot(msleep) +
   theme_minimal()
 ```
 
-![](RapidDataViz_files/figure-html/unnamed-chunk-33-3.png)<!-- -->
+![](/assets/RapidDataViz_files/figure-html/unnamed-chunk-33-3.png)<!-- -->
