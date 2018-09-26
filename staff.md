@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Members"
+title: "Staff"
 ---
 Professors :
 * Vincent Maire
