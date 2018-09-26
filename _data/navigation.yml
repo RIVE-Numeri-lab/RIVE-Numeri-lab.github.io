@@ -1,9 +1,9 @@
 # main links
 main:
   - title: "About"
-    url: 
+    url: /about
   - title: "Members"
-    url: 
+    url: /members
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"
