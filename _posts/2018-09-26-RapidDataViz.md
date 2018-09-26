@@ -1,4 +1,5 @@
 ---
+layout: single
 title: "Visualisation rapide des données avec ggplot2"
 author: "Charles Martin"
 date: "25 septembre 2018"
@@ -423,22 +424,6 @@ ggplot(msleep) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
 
-
-```r
-ggplot(msleep) +
-  geom_dotplot(
-    aes(x = vore, y = awake),
-    binaxis = "y",
-    stackdir = "center"
-  )
-```
-
-```
-`stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
-
 Deux variables discrètes
 ------
 
@@ -471,24 +456,6 @@ ggplot(msleep) +
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-22-2.png" style="display: block; margin: auto;" />
-
-Si vous avez des millions de points
-=============
-
-
-```r
-n <- 1000000
-x <- runif(n)
-y <- 3 + 2*x + rnorm(n)
-df <- data.frame(
-  x = x,
-  y = y
-)
-
-ggplot(df,aes(x = x, y = y)) + geom_bin2d()
-```
-
-<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
 
 Visualisation de l'incertitude
 ===============
@@ -531,19 +498,6 @@ ggplot(df, aes(x = x, y = y)) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-24-3.png" style="display: block; margin: auto;" />
 
-Exercice #2
-============
-À l'aide des outils vus dans les dernières sections, reproduisez cette façon classique (mais peu recommandable!) de visualiser la différence entre les groupes, à l'aide des données suivantes :
-
-```r
-df <- data.frame(
-  x = c(1,2,3,4),
-  y = c(1.1,1.9,3.4,4),
-  se = c(0.4, 0.5, 0.7, 0.5)
-)
-```
-<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
-
 L'outil d'exploration ultime
 ==============
 
@@ -559,36 +513,6 @@ ggpairs(msleep[,-c(1,2,4)], aes(col = vore))
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-27-2.png" style="display: block; margin: auto;" />
-
-Transformations rapides (sans toucher aux données)
-==========
-On peut ajouter une transformation des axes comme un élément supplémentaire du graphique...
-
-```r
-ggplot(msleep) +
-  geom_point(aes(x = bodywt, y = brainwt))
-```
-
-```
-Warning: Removed 27 rows containing missing values (geom_point).
-```
-
-<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
-
-```r
-ggplot(msleep) +
-  geom_point(aes(x = bodywt, y = brainwt)) +
-  scale_x_log10() +
-  scale_y_log10()
-```
-
-```
-Warning: Removed 27 rows containing missing values (geom_point).
-```
-
-<img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" />
-
-Il existe aussi `scale_x_reverse` et `scale_x_sqrt`
 
 Avant de fignoler, apprendre à bien sauvegarder...
 ==============
