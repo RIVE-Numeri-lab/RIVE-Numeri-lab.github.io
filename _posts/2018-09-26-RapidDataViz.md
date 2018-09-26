@@ -1,8 +1,8 @@
 ---
 layout: single
-title: "Visualisation rapide des données avec ggplot2"
+title: "Rapid data visualization with ggplot2"
 author: "Charles Martin"
-date: "25 septembre 2018"
+date: "September 26 2018"
 output:
   html_document:
     highlight: haddock
@@ -12,25 +12,27 @@ output:
 ---
 
 
-Clarification
+Clarifications
 ============
 
-Tout ce que nous ferons aujourd'hui pourrait aussi s'accomplir avec les
-graphiques de base de R.
+Everything you'll see in this post could also be done with base graphics in R.
 
-L'avantage de ggplot2 est qu'on passe moins de temps à programmer
-(création de boucles, gestion de tableaux, conditions etc.) et plus de temps
-à visualiser les données.
+The advantage of using ggplot2 is that you'll spend much less time programming
+(i.e. doing loops, managing arrays, conditions, etc.) and much more time
+actually visualising data.
 
-Conditions pour apprécier votre temps avec ggplot2
+Also, this workshop is not about plot customization. The plots might not be exactly
+to your liking (e.g. color choice, symbols, etc.). It is only about data exploration.
+
+Tips to enjoy your time with ggplot2
 ==========
-* Besoin de données rectangulaires et propres (*tidy data*)
-* Ne combattez pas le paradigme, ggplot2 n'est pas la même chose que les graphiques de base avec d'autres noms
-* Prenez le temps de bien comprendre la structure type d'un graphique ggplot2
-* Imprimez l'aide-mémoire (cheat-sheet)
-* N'ayez pas peur d'insérer des sauts de lignes et des tabulations pour clarifier votre code
+* Make sure you're analyzing *tidy data* (e.g. rows are observations, columns are variables),
+* Don't fight it. ggplot2 is not base graphics with fancy names,
+* Make sure you understand the structure of a typical ggplot2 command,
+* Print the [cheat sheet](https://www.rstudio.com/resources/cheatsheets/),
+* Don't be afraid to insert like breaks and indentations to clarify your code.
 
-Notre jeu de données
+Our dataset
 ============
 
 ```r
@@ -66,19 +68,20 @@ summary(msleep)
  NA's   :51                       NA's   :27                          
 ```
 
-83 observations tirées de la littérature sur le temps de sommeil des mammifères.
 
-* Entre autres des mesures sur le sommeil (en heures) :
+83 observations about mammal sleep habits.
+
+* Sleep measurements (in hours) :
     + `sleep_total`
-    + `sleep_rem` (temps de sommeil paradoxal)
+    + `sleep_rem`
     + `sleep_cycle`
     + `awake`
-* Et sur d'autres caractéristiques (en kg) :
+* And other animal body measurements (in kg) :
     * `brainwt`
     * `bodywt`
 
 
-Un premier graphique
+A first plot
 ============
 
 ```r
@@ -92,31 +95,28 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 ![](/assets/RapidDataViz_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
-NB on peut insérer des sauts de lignes et des tabulations
-n'importe où dans le code R, du moment que c'est clair pour R qu'il faut qu'il attende la suite de l'instruction.
+`ggplot` : creates a graphic objet, and associates it with the given dataset.
+Graphic layers are then added upon it.
 
-`ggplot` : créé l'objet graphique et y associe le tableau de données.
-On ajoute ensuite des couches à cet objet.
+`mapping` : created links between variables in the dataset and visual properties from the plot
 
-`mapping` : crée l'association entre les variables du tableau de données et les propriétés visuelles (aes) du graphique
+N.B. ggplot warns us that some rows were removed because they contained missing values for either `sleep_rem` or `awake`. We'll see how to filter them in a future workshop.
 
-Quelles autres propriétés graphiques sont disponibles?
+What other visual properties are availble?
 =================
-Entre autres...
+Among others...
 
 * `color`
 * `size`
-* `alpha` (transparence, 0-1)
+* `alpha` (transparency, 0-1)
 * `shape` (max 6)
 
-L'association entre les propriétés (`color` et `shape`) et les valeurs dans le tableau de données se nomme le "mapping"
+To view all visual properties for a graphic layer, look for the *Aesthetics* section in the layer's help page (`?geom_point`)
 
-Elles permettent d'ajouter des dimensions d'information supplémentaires, au delà de la position.
-
-Exemple
+Example
 ========
-Nous pouvons refaire le graphique précédent, mais en ajouter une couleur par type d'alimentation (`vore`) et que la taille des points soit proportionnelle à la taille du corps de l'animal (`bodywt`)
-
+We improve the above graphic by adding a color representing the feeding type (`vore`) and by
+linking the point size to the animal body size (`bodywt`)
 
 ```r
 ggplot(data = msleep) +
@@ -135,9 +135,10 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
-Pour modifier l'ensemble des points
+To modify all points at once
 ===============
-Il faut spécifier la propriété visuelle à l'extérieur du bloc `aes`, p. ex.
+
+To change some graphic properties of all points at once (instead of associating them with values from their respective observations), one needs to specify the association outside of the `aes` block:
 
 ```r
 ggplot(data = msleep) +
@@ -158,17 +159,18 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-Exercice #1
+Exercise #1
 ===============
-Faites un graphique du poids du cerveau (`brainwt`) en fonction du poids total de l'animal (`bodywt`)
+Create a plot of mammal brain size (`brainwt`) in relationship with the animal size (`bodywt`)
 
-Remplacez les points par des carrés
+Replace points with squares
 
-La couleur du point doit représenter le statut de conservation (`conservation`)
+The color of every square must show the conservation status of the species (`conservation`)
 
-Là où ggplot est particulièrement efficace
+Where ggplot2 really shines
 =================
-Traçons d'abord un grahpique du temps d'éveil (`awake`) en fonction du temps de sommeil paradoxal (`sleep_rem`).
+
+Let's say you want to explore the relationship between the time spent awake by each species and the REM sleep duration...
 
 ```r
 ggplot(data = msleep) +
@@ -185,7 +187,7 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
-Ajouter une couleur par type d'alimentation (`vore`)
+This looks interesting, but you are interested to know if the sleep habits vary in the same way between feeding types. So, you add color to explore that.
 
 ```r
 ggplot(data = msleep) +
@@ -203,7 +205,9 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
-Maintenant un collègue passe derrière-vous et se demande si le graphique serait plus clair avec un panneau par type d'alimentation
+Right at this moment, a co-worker sees the plot above your shoulder, and suggests you to place each feeding type in it's own panel to clarify things up.
+
+No problem, a single line of ggplot2 does the trick :
 
 ```r
 ggplot(data = msleep) +
@@ -220,8 +224,9 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
->Ok, non, finalement c'était mieux dans un seul graphique, mais peux-tu ajouter une courbe de lissage par groupe pour voir si la tendance est la même?
+>Ok, no, your previous plot was better, but can you add a smoothing curve per feeding type to see if the trend is the same?
 
+No problem, it's no *biggie* to remove you panels, just remove that single ggplot2 command. Then you add a smoothing layer above your points:
 
 ```r
 ggplot(data = msleep) +
@@ -242,10 +247,16 @@ ggplot(data = msleep) +
 `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
+N.B. Here you'll have many warnings because our dataset is way too small to
+calculate smoothing curves correctly for each feeding type. It's only a toy
+example.
+
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
->Ouin, c'est trop un fouilli, peux-tu me mettre juste des régressions linéaires finalement?
+>Well, that clearly unreadble right? Can you just put linear regressions in there instead?
 
+Yep, no problem, just edit your smoothing layer to use to `lm` function. You also
+strategically remove the standard error bands because they are all stacked up one above the other...
 
 ```r
 ggplot(data = msleep) +
@@ -275,10 +286,11 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
-Pour éviter la duplication, les *mappings* globaux
+To remove code duplication, use global *mappings*
 ---------
-Si vous voulez réutiliser des associations entre les propriétés graphiques et vos données dans plusieurs couches, vous pouvez les mentionner lors de la création de l'objet `ggplot` :
-
+If you need to reuse the same graphic property-dataset variable associations in
+many layers as we did above, you can put all your common associations inside the
+initial `ggplot` call :
 
 ```r
 ggplot(data = msleep, mapping = aes(
@@ -301,15 +313,17 @@ Warning: Removed 22 rows containing non-finite values (stat_smooth).
 Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
-Et pour condenser votre code encore plus
+To densify your code even more
 ----------
-Vous pouvez profiter du fait que dans R, le nom des arguments est optionel, du moment que vous respectez l'ordre spécifié dans la documentation (`?ggplot`):
+You can take advantage of the fact that in R, the name of the arguments given to
+a function is optional, as long as you keep your arguments in the same order as
+specified in the help file (`?ggplot`) :
 
 >Usage
 >
 >`ggplot(data = NULL, mapping = aes(), ..., environment = parent.frame())`
 
-Ce qui permet de faire :
+Which allows you to do :
 
 ```r
 ggplot(msleep, aes(
@@ -333,10 +347,10 @@ Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
 
-Quelles couches graphiques sont disponibles?
+A bestiary of ggplot graphic layers
 =========
 
-Une variable continue
+Visualizing a a single continuous variable
 ------
 
 
@@ -350,9 +364,12 @@ ggplot(msleep) +
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
-Prenez note de l'avertissement pour le nombre de bandes de l'histogramme
+Notice the warning about the number of bins used. In contrary to the base graphics
+`hist` function, histograms in ggplot don't use algorithms to determine the *ideal*
+number of bins. It is your job to try different values to determine what fits
+your particular case.
 
-Une variable catégorique / discrète
+Visualizing a categorical / discrete variable
 ----------
 
 ```r
@@ -362,20 +379,19 @@ ggplot(msleep) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
-Attention, si vos valeurs sont déjà compilées, il faut plutôt passer par un autre *geom*, p. ex.
-
+Note that, if your totals are already calculated, you need to use an alternate *geom* :
 ```r
-x <- data.frame(
-  totaux = c(4,1,2),
-  etiquettes = c("Contrôle", "pH+", "pH-")
+sums <- data.frame(
+  total = c(4,1,2),
+  labels = c("Control", "pH+", "pH-")
 )
-ggplot(x) +
-  geom_col(aes(x = etiquettes, y = totaux))
+ggplot(sums) +
+  geom_col(aes(x = labels, y = total))
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
 
-Deux variables continues
+Visualizing the relationship between two continous variables
 ----------
 
 ```r
@@ -389,7 +405,7 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
-On peut aussi remplacer les points par du texte
+You can also replace points with text
 
 ```r
 ggplot(msleep) +
@@ -402,7 +418,7 @@ Warning: Removed 22 rows containing missing values (geom_text).
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
 
-Une variable continue et une discrète
+Visualizing the relationship between a continuous and a categorical variable
 ------------------
 
 
@@ -413,7 +429,9 @@ ggplot(msleep) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
-Ou de plus en plus utilisé, le violin plot
+Note that a `boxplot` only expresses data about 5 of your data points (median, 1st quartile, 3rd quartile and biggest data within 1.5 IQR).
+
+A more informative view about the whole distribution can be obtained with a violin plot
 
 ```r
 ggplot(msleep) +
@@ -424,7 +442,7 @@ ggplot(msleep) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
 
-Deux variables discrètes
+Visualizing the relationship between two categorical variables
 ------
 
 ```r
@@ -434,8 +452,8 @@ ggplot(msleep) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
-### Modificateurs de position
-On peut utiliser le modificateur de position pour organiser le diagramme à bandes d'autres façons
+### Position modifiers
+You can use position modifiers to organize this bar plot in an ways :
 
 ```r
 ggplot(msleep) +
@@ -457,8 +475,12 @@ ggplot(msleep) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-22-2.png" style="display: block; margin: auto;" />
 
-Visualisation de l'incertitude
+Visualizing error / uncertainty
 ===============
+
+For this section, we'll need an additional dataset, where we have observed
+values in x, predicted values in y, and the standard error of these
+predicted values.
 
 ```r
 df <- data.frame(
@@ -476,6 +498,10 @@ ggplot(df, aes(x = x, y = y)) +
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
+
+You'll notice that we need to manually *construct* the size of the error bar, using
+the information we have about the predicted values and their error. We could
+as well used `1.96 * se`, etc.
 
 ```r
 ggplot(df, aes(x = x, y = y)) +
@@ -498,8 +524,14 @@ ggplot(df, aes(x = x, y = y)) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-24-3.png" style="display: block; margin: auto;" />
 
-L'outil d'exploration ultime
+The ultimate data exploration tool
 ==============
+
+If you want to explore all variables and relationships in a dataset at once,
+the `ggpairs` function from the `GGally` package does just that.
+
+Note that you need to filter out columns/variables that are not numerical or
+categorical (i.e. species or site names, etc.)
 
 ```r
 library(GGally)
@@ -514,10 +546,18 @@ ggpairs(msleep[,-c(1,2,4)], aes(col = vore))
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-27-2.png" style="display: block; margin: auto;" />
 
-Avant de fignoler, apprendre à bien sauvegarder...
+NB Please be patient with `ggpairs`, it might need a minute or two to compute your plot, as it is effectively doing tens or even sometimes hundred of plots depending on the number of variables
+
+Before you tweak your plots, learn how to correctly save them...
 ==============
 
-La fonction `ggsave` permet d'envoyer dans un fichier le dernier graphique produit
+First of all, use the proper ggplot function (`ggsave`) to save your plots. It
+offers much more control over the quality and features of the ouput than the
+*Export* feature in RStudio or related functionalities.
+
+The `ggsave` function sends the last plot to a file, with the correct format based
+on the file extension given (e.g. gif, png, jpg, pdf, eps)
+
 
 ```r
 ggplot(msleep) +
@@ -525,36 +565,40 @@ ggplot(msleep) +
 ```
 
 ```r
-ggsave(filename = "/assets/RapidDataViz_files/Resultats/Fig1.jpg")
+ggsave(filename = "Resultats/Fig1.jpg")
 ```
 
 ```
 Saving 7 x 5 in image
 ```
-
-NB le nom du dossier dans lequel vous tentez d'écrire doit déjà exister...
-
-Le type de fichier est choisi automatiquement à l'aide de l'extension choisie (pdf, jpg, png, eps, etc.)
-
-## Comment déterminer les dimensions?
-Pas d'autres solutions que d'y aller par essai/erreur. ggplot change la taille relative des points, du texte etc. selon les dimensions désirées, vous devrez expérimenter.
+Note that to save your files in a folder, `ggsave` insists that you manually
+create the folder first.
 
 
+## Which dimensions should I use?
+There is no easy answer here. It is a trial and error process. `ggplot` changes the relative size
+of points, text, lines, etc. based on the given dimensions. You'll need to experiment.
+
+Here, for example, the same plot is saved in a 2x2 file and and 8x8 file
 ```r
-ggsave(filename = "/assets/RapidDataViz_files/Resultats/2x2.jpg", width = 2, height = 2)
-ggsave(filename = "/assets/RapidDataViz_files/Resultats/8x8.jpg", width = 8, height = 8)
+ggsave(filename = "Resultats/2x2.jpg", width = 2, height = 2)
+ggsave(filename = "Resultats/8x8.jpg", width = 8, height = 8)
 ```
 
 <img src="/assets/RapidDataViz_files/Resultats/2x2.jpg" style="float:left;width:50%" >
 <img src="/assets/RapidDataViz_files/Resultats/8x8.jpg" style="float:left;width:50%">
 <br clear = "both"/>
 
-Par défaut les unités sont en pouces, mais vous pouvez les changer pour de cm avec l'argument `units="cm"`
+Default units are inches, but you can change them to cm with the
+`units="cm"` argument
 
-## Comment modifier la résolution
+## How to change the file resolution
 
-Pour les fichiers qui ne sont pas vectoriels (p. ex. jpg, png), vous pouvez aussi spécifier la qualité d'image, en nombre de points par pouces (dot per inches; dpi)
+For pixel-based files (e.g. jpg, png, gif), you can also specify image quality,
+in number of pixels per inches (dot per inches; dpi)
 
+For example, the same 2x2 plot can be extremely pixelized or ultra-sharp depending
+or the resolution selected :
 ```r
 ggsave(filename = "/assets/RapidDataViz_files/Resultats/72.jpg", width = 2, height = 2, dpi = 72)
 ggsave(filename = "/assets/RapidDataViz_files/Resultats/1200.jpg", width = 2, height = 2, dpi = 1200)
@@ -563,11 +607,17 @@ ggsave(filename = "/assets/RapidDataViz_files/Resultats/1200.jpg", width = 2, he
 <img src="/assets/RapidDataViz_files/Resultats/1200.jpg" style="float:left;width:50%">
 <br clear = "both"/>
 
-On recommande souvent 300 dpi pour des graphiques qui seront reproduits en version papier...
+For printed publications, a minimum of 300 dpi is usually recommended.
 
-Et finalement, le fameux fond gris...
+On last thing... the gray background!
 =========
 
+One of the most controversial aspects of ggplot is the use of a gray background with
+white grid lines. For a rapid overview of the reasons Hadley Wickham used such a
+color scheme, you can read a free excerpt of its excellent [R for Data Science](http://r4ds.had.co.nz/graphics-for-communication.html#themes)
+(from which the flow of this workshop was heavily borrowed)
+
+Nonetheless, you can easily change the theme of a ggplot by adding a theme layer.
 
 ```r
 ggplot(msleep) +
@@ -584,6 +634,8 @@ ggplot(msleep) +
 ```
 
 ![](/assets/RapidDataViz_files/figure-html/unnamed-chunk-33-2.png)<!-- -->
+
+And my personnal favorite, the minimal theme :
 
 ```r
 ggplot(msleep) +
