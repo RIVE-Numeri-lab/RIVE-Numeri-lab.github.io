@@ -2,8 +2,8 @@
 main:
   - title: "About"
     url: /about
-  - title: "Members"
-    url: /members
+  - title: "Staff"
+    url: /staff
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"
