@@ -129,10 +129,6 @@ ggplot(data = msleep) +
 )
 ```
 
-```
-Warning: Removed 22 rows containing missing values (geom_point).
-```
-
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 To modify all points at once
@@ -151,10 +147,6 @@ ggplot(data = msleep) +
     color = "blue",
     shape = 17
 )
-```
-
-```
-Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
@@ -181,10 +173,6 @@ ggplot(data = msleep) +
 )
 ```
 
-```
-Warning: Removed 22 rows containing missing values (geom_point).
-```
-
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
 This looks interesting, but you are interested to know if the sleep habits vary in the same way between feeding types. So, you add color to explore that.
@@ -197,10 +185,6 @@ ggplot(data = msleep) +
     color = vore
   )
 )
-```
-
-```
-Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
@@ -216,10 +200,6 @@ ggplot(data = msleep) +
     y = awake
   )) +
   facet_wrap(~vore)
-```
-
-```
-Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
@@ -276,14 +256,6 @@ ggplot(data = msleep) +
   )
 ```
 
-```
-Warning: Removed 22 rows containing non-finite values (stat_smooth).
-```
-
-```
-Warning: Removed 22 rows containing missing values (geom_point).
-```
-
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 To remove code duplication, use global *mappings*
@@ -303,14 +275,6 @@ ggplot(data = msleep, mapping = aes(
     method = "lm",
     se = FALSE
   )
-```
-
-```
-Warning: Removed 22 rows containing non-finite values (stat_smooth).
-```
-
-```
-Warning: Removed 22 rows containing missing values (geom_point).
 ```
 
 To densify your code even more
@@ -337,15 +301,6 @@ ggplot(msleep, aes(
     se = FALSE
   )
 ```
-
-```
-Warning: Removed 22 rows containing non-finite values (stat_smooth).
-```
-
-```
-Warning: Removed 22 rows containing missing values (geom_point).
-```
-
 
 A bestiary of ggplot graphic layers
 =========
@@ -399,10 +354,6 @@ ggplot( msleep) +
   geom_point(aes(x = sleep_rem, y = awake))
 ```
 
-```
-Warning: Removed 22 rows containing missing values (geom_point).
-```
-
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
 You can also replace points with text
@@ -410,10 +361,6 @@ You can also replace points with text
 ```r
 ggplot(msleep) +
   geom_text(aes(x = sleep_rem, y = awake, label = genus))
-```
-
-```
-Warning: Removed 22 rows containing missing values (geom_text).
 ```
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
