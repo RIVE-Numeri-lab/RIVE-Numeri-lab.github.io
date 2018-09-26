@@ -71,12 +71,12 @@ summary(msleep)
 
 83 observations about mammal sleep habits.
 
-* Sleep measurements (in hours) :
+* Sleep measurements (in hours):
     + `sleep_total`
     + `sleep_rem`
     + `sleep_cycle`
     + `awake`
-* And other animal body measurements (in kg) :
+* And other animal body measurements (in kg):
     * `brainwt`
     * `bodywt`
 
@@ -95,10 +95,10 @@ Warning: Removed 22 rows containing missing values (geom_point).
 
 ![](/assets/RapidDataViz_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
-`ggplot` : creates a graphic objet, and associates it with the given dataset.
+`ggplot`: creates a graphic objet, and associates it with the given dataset.
 Graphic layers are then added upon it.
 
-`mapping` : created links between variables in the dataset and visual properties from the plot
+`mapping`: created links between variables in the dataset and visual properties from the plot
 
 N.B. ggplot warns us that some rows were removed because they contained missing values for either `sleep_rem` or `awake`. We'll see how to filter them in a future workshop.
 
@@ -191,7 +191,7 @@ ggplot(data = msleep) +
 
 Right at this moment, a co-worker sees the plot above your shoulder, and suggests you to place each feeding type in it's own panel to clarify things up.
 
-No problem, a single line of ggplot2 does the trick :
+No problem, a single line of ggplot2 does the trick:
 
 ```r
 ggplot(data = msleep) +
@@ -233,7 +233,7 @@ example.
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
->Well, that clearly unreadble right? Can you just put linear regressions in there instead?
+>Well, that is clearly unreadble right? Can you just put linear regressions in there instead?
 
 Yep, no problem, just edit your smoothing layer to use to `lm` function. You also
 strategically remove the standard error bands because they are all stacked up one above the other...
@@ -262,7 +262,7 @@ To remove code duplication, use global *mappings*
 ---------
 If you need to reuse the same graphic property-dataset variable associations in
 many layers as we did above, you can put all your common associations inside the
-initial `ggplot` call :
+initial `ggplot` call:
 
 ```r
 ggplot(data = msleep, mapping = aes(
@@ -281,13 +281,13 @@ To densify your code even more
 ----------
 You can take advantage of the fact that in R, the name of the arguments given to
 a function is optional, as long as you keep your arguments in the same order as
-specified in the help file (`?ggplot`) :
+specified in the help file (`?ggplot`):
 
 >Usage
 >
 >`ggplot(data = NULL, mapping = aes(), ..., environment = parent.frame())`
 
-Which allows you to do :
+Which allows you to do:
 
 ```r
 ggplot(msleep, aes(
@@ -305,7 +305,7 @@ ggplot(msleep, aes(
 A bestiary of ggplot graphic layers
 =========
 
-Visualizing a a single continuous variable
+Visualizing a single continuous variable
 ------
 
 
@@ -334,7 +334,7 @@ ggplot(msleep) +
 
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
-Note that, if your totals are already calculated, you need to use an alternate *geom* :
+Note that, if your totals are already calculated, you need to use an alternate *geom*:
 ```r
 sums <- data.frame(
   total = c(4,1,2),
@@ -350,7 +350,7 @@ Visualizing the relationship between two continous variables
 ----------
 
 ```r
-ggplot( msleep) +
+ggplot(msleep) +
   geom_point(aes(x = sleep_rem, y = awake))
 ```
 
@@ -400,7 +400,7 @@ ggplot(msleep) +
 <img src="/assets/RapidDataViz_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
 ### Position modifiers
-You can use position modifiers to organize this bar plot in an ways :
+You can use position modifiers to organize this bar plot in alternate ways:
 
 ```r
 ggplot(msleep) +
@@ -448,7 +448,7 @@ ggplot(df, aes(x = x, y = y)) +
 
 You'll notice that we need to manually *construct* the size of the error bar, using
 the information we have about the predicted values and their error. We could
-as well used `1.96 * se`, etc.
+as well use `1.96 * se`, etc.
 
 ```r
 ggplot(df, aes(x = x, y = y)) +
@@ -495,7 +495,7 @@ ggpairs(msleep[,-c(1,2,4)], aes(col = vore))
 
 NB Please be patient with `ggpairs`, it might need a minute or two to compute your plot, as it is effectively doing tens or even sometimes hundred of plots depending on the number of variables
 
-Before you tweak your plots, learn how to correctly save them...
+Before you tweak your plots, learn how to properly save them...
 ==============
 
 First of all, use the proper ggplot function (`ggsave`) to save your plots. It
@@ -545,10 +545,10 @@ For pixel-based files (e.g. jpg, png, gif), you can also specify image quality,
 in number of pixels per inches (dot per inches; dpi)
 
 For example, the same 2x2 plot can be extremely pixelized or ultra-sharp depending
-or the resolution selected :
+or the resolution selected:
 ```r
-ggsave(filename = "/assets/RapidDataViz_files/Resultats/72.jpg", width = 2, height = 2, dpi = 72)
-ggsave(filename = "/assets/RapidDataViz_files/Resultats/1200.jpg", width = 2, height = 2, dpi = 1200)
+ggsave(filename = "Resultats/72.jpg", width = 2, height = 2, dpi = 72)
+ggsave(filename = "Resultats/1200.jpg", width = 2, height = 2, dpi = 1200)
 ```
 <img src="/assets/RapidDataViz_files/Resultats/72.jpg" style="float:left;width:50%" >
 <img src="/assets/RapidDataViz_files/Resultats/1200.jpg" style="float:left;width:50%">
@@ -562,7 +562,7 @@ On last thing... the gray background!
 One of the most controversial aspects of ggplot is the use of a gray background with
 white grid lines. For a rapid overview of the reasons Hadley Wickham used such a
 color scheme, you can read a free excerpt of its excellent [R for Data Science](http://r4ds.had.co.nz/graphics-for-communication.html#themes)
-(from which the flow of this workshop was heavily borrowed)
+book (from which the flow of this workshop was heavily borrowed)
 
 Nonetheless, you can easily change the theme of a ggplot by adding a theme layer.
 
@@ -582,7 +582,7 @@ ggplot(msleep) +
 
 ![](/assets/RapidDataViz_files/figure-html/unnamed-chunk-33-2.png)<!-- -->
 
-And my personnal favorite, the minimal theme :
+And my personnal favorite, the minimal theme:
 
 ```r
 ggplot(msleep) +
