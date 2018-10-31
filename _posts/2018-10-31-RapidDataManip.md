@@ -1,4 +1,5 @@
 ---
+layout: single
 title: "Manipulation rapide de bases de données avec dplyr et ses alliés"
 author: "Charles Martin"
 date: "30 octobre 2018"
@@ -100,7 +101,7 @@ grands_mams <- filter(msleep, bodywt > 0.2)
 ```
 
 Dans RStudio, on peut aussi consulter le résultat d'une opération, avec ou
-sans la sauvegarde dans un objet : 
+sans la sauvegarde dans un objet :
 
 ```r
 View(filter(msleep, bodywt > 0.2))
@@ -119,7 +120,7 @@ View(grands_mams)
 ```
 [1] FALSE
 ```
-R conserve dans ses calculs un nombre limité de décimales, ce qui fait que 
+R conserve dans ses calculs un nombre limité de décimales, ce qui fait que
 certaines erreurs d'arondissement peuvent compliquer les comparaisons.
 
 On peut contourner le problème avec l'opérateur `near`
@@ -135,7 +136,7 @@ near(1/49*49, 1)
 **#2 Le `=` ne veut pas dire *égal* **
 
 Le symbole `=` dans R est utilisé pour les assignations, comme un synonyme de `<-`.
-Pour effectuer des comparaisons (comme dans la majorité des langages informatiques), 
+Pour effectuer des comparaisons (comme dans la majorité des langages informatiques),
 il faut utiliser `==`.
 
 ```r
@@ -158,7 +159,7 @@ NA == NA
 [1] NA
 ```
 La logique de R sous-jacente étant que, si je ne connaîs pas l'âge de Paul et
-que je ne connais pas l'âge de Jacques, la réponse à "Est-ce que Paul et 
+que je ne connais pas l'âge de Jacques, la réponse à "Est-ce que Paul et
 Jacques ont le même âge" est "Je ne sais pas", et non "vrai"
 
 Si on veut tester des valeurs manquantes, il faut utiliser la fonction `is.na`
@@ -176,9 +177,9 @@ filter(msleep, is.na(conservation))
  3 Vespe… Calo… <NA>  Rode… <NA>                 7        NA        NA    
  4 Afric… Cric… omni  Rode… <NA>                 8.3       2        NA    
  5 Weste… Euta… herbi Rode… <NA>                14.9      NA        NA    
- 6 Galago Gala… omni  Prim… <NA>                 9.8       1.1       0.55 
+ 6 Galago Gala… omni  Prim… <NA>                 9.8       1.1       0.55
  7 Human  Homo  omni  Prim… <NA>                 8         1.9       1.5  
- 8 Macaq… Maca… omni  Prim… <NA>                10.1       1.2       0.75 
+ 8 Macaq… Maca… omni  Prim… <NA>                10.1       1.2       0.75
  9 "Vole… Micr… herbi Rode… <NA>                12.8      NA        NA    
 10 Littl… Myot… inse… Chir… <NA>                19.9       2         0.2  
 # ... with 19 more rows, and 3 more variables: awake <dbl>, brainwt <dbl>,
@@ -190,7 +191,7 @@ filter(msleep, is.na(conservation))
 R possède un opérateur permettant de faire des OU (`|`) et un permettant de faire
 des ET (`&`). Leur usage est cependant différent du français.
 
-Si on veut p. ex. tous les mammifères omnivores ou carnivores, on serait tentés de faire : 
+Si on veut p. ex. tous les mammifères omnivores ou carnivores, on serait tentés de faire :
 
 ```r
 filter(msleep, vore == "omni" | "carni")
@@ -200,7 +201,7 @@ filter(msleep, vore == "omni" | "carni")
 Error in filter_impl(.data, quo): Evaluation error: operations are possible only for numeric, logical or complex types.
 ```
 
-Mais il faut en fait spécifier toutes les éventualités, et les séparer par l'opérateur `|`. P. ex. : 
+Mais il faut en fait spécifier toutes les éventualités, et les séparer par l'opérateur `|`. P. ex. :
 
 ```r
 filter(msleep, vore == "omni" | vore == "carni")
@@ -218,7 +219,7 @@ filter(msleep, vore == "omni" | vore == "carni")
  6 Grivet Cerc… omni  Prim… lc                  10         0.7      NA    
  7 Star-… Cond… omni  Sori… lc                  10.3       2.2      NA    
  8 Afric… Cric… omni  Rode… <NA>                 8.3       2        NA    
- 9 Lesse… Cryp… omni  Sori… lc                   9.1       1.4       0.15 
+ 9 Lesse… Cryp… omni  Sori… lc                   9.1       1.4       0.15
 10 Long-… Dasy… carni Cing… lc                  17.4       3.1       0.383
 # ... with 29 more rows, and 3 more variables: awake <dbl>, brainwt <dbl>,
 #   bodywt <dbl>
@@ -242,7 +243,7 @@ filter(msleep, vore %in% c("omni", "carni"))
  6 Grivet Cerc… omni  Prim… lc                  10         0.7      NA    
  7 Star-… Cond… omni  Sori… lc                  10.3       2.2      NA    
  8 Afric… Cric… omni  Rode… <NA>                 8.3       2        NA    
- 9 Lesse… Cryp… omni  Sori… lc                   9.1       1.4       0.15 
+ 9 Lesse… Cryp… omni  Sori… lc                   9.1       1.4       0.15
 10 Long-… Dasy… carni Cing… lc                  17.4       3.1       0.383
 # ... with 29 more rows, and 3 more variables: awake <dbl>, brainwt <dbl>,
 #   bodywt <dbl>
@@ -274,7 +275,7 @@ filter(msleep, vore %in% a_garder)
 ```
 
 ## On peut aussi inverser des conditions
-Avec le point d'exclamation, p. ex. pour avoir tout sauf les omnivores : 
+Avec le point d'exclamation, p. ex. pour avoir tout sauf les omnivores :
 
 ```r
 filter(msleep, !(vore == "omni"))
@@ -312,7 +313,7 @@ arrange(msleep, bodywt)
 # A tibble: 83 x 11
    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
    <chr>  <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl>
- 1 Lesse… Cryp… omni  Sori… lc                   9.1       1.4       0.15 
+ 1 Lesse… Cryp… omni  Sori… lc                   9.1       1.4       0.15
  2 Littl… Myot… inse… Chir… <NA>                19.9       2         0.2  
  3 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
  4 Deer … Pero… <NA>  Rode… <NA>                11.5      NA        NA    
@@ -366,11 +367,11 @@ select(msleep, vore, brainwt, bodywt)
    vore   brainwt  bodywt
    <chr>    <dbl>   <dbl>
  1 carni NA        50    
- 2 omni   0.0155    0.48 
- 3 herbi NA         1.35 
+ 2 omni   0.0155    0.48
+ 3 herbi NA         1.35
  4 omni   0.00029   0.019
  5 herbi  0.423   600    
- 6 herbi NA         3.85 
+ 6 herbi NA         3.85
  7 carni NA        20.5  
  8 <NA>  NA         0.045
  9 carni  0.07     14    
@@ -411,11 +412,11 @@ select(msleep, -c(sleep_total:awake))
    name              genus    vore  order    conservation  brainwt  bodywt
    <chr>             <chr>    <chr> <chr>    <chr>           <dbl>   <dbl>
  1 Cheetah           Acinonyx carni Carnivo… lc           NA        50    
- 2 Owl monkey        Aotus    omni  Primates <NA>          0.0155    0.48 
- 3 Mountain beaver   Aplodon… herbi Rodentia nt           NA         1.35 
+ 2 Owl monkey        Aotus    omni  Primates <NA>          0.0155    0.48
+ 3 Mountain beaver   Aplodon… herbi Rodentia nt           NA         1.35
  4 Greater short-ta… Blarina  omni  Soricom… lc            0.00029   0.019
  5 Cow               Bos      herbi Artioda… domesticated  0.423   600    
- 6 Three-toed sloth  Bradypus herbi Pilosa   <NA>         NA         3.85 
+ 6 Three-toed sloth  Bradypus herbi Pilosa   <NA>         NA         3.85
  7 Northern fur seal Callorh… carni Carnivo… vu           NA        20.5  
  8 Vesper mouse      Calomys  <NA>  Rodentia <NA>         NA         0.045
  9 Dog               Canis    carni Carnivo… domesticated  0.07     14    
@@ -462,11 +463,11 @@ poids
     brainwt  bodywt
       <dbl>   <dbl>
  1 NA        50    
- 2  0.0155    0.48 
- 3 NA         1.35 
+ 2  0.0155    0.48
+ 3 NA         1.35
  4  0.00029   0.019
  5  0.423   600    
- 6 NA         3.85 
+ 6 NA         3.85
  7 NA        20.5  
  8 NA         0.045
  9  0.07     14    
@@ -499,7 +500,7 @@ mutate(poids, cerveau_g = brainwt*1000)
 ```
 
 On peut aussi utiliser plusieurs colonnes à la fois dans un calcul, p. ex.
-pour calculer la taille relative du cerveau : 
+pour calculer la taille relative du cerveau :
 
 ```r
 mutate(poids, rel_brain = brainwt / bodywt)
@@ -518,7 +519,7 @@ mutate(poids, rel_brain = brainwt / bodywt)
  7 NA        20.5   NA       
  8 NA         0.045 NA       
  9  0.07     14      0.005   
-10  0.0982   14.8    0.00664 
+10  0.0982   14.8    0.00664
 # ... with 73 more rows
 ```
 
@@ -540,7 +541,7 @@ select(z,name,bodywt)# ne garder que les noms et les poids
    name                       bodywt
    <chr>                       <dbl>
  1 Lesser short-tailed shrew   0.005
- 2 Little brown bat            0.01 
+ 2 Little brown bat            0.01
  3 Greater short-tailed shrew  0.019
  4 Deer mouse                  0.021
  5 House mouse                 0.022
@@ -562,7 +563,7 @@ select(filter(mutate(arrange(msleep,bodywt),rang = row_number()), rang <= 10),na
    name                       bodywt
    <chr>                       <dbl>
  1 Lesser short-tailed shrew   0.005
- 2 Little brown bat            0.01 
+ 2 Little brown bat            0.01
  3 Greater short-tailed shrew  0.019
  4 Deer mouse                  0.021
  5 House mouse                 0.022
@@ -573,7 +574,7 @@ select(filter(mutate(arrange(msleep,bodywt),rang = row_number()), rang <= 10),na
 10 Vesper mouse                0.045
 ```
 
-Mais ce faisant, on perd grandement en lisibilité. On pourrait indenter le code pour y voir plus clair : 
+Mais ce faisant, on perd grandement en lisibilité. On pourrait indenter le code pour y voir plus clair :
 
 
 ```r
@@ -582,7 +583,7 @@ select(
     mutate(
       arrange(msleep,bodywt),
       rang = row_number()
-    ), 
+    ),
     rang <= 10
   ),
   name,
@@ -595,7 +596,7 @@ select(
    name                       bodywt
    <chr>                       <dbl>
  1 Lesser short-tailed shrew   0.005
- 2 Little brown bat            0.01 
+ 2 Little brown bat            0.01
  3 Greater short-tailed shrew  0.019
  4 Deer mouse                  0.021
  5 House mouse                 0.022
@@ -613,10 +614,10 @@ La solution, l’opérateur d’enchaînement (Pipe Operator), de la librairie `
 
 
 ```r
-msleep %>% 
-  arrange(bodywt) %>% 
-  mutate(rang = row_number()) %>% 
-  filter(rang <= 10) %>% 
+msleep %>%
+  arrange(bodywt) %>%
+  mutate(rang = row_number()) %>%
+  filter(rang <= 10) %>%
   select(name, bodywt)
 ```
 
@@ -625,7 +626,7 @@ msleep %>%
    name                       bodywt
    <chr>                       <dbl>
  1 Lesser short-tailed shrew   0.005
- 2 Little brown bat            0.01 
+ 2 Little brown bat            0.01
  3 Greater short-tailed shrew  0.019
  4 Deer mouse                  0.021
  5 House mouse                 0.022
@@ -650,12 +651,12 @@ Toutes les librairies faisant partie du `tidyverse` de Hadley Wickham supportent
 
 
 ```r
-msleep %>% 
-  filter(bodywt > 0.200) %>% 
+msleep %>%
+  filter(bodywt > 0.200) %>%
   mutate(
     l_corps = log(bodywt),
     l_cerveau = log(brainwt)
-  ) %>% 
+  ) %>%
   ggplot(aes(x = l_corps,y = l_cerveau, col = vore)) +
   geom_point()
 ```
@@ -664,15 +665,15 @@ msleep %>%
 Warning: Removed 19 rows containing missing values (geom_point).
 ```
 
-![](RapidDataManip_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
+![](/assets/RapidDataManip_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
 
 Il faut être super attentif, parce que toutes les autres fonctions s'enchaînent
 avec `%>%`, sauf les couches de ggplot qui s'attachent avec des `+`
 
 Deuxième exercice
 ------
-On refait le premier exercice, mais cette fois-ci, en prenant avantage de 
-l'opérateur d'enchaînement : 
+On refait le premier exercice, mais cette fois-ci, en prenant avantage de
+l'opérateur d'enchaînement :
 
 Trouver en ordre croissant de poids du corps, la liste de tous les herbivores non domestiqués
 
@@ -680,12 +681,12 @@ Résumer les données
 --------
 Dernière opération de base que l'on peut faire avec un jeu de données propres : le résumer.
 
-On peut résumer plusieurs variables ou fonctions à la fois : 
+On peut résumer plusieurs variables ou fonctions à la fois :
 
 ```r
-msleep %>% 
+msleep %>%
   summarize(
-    poids_moyen = mean(bodywt), 
+    poids_moyen = mean(bodywt),
     ecart_type_poids = sd(bodywt)
   )
 ```
@@ -700,10 +701,10 @@ msleep %>%
 Cette opération devient beaucoup plus puissante si on utilise les regroupements :
 
 ```r
-msleep %>% 
-  group_by(vore) %>% 
+msleep %>%
+  group_by(vore) %>%
   summarize(
-    poids_moyen = mean(bodywt), 
+    poids_moyen = mean(bodywt),
     ecart_type_poids = sd(bodywt)
   )
 ```
@@ -714,8 +715,8 @@ msleep %>%
   <chr>         <dbl>            <dbl>
 1 carni        90.8             182.  
 2 herbi       367.             1244.  
-3 insecti      12.9              26.4 
-4 omni         12.7              24.7 
+3 insecti      12.9              26.4
+4 omni         12.7              24.7
 5 <NA>          0.858             1.34
 ```
 
@@ -724,10 +725,10 @@ msleep %>%
 ## Format long vs. format large
 
 Parfois, le format dans lequel nous entrons nos données est très pratique lors
-de la saisie, mais ne correspond pas à la définition des données *propres* 
-(une ligne par observations, une colonne par variable). 
+de la saisie, mais ne correspond pas à la définition des données *propres*
+(une ligne par observations, une colonne par variable).
 
-Souvent, on se retrouve avec des données qui ressemblent à ceci : 
+Souvent, on se retrouve avec des données qui ressemblent à ceci :
 
 ```r
 oiseaux <- tibble(
@@ -749,16 +750,16 @@ oiseaux
 
 Comment tracerait-on le graphique de l'abondance des corneilles au fil des années?
 
-La solution est de passer les données au format long plutôt que large : 
+La solution est de passer les données au format long plutôt que large :
 
 ```r
 library(tidyr)
-o2 <- 
-  oiseaux %>% 
+o2 <-
+  oiseaux %>%
     gather(
-      key = Annee, 
-      value = Abondance, 
-      `2001`:`2003`, 
+      key = Annee,
+      value = Abondance,
+      `2001`:`2003`,
       convert = TRUE
     )
 o2
@@ -780,8 +781,8 @@ L'argument `key` correspond au nom de la colonne qui contiendra les anciens noms
 
 L'argument `value`correspond au nom de la colonne qui contiendra les valeurs dans l'ancien tableau.
 
-Autrement dit, les deux questions à vous poser dans le passage du 
-format large au format long sont : 
+Autrement dit, les deux questions à vous poser dans le passage du
+format large au format long sont :
 
 * à quoi correspondent vraiment les noms de colonnes
 * à quoi correspondent vraiment les valeurs dans les cellules
@@ -790,13 +791,13 @@ Ensuite, on peut finalement tracer le graphique...
 
 
 ```r
-o2 %>% 
-  filter(Especes == "Corneille") %>% 
+o2 %>%
+  filter(Especes == "Corneille") %>%
   ggplot(aes(x = Annee, y = Abondance)) +
   geom_line()
 ```
 
-![](RapidDataManip_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
+![](/assets/RapidDataManip_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
 
 Une autre application du format long : répéter une opération sur plusieur variables.
 
@@ -804,10 +805,10 @@ P. ex. pour obtenir l'histogramme de toutes les variables de sommeil dans le jeu
 de données `msleep` :
 
 ```r
-msleep_long <- msleep %>% 
+msleep_long <- msleep %>%
   gather(
-    key = Variable, 
-    value = Valeur, 
+    key = Variable,
+    value = Valeur,
     sleep_total:awake
   )
 msleep_long
@@ -832,7 +833,7 @@ msleep_long
 
 
 ```r
-msleep_long %>% 
+msleep_long %>%
   ggplot(aes(x = Valeur)) +
   geom_histogram() +
   facet_wrap(~Variable)
@@ -846,9 +847,9 @@ msleep_long %>%
 Warning: Removed 73 rows containing non-finite values (stat_bin).
 ```
 
-![](RapidDataManip_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
+![](/assets/RapidDataManip_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
 
-Si à l'inverse, une même observation a été divisée sur plusieurs lignes, on peut la rassembler : 
+Si à l'inverse, une même observation a été divisée sur plusieurs lignes, on peut la rassembler :
 
 ```r
 mesures <- data.frame(
@@ -870,9 +871,9 @@ mesures
 ```
 
 ```r
-mesures %>% 
+mesures %>%
   spread(
-    key = mesure, 
+    key = mesure,
     value = valeur
   )
 ```
@@ -892,137 +893,8 @@ les valeurs
 
 VOIR SLIDES
 
-## Connecter deux bases de données ensemble
-
-Pour l'exercice, nous allons faire comme si la base de données `msleep` nous avait été fournie en deux morceaux séparées. Un premier avec toute la méta-information, et l'autre avec les données de sommeil comme tel. Les deux tableaux ne sont pas dans le même ordre, et dans un, les carnivores étaient absents.
-
-```r
-meta <- msleep %>% 
-  select(name:conservation) %>% 
-  arrange(name)
-
-sommeil <- msleep %>% 
-  filter(vore != "carni") %>% 
-  select(name, sleep_total:awake)
-
-meta
-```
-
-```
-# A tibble: 83 x 5
-   name                      genus        vore    order       conservation
-   <chr>                     <chr>        <chr>   <chr>       <chr>       
- 1 African elephant          Loxodonta    herbi   Proboscidea vu          
- 2 African giant pouched rat Cricetomys   omni    Rodentia    <NA>        
- 3 African striped mouse     Rhabdomys    omni    Rodentia    <NA>        
- 4 Arctic fox                Vulpes       carni   Carnivora   <NA>        
- 5 Arctic ground squirrel    Spermophilus herbi   Rodentia    lc          
- 6 Asian elephant            Elephas      herbi   Proboscidea en          
- 7 Baboon                    Papio        omni    Primates    <NA>        
- 8 Big brown bat             Eptesicus    insecti Chiroptera  lc          
- 9 Bottle-nosed dolphin      Tursiops     carni   Cetacea     <NA>        
-10 Brazilian tapir           Tapirus      herbi   Perissodac… vu          
-# ... with 73 more rows
-```
-
-```r
-sommeil
-```
-
-```
-# A tibble: 57 x 5
-   name                       sleep_total sleep_rem sleep_cycle awake
-   <chr>                            <dbl>     <dbl>       <dbl> <dbl>
- 1 Owl monkey                        17         1.8      NA       7  
- 2 Mountain beaver                   14.4       2.4      NA       9.6
- 3 Greater short-tailed shrew        14.9       2.3       0.133   9.1
- 4 Cow                                4         0.7       0.667  20  
- 5 Three-toed sloth                  14.4       2.2       0.767   9.6
- 6 Roe deer                           3        NA        NA      21  
- 7 Goat                               5.3       0.6      NA      18.7
- 8 Guinea pig                         9.4       0.8       0.217  14.6
- 9 Grivet                            10         0.7      NA      14  
-10 Chinchilla                        12.5       1.5       0.117  11.5
-# ... with 47 more rows
-```
-
-Comment faire un diagramme à moustache du temps de sommeil par statut de conservation (en faisant comme si `msleep` n'existait pas! )?
-
-On ne peut pas simplement coller nos deux tableaux de données (`bind_cols`) parcequ'ils n'ont pas nécéssairement les mêmes lignes, le même ordre, etc. Il 
-faut plutôt utiliser les fonction de la famille `*_join` du package `tidyr`.
-
-VOIR SLIDES
-
-<!-- Il existe quatre types de jointures. Celles qui gardent toutes les lignes du tableau de gauche (`left_join`), celles qui gardent toutes les lignes du tableau de droite (`right_join`), celles qui gardent systématiquement toutes les lignes (`full_join`) et celles qui ne gardent que les lignes qui ont une correspondance dans les deux tables (`inner_join`). -->
-
-<!-- Dans les trois premiers cas, les données manquantes dans l'autre tableau sont remplacées par des `NA`. -->
-
-<!-- Si il y a plusieurs correspondances, les lignes sont dédoublées autant de fois que nécéssaire. -->
-
-<!-- Dans tous les cas aussi, il faut obligatoirement que les observations possèdent un identifiant unique, permettant de trouver la même observation dans tous les tableaux. -->
-
-Dans le cas qui nous intéresse, quelle est la clé unique connectant nos deux tableaux?
-
-Dans notre cas, nous avons plusieurs possiblités pour connecter les deux tableaux, p. ex. 
-
-```r
-sommeil %>% 
-  left_join(meta)
-```
-
-```
-Joining, by = "name"
-```
-
-```
-# A tibble: 57 x 9
-   name       sleep_total sleep_rem sleep_cycle awake genus   vore  order 
-   <chr>            <dbl>     <dbl>       <dbl> <dbl> <chr>   <chr> <chr> 
- 1 Owl monkey        17         1.8      NA       7   Aotus   omni  Prima…
- 2 Mountain …        14.4       2.4      NA       9.6 Aplodo… herbi Roden…
- 3 Greater s…        14.9       2.3       0.133   9.1 Blarina omni  Soric…
- 4 Cow                4         0.7       0.667  20   Bos     herbi Artio…
- 5 Three-toe…        14.4       2.2       0.767   9.6 Bradyp… herbi Pilosa
- 6 Roe deer           3        NA        NA      21   Capreo… herbi Artio…
- 7 Goat               5.3       0.6      NA      18.7 Capri   herbi Artio…
- 8 Guinea pig         9.4       0.8       0.217  14.6 Cavis   herbi Roden…
- 9 Grivet            10         0.7      NA      14   Cercop… omni  Prima…
-10 Chinchilla        12.5       1.5       0.117  11.5 Chinch… herbi Roden…
-# ... with 47 more rows, and 1 more variable: conservation <chr>
-```
-Autrement dit, d'ajouter les meta-informations à notre base de données sommeil.
-
-Mais on aurait pu aussi faire l'inverse : 
-
-```r
-meta %>% 
-  left_join(sommeil)
-```
-
-```
-Joining, by = "name"
-```
-
-```
-# A tibble: 83 x 9
-   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
-   <chr>  <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl>
- 1 Afric… Loxo… herbi Prob… vu                   3.3      NA        NA    
- 2 Afric… Cric… omni  Rode… <NA>                 8.3       2        NA    
- 3 Afric… Rhab… omni  Rode… <NA>                 8.7      NA        NA    
- 4 Arcti… Vulp… carni Carn… <NA>                NA        NA        NA    
- 5 Arcti… Sper… herbi Rode… lc                  16.6      NA        NA    
- 6 Asian… Elep… herbi Prob… en                   3.9      NA        NA    
- 7 Baboon Papio omni  Prim… <NA>                 9.4       1         0.667
- 8 Big b… Epte… inse… Chir… lc                  19.7       3.9       0.117
- 9 Bottl… Turs… carni Ceta… <NA>                NA        NA        NA    
-10 Brazi… Tapi… herbi Peri… vu                   4.4       1         0.9  
-# ... with 73 more rows, and 1 more variable: awake <dbl>
-```
-Dans ce cas, notre base de données est plus complète, mais contient des valeurs manquantes pour le sommeil de certains animaux
-
 # Importation de données
-Au Québec, l'importation de données dans R à partir de fichiers CSV est particulièrement complexe : 
+Au Québec, l'importation de données dans R à partir de fichiers CSV est particulièrement complexe :
 
 VOIR SLIDES
 
@@ -1030,22 +902,22 @@ VOIR SLIDES
 * Notre séparateur de milliers est l'espace plutôt que la virgule
 * Nos dates ne sont pas dans le même ordre que les anglophones
 * Toutes sortes d'ennuis avec les lettres accentuées.
-* La version française de Excel nous dit créer des fichiers CSV, alors qu'en fait, 
+* La version française de Excel nous dit créer des fichiers CSV, alors qu'en fait,
 elle insère des points-virgules plutôt que des virgules.
 
 La méthode à (presque) toute épreuve que je vous propose : charger vos données directement
 à partir de votre fichier Excel!
 
-La raison : le représentation interne des données dans le fichier Excel est 
+La raison : le représentation interne des données dans le fichier Excel est
 super constante et ne varie pas entre les langues ou les pays.
 
-Les règles à suivre pour que les données s'importent bien à partir de votre fichier Excel : 
+Les règles à suivre pour que les données s'importent bien à partir de votre fichier Excel :
 
 * Les méta-informations ne doivent pas être dans la même feuille que les données
 * Au pire, les méta-information doivent être en haut de la feuille
 * Assurez-vous que vos noms de colonnes ne sont pas dédoublés
 * Pas de fusion de cellules ou de lignes vides inutiles : données *propres*
-* Assurez-vous que Excel interprète correctement vos données (p. ex. que vous êtes 
+* Assurez-vous que Excel interprète correctement vos données (p. ex. que vous êtes
 capables de calculer une moyenne sur votre colonne)
 
 
@@ -1065,7 +937,7 @@ x
 4 B        2,1          4.12     4.12 2018-11-01 00:00:00
 ```
 
-On peut aussi *passer* des lignes ou aller lire une feuille spécifique plutôt que la première : 
+On peut aussi *passer* des lignes ou aller lire une feuille spécifique plutôt que la première :
 
 
 ```r
@@ -1073,10 +945,10 @@ obs <- read_excel("Exemple.xlsx",sheet = 2, skip = 2)
 ```
 
 # Dernier exercice
-Comment convertir le tableau `obs` dans un format approprié aux analyses de 
+Comment convertir le tableau `obs` dans un format approprié aux analyses de
 communautés, avec une ligne par site, et une colonne par espèce?
 
-e.g. pour arriver à ceci : 
+e.g. pour arriver à ceci :
 
 
 ```
@@ -1112,12 +984,12 @@ attached base packages:
 
 other attached packages:
 [1] readxl_1.1.0   tidyr_0.8.1    bindrcpp_0.2.2 dplyr_0.7.7   
-[5] ggplot2_3.0.0 
+[5] ggplot2_3.0.0
 
 loaded via a namespace (and not attached):
  [1] Rcpp_0.12.17     pillar_1.2.3     compiler_3.5.1   cellranger_1.1.0
  [5] plyr_1.8.4       bindr_0.1.1      tools_3.5.1      digest_0.6.15   
- [9] evaluate_0.10.1  tibble_1.4.2     gtable_0.2.0     pkgconfig_2.0.1 
+ [9] evaluate_0.10.1  tibble_1.4.2     gtable_0.2.0     pkgconfig_2.0.1
 [13] rlang_0.2.1      cli_1.0.0        yaml_2.1.19      withr_2.1.2     
 [17] stringr_1.3.1    knitr_1.20       rprojroot_1.3-2  grid_3.5.1      
 [21] tidyselect_0.2.4 glue_1.2.0       R6_2.2.2         rmarkdown_1.10  
