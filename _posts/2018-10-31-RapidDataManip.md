@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Manipulation rapide de bases de données avec dplyr et ses alliés"
+title: "Fast data manipulation with dplyr and its allies"
 author: "Charles Martin"
 date: "30 octobre 2018"
 output:
@@ -12,8 +12,10 @@ output:
 ---
 
 
-Notre jeu de données
+Our dataset
 ============
+
+As in the previous workshop, we'll use the mammal sleep dataset from `ggplot2` to run our examples : 
 
 ```r
 library(ggplot2)
@@ -39,16 +41,14 @@ msleep
 #   bodywt <dbl>
 ```
 
-Les 5 opérations de base
+The 5 base operations on a dataset
 ==============
 
-Comme lors de la formation précédente, toutes ces opérations pourraient s'effectuer
-avec les fonctions R de base, mais de façon beaucoup moins lisible et intégrée (nous y reviendront)
+Just as in the previous workshop, all operations shown here could be done in base R. But, as you'll see, the dplyr-way is much more integrated and easier to read (more on this later)
 
-## Filtrer
+## Filtering a dataset
 
-P. ex., disons que nous désirons conserver uniquement les observations
-pour les mammifères de plus de 200 g
+For example, let's say that you want to keep only mammals of at least 200 g
 
 ```r
 library(dplyr)
@@ -93,15 +93,13 @@ filter(msleep, bodywt > 0.2)
 #   bodywt <dbl>
 ```
 
-Attention, comme toutes les manipulations d'objets dans R, le résultat est "perdu"
-si il n'est pas assigné à un nouvel objet...
+Please note that as in all object manipulations in R, the original object is not afffected and the result is "loss" unless it is assigned to a new object...
 
 ```r
-grands_mams <- filter(msleep, bodywt > 0.2)
+big_mammals <- filter(msleep, bodywt > 0.2)
 ```
 
-Dans RStudio, on peut aussi consulter le résultat d'une opération, avec ou
-sans la sauvegarde dans un objet :
+In RStudio, you can also inspect the result of such an operation, with or without saving it first through the `View` function :
 
 ```r
 View(filter(msleep, bodywt > 0.2))
@@ -109,9 +107,9 @@ View(grands_mams)
 ```
 
 
-### Quatre pièges à éviter
+### Four important caveats when filtering datasets
 
-**#1 Les nombres à virgule ne sont pas indéfiniment précis**
+#### #1 Floating point numbers are not indefinitely precise
 
 ```r
 1/49*49 == 1
@@ -120,10 +118,9 @@ View(grands_mams)
 ```
 [1] FALSE
 ```
-R conserve dans ses calculs un nombre limité de décimales, ce qui fait que
-certaines erreurs d'arondissement peuvent compliquer les comparaisons.
+This happens because when doing calculations, R can only keep a certain number of decimal places. Which means that in some cases, rounding errors can complicate comparisons.
 
-On peut contourner le problème avec l'opérateur `near`
+To work around this problem, one can use the `near` function
 
 ```r
 near(1/49*49, 1)
@@ -133,11 +130,9 @@ near(1/49*49, 1)
 [1] TRUE
 ```
 
-**#2 Le `=` ne veut pas dire *égal* **
+#### #2 `=` doesn't mean equal
 
-Le symbole `=` dans R est utilisé pour les assignations, comme un synonyme de `<-`.
-Pour effectuer des comparaisons (comme dans la majorité des langages informatiques),
-il faut utiliser `==`.
+In R, as in most programming languages, the `=` is used to assign the result of an operation to an object (in R, it is a synonym of `<-`). To check if two objects are equal, one must use the `==` operator.
 
 ```r
 filter(msleep, vore = "omni")
@@ -147,9 +142,9 @@ filter(msleep, vore = "omni")
 Error: `vore` (`vore = "omni"`) must not be named, do you need `==`?
 ```
 
-**#3 Les données manquantes présentent certaines particularités **
+#### 3 Missing data have some unintuitive behaviors
 
-On ne peut pas vérifier si une valeur est manquante avec `==`
+You cannot check for missing values with the `==` operator
 
 ```r
 NA == NA
@@ -158,11 +153,10 @@ NA == NA
 ```
 [1] NA
 ```
-La logique de R sous-jacente étant que, si je ne connaîs pas l'âge de Paul et
-que je ne connais pas l'âge de Jacques, la réponse à "Est-ce que Paul et
-Jacques ont le même âge" est "Je ne sais pas", et non "vrai"
 
-Si on veut tester des valeurs manquantes, il faut utiliser la fonction `is.na`
+The underlying logic here being that, if I do not know Paul's age, and I do not now Jack's age, the answer to the question : Do Paul and Jack have the same age isn't `TRUE`, it is *I don't know* (`NA`)
+
+To check for missing values, one must use the `ia.na` function :
 
 ```r
 filter(msleep, is.na(conservation))
@@ -186,12 +180,11 @@ filter(msleep, is.na(conservation))
 #   bodywt <dbl>
 ```
 
-**#4 Il faut modifier notre pensée pour combiner certaines conditions **
+#### #4 To combine comparisons, you need to think more like a machine
 
-R possède un opérateur permettant de faire des OU (`|`) et un permettant de faire
-des ET (`&`). Leur usage est cependant différent du français.
+R includes operators that allow you to combine conditions either with OR (`|`) or AND (`&`). Their usage is a bit different than your normal flow of thought.
 
-Si on veut p. ex. tous les mammifères omnivores ou carnivores, on serait tentés de faire :
+For example, if you want all mammals that are either omnivorous or carnivorous, you'd be tempted to write :
 
 ```r
 filter(msleep, vore == "omni" | "carni")
@@ -201,7 +194,7 @@ filter(msleep, vore == "omni" | "carni")
 Error in filter_impl(.data, quo): Evaluation error: operations are possible only for numeric, logical or complex types.
 ```
 
-Mais il faut en fait spécifier toutes les éventualités, et les séparer par l'opérateur `|`. P. ex. :
+But R is a bit dumber than that. You need to speficify every condition in details, e.g. :
 
 ```r
 filter(msleep, vore == "omni" | vore == "carni")
@@ -225,7 +218,7 @@ filter(msleep, vore == "omni" | vore == "carni")
 #   bodywt <dbl>
 ```
 
-On peut cependant raccourcir ce genre d'affirmation avec l'opérateur `%in%`
+Such a redundant syntax can easily be shortened with the `%in%` operator.
 
 ```r
 filter(msleep, vore %in% c("omni", "carni"))
@@ -249,11 +242,11 @@ filter(msleep, vore %in% c("omni", "carni"))
 #   bodywt <dbl>
 ```
 
-Avec l'opérateur %in%, on peut même préparer notre liste de valeurs à l'avance
+The `%in%` can also be used to list you prepare before your statement...
 
 ```r
-a_garder <- c("omni", "carni", "herbi")
-filter(msleep, vore %in% a_garder)
+to_keep <- c("omni", "carni", "herbi")
+filter(msleep, vore %in% to_keep)
 ```
 
 ```
@@ -274,8 +267,9 @@ filter(msleep, vore %in% a_garder)
 #   bodywt <dbl>
 ```
 
-## On peut aussi inverser des conditions
-Avec le point d'exclamation, p. ex. pour avoir tout sauf les omnivores :
+## Conditions can also be reversed
+
+The exclamations point(`!`) can be used to inverse the result of a condition. For example, to extract all mammals except for omnivorous ones :
 
 ```r
 filter(msleep, !(vore == "omni"))
@@ -299,11 +293,10 @@ filter(msleep, !(vore == "omni"))
 #   bodywt <dbl>
 ```
 
-Maintenant que toutes ces particularités sont derrière nous, on peut passer à la seconde opération sur les bases de données, le tri.
-
-Trier
+Sorting
 ------
-Par défaut, le tri se fait en ordre croissant
+
+By default, sorting in R happens in an ascending way
 
 ```r
 arrange(msleep, bodywt)
@@ -327,7 +320,7 @@ arrange(msleep, bodywt)
 #   bodywt <dbl>
 ```
 
-Il faut utiliser une modificateur pour inverser l'ordre
+You need to add a special modifier to reverse that order
 
 ```r
 arrange(msleep, desc(bodywt))
@@ -351,11 +344,11 @@ arrange(msleep, desc(bodywt))
 #   bodywt <dbl>
 ```
 
-Premier exercice
+Exercise one
 -----
-Trouver en ordre croissant de poids du corps, la liste de tous les herbivores non domestiqués
+Find, in ascending order of body weight, the list of all non-domestic herbivorous animals
 
-Sélectionner certaines colonnes
+Select some columns
 ---------
 
 ```r
@@ -379,7 +372,7 @@ select(msleep, vore, brainwt, bodywt)
 # ... with 73 more rows
 ```
 
-Une série de colonnes en séquence
+You can also specify a series of columns, as long as they are adjacent in the dataset
 
 ```r
 select(msleep, sleep_total:awake)
@@ -401,61 +394,17 @@ select(msleep, sleep_total:awake)
 10         3        NA        NA      21  
 # ... with 73 more rows
 ```
-ou tout sauf les colonnes de la séquence
 
-```r
-select(msleep, -c(sleep_total:awake))
-```
+Please note that, as before, as long as you don't override the object, the original dataset is not affected by column selection.
 
-```
-# A tibble: 83 x 7
-   name              genus    vore  order    conservation  brainwt  bodywt
-   <chr>             <chr>    <chr> <chr>    <chr>           <dbl>   <dbl>
- 1 Cheetah           Acinonyx carni Carnivo… lc           NA        50    
- 2 Owl monkey        Aotus    omni  Primates <NA>          0.0155    0.48
- 3 Mountain beaver   Aplodon… herbi Rodentia nt           NA         1.35
- 4 Greater short-ta… Blarina  omni  Soricom… lc            0.00029   0.019
- 5 Cow               Bos      herbi Artioda… domesticated  0.423   600    
- 6 Three-toed sloth  Bradypus herbi Pilosa   <NA>         NA         3.85
- 7 Northern fur seal Callorh… carni Carnivo… vu           NA        20.5  
- 8 Vesper mouse      Calomys  <NA>  Rodentia <NA>         NA         0.045
- 9 Dog               Canis    carni Carnivo… domesticated  0.07     14    
-10 Roe deer          Capreol… herbi Artioda… lc            0.0982   14.8  
-# ... with 73 more rows
-```
-
-On peut aussi renommer certaines colonnes
-
-```r
-rename(msleep, nom = name, genre = genus)
-```
-
-```
-# A tibble: 83 x 11
-   nom    genre vore  order conservation sleep_total sleep_rem sleep_cycle
-   <chr>  <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl>
- 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA    
- 2 Owl m… Aotus omni  Prim… <NA>                17         1.8      NA    
- 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA    
- 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
- 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667
- 6 Three… Brad… herbi Pilo… <NA>                14.4       2.2       0.767
- 7 North… Call… carni Carn… vu                   8.7       1.4       0.383
- 8 Vespe… Calo… <NA>  Rode… <NA>                 7        NA        NA    
- 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333
-10 Roe d… Capr… herbi Arti… lc                   3        NA        NA    
-# ... with 73 more rows, and 3 more variables: awake <dbl>, brainwt <dbl>,
-#   bodywt <dbl>
-```
-
-Ajouter des colonnes
+Adding columns
 --------
 
-Puisque les colonnes sont ajoutées à la fin du jeu de données, nous allons créer un jeu de données simplifié pour bien voir ce que l'on fait
+Because columns are added (by default) to the rightmost of the dataset, we create ourselves a simplified dataset just to see more easily what we are doing.
 
 ```r
-poids <- select(msleep,ends_with("wt"))
-poids
+weights <- select(msleep,ends_with("wt"))
+weights
 ```
 
 ```
@@ -475,11 +424,10 @@ poids
 # ... with 73 more rows
 ```
 
-Pour ajouter une colonne du poids du cerveau en grammes
-
+To add a column containing brain size in grams instead of kilograms
 
 ```r
-mutate(poids, cerveau_g = brainwt*1000)
+mutate(weights, cerveau_g = brainwt*1000)
 ```
 
 ```
@@ -499,11 +447,10 @@ mutate(poids, cerveau_g = brainwt*1000)
 # ... with 73 more rows
 ```
 
-On peut aussi utiliser plusieurs colonnes à la fois dans un calcul, p. ex.
-pour calculer la taille relative du cerveau :
+Note that many columns can be used in the same calculation, e.g. to calculate the relative size of the brain :
 
 ```r
-mutate(poids, rel_brain = brainwt / bodywt)
+mutate(weights, rel_brain = brainwt / bodywt)
 ```
 
 ```
@@ -523,17 +470,18 @@ mutate(poids, rel_brain = brainwt / bodywt)
 # ... with 73 more rows
 ```
 
-Combiner plusieurs opérations dans une chaîne
+Combining many operations in a chain
 ---------
-C'est ici que l'approche `dplyr` se démarque que l'approche classique!
 
-Déjà, on peut faire beaucoup de choses avec les opérations vues précédemment, p. ex. obtenir le nom et le poids des 10 plus petits mammifères:
+This is where, in my opinion, that the `dplyr`-way really shines.
+
+With the few functions we've seen so far, we can already do a lot of things. For example, if we wished to find the name and the weight of the 10 smallest mammals in the dataset :
 
 ```r
-x <- arrange(msleep,bodywt) # trier du plus petit au plus grand
-y <- mutate(x,rang = row_number())# ajouter une colonne de rang
-z <- filter(y, rang <= 10)# garder les 10 plus petits
-select(z,name,bodywt)# ne garder que les noms et les poids
+x <- arrange(msleep,bodywt) # sort from smallest to largest
+y <- mutate(x,rang = row_number())# add a rank column
+z <- filter(y, rang <= 10)# keep only the 10 smallest ones
+select(z,name,bodywt)# keep only name and weight columns
 ```
 
 ```
@@ -552,30 +500,13 @@ select(z,name,bodywt)# ne garder que les noms et les poids
 10 Vesper mouse                0.045
 ```
 
-Ça nous fait beaucoup d'objets intermédiaires inutiles. On pourrait bêtement les éliminer
+Notice that on the way, we create many *useless* intermediate objects (`x`,`y` and `z`), which we could easily eliminate.
 
 ```r
 select(filter(mutate(arrange(msleep,bodywt),rang = row_number()), rang <= 10),name,bodywt)
 ```
 
-```
-# A tibble: 10 x 2
-   name                       bodywt
-   <chr>                       <dbl>
- 1 Lesser short-tailed shrew   0.005
- 2 Little brown bat            0.01
- 3 Greater short-tailed shrew  0.019
- 4 Deer mouse                  0.021
- 5 House mouse                 0.022
- 6 Big brown bat               0.023
- 7 Northern grasshopper mouse  0.028
- 8 "Vole "                     0.035
- 9 African striped mouse       0.044
-10 Vesper mouse                0.045
-```
-
-Mais ce faisant, on perd grandement en lisibilité. On pourrait indenter le code pour y voir plus clair :
-
+But doing so, we loose a lot in readability. We could split that code again into separate lines and use identation to clarify things :
 
 ```r
 select(
@@ -591,26 +522,9 @@ select(
 )
 ```
 
-```
-# A tibble: 10 x 2
-   name                       bodywt
-   <chr>                       <dbl>
- 1 Lesser short-tailed shrew   0.005
- 2 Little brown bat            0.01
- 3 Greater short-tailed shrew  0.019
- 4 Deer mouse                  0.021
- 5 House mouse                 0.022
- 6 Big brown bat               0.023
- 7 Northern grasshopper mouse  0.028
- 8 "Vole "                     0.035
- 9 African striped mouse       0.044
-10 Vesper mouse                0.045
-```
-Mais on reste avec le problème que ce n'est pas simple au premier coup d'oeil de
-voir sur quel tableau de données on travaille. De plus, il faut lire du centre vers
-l'extérieur, ce qui est peu intuitif.
+But the resulting code is not necessarily easy to read, and at first sight, it's hard to know which dataset is affected. It is also annoying that you need to read from center to the outside, which is not natural for most readers.
 
-La solution, l’opérateur d’enchaînement (Pipe Operator), de la librairie `magrittr` : `%>%`
+This is where the pipe operator (`%>%`) from the `magrittr` library comes in really handy :
 
 
 ```r
@@ -621,33 +535,26 @@ msleep %>%
   select(name, bodywt)
 ```
 
-```
-# A tibble: 10 x 2
-   name                       bodywt
-   <chr>                       <dbl>
- 1 Lesser short-tailed shrew   0.005
- 2 Little brown bat            0.01
- 3 Greater short-tailed shrew  0.019
- 4 Deer mouse                  0.021
- 5 House mouse                 0.022
- 6 Big brown bat               0.023
- 7 Northern grasshopper mouse  0.028
- 8 "Vole "                     0.035
- 9 African striped mouse       0.044
-10 Vesper mouse                0.045
-```
+NB there is no need to manually load the pipe operator as dplyr does this for us everytime we load it.
 
-`%>%` transforme notre version lisible en une version que l’ordinateur est prêt à exécuter...
 
- * Plus facile à lire
- * On récupère la lecture de haut en bas et de gauche à droite
- * On n’a plus d’objets intermédiaires inutiles
- * L’accent est mis sur la transformation (le verbe)
- * On trouve rapidement le point de départ (le tableau de données)
+`%>%` transforms our code in a way that is easier for us, while keeping it interpretable by R...
 
-Raccourci clavier : `Ctrl+Shift+M`
+* Code becomes easier to read
+* We get back our natural left-to-right and top-to-bottom reading sequence
+* No more intermediate objects littering our code
+* The dataset is the first thing in the chain, clearly indicating on what the code applies
+* Every line of code begins with an action verb
 
-Toutes les librairies faisant partie du `tidyverse` de Hadley Wickham supportent l'opérateur d'enchaînement, sauf `ggplot2`. Ce dernier peut néanmoins être ajouté au bout d'une chaîne :
+I know, `%>%` is clunky to type, but those of you with RStudio can use the : `Ctrl+Shift+M` to type it rapidly.
+
+All librairies from Hadley Wickam's `tidyverse` are required to support the pipe operator... except one : `ggplot2`.
+
+ggplot2 doesn't support the pipe operator, and probably never will.
+You can read the whole story here : <https://community.rstudio.com/t/why-cant-ggplot2-use/4372/7>.
+
+`ggplot2` can nevertheless be inserted at the end of a chain :
+
 
 
 ```r
@@ -667,51 +574,47 @@ Warning: Removed 19 rows containing missing values (geom_point).
 
 ![](/assets/RapidDataManip_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
 
-Il faut être super attentif, parce que toutes les autres fonctions s'enchaînent
-avec `%>%`, sauf les couches de ggplot qui s'attachent avec des `+`
+Mixing `ggplot2` with `dplyr` forces you to be very alert, because you now have database manipulation statements chained together with `%>%` a graphic layers connected with `+`
 
-Deuxième exercice
+Second exercise
 ------
-On refait le premier exercice, mais cette fois-ci, en prenant avantage de
-l'opérateur d'enchaînement :
 
-Trouver en ordre croissant de poids du corps, la liste de tous les herbivores non domestiqués
+Just try again the first exercise (finding, in ascending order of body weight, the list of all non-domestic herbivorous animals) but this time, taking advantage of the pipe operator to simplify your code.
 
-Résumer les données
+Summarizing a dataset
 --------
-Dernière opération de base que l'on peut faire avec un jeu de données propres : le résumer.
 
-On peut résumer plusieurs variables ou fonctions à la fois :
+With the `summarize` function, you can summarize many functions or variables at once :
 
 ```r
 msleep %>%
   summarize(
-    poids_moyen = mean(bodywt),
-    ecart_type_poids = sd(bodywt)
+    mean_weight = mean(bodywt),
+    sd_weight = sd(bodywt)
   )
 ```
 
 ```
 # A tibble: 1 x 2
-  poids_moyen ecart_type_poids
+  mean_weight sd_weight
         <dbl>            <dbl>
 1        166.             787.
 ```
 
-Cette opération devient beaucoup plus puissante si on utilise les regroupements :
+Such an operation becomes much more powerful if we use a grouping clause :
 
 ```r
 msleep %>%
   group_by(vore) %>%
   summarize(
-    poids_moyen = mean(bodywt),
-    ecart_type_poids = sd(bodywt)
+    mean_weight = mean(bodywt),
+    sd_weight = sd(bodywt)
   )
 ```
 
 ```
 # A tibble: 5 x 3
-  vore    poids_moyen ecart_type_poids
+  vore    mean_weidth        sd_weight
   <chr>         <dbl>            <dbl>
 1 carni        90.8             182.  
 2 herbi       367.             1244.  
@@ -720,19 +623,17 @@ msleep %>%
 5 <NA>          0.858             1.34
 ```
 
-# Nettoyage des données
+# Cleaning up your data
 
-## Format long vs. format large
+## Long vs. wide format
 
-Parfois, le format dans lequel nous entrons nos données est très pratique lors
-de la saisie, mais ne correspond pas à la définition des données *propres*
-(une ligne par observations, une colonne par variable).
+Sometimes, the format we use to enter data is really practical when typing, but doesn't quite fit the definition of *tidy* data (i.e. one line per observation, one column per variable).
 
-Souvent, on se retrouve avec des données qui ressemblent à ceci :
+In ecology, oftentimes, we end up with a dataset that looks like this :
 
 ```r
-oiseaux <- tibble(
-  Especes = c("Corneille", "Mésange"),
+birds <- tibble(
+  Species = c("Crow", "Chickadee"),
   "2001" = c(0,1),
   "2002" = c(2,1),
   "2003" = c(2,2)
@@ -742,32 +643,31 @@ oiseaux
 
 ```
 # A tibble: 2 x 4
-  Especes   `2001` `2002` `2003`
-  <chr>      <dbl>  <dbl>  <dbl>
-1 Corneille      0      2      2
-2 Mésange        1      1      2
+  Species  `2001` `2002` `2003`
+  <chr>     <dbl>  <dbl>  <dbl>
+1 Crow      0      2      2
+2 Chickadee 1      1      2
 ```
 
-Comment tracerait-on le graphique de l'abondance des corneilles au fil des années?
+With such a dataset, how would you plot Crow abundance throughout the years?
 
-La solution est de passer les données au format long plutôt que large :
-
+The solution comes by changing to the long format instead of the wide format :
 ```r
 library(tidyr)
-o2 <-
-  oiseaux %>%
+long_birds <-
+  birds %>%
     gather(
-      key = Annee,
-      value = Abondance,
+      key = Year,
+      value = Abundance,
       `2001`:`2003`,
       convert = TRUE
     )
-o2
+long_birds
 ```
 
 ```
 # A tibble: 6 x 3
-  Especes   Annee Abondance
+  Species   Year   Abundance
   <chr>     <int>     <dbl>
 1 Corneille  2001         0
 2 Mésange    2001         1
@@ -777,149 +677,85 @@ o2
 6 Mésange    2003         2
 ```
 
-L'argument `key` correspond au nom de la colonne qui contiendra les anciens noms de colonnes.
+The `key` argument is used to specify the name of the new column that will contain to old column names
 
-L'argument `value`correspond au nom de la colonne qui contiendra les valeurs dans l'ancien tableau.
+The `value` argument is used to specify the name of the new column that will contain the values from the old dataset.
 
-Autrement dit, les deux questions à vous poser dans le passage du
-format large au format long sont :
+So, whenever you need to go from the wide to the long format, there are two questions two ask yourself :
 
-* à quoi correspondent vraiment les noms de colonnes
-* à quoi correspondent vraiment les valeurs dans les cellules
+* what do my old column names correspond to?
+* what do the cells values in the old dataset correspond to?
 
-Ensuite, on peut finalement tracer le graphique...
-
+And then you can finally do the required plot
 
 ```r
-o2 %>%
-  filter(Especes == "Corneille") %>%
-  ggplot(aes(x = Annee, y = Abondance)) +
+long_birds %>%
+  filter(Species == "Crow") %>%
+  ggplot(aes(x = Year, y = Abundance)) +
   geom_line()
 ```
 
 ![](/assets/RapidDataManip_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
 
-Une autre application du format long : répéter une opération sur plusieur variables.
-
-P. ex. pour obtenir l'histogramme de toutes les variables de sommeil dans le jeu
-de données `msleep` :
+On the other hand if, for any reason, an observation was splitted on many lines, you can easily put it back together :
 
 ```r
-msleep_long <- msleep %>%
-  gather(
-    key = Variable,
-    value = Valeur,
-    sleep_total:awake
-  )
-msleep_long
-```
-
-```
-# A tibble: 332 x 9
-   name    genus vore  order conservation  brainwt  bodywt Variable Valeur
-   <chr>   <chr> <chr> <chr> <chr>           <dbl>   <dbl> <chr>     <dbl>
- 1 Cheetah Acin… carni Carn… lc           NA        50     sleep_t…   12.1
- 2 Owl mo… Aotus omni  Prim… <NA>          0.0155    0.48  sleep_t…   17  
- 3 Mounta… Aplo… herbi Rode… nt           NA         1.35  sleep_t…   14.4
- 4 Greate… Blar… omni  Sori… lc            0.00029   0.019 sleep_t…   14.9
- 5 Cow     Bos   herbi Arti… domesticated  0.423   600     sleep_t…    4  
- 6 Three-… Brad… herbi Pilo… <NA>         NA         3.85  sleep_t…   14.4
- 7 Northe… Call… carni Carn… vu           NA        20.5   sleep_t…    8.7
- 8 Vesper… Calo… <NA>  Rode… <NA>         NA         0.045 sleep_t…    7  
- 9 Dog     Canis carni Carn… domesticated  0.07     14     sleep_t…   10.1
-10 Roe de… Capr… herbi Arti… lc            0.0982   14.8   sleep_t…    3  
-# ... with 322 more rows
-```
-
-
-```r
-msleep_long %>%
-  ggplot(aes(x = Valeur)) +
-  geom_histogram() +
-  facet_wrap(~Variable)
-```
-
-```
-`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-```
-Warning: Removed 73 rows containing non-finite values (stat_bin).
-```
-
-![](/assets/RapidDataManip_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
-
-Si à l'inverse, une même observation a été divisée sur plusieurs lignes, on peut la rassembler :
-
-```r
-mesures <- data.frame(
-  individu = c("A","A","B","B","C","C"),
-  mesure = c("pH","O2", "pH","O2","pH","O2"),
-  valeur = c(6,99,7,90, 6.5, 89)
+measurements <- data.frame(
+  id = c("A","A","B","B","C","C"),
+  measurement = c("pH","O2", "pH","O2","pH","O2"),
+  value = c(6,99,7,90, 6.5, 89)
 )
-mesures
+measurements
 ```
 
 ```
-  individu mesure valeur
-1        A     pH    6.0
-2        A     O2   99.0
-3        B     pH    7.0
-4        B     O2   90.0
-5        C     pH    6.5
-6        C     O2   89.0
+        id measurement value
+1        A     pH        6.0
+2        A     O2       99.0
+3        B     pH        7.0
+4        B     O2       90.0
+5        C     pH        6.5
+6        C     O2       89.0
 ```
 
 ```r
-mesures %>%
+mesurements %>%
   spread(
-    key = mesure,
-    value = valeur
+    key = measurement,
+    value = values
   )
 ```
 
 ```
-  individu O2  pH
+        id O2  pH
 1        A 99 6.0
 2        B 90 7.0
 3        C 89 6.5
 ```
 
-Et on est de retour à une variable par colonne et une obsevation par ligne
+Which brings us back to `tidy` data with one line per observation and one column per variable.
 
-Pour la fonction `spread`, l'argument `key` correspond à la colonne contenant les
-noms des colonnes à créer, et l'argument `value` correspond à la colonne contenant
-les valeurs
+When using the `spread` function, the `key` argument correspond to the old column containing what will become the new column names, and the `value` argument must contain the name of the old column containing the values.
 
-VOIR SLIDES
+# Data importation tips
 
-# Importation de données
-Au Québec, l'importation de données dans R à partir de fichiers CSV est particulièrement complexe :
+In Québec (and any other french-speaking region), importing data from CSV files can become a real nightmare because :
 
-VOIR SLIDES
+* Our decimal seperator is a comma, not a point
+* Our thousands separator is a space instead of a comma
+* Our standard data components are not written in the same order as in english
+* Weird stuff happens with accented letters
+* The French version of Excel pretends it is exporting CSV files (comma separated values) when in fact, it uses semicolons as separators.
 
-* Notre séparateur de décimales est la virgule plutôt de que le point
-* Notre séparateur de milliers est l'espace plutôt que la virgule
-* Nos dates ne sont pas dans le même ordre que les anglophones
-* Toutes sortes d'ennuis avec les lettres accentuées.
-* La version française de Excel nous dit créer des fichiers CSV, alors qu'en fait,
-elle insère des points-virgules plutôt que des virgules.
+To get around all these weird issues, I suggest all of you to just cut the middle man and import from Excel files directly. Excel's internal format is really consistent and you'll never encounter any of the above issues when sharing Excel files with your colleagues.
 
-La méthode à (presque) toute épreuve que je vous propose : charger vos données directement
-à partir de votre fichier Excel!
+Importing from Excel files is really powerful, but there are still a couple of caveats you must avoid for things to go smoothly :
 
-La raison : le représentation interne des données dans le fichier Excel est
-super constante et ne varie pas entre les langues ou les pays.
-
-Les règles à suivre pour que les données s'importent bien à partir de votre fichier Excel :
-
-* Les méta-informations ne doivent pas être dans la même feuille que les données
-* Au pire, les méta-information doivent être en haut de la feuille
-* Assurez-vous que vos noms de colonnes ne sont pas dédoublés
-* Pas de fusion de cellules ou de lignes vides inutiles : données *propres*
-* Assurez-vous que Excel interprète correctement vos données (p. ex. que vous êtes
-capables de calculer une moyenne sur votre colonne)
-
+* Meta-information should be in a separate sheet from the data
+* At worse, put meta-infomration at the top the sheet
+* Make sure that all column headers have unique names
+* No merged cells or useless empty lines : keep your data *tidy*
+* Make sure that Excel can use your data correctly. I.e. try some mathematical operations on your data inside Excel.
 
 ```r
 library(readxl)
@@ -937,30 +773,14 @@ x
 4 B        2,1          4.12     4.12 2018-11-01 00:00:00
 ```
 
-On peut aussi *passer* des lignes ou aller lire une feuille spécifique plutôt que la première :
-
+You can also *skip* some lines or read a specific sheet inside your Excel file :
 
 ```r
 obs <- read_excel("Exemple.xlsx",sheet = 2, skip = 2)
 ```
 
-# Dernier exercice
-Comment convertir le tableau `obs` dans un format approprié aux analyses de
-communautés, avec une ligne par site, et une colonne par espèce?
 
-e.g. pour arriver à ceci :
-
-
-```
-# A tibble: 3 x 3
-   Site Corneille `Geai bleu`
-  <dbl>     <dbl>       <dbl>
-1     1         1           2
-2     2         2           5
-3     3         1           0
-```
-
-Ces exercices ont été préparées avec...
+This workshop was prepared with...
 ------
 
 ```r
