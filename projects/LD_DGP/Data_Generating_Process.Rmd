@@ -1,0 +1,389 @@
+---
+title: "Data Generating Process"
+author: "Lucas Deschamps"
+output:
+  ioslides_presentation:
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "../..")
+```
+
+##_Nature is a mess, but we search out for order_
+
+Most of the time, as scientists, we try to find the laws able to explain patterns we can observe in the real world (for ecologists, the one outside our desk)
+
+Most of the time, we have hard time finding deterministic processes : Nature is full of stochasticity (genetic and environmental variations, displacements...)
+
+How could we possibly find laws if what we are looking for is full of noise?
+
+#_Help me, Obi-Wan Statistic. You're my only hope_
+
+## Our inspiration of the day
+
+<div class="columns-2">
+  Helen Sifera, an amateur entomologist, passionated by *Orthopterans*...
+  
+  And statistics!
+  
+  Wonderful collection of records
+
+```{r, echo=FALSE, fig.cap="Picasso, 1903, Celestina", fig.align="right", out.width = '50%'}
+knitr::include_graphics("/home/lucasd/Gdrive/Projects/RIVE-Numeri-lab.github.io/docs/assets/images/DGP_celestina.jpg")
+```
+</div>
+
+## First experience: population estimate
+
+  Aim : estimate *Nemobius sylvestris* density in the familial forest
+  
+  50 random quadrats and systematic count
+  
+```{r, echo=FALSE, fig.align="right", out.width = '40%'}
+knitr::include_graphics("/home/lucasd/Gdrive/Projects/RIVE-Numeri-lab.github.io/docs/assets/images/DGP_NemobiusSylvestris.JPG")
+```
+
+```{r, echo=FALSE, eval = F}
+## Simulate Helen first datas
+N = 50 ## Number of quadrats
+Nemobius <- data.frame(quadrat = 1:N, abundance = rpois(50, 4)) ## Observed counts
+summary(Nemobius)
+```
+
+## First experience: population estimate
+
+  Aim : estimate *Nemobius sylvestris* density in the familial forest
+  
+  50 random quadrats and systematic count
+  
+```{r, eval = F}
+## Load library
+library(tidyverse)
+## Plot an hitogram of data
+Nemobius %>% ggplot(aes(x = abundance)) +
+  stat_density(geom = "line", position = "identity") + 
+  theme_minimal()
+N = nrow(Nemobius)
+```
+
+## First experience: population estimate
+
+Which distribution best describes the data?
+
+  - Low number of counts with small variation: let's try with a poisson distribution
+  
+  - Poisson distribution is parametrized by a single parameter, $\lambda > 0$.
+  
+  - This allows the formulation of the *likelihood*:
+  
+  $$
+  P(y_i | \lambda) = \frac{\lambda^{y_i} e^{-\lambda}}{y_i!}\\
+  y_i \sim Poisson(\lambda)
+  $$
+## First experience: population estimate
+
+What are the parameter values which are the more probable given my data?
+
+  - Posterior distribution!
+
+$$
+P(\lambda | y_i)
+$$
+
+How to estimate this distribution?
+
+## First experience: population estimate
+
+Brut force approach : let's define a vector of potential parameters
+
+```{r, eval = F}
+## Define an equally spaced vector
+lambda_prior <- seq(from = 0.1, to= 12, by = 0.2)
+```
+
+## First experience: population estimate
+
+Brut force approach : let's generate data for every parameter value
+
+```{r, eval = F}
+## Create a data.frame to store results
+Simu <- data.frame(run = rep(1:length(lambda_prior), each = N), 
+                          lambda_prior = rep(lambda_prior, each = N),
+                          abund_sim = NA)
+## Simulate data for each value of mu_prior
+for(r in unique(Simu$run)){
+  lambda_r <- unique(Simu$lambda_prior[Simu$run == r])
+  Simu$abund_sim[Simu$run == r] <- rpois(N, lambda_r)
+}
+```
+
+## First experience: population estimate
+
+Comparing observed and predicted : visual inspection
+
+  - Probability than our simulation produces exactly the observed data is extremely low!
+
+```{r, eval = F}
+Nemobius %>% ggplot(aes(x = abundance)) + 
+  stat_density(data = filter(Simu, run %in% c(3:75)),
+               aes(x = abund_sim, group = run), geom = "line",
+               position = "identity",col = "blue", alpha = 0.1) + 
+  stat_density(geom = "line", lwd = 1, position = "stack") +
+  theme_minimal()
+```
+
+## First experience: population estimate
+
+Comparing observed and predicted : summary statistics
+
+  - Our objective is to summarize the observed values by a sufficient set of statistics
+  
+  Poisson distribution:
+  $$
+  Mean = \lambda\\
+  Median \approx\lfloor\lambda+1/3-0.02/\lambda\rfloor\\
+  Variance = \lambda\\
+  Skewness = \lambda^{-1/2}
+  $$
+
+## First experience: population estimate
+
+Comparing observed and predicted : summary statistics
+  
+```{r, eval = F}
+## Compute observed mean
+mean_obs <- mean(Nemobius$abundance)
+## Compute simulated means
+Mean_sim <- Simu %>% group_by(run, lambda_prior) %>% 
+  summarize(mean_sim = mean(abund_sim)) %>%
+  mutate(mean_dist = mean_obs - mean_sim)
+## Plot
+Mean_sim %>% ggplot(aes(x= mean_sim, y = lambda_prior)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = F) + 
+  geom_vline(aes(xintercept = mean_obs)) + 
+  xlab("Simulated mean") + 
+  ylab("Prior lambda") +
+  theme_minimal()
+```
+
+## First experience: population estimate
+
+Computing the posterior distribution
+
+  - Weighting by the distance to the result
+  
+  $$
+  \lambda_r^* = \lambda_r - b(S(y_{r}) - S(y_{obs}))
+  $$
+
+## First experience: population estimate
+
+Computing the posterior distribution
+
+  - Weighting by the distance to the result!
+  
+
+```{r, eval = F}
+## Extract regression parameters
+b <- Mean_sim %>% lm(data = ., mean_sim ~ lambda_prior) %>% coef()
+## Weight each simulated parameters
+Mean_sim <- Mean_sim %>% 
+  mutate(lambda_post = lambda_prior - b[2] * (mean_sim - mean_obs))
+## Plot the posterior distribution
+Mean_sim %>% ggplot(aes(lambda_post)) + 
+  stat_density(geom = "line", position = "identity") +
+  geom_vline(aes(xintercept = mean_obs)) + 
+  xlab("Value of lambda") + 
+  ylab(expression(paste("P(",lambda,"| Abund)"))) + 
+  theme_minimal()
+```
+
+## Questions and exercise
+
+Did we input *prior information* in the model?
+
+What would happen if we try a sequence of lambda between -10 and 10? Between 0.01 and 1000?
+
+What happen if you use a normal distribution instead of a poisson? Set $\sigma = \sqrt(\mu)$
+
+## Helen's second experience : environmental constraints
+
+During the exploration of the familial forest, Helen noticed strong variations in abundances of wood crickets.
+
+She associated these variations with the feeling under her feet...
+
+And decided to elucidate that!
+
+## Helen's second experience : environmental constraints
+
+How could we relate observed cricket abundances to litter thickness?
+
+## Helen's second experience : environmental constraints
+
+How could we relate observed cricket abundances to litter thickness? We have:
+
+ - a likelihood function
+
+ - an equation decribing the phenomenom of interest
+
+ - and a trick to ensure we will predict positive counts!
+
+## Helen's second experience : environmental constraints
+
+How could we relate observed cricket abundances to litter thickness? We have:
+
+ - a likelihood function
+ $$y_i \sim Poisson(lambda_i)$$
+ - an equation decribing the phenomenom of interest
+ $$\lambda_i = \alpha + \beta x_i$$
+ - and a trick to ensure we will predict positive counts!
+ $$log(\lambda_i) = \alpha + \beta x_i \equiv \lambda_i = e^{\alpha + \beta x_i}$$
+ 
+## Helen's second experience : environmental constraints
+
+Now, we are interested of the joint distribution of parameters. We need to define the probability of combinations of parameters!
+
+We have two solutions to solve this problem: 
+  - use brut force
+  - use the bayes theorem
+  
+  $$ P(\alpha, \beta | y_i) \propto P( y_i | \alpha, \beta)P( \alpha, \beta)\\
+  P(\alpha, \beta | \boldsymbol{y}) \propto \prod_{i=1}^{n}P( y_i | \alpha, \beta)P( \alpha, \beta)\\
+    P(\alpha, \beta | \boldsymbol{y}) \propto \sum_{i=1}^{n}logP( y_i | \alpha, \beta)logP( \alpha, \beta)\\
+  $$
+## Helen's second experience : environmental constraints
+
+Posterior distribution are often intractable analytically!
+
+But *Markov Chains Monte Carlo* algorithms allow to cleverly sample from the joint posterior distribution.
+
+It allows simultaneously to get marginal distributions of parameters.
+
+## Helen's second experience : environmental constraints
+
+Before making any move, we need a complete data generating process!
+
+$$
+y_i \sim Poisson(\lambda_i)\\
+\lambda_i = e^{\alpha + \beta x_i}
+$$
+And a complete data generating process needs priors. What would good priors be?
+
+```{r}
+
+```
+
+
+## Helen's second experience : environmental constraints
+
+Before making any move, we need a complete data generating process!
+
+$$
+y_i \sim Poisson(\lambda_i)\\
+\lambda_i = e^{\alpha + \beta x_i}
+$$
+And a complete data generating process needs priors. What would good priors be?
+
+$$
+\alpha \sim normal(0,5)\\
+\beta \sim normal(0,5)\\
+$$
+
+
+```{r}
+gibbs_sampler <- function(x, N, mu_prior,sigma_prior,
+                          alpha_prior, beta_prior,
+                          mu_start, sigma_start, nparam){
+  post <- matrix(NA, N+1, nparam)
+  post[1,] <- c(mu_start, sigma_start)
+  theta.c <- numeric(nparam)
+  theta.0 <- numeric(nparam)
+  for(n in 2:N){ #Begin at 2 to take stored started value in post[1,]
+    for(i in 1:nparam){
+      ## Pick the value at t-1 (starting value if )
+      theta.0[i] <- post[n-1,i]
+      ## Sample the theta candidate
+      if(i == 1) theta.c[i] <- rnorm(1, mu_prior, sigma_prior)
+      if(i == 2) theta.c[i] <- 1/sqrt(rgamma(1, shape = alpha_prior, rate = beta_prior))
+      
+      ## Compute the rejection probability
+      if(i == 1 ) r_c <- sum(dnorm(x, theta.c[i], post[n-1, i+1], log = T))/
+          sum(dnorm(x, theta.0[i], post[n-1, i+1], log = T))
+      if(i == 2 ) r_c <- sum(dnorm(x, post[n-1, i-1], theta.c[i], log = T))/
+          sum(dnorm(x, post[n-1, i-1], theta.0[i], log = T))
+      
+      ## Sample a random value for comparison
+      U <- runif(1,0,1)
+      
+      ## Store conditionally the new value
+      if(U < r_c) post[n,i] <- theta.c[i]
+      if(U > r_c) post[n,i] <- theta.0[i]
+      
+    }
+    
+  }
+  return(post)
+}
+```
+
+
+## Helen's third experience: population growth rate
+
+In 1920, a fire ravaged a part of the familial forest.
+
+Helen followed the recovery of her favorite orthopterans for 10 years.
+
+10 fixed traps, opened during two holiday weeks in august.
+
+```{r, echo=FALSE, fig.align="right", out.width = '40%'}
+knitr::include_graphics("/home/lucasd/Gdrive/Projects/RIVE-Numeri-lab.github.io/docs/assets/images/DGP_SosoKumsiashvi.jpg")
+```
+
+## Helen's second experience: population growth rate
+
+```{r, include = FALSE}
+logistic <- function(rmax, N, K){
+  dN <- rmax * ((K-N)/ K) * N
+  return(list(dN))
+}
+
+logistic.ode <-function(t, state, parameters) {
+with(as.list(c(state, parameters)),{
+# rate of change
+  dN <- rmax * ((K-N)/ K) * N
+# return the rate of change
+  list(dN)
+  })
+}
+
+library(deSolve)
+## Create list to store results
+Nlist <-  list()
+## Define parameters
+parms <- c(rmax = 1.2, K = 12)
+## Define years for which to solve
+times = seq(1,15, by = 1)
+
+for(p in 1:10){
+  ## Stochastic initial state
+  state <- c(N = rpois(1,1) + 1)
+  ## Compute lambdas for each years
+  lambdas <- as.data.frame(ode(y = state, times = times, func = logistic.ode,
+                               parms = parms))
+  ## Store the final observed abundances
+  Nlist[[p]] <- data.frame(trap = as.character(p), times = times, 
+                              abundance = rpois(15, lambdas$N))
+}
+## Tranform the list into a data frame
+Nemobius <- plyr::ldply(Nlist, data.frame)
+
+## Plot the result for each trap
+# Nemobius %>% ggplot(aes(x = times, y = abundance, color = trap)) + 
+#   geom_smooth(se = F) + 
+#   theme_minimal()
+```
+
+
