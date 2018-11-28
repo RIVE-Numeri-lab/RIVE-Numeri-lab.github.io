@@ -154,7 +154,8 @@ LVmod.logit <- function(Time, State, Pars) {
 ## Function to generate predator-prey data
 gen.nemobius.pred <- function(P = 10, t = 40, logit = T,
                               mu_rg = 0.55, mu_ri = 0.028,
-                              mu_rm = 0.55, mu_ra = 0.025){
+                              mu_rm = 0.84, mu_ra = 0.25,
+                              K = 500){
   ## Needed libraries
   require(deSolve)
   
@@ -165,23 +166,25 @@ gen.nemobius.pred <- function(P = 10, t = 40, logit = T,
              rIng   = rlnorm(1,log(mu_ri), log(1.1)),    # /day, rate of ingestion
              rMort  = rlnorm(1,log(mu_rm), log(1.1)) ,   # /day, mortality rate of predator
              rAss = rlnorm(1,log(mu_ra), log(1.1)),    # -, assimilation efficiency
-             K      = 50)     # mmol/m3, carrying capacity
+             K      = K)     # mmol/m3, carrying capacity
   ## Define years for which to solve
   times = seq(2,t, by = 1)
 
   for(p in 1:P){
     ## Stochastic initial state
-    yini <- c(Prey = rpois(1,34) , Predator = rpois(1,20))
+    yini <- c(Prey = rlnorm(1, log(35), 1) , Predator = rlnorm(1, log(6), 1))
     ## Compute lambdas for each years
     ### Exponential or logistic growth of preys?
-    if(logit == T) lambdas <- as.data.frame(ode(yini, times, LVmod.logit, pars,
+    if(logit == T) mus <- as.data.frame(ode(yini, times, LVmod.logit, pars,
                                                 method = "ode45"))
-    if(logit == F) lambdas <- as.data.frame(ode(yini, times, LVmod.exp, pars,
+    if(logit == F) mus <- as.data.frame(ode(yini, times, LVmod.exp, pars,
                                                 method = "ode45"))
     ## Store the final observed abundances
     Nlist[[p]] <- data.frame(trap = as.character(p), times = c(1, times), 
-                             Prey = c(yini[1], rpois(lambdas$Prey, lambdas$Prey)),
-                             Pred = c(yini[2], rpois(lambdas$Predator, lambdas$Predator)))
+                             Prey = c(yini[1], rlnorm(mus$Prey,
+                                                      log(mus$Prey), 0.25)),
+                             Pred = c(yini[2], rlnorm(mus$Predator,
+                                                      log(mus$Predator), 0.25)))
   }
   ## Tranform the list into a data frame
   Nemobius <- bind_rows(Nlist)

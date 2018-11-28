@@ -14,25 +14,22 @@ knitr::opts_knit$set(root.dir = "../..")
 
   1. Dezip the received file
   2. Open the contained Rproject
-  3. Open "Data_Generating_Process.html (in your browser, for example)"
-  4. Load the following libraries
-```{r, message = F}
+  3. Open "Data_Generating_Process.html" (in your browser, for example)
+  4. Load the following libraries and run source and set.seed
+```{r, eval = F}
 rm(list = ls())
 library(tidyverse)
 library(deSolve)
 library(rstan)
-```
-
-  4. Run the following commands
-  
-```{r, eval = F}
+library(MCMCpack)
 source("Functions_DGP.R")
-set.seed(999)
+set.seed(666)
 ```
 
-```{r, echo = F}
+
+```{r, eval = F, include = F}
 source("projects/LD_DGP/Functions_DGP.R")
-set.seed(999)
+set.seed(666)
 ```
 
 
@@ -93,6 +90,7 @@ A good model should be able to *reproduce* the noise...
 
 But should be informative enough to allow predicting essential features of data, such as *summary statistics*
 
+#_Nemobius populations_
 
 ## Our inspiration of the day
 
@@ -109,7 +107,7 @@ knitr::include_graphics("/home/lucasd/Gdrive/Projects/RIVE-Numeri-lab.github.io/
 </div>
 
 
-## First experience: population estimate
+## Population estimate
 
   Aim : estimate *Nemobius sylvestris* density in the familial forest
   
@@ -120,7 +118,7 @@ knitr::include_graphics("/home/lucasd/Gdrive/Projects/RIVE-Numeri-lab.github.io/
 ```
 
 
-## First experience: population estimate
+## Population estimate
 
   Aim : estimate *Nemobius sylvestris* density in the familial forest
   
@@ -137,7 +135,7 @@ N = nrow(Nemobius)
 ```
 
 
-## First experience: population estimate
+## Population estimate
 
 Which distribution best describes the data?
 
@@ -153,20 +151,20 @@ Which distribution best describes the data?
   $$
 
 
-## First experience: population estimate
+## Population estimate
 
 What are the parameter values which are the more probable given my data?
 
   - Posterior distribution!
 
 $$
-P(\lambda | y_i)
+P(\lambda | \boldsymbol{y})
 $$
-
+  - With a mode and uncertainty...
 How to estimate this distribution?
 
 
-## First experience: population estimate
+## Population estimate
 
 Brut force approach : let's define a vector of potential parameters
 
@@ -176,7 +174,7 @@ lambda_prior <- seq(from = 0.1, to= 12, by = 0.2)
 ```
 
 
-## First experience: population estimate
+## Population estimate
 
 Brut force approach : let's generate data for every parameter value
 
@@ -193,11 +191,11 @@ for(r in unique(Simu$run)){
 ```
 
 
-## First experience: population estimate
+## Population estimate
 
 Comparing observed and predicted : visual inspection
 
-  - Probability than our simulation produces exactly the observed data is extremely low!
+  - Probability that our simulation produces exactly the observed data is extremely low!
 
 ```{r, eval = F}
 Nemobius %>% ggplot(aes(x = abundance)) + 
@@ -209,7 +207,7 @@ Nemobius %>% ggplot(aes(x = abundance)) +
 ```
 
 
-## First experience: population estimate
+## Population estimate
 
 Comparing observed and predicted : summary statistics
 
@@ -224,7 +222,7 @@ Comparing observed and predicted : summary statistics
   $$
 
 
-## First experience: population estimate
+## Population estimate
 
 Comparing observed and predicted : summary statistics
   
@@ -241,12 +239,12 @@ Mean_sim %>% ggplot(aes(x= mean_sim, y = lambda_prior)) +
   geom_smooth(method = "lm", se = F) + 
   geom_vline(aes(xintercept = mean_obs)) + 
   xlab("Simulated mean") + 
-  ylab("Prior lambda") +
+  ylab(expression(paste("Prior ", lambda))) +
   theme_minimal()
 ```
 
 
-## First experience: population estimate
+## Population estimate
 
 Computing the posterior distribution
 
@@ -257,7 +255,7 @@ Computing the posterior distribution
   $$
 
 
-## First experience: population estimate
+## Population estimate
 
 Computing the posterior distribution
 
@@ -284,14 +282,14 @@ Mean_sim %>% ggplot(aes(lambda_post)) +
 
 Did we input *prior information* in the model?
 
-What would happen if we try a sequence of lambda between -10 and 10? Between 0.01 and 1000?
+What happens if we try a sequence of lambda between -10 and 10? Between 0.01 and 1000?
 
-What happen if you use a normal distribution instead of a poisson? Set $\sigma = \sqrt(\mu)$
+What happens if we use a normal distribution instead of a poisson? Set $\sigma = \sqrt(\mu)$
 
 
-# Generalized linear models
+#_Environmental constraints_
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 During the exploration of the familial forest, Helen noticed strong variations in abundances of wood crickets.
 
@@ -304,11 +302,11 @@ knitr::include_graphics("/home/lucasd/Gdrive/Projects/RIVE-Numeri-lab.github.io/
 ```
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 How could we relate observed cricket abundances to litter thickness?
 
-```{r}
+```{r, eval = F}
 ## Import data and paramater values
 Nemolist <- gen.nemobius.reg()
 Nemobius <- Nemolist$Nemobius
@@ -323,7 +321,7 @@ Nemobius %>% ggplot(aes(litter_thickness, abundance)) +
 ```
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 How could we relate observed cricket abundances to litter thickness? We have:
 
@@ -334,32 +332,32 @@ How could we relate observed cricket abundances to litter thickness? We have:
  - and a trick to ensure we will predict positive counts!
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 How could we relate observed cricket abundances to litter thickness? We have:
 
  - a likelihood function
- $$y_i \sim Poisson(lambda_i)$$
+ $$y_i \sim Poisson(\lambda_i)$$
  - an equation decribing the phenomenom of interest
  $$\lambda_i = \alpha + \beta x_i$$
  - and a trick to ensure we will predict positive counts!
  $$log(\lambda_i) = \alpha + \beta x_i \equiv \lambda_i = e^{\alpha + \beta x_i}$$
  
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
-Now, we are interested of the joint distribution of parameters. We need to define the probability of combinations of parameters!
+Now, we are interested by the joint distribution of parameters. We need to define the probability of combinations of parameters!
 
 We have two solutions to solve this problem: 
-  - use brut force
-  - use the bayes theorem
+
+  - use brut force... or use the bayes theorem!
   
   $$ P(\alpha, \beta | y_i) \propto P( y_i | \alpha, \beta)P( \alpha, \beta)\\
   P(\alpha, \beta | \boldsymbol{y}) \propto \prod_{i=1}^{n}P( y_i | \alpha, \beta)P( \alpha, \beta)\\
     P(\alpha, \beta | \boldsymbol{y}) \propto \sum_{i=1}^{n}logP( y_i | \alpha, \beta)logP( \alpha, \beta)\\
   $$
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 Posterior distribution are often intractable analytically!
 
@@ -368,7 +366,7 @@ But *Markov Chains Monte Carlo* algorithms allow to cleverly sample from the joi
 It allows simultaneously to get marginal distributions of parameters.
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 Before making any move, we need a complete data generating process!
 
@@ -379,28 +377,30 @@ $$
 And a complete data generating process needs priors. What would good priors be?
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 Prior choice
 
- - We need to use what we know about data and their links to parameters to choose priors which will favor efficient posterior estimation and inferences.
+ - We need to use what we know about data and their links to parameters to choose priors which will favor efficient posterior estimation and viable inferences
 
- - What do we know about parameters?
+ - What do we know about parameters, $\alpha$ and $\beta$?
 
 
-## Helen's second experience : environmental constraints
+## 
 
 Prior choice
 
  - We need to use what we know about data and their link to parameters to choose priors which will favor efficient posterior estimation and inferences.
 
- - What do we know about parameters?
+ - What do we know about parameters, $\alpha$ and $\beta$?
 
   - Might be positive OR negative -> defined on $R$
   - Are on the log scale -> should not be too great
  
 
-## Prior choice
+## Environmental constraints
+
+Prior choice
 
 We need to use what we know about data and their link to parameters to choose priors which will favor efficient posterior estimation and inferences.
 
@@ -415,16 +415,11 @@ ggplot(data.frame(x = c(-20,20)), aes(x)) +
   stat_function(fun = dstudent_t, args = list(df = 3, mu = 0, sigma = 5), lty = 2) + 
   theme_minimal() + 
   ylab("Likelihood")
-## Or
-curve(dnorm(x, mean = 0, sd = 5), from = -20, to = 20,
-      ylab = "Likelihood", ylim = c(0, 0.08))
-curve(dstudent_t(x, df = 3, mu = 0, sigma = 5), from = -20, to = 20,
-      add = T, lty = 2)
-
+## Or curve!!
 ```
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 Before making any move, we need a complete data generating process!
 
@@ -439,7 +434,7 @@ $$
 \beta \sim normal(0,5)\\
 $$
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 So lets sample from the posterior!
 
@@ -456,7 +451,7 @@ likelihood <- function(param, x, y){
 }
 ```
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 So lets sample from the posterior!
 
@@ -474,7 +469,7 @@ prior <- function(param){
 ```
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 So lets sample from the posterior!
 
@@ -486,7 +481,7 @@ posterior <- function(param, x, y){
 ```
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 So lets sample from the posterior!
 
@@ -498,16 +493,17 @@ proposalfunction <- function(param){
 ```
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 ```{r, eval = F}
 ## And the Metropolis-Hasting algorithm...
 run_metropolis_MCMC <- function(startvalue, iterations, x, y){
-  chain = array(dim = c(iterations+1,2))
-  chain[1,] = startvalue
+  chain = array(dim = c(iterations+1,2)) # object to store results
+  chain[1,] = startvalue # fix starting values
   for (i in 1:iterations){
+    # new parameter value based on the former
     proposal = proposalfunction(chain[i,])
-    
+    # ratio of probability for the new parameter
     probab = exp(posterior(proposal, x, y) - posterior(chain[i,], x, y))
     if (runif(1) < probab){
       chain[i+1,] = proposal
@@ -520,18 +516,19 @@ run_metropolis_MCMC <- function(startvalue, iterations, x, y){
 ```
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 So lets sample from the posterior!
 
 ```{r, eval = F}
 startvalue <- c(4,0)
-chain <- run_metropolis_MCMC(startvalue, 50000,
-                             x = Nemobius$litter_thickness, y = Nemobius$abundance)
+chain <- run_metropolis_MCMC(startvalue, 20000,
+                             x = Nemobius$litter_thickness,
+                             y = Nemobius$abundance)
 ```
 
 
-## Helen's second experience : environmental constraints
+## Environmental constraints
 
 And look at the results.
 
@@ -543,18 +540,28 @@ hist(chain[-(1:burnIn),1],nclass=30, main="Posterior of alpha",
 plot(chain[-(1:burnIn),1], type = "l", main = "Chain values of alpha",
      xlab = "Red line represent true value" ); abline(h = Truea, col = "red")
 hist(chain[-(1:burnIn),2],nclass=30, main="Posterior of alpha",
-     xlab = "Red line represent true value"); abline(v = Trueb, col = "red")
+     xlab = "Red line represent true value")
+abline(v = Trueb, col = "red")
 plot(chain[-(1:burnIn),2], type = "l", main = "Chain values of alpha",
-     xlab = "Red line represent true value" ); abline(h = Trueb, col = "red")
+     xlab = "Red line represent true value" )
+abline(h = Trueb, col = "red")
 par(mfrow = c(1,1))
-
+summary(chain)
 ```
 
-```{r}
+## Environmental constraints
+
+However, we cannot be convinced by one chain: the posterior surface might be complicated, and the chain might be stuck in a local maxima or might not explore sufficiently.
+
+To make robust inferences, we use multiple chains
+
+```{r, eval = F}
 ## Fit model with 4 chains
 fitlist <- list()
-for(f in 1:4) fitlist[[f]] <- MCMCpoisson(data = Nemobius, abundance ~ litter_thickness,
-                                 mubeta = 0, Vbeta = 5, seed = runif(1,0,100))
+for(f in 1:4) fitlist[[f]] <- MCMCpoisson(data = Nemobius,
+                                          abundance ~ litter_thickness,
+                                          mubeta = 0, Vbeta = 5,
+                                          seed = runif(1,0,100))
 ## Transfomr in mcmc object for the coda package
 fit <- as.mcmc.list(fitlist)
 summary(fit)
@@ -563,55 +570,76 @@ plot(fit)
 gelman.diag(fit)
 ```
 
+## Environmental constraints
+
+Let's have a look at the predictions!
+
+```{r, eval = F}
+## Define continuous new predictors
+xpred = data.frame(int = 1, x = seq(min(Nemobius$litter_thickness),
+            max(Nemobius$litter_thickness), length.out = 100))
+## Compute expectation
+pred <- exp(chain[-c(1:burnIn),] %*% t(as.matrix(xpred)))
+## Simulate predicte data
+ypred <- pred
+for(j in 1:ncol(pred)) ypred[,j] <- rpois(pred[,j], pred[,j])
+## Summarize predicted data with quantiles
+ypred_quant <- apply(ypred, 2, quantile, c(0.05, 0.5, 0.95), na.rm = T)
+ypred_quant <- cbind(as.data.frame(t(ypred_quant)), xpred)
+summary(ypred_quant)
+```
+
+## Environmental constraints
+
+Let's have a look at the predictions!
+
+```{r, eval = F}
+## Plot observed and predicted patterns
+ggplot(data = ypred_quant) + 
+  geom_ribbon(aes(x, ymin = `5%`, ymax = `95%`), alpha = 0.2) + 
+  geom_line(aes(x, y = `50%`)) + 
+  geom_point(data = Nemobius, aes(litter_thickness, abundance)) + 
+  theme_minimal() + 
+  xlab("Litter thickness (cm)") + 
+  ylab("Crickets abundance")
+```
+
+
 ## Some packages to do that
 
- - *brms* and *rstanarm*, using *stan* and lme4 syntax, the former very flexible
- - *MCMCpack*, we just used it, syntax close to *nlme*, with a lot of specialized functions and algorithms
- - *MCMCglmm*, syntax close to classical glm, with *nlme* syntax
+ - *brms* and *rstanarm*, using *stan* and syntax close to lme4 syntax, the former highly flexible. Also implement facilities for state-of-the art model selection
+ - *MCMCpack*, we just used it, syntax close to *nlme*, with a lot of specialized functions and algorithms. Unfortunatly, it lacks *predict* and other convenient (if not mandatory) functions
+ - *MCMCglmm*, syntax close to classical glm, with syntax close to *nlme*
 
-# Stochastic process models
+# Process models
 
-## Helen's third experience: population dynamics
+## Population dynamics
 
+<div class="columns-2">
 In the 1922, Helen is hired by the Department of entomology at the university of Maryland.
 
 During the 30's, she once met Raymond Pearl at John Hopkins university, who presented some work of Alfred Lotka...
 
-And reminded her the traps she followed for 20 years in the familial forest!
+And reminded her the traps she followed for 20 years in the familial forest! 
 
+She weighted biomass of Nemobius and every other order she captured, including arachnids...
 
-```{r, echo=FALSE, fig.align="right", out.width = '40%'}
-knitr::include_graphics("/home/lucasd/Gdrive/Projects/RIVE-Numeri-lab.github.io/docs/assets/images/DGP_SosoKumsiashvi.jpg")
+```{r, echo=FALSE, fig.align="right"}
+knitr::include_graphics("/home/lucasd/Gdrive/Projects/RIVE-Numeri-lab.github.io/docs/assets/images/DGP_Angelena.jpg")
 ```
+</div>
 
 
-## Helen's third experience: population dynamics
-
-Lotka-Volterra model of predation, with exponential growth of prey population
-
-$$
-\frac{dPrey}{dt} = r_{g}Prey - r_{i}PreyPred\\
-\frac{dPred}{dt} = -r_{m}Prey - r_{a}PreyPred\\
-$$
-
-
-## Helen's third experience: population dynamics
-
-Or generalized to accomodate logistic growth of prey populations!
-
-$$
-\frac{dPrey}{dt} = r_{g}Prey(1-\frac{Prey}{K}) - r_{i}PreyPred\\
-\frac{dPred}{dt} = -r_{m}Prey - r_{a}PreyPred\\
-$$
-
-## Helen's third experience: population dynamics
+## Population dynamics
 
 ```{r, eval = FALSE, message = F}
 ## Import data
-Nemolist <- gen.nemobius.pred(P = 1, t = 30, logit = F)
-Nemobius <- Nemolist$Nemobius
-pars <- Nemolist$pars
-yini <- Nemolist$yini
+Nemolist <- gen.nemobius.pred(P = 1, t = 35, logit = F,
+                              mu_rg = 0.55, mu_ri = 0.1,
+                              mu_rm = 0.84, mu_ra = 0.1)
+Nemobius <- Nemolist$Nemobius # data.frame
+pars <- Nemolist$pars # parameter values
+yini <- Nemolist$yini # initial values of populations
 summary(Nemobius)
 ## Plot observed patterns
 Nemobius %>% ggplot(aes(x = times, y = Prey)) +
@@ -619,34 +647,127 @@ Nemobius %>% ggplot(aes(x = times, y = Prey)) +
   geom_line(col = "blue") + 
   geom_point(aes(y = Pred), col = "red") + 
   geom_line(aes(y = Pred), col = "red") + 
+  ylab("Biomass (Nemobius and predators)") +
+  xlab("Years after the beginning") + 
   theme_minimal()
 ```
 
-## Helen's third experience: population dynamics
+
+## Population dynamics
+
+Lotka-Volterra model of predation, with exponential growth of prey population
+
+$$
+\frac{dPrey}{dt} = r_{g}Prey - r_{i}PreyPred\\
+\frac{dPred}{dt} = -r_{m}Prey - r_{a}PreyPred\\
+$$
+$r_g$ = growth rate
+
+$r_i$ = ingestion rate
+
+$r_m$ = mortality rate
+
+$r_a$ = assimilation efficiency
+
+
+## Population dynamics
+
+Or generalized to accomodate logistic growth of prey populations!
+
+$$
+\frac{dPrey}{dt} = r_{g}Prey(1-\frac{Prey}{K}) - r_{i}PreyPred\\
+\frac{dPred}{dt} = -r_{m}Prey - r_{a}PreyPred\\
+$$
+$K$ = carrying support
+
+
+## Population dynamics
+
+But these equations are deterministics... And are only a part of the data generating process!
+
+How is noise produced? Lognormal distribution as likelihood
+
+  - Biomass are strictly positive
+  - Multiplicative errors => + or - a percentage of the total!
+
+$$
+log(y) \sim normal(\mu, \sigma)\\
+y \sim lognormal(\mu, \sigma)\\
+e^\mu = median = GEM\\
+e^{\sigma} = GESD
+$$
+```{r, eval=FALSE}
+curve(dlnorm(x, log(10), 1), from = 0, to = 50)
+```
+
+## Population dynamics
+
+But these equations are deterministics... An are only part of the data generating process!
+
+What should priors be?
+
+  - Rates are strictly positive
+  - $r_g$, and $r_m$ multiply the prey and predators populations, respectively
+  - $r_i$, and $r_a$ multiply both prey and predators populations
+  - Initial populations values have to be estimated, and we know they are roughly between 0 and 100...
+  - Multiplicative errors are...
+  
+```{r, eval = F}
+sd(Nemobius$Prey); sd(log(Nemobius$Prey))
+sd(Nemobius$Pred); sd(log(Nemobius$Pred))
+```
+
+
+## Population dynamics
+
+But these equations are deterministics... An are only part of the data generating process!
+
+What should priors be?
+
+$$
+\begin{aligned}
+r_g \sim lognormal(log(1), 1)\\
+r_i \sim lognormal(log(0.05), 1)\\
+r_m \sim lognormal(log(1), 1)\\
+r_a  \sim lognormal(log(0.1), 1)
+\end{aligned}
+\begin{aligned}
+\boldsymbol{z_{init}} \sim lognormal(log(50), 1)\\
+\boldsymbol{\sigma} \sim lognormal(0, 1)
+\end{aligned}
+$$
+
+
+## Population dynamics
 
 If we are able to simulate population trajectories, we could
+
  - estimate parameters of the phenomenological model
- - compare model the predicitive ability of the two formulations: exponential or logistic growth of preys.
+ - compare the two formulations based on their out-of-sample predictive ability (information criteria): exponential or logistic growth of preys.
  
-## Helen's third experience: population dynamics
+## Population dynamics
 
 Let's try to do this with *stan*!
 
 ```{r, eval = F}
-## Put data in a form stan can handle
-Nemostan <- list(y = filter(Nemobius, times != 1) %>%
-                   select(Prey, Pred) %>% as.matrix,
-                 y_init = filter(Nemobius, times == 1) %>%
-                   select(Prey, Pred) %>% as.numeric, 
-                 ts = 1:(nrow(Nemobius)-1), N = nrow(Nemobius) - 1)
+## Put data in a format stan can handle
+N = nrow(Nemobius) - 1; ts = 1:N
+y = filter(Nemobius, times != 1) %>%
+                   dplyr::select(Prey, Pred) %>% as.matrix
+y_init = filter(Nemobius, times == 1) %>%
+                   dplyr::select(Prey, Pred) %>% as.numeric
+Nemostan <- list(y = y, y_init = y_init, ts = ts, N = N, mu_zinit = 50,
+                 mu_sigma = 0, mu_rg = 1, mu_ri = 0.05,
+                 mu_rm = 0.5, mu_ra = 0.1)
 ## First compile the model
 mod_exp <- stan_model("projects/LD_DGP/LVmod_exp.stan")
 ## Sample from the posterior
 fit_exp <- sampling(mod_exp, data = Nemostan,
-                    iter = 1000, chains = 3, cores = 3, init_r = 1)
+                    iter = 2000, chains = 3, cores = 3, init_r = 1) # OR
+fit_exp <- readRDS("fit_exp.RDS")
 ```
 
-## Helen's third experience: population dynamics
+## Population dynamics
 
 And the results...
 
@@ -654,48 +775,68 @@ And the results...
 print(fit_exp, pars = c("theta", "z_init"))
 pars
 yini
-traceplot(fit_exp, pars = "theta")
+rstan::traceplot(fit_exp, pars = c("theta", "z_init"))
 ## Extract and summarize predicted values
 y_rep <- extract(fit_exp, pars = "y_rep")$y_rep
-prey_rep <- y_rep[,,1]
-pred_rep <- y_rep[,,2]
-prey_quant <- as.data.frame(t(apply(prey_rep, 2, quantile, c(0.25, 0.5, 0.75 ))))
-pred_quant <- as.data.frame(t(apply(pred_rep, 2, quantile, c(0.25, 0.5, 0.75 ))))
+z_init <- extract(fit_exp, pars = "z_init")$z_init
+prey_rep <- y_rep[,,1]; pred_rep <- y_rep[,,2]
+prey_init <- z_init[,1]; pred_init <- z_init[,2]; 
+prey_quant <- as.data.frame(t(apply(cbind(prey_init, prey_rep), 2,
+                                          quantile, c(0.1, 0.5, 0.90) )))
+pred_quant <- as.data.frame(t(apply(cbind(pred_init, pred_rep), 2, 
+                                          quantile, c(0.1, 0.5, 0.90) )))
 ```
 
-## Helen's third experience: population dynamics
+## Population dynamics
 
 How to ensure our model is not that bad? Posterior predictive checks allow to verify if it captured essential features of data.
 
-```{r}
+```{r, eval = F}
 ## Observed vs. predicted distribution
 bayesplot::ppc_dens_overlay(Nemostan$y[,1], prey_rep)
 bayesplot::ppc_dens_overlay(Nemostan$y[,2], pred_rep)
-## Observed vs. predicted pattern
-ggplot() + 
-  geom_ribbon(data = prey_quant, aes(x = 1:nrow(prey_quant), ymin = `25%`, ymax = `75%`),
-              alpha = 0.3) + 
-  geom_ribbon(data = pred_quant, aes(x = 1:nrow(pred_quant), ymin = `25%`, ymax = `75%`),
-              alpha = 0.3) + 
+## Observed vs. predicted patterns
+ggplot() + geom_ribbon(data = prey_quant, alpha = 0.3,
+            aes(x = 1:nrow(prey_quant), ymin = `10%`, ymax = `90%`)) + 
+  geom_ribbon(data = pred_quant, alpha = 0.3,
+              aes(x = 1:nrow(pred_quant), ymin = `10%`, ymax = `90%`)) + 
   geom_point(data = Nemobius, aes(x = times, y = Prey), col = "blue") + 
-  geom_point(data = Nemobius, aes(x = times, y = Pred), col = "red")
+  geom_point(data = Nemobius, aes(x = times, y = Pred), col = "red") +
+  geom_line(data = Nemobius, aes(x = times, y = Prey), col = "blue") + 
+  geom_line(data = Nemobius, aes(x = times, y = Pred), col = "red")
 ```
 
-## Helen's third experience: population dynamics
+## Population dynamics
 
-Now let's compare to the logistic version!
+Question and exercise
 
-```{r, eval = FALSE}
-## First compile the model
-mod_logit <- stan_model("projects/LD_DGP/LVmod_logit.stan")
-## Sample from the posterior
-fit_logit <- sampling(mod_logit, data = Nemostan,
-                    iter = 1500, chains = 3, cores = 3)
-```
-
+  - Modify the stan code to fit the logistic form of the Lotka-Volterra model
+  - Define a good prior for K
+  - Compare the two formulations by using Leave-One-Out Information Criterion (LOO-IC)
+  - Which formulation provide the best out of sample predictive accuracy?
 
 
 ## Some tools to do that
 
+  - *rstan*, because of the accessible C++ background and the integrated ode solvers
   - *BayesianTools*, a package done by a theoretical ecologist (writing the blog theoretical ecology.wordpress.com)
-  - *abc*, we might talk about it another time!
+  
+But what happens when we cannot define a likelihood function?
+
+  - *abc*, stands for approximate bayesian computation. We might talk about it another time!
+
+## Very interesting sources
+
+ - Metropolis Hasting exemple, specialized in JSDM, creator of BayesianTools and DHARMa packages 
+https://theoreticalecology.wordpress.com/2010/09/17/metropolis-hastings-mcmc-in-r/
+
+ - Case-study on Lotka-Volterra population dynamics
+http://mc-stan.org/users/documentation/case-studies/lotka-volterra-predator-prey.html#coding-the-model-stan-program
+
+ - An excellent book to start with bayesian statistics! (Ask me if needed)
+http://xcelab.net/rm/statistical-rethinking/
+
+ - And a love letter to the book in *brms* and *tidyverse*
+https://bookdown.org/connect/#/apps/1850/access
+
+

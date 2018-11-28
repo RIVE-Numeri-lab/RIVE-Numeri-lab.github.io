@@ -22,46 +22,54 @@ functions {
 data {
   int<lower = 0> N;          // number of measurement times
   real ts[N];                // measurement times > 0
-  int<lower = 0> y_init[2];  // initial measured populations
-  int<lower = 0> y[N, 2];   // measured populations
+  real y_init[2];            // initial measured populations
+  real<lower = 0> y[N, 2];   // measured populations
+  
+  // prior parameters
+  real mu_rg; // mu for the growth rate
+  real mu_ri; // mu for the ingestion rate
+  real mu_rm; // mu for the mortality rate
+  real mu_ra; // mu for assimilation efficiency
+  real mu_sigma;
+  real mu_zinit;
 }
 parameters {
   real<lower = 0> theta[4];   // { alpha, beta, gamma, delta }
   real<lower = 0> z_init[2];  // initial population
+  real<lower = 0> sigma[2];   // measurement errors
 }
 transformed parameters {
-  real<lower = 0> z[N, 2]
-  = integrate_ode_rk45(dz_dt, z_init, 0, ts, theta,
-                       rep_array(0.0, 0), rep_array(0, 0),
-                       1e-5, 1e-3, 5e2);
+  real z[N, 2]
+    = integrate_ode_rk45(dz_dt, z_init, 0, ts, theta,
+                         rep_array(0.0, 0), rep_array(0, 0),
+                         1e-5, 1e-3, 5e2);
 }
 model {
-  theta[1] ~ normal(0.5, 0.5);
-  theta[2] ~ normal(0.05, 0.05);
-  theta[3] ~ normal(0.5, 0.5);
-  theta[4] ~ normal(0.05, 0.05);
-  z_init ~ lognormal(log(10), 1);
+  theta[1] ~ lognormal(log(mu_rg), 1);
+  theta[2] ~ lognormal(log(mu_ri), 1);
+  theta[3] ~ lognormal(log(mu_rm), 1);
+  theta[4] ~ lognormal(log(mu_ra), 1);
+  sigma ~ lognormal(mu_sigma, 1);
+  z_init ~ lognormal(log(mu_zinit), 1);
   for (k in 1:2) {
-    y_init[k] ~ poisson(z_init[k]);
-    y[ , k] ~ poisson(z[, k]);
+    y_init[k] ~ lognormal(log(z_init[k]), sigma[k]);
+    y[ , k] ~ lognormal(log(z[, k]), sigma[k]);
   }
 }
 generated quantities {
   real y_init_rep[2];
   real y_rep[N, 2];
-  matrix[N, 2] log_lik1;
+  matrix[N,2] log_lik1;
   vector[N*2] log_lik;
-  
-  // Predicted data
   for (k in 1:2) {
-    y_init_rep[k] = poisson_rng(z_init[k]);
+    y_init_rep[k] = lognormal_rng(log(z_init[k]), sigma[k]);
     for (n in 1:N)
-      y_rep[n, k] = poisson_rng(z[n, k]);
+      y_rep[n, k] = lognormal_rng(log(z[n, k]), sigma[k]);
   }
   // Log-likelihood
     for (k in 1:2) {
     for (n in 1:N)
-      log_lik1[n, k] = poisson_lpmf(y[n, k]|z[n, k]);
+      log_lik1[n, k] = lognormal_lpdf(y[n, k]|log(z[n, k]), sigma[k]);
   }
   log_lik = to_vector(log_lik1);
 }
