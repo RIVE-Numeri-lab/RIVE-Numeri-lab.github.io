@@ -1,5 +1,5 @@
 ---
-layout: splash
+layout:
 title: "Data generating process"
 author: "Lucas Deschamps"
 date: "November 27 2018"
