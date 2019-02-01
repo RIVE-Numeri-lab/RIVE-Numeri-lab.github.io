@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: post
 title: "Fast data manipulation with dplyr and its allies"
 author: "Charles Martin"
 date: "30 octobre 2018"

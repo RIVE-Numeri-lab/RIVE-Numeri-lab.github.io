@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: post
 title: "Rapid data visualization with ggplot2"
 author: "Charles Martin"
 date: "September 26 2018"
