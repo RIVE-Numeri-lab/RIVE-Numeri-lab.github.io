@@ -20,7 +20,7 @@ url: "https://rive-numeri-lab.github.io" # the base hostname & protocol for your
 # baseurl: "/the/subpath/of/your/site" # Set this value to "" if you want your site to be root
 baseurl: "/"
 cover: "/assets/cover.png"
-logo: "/assets/logo.png"
+logo: "img/logos_rive_coul-01.png"
 
 # Build settings
 markdown: kramdown
