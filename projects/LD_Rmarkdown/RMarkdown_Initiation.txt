@@ -1,0 +1,349 @@
+# Download
+
+Please download the files on [github](https://github.com/RIVE-Numeri-lab/RIVE-Numeri-lab.github.io/tree/master/projects/LD_Rmarkdown)
+
+# Introduction
+
+##What is my objective giving this formation
+
+  - Show basic usage of `Rmarkdown`
+  - Share some personnal advices and reflexions about its usage
+  
+## Why Rmarkdown?
+
+In my M.Sc. *Analysis* folder I have... 313 documnents with a ".R" extension!
+
+How many time do you think I searched in more than five folder to find the code to reproduce a result? How many times I open the correct R file without finding the code of interest?
+
+How many duplication do you think I have in this mess... It's about Git, but it is another story.
+
+Rmarkdown allow you to : 
+
+  - Clearly write your way of thinking when trying something/analysing your data set
+  - Display reproducible code for anyone interested about your data/results/analysis (Research Director??)
+  - Produce professionnal level documents with figures without worrying about formating (Supplementary material!!)
+  - Create interactive documents!
+  
+In one sentend, Rmwarkdown favor *reproducibility*, *communication*, *structured thinking*, and *aesthetism*.
+
+Rmarkdown has some advantages :
+
+- It is easy ("If you can write an emoticon, you can write `RMarkdown`")
+- It is quick (far more than producing plots at the right dimensions, then copy-pasting to a word document, then screaming on your computer about layout)
+- Allow you to write automatically internet-friendly document (even books!), without having to worry about `html`, `css` and so on.
+- It produces full plain-tet files which works well with version control!
+I see one con : 
+
+- We (partially) loose the *reviewing* facility of word.
+
+Let's begin!
+
+# Code and figures
+
+## Chunks
+
+Code can be displayed inside *chunks*. They are delimited by ` ```{r} ` and ` ``` `.We can insert chunk in the following ways : 
+
+- **Ctrl** + **Alt** + **i** (or **Cmd** + **Alt** + **i**)
+- Add chunk command in the editor bar
+- Code > Insert chunk
+
+Let's try something very simple
+
+
+plot(iris)
+
+
+### Chunks option
+
+- `include = F` configure the chunk to not displaying the result, but keep it running, with its results available for other chunks!
+
+
+library(ggplot2)
+data(iris)
+str(iris)
+summary(iris)
+
+The line loading the `ggplot2` package does not appear in the document, but the ggplot2 packages is available!
+
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
+  geom_point() + 
+  theme_minimal()
+  
+
+- `echo = FALSE` allows to display only the results of chunks, without showing the code!
+
+library(GGally)
+ggpairs(iris, aes(color = Species))
+
+- `message = F` allows to hide chunk's messages in the output. Let's add it to the previous chunk!
+
+- With `eval = F`, code inside chunks will not be evaluated. Let's add it to the previous chunk and decrease our witing time.
+
+- `warning = F` and `error = F` will hide warning and error messages in the final output
+
+
+cor( c( 1 , 1 ), c( 2 , 3 ) )
+
+- `fig.cap` insert a caption below your plot!
+
+- You can specify `fig.height` `fig.width` and a lot of other figure proterties. Please click [to access the reference guide!](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+
+- We can personalize the chunk option for all the document with the following command, specifying the chunk as setup : 
+
+`
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+`
+
+- We can name the chunks, which is very convenient in long projects! The name won't appear in the rendered document, but will help navigation when working on it, or in notebooks.
+
+**Exercise**
+Create a new Rmarkdown document with the following characteristics: 
+
+  - Warning should never be displayed
+  - The `ggplot2` library shoud be loaded in a chunk which will not be evaluated nor displayed
+  - Create a plot with no code displayed
+  - Create a ggpairs with the code displayed but without the message associated
+  - Generate a warning
+  
+## Other languages
+
+It is interesting to know that chunks can highlight and run code of other languages, like
+
+- Bash
+
+```{bash}
+hostname
+```
+
+- Python
+
+```{python, python.reticulate = F}
+x = "Hello, Python!"
+print(x.split(" "))
+```
+
+- stan
+
+```{stan, output.var = "8schools.stan", eval = F}
+// saved as 8schools.stan
+data {
+  int<lower=0> J;         // number of schools 
+  real y[J];              // estimated treatment effects
+  real<lower=0> sigma[J]; // standard error of effect estimates 
+}
+parameters {
+  real mu;                // population treatment effect
+  real<lower=0> tau;      // standard deviation in treatment effects
+  vector[J] eta;          // unscaled deviation from mu by school
+}
+transformed parameters {
+  vector[J] theta = mu + tau * eta;        // school treatment effects
+}
+model {
+  target += normal_lpdf(eta | 0, 1);       // prior log-density
+  target += normal_lpdf(y | theta, sigma); // log-likelihood
+}
+```
+  
+## Inline code
+
+It is possible to display the result of a code in directly in the text. We will exemplify that with an lm exemple
+
+
+fit <- lm(data = iris, Sepal.Length ~ Sepal.Width)
+coef(fit)
+
+Globally, without accounting for among species differences, a 10 cm increase of Iris's sepal width imply a abs(round(coef(fit)[2], 2)) cm decrease of sepal length.
+
+# Tables
+
+Formatting a R csv output with excel is often highly fastidious, especially if the results are subject to changes, and the formatting to be done again and again. Fortunatly, Knitr is able to format table. With a little bit of efforts, one might even produce publication standard tables.
+
+library(dplyr)
+D <- msleep %>% select(sleep_rem, sleep_total, bodywt, brainwt, vore) %>% 
+  filter(complete.cases(.))
+
+fit <- lm(data = D, sleep_rem ~ sleep_total + bodywt + brainwt + vore,
+          na.action = na.fail)
+summary(fit)
+
+library(MuMIn)
+(d = as.data.frame(dredge(fit, fixed = ~ sleep_total)))
+
+
+## Classical kable
+
+```{r echo = F, results="asis"}
+library(knitr)
+options(knitr.kable.NA = '')
+d %>% filter(weight > 0.1) %>% select(sleep_total, bodywt, brainwt, vore, AICc, delta, weight) %>%
+  kable(caption = "A model selection table, selecting for weights > 0.1",
+        digits = 2, escape = F,
+        col.names = c("Total sleep (%)", "Body weight (g)", "Brain weight (g)", "Diet (Dummy)",
+                      "AICc", "$\\Delta_{AICc}$", "Model weight"))
+```
+
+## Publication quality table
+
+One can format very easily publication level table in pdf document using latex. In html, we have to use a little trick and use ghostscipt and `kableExtra`.
+
+```{r echo = F, results='asis'}
+#options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)
+d %>% filter(weight > 0.1) %>% select(sleep_total, bodywt, brainwt, vore, AICc, delta, weight) %>%
+  kable(format = "latex", caption = "A model selection table, selecting for weights > 0.1",
+        digits = 2, booktabs = T,
+        col.names = c("Total sleep (%)", "Body weight (g)", "Brain weight (g)", "Diet (Dummy)",
+                      "AICc", "$\\Delta_{AICc}$", "Model weight")) #%>% 
+  #kable_as_image()
+```
+
+## Exercises
+  - Could you display the relevant information to understand and evaluate the results of the above linear regression?
+  - `stargazer` [package](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf) produces automatically interesting tables to compare models, would you try it with the best and second best models?
+
+# Output formats
+
+Let's explore the parameters for our current html output!
+
+## Documents
+  
+  - html_notebook - Interactive R Notebooks
+  - html_document - HTML document w/ Bootstrap CSS
+  - pdf_document - PDF document (via LaTeX template)
+  - word_document - Microsoft Word document (docx)
+  - odt_document - OpenDocument Text document
+  - rtf_document - Rich Text Format document
+  - md_document - Markdown document (various flavors)
+
+## Presentations
+
+  - ioslides_presentation - HTML presentation with ioslides
+  - revealjs::revealjs_presentation - HTML presentation with reveal.js
+  - slidy_presentation - HTML presentation with W3C Slidy
+  - beamer_presentation - PDF presentation with LaTeX Beamer
+  - powerpoint_presentation - PowerPoint presentation
+  
+An exemple of presentation can be downloaded [here](RIVE-Numeri-lab.github.io/projects/LD_DGP/Data_Generating_Process.Rmd).
+
+## Table of content
+
+One can include pretty beatifull table of content by modifying the yaml options!
+
+## Exercise
+
+- Would you try to transform the present document into a decent presentation?
+
+# Basic formatting
+
+Let's have a look at the [Rmarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+
+- Sections are delimited by headers
+
+```
+# Header 1
+
+## Header 2
+
+### header 3
+
+...
+```
+
+  - One can make it **bold** with two stars `**`!
+  - Or *like the leaning tower of pisa* with one `*`.
+  - A ~~mistake~~ is indicated by two waves ` ~~`.
+  - An image is inserted using `![](link)`
+  - And a link by [name](link) or by <www.rstudio.com>
+  - Three stars indicate an horizontal rule `***`
+  
+  ***
+
+> and a blockquote is superior! `>`
+  
+- an 
+    * indented
+        + non-ordered 
+- list
+
+    Without dots with four spaces
+    
+1. And an
+    i) unordered
+        A.    list
+2. to conclude this part!
+
+# Equations
+
+## Inline equations
+
+One can insert inline latex equations, just by using `$`. For example, $y_i = \beta_1 x_i + \beta_0 + \epsilon_i$ represents a simple linear equations. Thus wonderfull functionality allow to use any mathematical notation. This is useful to indicate that $\beta_1$ is the slope and $\beta_0$ the intercept!
+
+## Block equations
+
+One can insert block latex equations using `$$`. For example, one can estimate the parameters of a linear model containing $p$ predictors ($p < n$) using the following linear algebra formulation and a little bit of linear algebra.
+
+$$
+\mathbf{Y}
+\begin{bmatrix}
+Y_1 \\
+\vdots \\ 
+Y_n 
+\end{bmatrix}
+= \mathbf{X}
+\begin{bmatrix}
+1 & x_{1,2} & \cdots & x_{1,p} \\
+1 & \vdots & \ddots & \vdots \\
+1 & x_{n,2} & \cdots & x_{n,p} \\
+\end{bmatrix}
+\mathbf{\beta}
+\begin{bmatrix}
+\beta_0\\
+\beta_1
+\end{bmatrix}
++ \mathbf{\epsilon}
+\begin{bmatrix}
+\epsilon_1\\
+\vdots\\
+\epsilon_n\\
+\end{bmatrix}
+$$
+
+# References
+
+It is easy to cite a reference in text and to automatically create a reference part if the needed citation are stored in a `bibtex` file.
+
+First, add the following line to the yaml
+```
+bibliography: My_Collection.bib
+```
+
+Then, one can site the reference as follow : @gelman2013bayesian is a wonderfull introduction to hierarchical models and bayesian estimation methods.
+
+# `Bookdown`
+
+It is possible to write books using `RMarkdown`, following a set of rules
+
+  1. Create a new folder
+  2. Create ordered file for each of the part of this document, for example `1_Introduction.Rmd`
+  3. The first file shall begin with the standard YAML specifying the titles, Author(s), dates
+  4. Each other file must start directly with the header of the section
+  5. Create a file named `_output.yml`, it will contain the output parameters.
+
+An exemple of `_output.yml` could be
+
+```
+bookdown::html_document2:
+```
+
+  6. Once everything is done, run `bookdown::render(input = "1_Introduction.Rmd")
+  
+Some advantages of bookdown (everything can be found in the [manual](https://bookdown.org/yihui/bookdown/))
+
+-Numbered and referenced equations; Theorems; Special headers; Text references.
+- Possibility to use version control on each chapter independantly. This kind of tools is not really adapted to a plain book!
+- Possibility to compile chapters separatly and prepare the whole for internet publications
+
+# References
