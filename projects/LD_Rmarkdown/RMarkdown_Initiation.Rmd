@@ -13,6 +13,10 @@ bibliography: My_Collection.bib
 knitr::opts_chunk$set(echo = TRUE, warning = F)
 ```
 
+# Download
+
+Please download the files on [github](https://github.com/RIVE-Numeri-lab/RIVE-Numeri-lab.github.io/tree/master/projects/LD_Rmarkdown)
+
 # Introduction
 
 ##What is my objective giving this formation
@@ -224,6 +228,8 @@ d %>% filter(weight > 0.1) %>% select(sleep_total, bodywt, brainwt, vore, AICc, 
 
 # Output formats
 
+Let's explore the parameters for our current html output!
+
 ## Documents
   
   - html_notebook - Interactive R Notebooks
@@ -255,6 +261,18 @@ One can include pretty beatifull table of content by modifying the yaml options!
 # Basic formatting
 
 Let's have a look at the [Rmarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+
+- Sections are delimited by headers
+
+```
+# Header 1
+
+## Header 2
+
+### header 3
+
+...
+```
 
   - One can make it **bold** with two stars `**`!
   - Or *like the leaning tower of pisa* with one `*`.
