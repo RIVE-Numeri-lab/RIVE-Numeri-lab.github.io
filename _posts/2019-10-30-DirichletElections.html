@@ -722,7 +722,7 @@ R %&gt;% select(CAQ:QS, Others) %&gt;% rowSums()</code></pre>
 ##  [71] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 ## [106] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</code></pre>
 <p>However, two lines were summing to one indicate divisions in which there was no other party than the four major ones or at least no vote for eventual ones. They will cause trouble later in our analysis, because dirichlet regression as defined in <code>brms</code> in not define for a proportion of zero. Some solutions exist to accomodate the problem :</p>
-<ul style="list-style: none;">
+<ul>
 <li>
 Using a Zero Inflated Dirichlet distribution. The function <code>ZIGDM</code> in the <a href="https://cran.r-project.org/web/packages/miLineage/miLineage.pdf"><code>miLineage</code></a> package can perform such an analysis;
 </li>
@@ -749,7 +749,7 @@ X &lt;- X_raw %&gt;% select(division,
                       loc_pourc, 
                       n_valeur_logement_mediane, valeur_logement_mediane,
                       n_cout_hab_loc_pourc, cout_hab_loc_pourc)</code></pre>
-<ul style="list-style: none;">
+<ul>
 <li>
 <code>anglais_pourc</code>, <code>bilingue_pourc</code> and <code>aucune_pourc</code> are the proportion of person in a division speaking only English, English and French or none of these languages, respectively;
 </li>
@@ -777,7 +777,9 @@ X &lt;- X_raw %&gt;% select(division,
 </ul>
 <p>We can now join the explanatory data with the election results. The joining variable will be <code>circon</code>, the name of the electoral division.</p>
 <pre class="r"><code>Tot &lt;- left_join(R_rm, X)
-summary(Tot) %&gt;% 
+
+Tot %&gt;% select(-CODE_CIRC, -CODE_RA, -TRI_CIRC, -TRI_RA, -MRC) %&gt;% 
+  summary() %&gt;% 
   kable() %&gt;% 
   kable_styling() %&gt;%
   scroll_box(width = &quot;100%&quot;, height = &quot;300px&quot;)</code></pre>
@@ -802,18 +804,7 @@ num_circon
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 <pre><code>   QS &lt;/th&gt;</code></pre>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-CODE_CIRC
-</th>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-<pre><code>CODE_RA &lt;/th&gt;</code></pre>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 <pre><code>                RA &lt;/th&gt;</code></pre>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-<pre><code>       TRI_CIRC &lt;/th&gt;</code></pre>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-<pre><code>             TRI_RA &lt;/th&gt;</code></pre>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-<pre><code> MRC &lt;/th&gt;</code></pre>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 coords.x1
 </th>
@@ -892,22 +883,7 @@ Min. :0.0522
 Min. :0.0434
 </td>
 <td style="text-align:left;">
-Min. :104.0
-</td>
-<td style="text-align:left;">
-Min. : 1.00
-</td>
-<td style="text-align:left;">
 Montréal :27
-</td>
-<td style="text-align:left;">
-LACSAINTJEAN : 2
-</td>
-<td style="text-align:left;">
-MONTREAL :27
-</td>
-<td style="text-align:left;">
-Length:124
 </td>
 <td style="text-align:left;">
 Min. :-79.05
@@ -986,22 +962,7 @@ Class :character
 1st Qu.:0.1151
 </td>
 <td style="text-align:left;">
-1st Qu.:291.0
-</td>
-<td style="text-align:left;">
-1st Qu.: 6.00
-</td>
-<td style="text-align:left;">
 Montérégie :22
-</td>
-<td style="text-align:left;">
-ABITIBIEST : 1
-</td>
-<td style="text-align:left;">
-MONTEREGIE :22
-</td>
-<td style="text-align:left;">
-Class :character
 </td>
 <td style="text-align:left;">
 1st Qu.:-73.70
@@ -1080,22 +1041,7 @@ Median :0.2061
 Median :0.1424
 </td>
 <td style="text-align:left;">
-Median :473.0
-</td>
-<td style="text-align:left;">
-Median : 8.00
-</td>
-<td style="text-align:left;">
 Capitale-Nationale :11
-</td>
-<td style="text-align:left;">
-ABITIBIOUEST : 1
-</td>
-<td style="text-align:left;">
-CAPITALENATIONALE :11
-</td>
-<td style="text-align:left;">
-Mode :character
 </td>
 <td style="text-align:left;">
 Median :-73.51
@@ -1174,22 +1120,7 @@ Mean :0.2560
 Mean :0.1620
 </td>
 <td style="text-align:left;">
-Mean :488.8
-</td>
-<td style="text-align:left;">
-Mean : 9.46
-</td>
-<td style="text-align:left;">
 Lanaudière : 9
-</td>
-<td style="text-align:left;">
-ACADIE : 1
-</td>
-<td style="text-align:left;">
-LANAUDIERE : 9
-</td>
-<td style="text-align:left;">
-NA
 </td>
 <td style="text-align:left;">
 Mean :-72.95
@@ -1268,22 +1199,7 @@ NA
 3rd Qu.:0.1696
 </td>
 <td style="text-align:left;">
-3rd Qu.:682.5
-</td>
-<td style="text-align:left;">
-3rd Qu.:15.00
-</td>
-<td style="text-align:left;">
 Laurentides : 8
-</td>
-<td style="text-align:left;">
-ANJOULOUISRIEL: 1
-</td>
-<td style="text-align:left;">
-LAURENTIDES : 8
-</td>
-<td style="text-align:left;">
-NA
 </td>
 <td style="text-align:left;">
 3rd Qu.:-71.82
@@ -1362,22 +1278,7 @@ Max. :0.7432
 Max. :0.5914
 </td>
 <td style="text-align:left;">
-Max. :938.0
-</td>
-<td style="text-align:left;">
-Max. :17.00
-</td>
-<td style="text-align:left;">
 Chaudière-Appalaches: 7
-</td>
-<td style="text-align:left;">
-ARGENTEUIL : 1
-</td>
-<td style="text-align:left;">
-CHAUDIEREAPPALACHES: 7
-</td>
-<td style="text-align:left;">
-NA
 </td>
 <td style="text-align:left;">
 Max. :-66.71
@@ -1456,22 +1357,7 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 (Other) :40
-</td>
-<td style="text-align:left;">
-(Other) :117
-</td>
-<td style="text-align:left;">
-(Other) :40
-</td>
-<td style="text-align:left;">
-NA
 </td>
 <td style="text-align:left;">
 NA
@@ -3357,7 +3243,7 @@ p$`n_valeur_logement_mediane:cats__`$data %&gt;%
 <h1>Conclusion</h1>
 <p>We first show that dirichlet regression is an efficient and relatively simple solution to analyse compositional data. Concrete and simple functions are implemented to estimate the parameters in a bayesian framework in <code>brms</code>.</p>
 <p>Looking at the results, this analysis showed :</p>
-<ul style="list-style: none;">
+<ul>
 <li>
 Coalition Avenir Québec get its supporters in division with high concentration of the 40-100K CAD revenues, showing definitly its middle-class audience;
 </li>
@@ -3372,7 +3258,7 @@ Quebec Solidaire is favored in divisions with a high proportion of renters, espe
 <div id="to-go-further" class="section level1">
 <h1>To go further</h1>
 We did not dealt with spatial autocorrelation. Try the following solution :
-<ul style="list-style: none;">
+<ul>
 <li>
 Define hierarchical parameters per region, to capture the particularity of the vote in each of the administrative divisions;
 </li>
