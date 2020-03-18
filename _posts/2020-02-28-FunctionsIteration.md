@@ -1,5 +1,5 @@
 ---
-title: "Numerilab - Functions and iteration"
+title: "Functions and iteration"
 author: "Charles Martin"
 date: "February 28 2020"
 output:
