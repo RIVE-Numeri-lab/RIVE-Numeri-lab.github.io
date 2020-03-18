@@ -1,9 +1,8 @@
 ---
 title: "Meta-analysis"
 author: "Charles Martin"
-date: "12 décembre 2019"
 output:
-  html_document: 
+  html_document:
     highlight: haddock
     keep_md: yes
     self_contained: no
@@ -22,7 +21,7 @@ library(gt) # nice tables
 ## Scientific question
 Does playing Mozart to newborns improves their IQ?
 
-You look a bit around and find 3 studies : 
+You look a bit around and find 3 studies :
 
 ```r
 etudes <- data.frame(
@@ -310,7 +309,7 @@ etudes %>% gt
 ## A simplistic way
 
 ```r
-etudes %>% 
+etudes %>%
   summarise(
     effet_resume = mean(y)
   )
@@ -332,7 +331,7 @@ When we talk about *mean*, we usually refer to the arithmetic mean :
 [1] 2.5
 ```
 
-Implicitly, we give an equal weight to all items : 
+Implicitly, we give an equal weight to all items :
 
 ```r
 (1*1 + 1*2 + 1*3 + 1*4) / (1 + 1 + 1 + 1)
@@ -352,7 +351,7 @@ But we could also have given more weight to some items, for example giving more 
 [1] 3.266667
 ```
 
-There's an R function that does this for us : 
+There's an R function that does this for us :
 
 ```r
 weighted.mean(
@@ -378,17 +377,17 @@ From which we can calculate the standard deviation of our sample :  : `sd = sqrt
 
 Both these measures are of descriptive nature.
 
-You also probably remember that, to go from the standard deviation of a sample to the standard error of a parameter (i.e. the error around its estimate), we use the formula : 
+You also probably remember that, to go from the standard deviation of a sample to the standard error of a parameter (i.e. the error around its estimate), we use the formula :
 `se = sd / sqrt(n)`
 
-On the other hand, in the Borenstein book (see refs at bottom), when they talk about variance, they (implicitly) talk about the variance of the error around a parameter (sampling variance), which is : 
+On the other hand, in the Borenstein book (see refs at bottom), when they talk about variance, they (implicitly) talk about the variance of the error around a parameter (sampling variance), which is :
 `v = se^2`
 
 ## Calculation examples
 Knowing the above, we can now calculate our first meta-analysis :
 
 ```r
-etudes %>% 
+etudes %>%
   summarise(
     effet_pondere = weighted.mean(y,1/v)
   )
@@ -402,9 +401,9 @@ With the `metafor` package, we arrive to the exact same number :
 
 ```r
 m <- rma(
-  yi = y, 
-  vi = v, 
-  data = etudes, 
+  yi = y,
+  vi = v,
+  data = etudes,
   method = "FE"
 )
 m
@@ -414,7 +413,7 @@ m
 
 Fixed-Effects Model (k = 3)
 
-Test for Heterogeneity: 
+Test for Heterogeneity:
 Q(df = 2) = 5.9405, p-val = 0.0513
 
 Model Results:
@@ -423,7 +422,7 @@ estimate      se    zval    pval    ci.lb   ci.ub
   0.0642  0.0795  0.8080  0.4191  -0.0916  0.2200   
 
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 This function also gives the the confidence interval around our mean value (and some other things we'll look into later).
 
@@ -431,7 +430,7 @@ In this case, the 95% confidence interval of our summary effect does not exclude
 
 # Selecting studies
 It is always a good idea to search for studies in a reproducible way, e.g. by searching on the Scopus database
-(https://www2.scopus.com/search/form.uri?display=basic): 
+(https://www2.scopus.com/search/form.uri?display=basic):
 `TITLE-ABS-KEY ( music  AND  ( baby  OR  toddler  OR  newborn )  AND  ( iq  OR  intelligence ) ) `
 
 Then you can export that list of studies to *freeze* your search.
@@ -452,7 +451,7 @@ Also, keep a detailed trace of all the dataset building and filtering steps. You
 ## The issue
 It is unlikely that all the studies you've found measured the target effect in exactly the same way.
 
-In our example, we could for example find : 
+In our example, we could for example find :
 
 * a correlation between the number of music hours per week and IQ
 * a T test between groups with and without music
@@ -466,7 +465,7 @@ There are dozens of ways to standardize effect sizes, depending on the nature of
 
 In all cases, the idea is to find a measure that can remove scale differences.
 
-E.g. for mean differences, one often uses Cohen's *d*. Its calculate looks a lot like the calculation for a *t* statistic : 
+E.g. for mean differences, one often uses Cohen's *d*. Its calculate looks a lot like the calculation for a *t* statistic :
 
 `d = (x1 - x2) / S_within`
 
@@ -490,11 +489,11 @@ etudes2 <- data.frame(
   n = c(32,16)
 )
 escalc(
-  measure = "ZCOR", 
-  ri = r, 
+  measure = "ZCOR",
+  ri = r,
   ni = n,
   data = etudes2
-) %>% 
+) %>%
   gt
 ```
 
@@ -776,7 +775,7 @@ There is a whole chapter in the Borenstein book dedicated solely to the conversi
 ## Classic ecological issues
 In ecology, you'll often be studying phenomenons that are described by slopes. These slopes will need to be manually converted to be included in the meta-analysis, and this conversion is not necessarily simple.
 
-If you have access to the raw that, know that the formula to calculate a regression slope is : 
+If you have access to the raw that, know that the formula to calculate a regression slope is :
 `slope = r*(Sy / Sx)`
 you can convert a slope to a correlation by dividing it by the `Sy/Sx` ratio.
 
@@ -788,11 +787,11 @@ The data used in our study were already in a standardized effect size : the log-
 
 I.e. the log of the ratio between with and without music responses
 
-Without the log transformation, our numbers would have looked like : 
+Without the log transformation, our numbers would have looked like :
 
 ```r
-etudes %>% 
-  mutate(R = exp(y)) %>% 
+etudes %>%
+  mutate(R = exp(y)) %>%
   gt
 ```
 
@@ -1075,7 +1074,7 @@ etudes %>%
 
 Which can be read as : 64% increase, 1% increase and 10% decrease of IQ.
 
-Such ratios, although easy to understand, become a problem once entered into a model because of asymmetries. When the denominator of the ratio is larger, the ratio can take almost any value and get into real large numbers, although if the denominator of the ratio is smaller, the ratio is "stuck" between 0 and 1 : 
+Such ratios, although easy to understand, become a problem once entered into a model because of asymmetries. When the denominator of the ratio is larger, the ratio can take almost any value and get into real large numbers, although if the denominator of the ratio is smaller, the ratio is "stuck" between 0 and 1 :
 
 ```r
 1/100 # 0.99 under 1
@@ -1111,7 +1110,7 @@ log(100/1) # 4.6 above zero
 ```
 
 # Visualization
-The classical way to visualize a meta-analysis is with what is called a forest plot : 
+The classical way to visualize a meta-analysis is with what is called a forest plot :
 
 ```r
 forest(m, order = "obs", slab = etudes$article)
@@ -1125,7 +1124,7 @@ The size of the square corresponds to the weight of the study in the calculation
 
 The last line is the summarized effect, as calculated above.
 
-Sometimes it can be helpful to back-transform the standardized effect size to a version easier to interpret : 
+Sometimes it can be helpful to back-transform the standardized effect size to a version easier to interpret :
 
 ```r
 exp(0.06 - 0.09)
@@ -1183,7 +1182,7 @@ The classic Egger test, in short, is a regression of the estimate on the standar
 (`lm(y~sqrt(v), weights = 1/v, data = etudes)`)
 
 ```r
-etudes %>% 
+etudes %>%
   ggplot(aes(x = sqrt(v), y = y)) +
   geom_point(aes(size = 1/v)) +
   geom_smooth(method = "lm") # attention, il faudrait aussi ajuster le poids de chaque observation à 1/v
@@ -1220,7 +1219,7 @@ tau (square root of estimated tau^2 value):      0.1565
 I^2 (total heterogeneity / total variability):   28.86%
 H^2 (total variability / sampling variability):  1.41
 
-Test for Heterogeneity: 
+Test for Heterogeneity:
 Q(df = 43) = 60.5196, p-val = 0.0400
 
 Model Results:
@@ -1229,7 +1228,7 @@ estimate      se    zval    pval   ci.lb   ci.ub
   0.1745  0.0484  3.6015  0.0003  0.0795  0.2694  ***
 
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 # Random effects models?
@@ -1254,8 +1253,8 @@ In the `metafor` package, random effects models are adjusted with the same funct
 
 ```r
 m2 <- rma(
-  yi = y, 
-  vi = v, 
+  yi = y,
+  vi = v,
   data = etudes
 )
 m2
@@ -1270,7 +1269,7 @@ tau (square root of estimated tau^2 value):      0.2397
 I^2 (total heterogeneity / total variability):   70.75%
 H^2 (total variability / sampling variability):  3.42
 
-Test for Heterogeneity: 
+Test for Heterogeneity:
 Q(df = 2) = 5.9405, p-val = 0.0513
 
 Model Results:
@@ -1279,7 +1278,7 @@ estimate      se    zval    pval    ci.lb   ci.ub
   0.1132  0.1655  0.6843  0.4938  -0.2111  0.4375   
 
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 This result is very close to the original one, but more conservative. I.e. it is less influenced by the highly precise study.
