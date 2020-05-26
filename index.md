@@ -23,14 +23,6 @@ title: Home
     </li>
 </ul>
 
-
-## Next activity
-<ul>
-    <li>
-		{{ site.data.events.last.date }} {{ site.data.events.last.title }}
-    </li>
-</ul>
-
 ## About us
 Numeracy, noun
 the ability to understand and work with numbers.
