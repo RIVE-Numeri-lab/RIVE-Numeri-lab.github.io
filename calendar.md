@@ -2,7 +2,7 @@
 layout: default
 title: Calendar
 ---
-Contenu de la page Calendar : 
+# Calendar
 ## Upcoming events
 <ul>
   {% for event in site.data.events %}

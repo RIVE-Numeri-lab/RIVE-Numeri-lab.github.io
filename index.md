@@ -2,32 +2,37 @@
 layout: default
 title: Home
 ---
-## Latest workshop added
-<ul>
-    <li>
-      <a href="{{ site.workshops.last.url }}">{{ site.workshops.last.title }}</a>
-    </li>
-</ul>
 
-## Latest news
-<ul>
-    <li>
-      <a href="{{ site.news.last.url }}">{{ site.news.last.title }}</a>
-    </li>
-</ul>
-
-## Latest project added
-<ul>
-    <li>
-      <a href="{{ site.analysis_projects.last.url }}">{{ site.analysis_projects.last.title }}</a>
-    </li>
-</ul>
-
-## About us
-Numeracy, noun
+<div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Welcome to the RIVE's Numerilab</h1>
+      <p>Numeracy, noun<br />
 the ability to understand and work with numbers.
+</p>
+      <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more &raquo;</a></p>
+    </div>
+  </div>
 
-# Objectives
-Promote individual computing abilities by the organization of 10 workshops per year. Workshops will be developed and organized by the RIVE graduate students.
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Latest workshop</h2>
+        <p>{{ site.workshops.last.title }}</p>
+        <p><a class="btn btn-secondary" href="{{ site.workshops.last.url }}" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Latest news</h2>
+        <p>{{ site.news.last.title }}</p>
+        <p><a class="btn btn-secondary" href="{{ site.news.last.url }}" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Latest analysis project</h2>
+        <p>{{ site.analysis_projects.last.title }}</p>
+        <p><a class="btn btn-secondary" href="{{ site.analysis_projects.last.url }}" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
 
-Showcase the RIVE's abilities by the creation of this website, containing a recap of all numerical methods developed or teached during the workshops, as well a those developed by the RIVE's members during their own research activities.
+    <hr>
+
+  </div> <!-- /container -->

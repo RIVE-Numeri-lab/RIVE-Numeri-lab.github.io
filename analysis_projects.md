@@ -2,7 +2,7 @@
 layout: default
 title: Analysis projects
 ---
-Contenu de la page Analysis projects : 
+# Analysis projects
 
 <ul>
   {% for post in site.analysis_projects %}

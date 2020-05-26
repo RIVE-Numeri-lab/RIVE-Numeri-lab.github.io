@@ -2,6 +2,7 @@
 layout: default
 title: Useful links
 ---
+# Useful links
 This page will contain a list of useful links.
 
 Here's a couple of examples

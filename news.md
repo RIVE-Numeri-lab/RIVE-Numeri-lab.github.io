@@ -2,6 +2,7 @@
 layout: default
 title: News
 ---
+# News
 Contenu de la page News : 
 
 <ul>
