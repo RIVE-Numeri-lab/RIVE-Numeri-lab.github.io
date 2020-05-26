@@ -40,3 +40,6 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Ajouts par Charles
+permalink: /:categories/:title
