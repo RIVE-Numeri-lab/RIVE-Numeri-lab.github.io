@@ -1,5 +1,7 @@
 ---
 title: "Functions and iteration"
+layout: default
+category: workshop
 author: "Charles Martin"
 date: "February 28 2020"
 output:

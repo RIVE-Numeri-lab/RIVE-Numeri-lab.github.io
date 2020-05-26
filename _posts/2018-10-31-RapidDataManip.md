@@ -1,5 +1,6 @@
 ---
-layout: post
+layout: default
+category: workshop
 title: "Fast data manipulation with dplyr and its allies"
 author: "Charles Martin"
 date: "30 octobre 2018"
