@@ -42,4 +42,13 @@ plugins:
 #   - vendor/ruby/
 
 # Ajouts par Charles
-permalink: /:categories/:title
+
+collections: 
+  workshops:
+    output: true
+    permalink: /workshops/:title
+  analysis_projects:
+    output: true
+    permalink: /analysis_projects/:title
+  news:
+    output: true

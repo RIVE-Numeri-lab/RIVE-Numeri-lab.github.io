@@ -2,7 +2,6 @@
 title: "Meta-analysis"
 author: "Charles Martin"
 layout: default
-category: workshop
 output:
   html_document:
     highlight: haddock

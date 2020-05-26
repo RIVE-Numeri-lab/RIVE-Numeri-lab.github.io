@@ -5,7 +5,7 @@ title: Home
 ## Latest workshop added
 <ul>
     <li>
-      <a href="{{ site.categories.workshop.first.url }}">{{ site.categories.workshop.first.title }}</a>
+      <a href="{{ site.workshops.last.url }}">{{ site.workshops.last.title }}</a>
     </li>
 </ul>
 
@@ -14,12 +14,17 @@ title: Home
 ## Latest project added
 <ul>
     <li>
-      <a href="{{ site.categories.analysis_project.first.url }}">{{ site.categories.analysis_project.first.title }}</a>
+      <a href="{{ site.analysis_projects.last.url }}">{{ site.analysis_projects.last.title }}</a>
     </li>
 </ul>
 
 
 ## Next activity
+<ul>
+    <li>
+      <a href="{{ site.news.last.url }}">{{ site.news.last.title }}</a>
+    </li>
+</ul>
 
 ## About us
 Numeracy, noun
@@ -27,4 +32,5 @@ the ability to understand and work with numbers.
 
 # Objectives
 Promote individual computing abilities by the organization of 10 workshops per year. Workshops will be developed and organized by the RIVE graduate students.
+
 Showcase the RIVE's abilities by the creation of this website, containing a recap of all numerical methods developed or teached during the workshops, as well a those developed by the RIVE's members during their own research activities.
