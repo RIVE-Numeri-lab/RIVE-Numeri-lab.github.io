@@ -3,10 +3,21 @@ layout: default
 title: Home
 ---
 ## Latest workshop added
+<ul>
+    <li>
+      <a href="{{ site.categories.workshop.first.url }}">{{ site.categories.workshop.first.title }}</a>
+    </li>
+</ul>
 
 ## Latest news
 
 ## Latest project added
+<ul>
+    <li>
+      <a href="{{ site.categories.analysis_project.first.url }}">{{ site.categories.analysis_project.first.title }}</a>
+    </li>
+</ul>
+
 
 ## Next activity
 
