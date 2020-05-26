@@ -10,6 +10,11 @@ title: Home
 </ul>
 
 ## Latest news
+<ul>
+    <li>
+      <a href="{{ site.news.last.url }}">{{ site.news.last.title }}</a>
+    </li>
+</ul>
 
 ## Latest project added
 <ul>
@@ -22,7 +27,7 @@ title: Home
 ## Next activity
 <ul>
     <li>
-      <a href="{{ site.news.last.url }}">{{ site.news.last.title }}</a>
+		{{ site.data.events.last.date }} {{ site.data.events.last.title }}
     </li>
 </ul>
 

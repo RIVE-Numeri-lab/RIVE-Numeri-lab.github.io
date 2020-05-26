@@ -1,0 +1,12 @@
+- title: Meta-analysis workshop
+  date: 2019-12-12
+  description: Charles will entertain us about the in and outs of meta-analysis
+- title : Functions and iterations
+  date: 2020-02-05
+  description: Charles will talk to us about removing useless repetitions in your R with *loops and functions*
+- title : This should be the next activity
+  date : 2020-09-01
+  description : Just to make sure it shows up  
+- title : Something in the future, after the activity that should show up next
+  date : 2020-10-01
+  description : Just to make sure it shows up
