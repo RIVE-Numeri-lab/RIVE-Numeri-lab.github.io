@@ -3,17 +3,39 @@ layout: default
 title: Home
 ---
 
-<div class="jumbotron">
-    <div class="container">
+  <style>
+    .jumbotron {
+      background-color:#cccccc;
+      padding:20px;    
+    }
+    .jumbotron h1 {
+      font-size : 4em;
+      font-family: "Fira Sans Thin";
+    }
+    .jumbotron a[role=button] {
+      background-color:#007bff;
+      display:inline-block;
+      padding:10px;
+      color:#ffffff;
+      text-decoration:none;
+      border-radius: 5px;
+    }
+    .jumbotron a[role=button]:hover {
+      background-color:#0068d8;
+    }
+    
+  </style>
+
+  <div class="jumbotron">  
       <h1>Welcome to the RIVE's Numerilab</h1>
-      <p>Numeracy, noun<br />
+      <p>Numeracy, noun : <br />
         the ability to understand and work with numbers.
       </p>
       <p><a href="/about" role="button">Learn more &raquo;</a></p>
     </div>
   </div>
 
-  <div class="container">
+  <div class="news_boxes">
       <div>
         <h2>Latest workshop</h2>
         <p>{{ site.workshops.last.title }}</p>
@@ -30,7 +52,4 @@ title: Home
         <p><a href="{{ site.analysis_projects.last.url }}">View details &raquo;</a></p>
       </div>
     </div>
-
-    <hr>
-
   </div> <!-- /jumbotron -->
