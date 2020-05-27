@@ -40,6 +40,7 @@
     main {
       padding: 5px;
       padding-left:15px;
+      padding-bottom:15px;
     }
     
     a[role=button] {
@@ -55,15 +56,17 @@
       background-color:#0068d8;
     }
     
+    #homelink {
+      font-weight:bold;
+    }
+    
     </style>
   
 </head>
 <body>
-	
-  <nav>
-    
+  <nav>    
     	<ul>
-        <li><a href="/">NumeriLab</a></li>
+        <li><a id="homelink" href="/">NumeriLab</a></li>
         <li><a class="nav-link" href = "/news">News</a></li>
         <li><a class="nav-link" href = "/calendar">Calendar</a></li>        
     		<li><a class="nav-link" href = "/workshops">Workshops</a></li>        
@@ -75,7 +78,6 @@
   </nav>
   <main>		
 	{{ content }}
-  </main>  
-  
+  </main>    
 </body>
 </html>
