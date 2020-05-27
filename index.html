@@ -12,16 +12,33 @@ title: Home
       font-size : 4em;
       font-family: "Fira Sans Thin";
     }
-    .jumbotron a[role=button] {
-      background-color:#007bff;
-      display:inline-block;
-      padding:10px;
-      color:#ffffff;
-      text-decoration:none;
-      border-radius: 5px;
+    
+    .homepage_news div {
+      display:table-cell;
+      padding:20px;
+      width:33%;
     }
-    .jumbotron a[role=button]:hover {
-      background-color:#0068d8;
+    
+    .homepage_news {
+      display:table;
+      width: 100%;
+    }
+    
+    main {
+      padding: 0;
+    }
+    
+    .homepage_news h2 {
+      font-size: 2em;
+      font-family: "Fira Sans Thin";
+    }
+    
+    /* If the browser window is smaller than 600px, make the columns stack on top of each other */
+    @media only screen and (max-width: 700px) {
+      .homepage_news div {
+        display: block;
+        width: 100%;
+      }
     }
     
   </style>
@@ -35,21 +52,21 @@ title: Home
     </div>
   </div>
 
-  <div class="news_boxes">
+  <div class="homepage_news">
       <div>
         <h2>Latest workshop</h2>
         <p>{{ site.workshops.last.title }}</p>
-        <p><a href="{{ site.workshops.last.url }}">View details &raquo;</a></p>
+        <p><a role="button" href="{{ site.workshops.last.url }}">View details &raquo;</a></p>
       </div>
       <div>
         <h2>Latest news</h2>
         <p>{{ site.news.last.title }}</p>
-        <p><a href="{{ site.news.last.url }}">View details &raquo;</a></p>
+        <p><a role="button" href="{{ site.news.last.url }}">View details &raquo;</a></p>
       </div>
       <div>
         <h2>Latest analysis project</h2>
         <p>{{ site.analysis_projects.last.title }}</p>
-        <p><a href="{{ site.analysis_projects.last.url }}">View details &raquo;</a></p>
+        <p><a role="button" href="{{ site.analysis_projects.last.url }}">View details &raquo;</a></p>
       </div>
     </div>
   </div> <!-- /jumbotron -->
