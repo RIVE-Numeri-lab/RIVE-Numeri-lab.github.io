@@ -6,53 +6,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira%20Sans">
   <link rel="stylesheet" href="/assets/css/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-  <script>
-    $(document).ready(function(){
-      $(".toggler").click(function(){
-        $("#navig_dropdown").slideToggle()
-      })
-      
-      if ($(".toggler").is(":visible")) {
-        $("#navig_dropdown").hide()
-      } else {
-        $("#navig_dropdown").show()
-      }
-    });
-    $(window).resize(function(){
-      if ($(".toggler").is(":visible")) {
-        $("#navig_dropdown").hide()
-      } else {
-        $("#navig_dropdown").show()
-      }
-    })
-  </script>
-  <style>
-    .toggler {
-      padding:9px;
-      padding-top:13px;
-      padding-bottom:7px;
-      display:none;
-    }
-    @media only screen and (max-width: 775px) {
-      .toggler {
-        display: block;
-        position:absolute;
-        right:0;
-      }
-      #navig_dropdown{
-        display:block;
-        position:absolute;
-        top:46px;
-        right:0;
-      }
-      #navig_dropdown li {
-        float:none;
-      }
-      #navig_dropdown li a {
-        background-color:#333;
-      }
-    }
-  </style>
+  <script src="/assets/javascript/fluid_nav.js"></script>
 </head>
 <body>
   <nav>    
