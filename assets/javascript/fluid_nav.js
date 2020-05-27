@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $(".toggler").click(function(){
     $("#navig_dropdown").slideToggle()
+    return false
   })
   
   if ($(".toggler").is(":visible")) {
