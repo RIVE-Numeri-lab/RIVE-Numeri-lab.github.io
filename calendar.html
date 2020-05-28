@@ -1,0 +1,47 @@
+---
+layout: default
+title: Calendar
+---
+<style>
+  dl.event_list {
+  }
+ 
+  dl.event_list dt {
+      background:#007bff;
+      color:#fff;
+      float:left; 
+      font-weight:bold; 
+      margin-right:10px; 
+      padding:5px;
+      text-align:center;
+      width:110px;
+      border-radius: 5px;
+  }
+ 
+  dl.event_list dd {
+      margin:2px 0; 
+      padding:5px 0;
+  }
+</style>
+<h1>Calendar</h2>
+<h2> Upcoming events</h2>
+  <dl class="event_list">  
+  {% for event in site.data.events %}
+    {% assign today = 'now' | date: '%s' %}
+    {% assign event_date = event.date | date: '%s' %}
+    {% if today <= event_date %}
+      <dt>{{ event.date | date: "%b %d, %Y"}}</dt> 
+      <dd>{{ event.title }}</dd>      
+      {% endif %}
+  {% endfor %}
+</dl>
+<h2> Past events</h2>
+<dl class="event_list">
+  {% for event in site.data.events %}
+    {% assign today = 'now' | date: '%s' %}
+    {% assign event_date = event.date | date: '%s' %}
+    {% if today > event_date %}  
+      <dt>{{ event.date| date: "%b %d, %Y" }}</dt><dd> {{ event.title }}</dd>
+      {% endif %}
+  {% endfor %}
+</dl>
