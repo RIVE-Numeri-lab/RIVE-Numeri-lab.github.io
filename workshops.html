@@ -3,26 +3,7 @@ layout: default
 title: Workshops
 ---
 <style>
-  .workshop_container {
-    float:left;
-    margin:10px;
-    width:300px;
-    height:200px;
-    border:1px solid #ccc;
-    padding:20px;
-  }
-  .thumb {
-    background-color:#fff;
-    width:100px;
-    min-height:200px;
-    float:right;
-    margin-left:30px;
-    text-align:center;
-  }
-  .workshop_container a {
-    text-decoration:none;
-    color:#007bff;
-  }
+
 </style>
 <h1>Workshops</h1>
 
@@ -30,7 +11,7 @@ title: Workshops
   
 <div class="workshop_container">
     <div class="thumb">
-      <img src="/img/logos_rive_coul-01.png" width="50"/>
+      <img src="/assets/thumbnails/{{ post.thumbnail | default: "rive.png" }}" />
     </div>  
   <div class="post_preview">
       <strong>{{ post.category }}</strong>

@@ -1,4 +1,5 @@
 ---
+thumbnail: Rlogo.png
 category: Data synthesis
 title: "Meta-analysis"
 author: "Charles Martin"

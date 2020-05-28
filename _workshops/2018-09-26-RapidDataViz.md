@@ -1,4 +1,5 @@
 ---
+thumbnail: ggplot2.png
 layout: default
 category: Data exploration
 title: "Rapid data visualization with ggplot2"

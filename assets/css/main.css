@@ -111,3 +111,28 @@ a[role=button]:hover {
     width: auto;
   }
 }
+
+/* Workshop page */
+.workshop_container {
+  float:left;
+  margin:10px;
+  width:300px;
+  height:200px;
+  border:1px solid #ccc;
+  padding:20px;
+}
+.thumb {
+  background-color:#fff;
+  width:100px;
+  min-height:200px;
+  float:right;
+  margin-left:30px;
+  text-align:center;
+}
+.workshop_container a {
+  text-decoration:none;
+  color:#007bff;
+}
+.thumb img {
+  width:100px;
+}

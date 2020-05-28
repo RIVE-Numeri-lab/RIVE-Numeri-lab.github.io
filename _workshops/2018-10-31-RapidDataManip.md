@@ -1,4 +1,5 @@
 ---
+thumbnail: dplyr.png
 layout: default
 category: Data exploration
 title: "Fast data manipulation with dplyr and its allies"
