@@ -92,7 +92,8 @@ main {
 
 footer {
   background-color:#ccc;
-  padding:20px;
+  padding:16px;
+  padding-bottom:8px;
 }
 
 footer a,footer a:visited {
