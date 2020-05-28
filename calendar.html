@@ -2,8 +2,6 @@
 layout: default
 title: Calendar
 ---
-<style>
-</style>
 <h1>Calendar</h2>
 <h2> Upcoming events</h2>
   <dl class="event_list">  
@@ -18,7 +16,7 @@ title: Calendar
 </dl>
 <h2> Past events</h2>
 <dl class="event_list">
-  {% for event in site.data.events %}
+  {% for event in site.data.events reversed %}
     {% assign today = 'now' | date: '%s' %}
     {% assign event_date = event.date | date: '%s' %}
     {% if today > event_date %}  

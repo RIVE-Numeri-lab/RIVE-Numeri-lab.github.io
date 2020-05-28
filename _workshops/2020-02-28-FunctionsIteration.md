@@ -12,6 +12,7 @@ output:
     theme: readable
     toc: yes
 ---
+# Functions and iteration
 
 # Introduction
 

@@ -181,3 +181,12 @@ dl.event_list dd {
     margin:2px 0; 
     padding:5px 0;
 }
+
+dl a,dl a:visited {
+  text-decoration:none;
+  color: #007bff;
+}
+
+dl a:hover {
+  text-decoration:underline;
+}

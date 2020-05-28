@@ -12,7 +12,7 @@ output:
     theme: readable
     toc: yes
 ---
-
+# Meta-analysis
 
 ```r
 library(dplyr) # data manipulation

@@ -2,12 +2,11 @@
 layout: default
 title: News
 ---
-# News
+<h1>News</h1>
 
-<ul>
-  {% for post in site.news %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
+  <dl class="event_list">  
+  {% for post in site.news reversed %}
+      <dt>{{ post.date | date: "%b %d, %Y"}}</dt> 
+      <dd><a href = "{{ post.url }}">{{ post.title }}</a></dd>
   {% endfor %}
-</ul>
+  </dl>

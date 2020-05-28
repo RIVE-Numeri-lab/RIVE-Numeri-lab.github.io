@@ -13,6 +13,7 @@ output:
     toc: yes
 ---
 
+# Rapid data visualization with ggplot2
 
 Clarifications
 ============

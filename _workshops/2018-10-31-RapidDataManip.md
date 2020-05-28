@@ -12,7 +12,7 @@ output:
     theme: readable
     toc: yes
 ---
-
+# Fast data manipulation with dplyr and its allies
 
 Our dataset
 ============
