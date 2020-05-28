@@ -1,4 +1,5 @@
 ---
+category: Data synthesis
 title: "Meta-analysis"
 author: "Charles Martin"
 layout: default

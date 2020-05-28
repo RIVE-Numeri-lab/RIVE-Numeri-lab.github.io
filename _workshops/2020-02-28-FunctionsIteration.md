@@ -1,4 +1,5 @@
 ---
+category: Programming
 title: "Functions and iteration"
 layout: default
 author: "Charles Martin"
