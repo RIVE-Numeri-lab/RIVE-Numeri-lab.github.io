@@ -151,6 +151,20 @@ footer {
   margin:0 0 12px 12px;
 }
 
+.homepage_news div {
+  position:relative;
+  border:1px solid #ddd;
+}
+
+.homepage_news p {
+  padding-bottom:10px;
+}
+
+.homepage_news a[role=button] {
+  position:absolute;
+  bottom:10px;
+}
+
 /* If the browser window is smaller than 600px, make the columns stack on top of each other */
 @media only screen and (max-width: 700px) {
   .homepage_news div {
