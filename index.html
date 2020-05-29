@@ -20,6 +20,24 @@ title: Home
   </div>
 
   <div class="homepage_news">
+    
+  {% assign event_count = 0 %}
+  {% for event in site.data.events %}
+    {% assign today = 'now' | date: '%s' %}
+    {% assign event_date = event.date | date: '%s' %}
+    {% if today <= event_date %}     
+       {% if event_count == 0 %}
+       <div>
+         <h2>Next event</h2>
+         {{ event.date | date: "%b %d, %Y"}}<br /><br />
+          {{ event.title }}           
+        </div>
+        {% endif %}
+        {% assign event_count = event_count | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+    
+    
       <div>
         <h2>Latest workshop</h2>
         <p>{{ site.workshops.last.title }}</p>
@@ -35,5 +53,7 @@ title: Home
         <p>{{ site.analysis_projects.last.title }}</p>
         <p><a role="button" href="{{ site.analysis_projects.last.url }}">View details &raquo;</a></p>
       </div>
-    </div>
+    
+    
   </div>
+  
