@@ -8,7 +8,7 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: black;
 }
 
 nav li {
@@ -73,7 +73,7 @@ a[role=button]:hover {
     float:none;
   }
   #navig_dropdown li a {
-    background-color:#333;
+    background-color:black;
   }
 }
 
@@ -107,12 +107,25 @@ footer a:hover {
 
 /* Home page specific styles */
 .jumbotron {
-  background-color:#cccccc;
-  padding:20px;    
+  background-image:url(/assets/backgrounds/markus-spiske-hvSr_CVecVI-unsplash_2.jpg);
+  background-size:cover;
+  background-repeat:no-repeat;            
+  padding:20px;
+  background-color:black;
 }
+
+.jumbotron {
+  color:white;
+  text-shadow:0.5px 1px black;
+}
+
 .jumbotron h1 {
   font-size : 4em;
   font-weight:lighter;
+}
+
+.jumbotron a {
+  text-shadow:none;
 }
 
 .homepage_news div {

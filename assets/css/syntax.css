@@ -1,9 +1,15 @@
 .highlighter-rouge {
   font-size:15px;
-  background-color:#eee;
+  background-color:white;
   font-family:"Fira Mono";
 }
 .highlight .n { color: black }
 .highlight .w { color: #b6009f }
 .highlight .p { color: #2800df }
 .highlight .o { color: #1f8100 }
+
+.language-r {
+  background-color:#eee;
+  padding:5px 10px 5px 10px;
+  border:1px solid black;
+}
