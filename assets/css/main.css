@@ -11,20 +11,30 @@ nav ul {
   background-color: black;
 }
 
+a, a:visited {
+  text-decoration:none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
 nav li {
   float: left;
 }
 
 nav li a {
   display: block;
-  color: white;
+  color: white ! important;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
+  text-decoration: none ;
 }
 
 nav li a:hover {
   background-color: #333;
+  text-decoration:none ! important;
 } 
 
 main {
@@ -94,15 +104,6 @@ footer {
   background-color:#ccc;
   padding:16px;
   padding-bottom:8px;
-}
-
-footer a,footer a:visited {
-  text-decoration:none;
-  color: #007bff;
-}
-
-footer a:hover {
-  text-decoration:underline;
 }
 
 /* Home page specific styles */
@@ -195,11 +196,3 @@ dl.event_list dd {
     padding:5px 0;
 }
 
-dl a,dl a:visited {
-  text-decoration:none;
-  color: #007bff;
-}
-
-dl a:hover {
-  text-decoration:underline;
-}
