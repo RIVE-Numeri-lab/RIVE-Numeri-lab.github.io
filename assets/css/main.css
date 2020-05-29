@@ -101,7 +101,7 @@ main {
 }
 
 footer {
-  background-color:#ccc;
+  background-color:#ddd;
   padding:16px;
   padding-bottom:8px;
 }
@@ -143,6 +143,12 @@ footer {
 .homepage_news h2 {
   font-size: 2em;
   font-weight:lighter;
+}
+
+.homepage_thumbnail {
+  width:60px;
+  float:right;
+  margin:0 0 12px 12px;
 }
 
 /* If the browser window is smaller than 600px, make the columns stack on top of each other */

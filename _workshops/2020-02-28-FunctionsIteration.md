@@ -1,5 +1,5 @@
 ---
-thumbnail: Rlogo.png
+thumbnail: purrr.png
 category: Programming
 title: "Functions and iteration"
 layout: default
