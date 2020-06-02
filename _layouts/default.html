@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/assets/css/syntax.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
   <script src="/assets/javascript/fluid_nav.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <nav>    
@@ -36,7 +37,7 @@
     <span style="float:right"><a href = "https://oraprdnt.uqtr.uquebec.ca/pls/public/gscw031?owa_no_site=2137">
         Centre de Recherche sur les interactions Bassins Versants - Écosystèmes Aquatiques        
       </a></span>
-    Copyright 2019-2020
+    Copyright 2019-2020, last updated on {{ site.time | date: "%b %d, %Y"  }}
     
   </footer>
   {% include analytics.html %}
