@@ -3,14 +3,12 @@ layout: default
 title: Useful links
 ---
 # Useful links
-This page will contain a list of useful links.
-
-Here's a couple of examples
-
+<img width = "450px" src = "https://upload.wikimedia.org/wikipedia/commons/e/e8/Wikidata_logo_under_construction_sign_diamond.svg"/><br />
+For example, here is a list of links
 * [R for data science](https://r4ds.had.co.nz/)
 * [R-bloggers](https://www.r-bloggers.com/)
 
-And another list...
+And another another one
 
 * [R for data science](https://r4ds.had.co.nz/)
 * [R-bloggers](https://www.r-bloggers.com/)
