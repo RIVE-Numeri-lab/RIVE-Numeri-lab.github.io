@@ -60,6 +60,10 @@ a[role=button]:hover {
   font-weight:bold;
 }
 
+h2 {
+  clear:both;
+}
+
 /* Fluid navigation bar */
 .toggler {
   padding:9px;

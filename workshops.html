@@ -4,6 +4,21 @@ title: Workshops
 ---
 <h1>Workshops</h1>
 
+{% comment -%}
+Attention, il ne faut pas mettre d'espaces dans les items dans cette liste.
+Idéalement on construirait cette liste à partir des valeurs contenus dans la collection...
+Mais le langage ne semble pas le permettre pour le moment
+{% endcomment %}
+{% assign categories = "Stats,Data exploration,Reproductibility,GIS,Programming,Data synthesis" | split: ',' %}
+
+{% for category in categories %}
+
+  <h2 style="margin-bottom:0;margin-top:20px">{{ category }}</h2>
+  
   {% for post in site.workshops %}
-  {% include workshop_detail.html %}  
+    {% if post.category == category %}
+    {% include post_preview.html %}
+    {% endif %}    
   {% endfor %}
+
+{% endfor %}
