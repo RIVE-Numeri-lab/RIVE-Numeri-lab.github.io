@@ -5,6 +5,7 @@ category: Data exploration
 title: "Rapid data visualization with ggplot2"
 author: "Charles Martin"
 date: "September 26 2018"
+includes_a_video: yes
 output:
   html_document:
     highlight: haddock
