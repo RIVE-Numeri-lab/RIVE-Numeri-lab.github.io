@@ -15,6 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Numerilab
+description: "Numeracy, noun : the ability to understand and work with numbers."
 email: numerilab@uqtr.ca
 url: "https://rive-numeri-lab.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
