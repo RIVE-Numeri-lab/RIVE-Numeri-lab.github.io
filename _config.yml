@@ -21,7 +21,6 @@ url: "https://rive-numeri-lab.github.io/" # the base hostname & protocol for you
 # Build settings
 markdown: kramdown
 plugins:
-  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -46,10 +45,3 @@ collections:
     permalink: /analysis_projects/:title
   news:
     output: true
-
-# Configuration du fil RSS pour r-bloggers
-feed:
-  posts_limit: 5
-  collections:
-    workshops :
-      path: "/r-bloggers.xml"
