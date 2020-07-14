@@ -12,7 +12,7 @@ layout: none
     {% for post in sorted limit:1 %}
 			<item>
 				<title>{{ post.title | xml_escape }}</title>
-				<description><![CDATA[{{ post.content | xml_escape }}]]></description>
+				<description><![CDATA[{{ post.content }}]]></description>
 				<pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
 				<link>{{ site.url }}{{ post.url }}</link>
 				<guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
