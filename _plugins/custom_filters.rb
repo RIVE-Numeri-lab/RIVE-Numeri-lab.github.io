@@ -3,7 +3,7 @@
 module Jekyll  
   module AssetFilter
     def absolute_urls(input)
-      input.gsub! '/assets/', 'https://rive-numeri-lab.github.io/assets/'
+      input.gsub! '/assets/', "#{Jekyll.configuration({})['url']}"
     end
   end
 end
