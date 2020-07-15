@@ -9,10 +9,10 @@ layout: none
     <description>{{ site.description }}</description>
 		<atom:link href="{{ site.url }}/r-bloggers.xml" rel="self" type="application/rss+xml" />
     {% assign sorted = (site.workshops | sort: 'date') | reverse %}
-    {% for post in sorted limit:5 %}
+    {% for post in sorted limit:1 %}
 			<item>
 				<title>{{ post.title | xml_escape }}</title>
-				<description><![CDATA[{{ post.content }}]]></description>
+				<description><![CDATA[{{ post.content | absolute_urls }}]]></description>
 				<pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
 				<link>{{ site.url }}{{ post.url }}</link>
 				<guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
