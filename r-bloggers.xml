@@ -9,7 +9,8 @@ layout: none
     <description>{{ site.description }}</description>
 		<atom:link href="{{ site.url }}/r-bloggers.xml" rel="self" type="application/rss+xml" />
     {% assign sorted = (site.workshops | sort: 'date') | reverse %}
-    {% for post in sorted limit:5 %}
+    {% assign rb = sorted | where: "rbloggers", "true" %}
+    {% for post in rb limit:5 %}
 			<item>
 				<title>{{ post.title | xml_escape }}</title>
 				<description><![CDATA[{{ post.content | replace : '/assets/', "https://rive-numeri-lab.github.io/assets/" }}]]></description>

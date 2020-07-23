@@ -5,6 +5,7 @@ author: "Geoffrey Marselli"
 date: '2020-06-11'
 layout: default
 category: Stats
+rbloggers: true
 output: 
   html_document:
     keep_md: yes
