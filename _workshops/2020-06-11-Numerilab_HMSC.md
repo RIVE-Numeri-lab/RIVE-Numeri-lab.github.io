@@ -1,5 +1,5 @@
 ---
-title: Guide to using the Hmsc package for the production of Joint Species Distribtuion
+title: Guide to using the Hmsc package for the production of Joint Species Distribution
   Models
 author: "Geoffrey Marselli"
 date: '2020-06-11'
