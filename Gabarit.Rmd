@@ -1,0 +1,37 @@
+---
+title: "Numérilab - Gabarit d'atelier"
+author: "Charles Martin"
+date: "4 septembre 2020"
+output:
+  html_document:
+    highlight: haddock
+    keep_md: yes
+    theme: readable
+    toc: yes
+---
+```{r echo=FALSE}
+knitr::opts_chunk$set(comment = NA)
+```
+# Une entête
+
+Du texte
+
+* Une liste
+* Avec
+* Plusieurs items
+
+# Un autre titre
+
+Et finalement du code
+```{r}
+com1 = c(0.5,0.3,0.2)
+com2 = c(0.7,0.2,0.1,0.1)
+com3 = c(0.9,0.1)
+```
+
+## Avec un sous-titre si nécessaire
+
+Et encore du code
+```{r}
+-sum(com1*log(com1))
+```
