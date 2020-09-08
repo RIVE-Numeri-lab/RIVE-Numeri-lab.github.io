@@ -13,3 +13,18 @@
 - title : Data visualization II (ggplot2) 
   date : 2020-11-19
   description : C. Martin & C. Macarez
+- title : Visualization and prediction of PCA and LDA (Linear Discriminant Analyses) 
+  date : 2020-12-10 
+  description : F. Qin & R. Giguère-Tremblay 
+- title : GoogleEarthEngine (Python ou Java) 
+  date : 2021-01-14 
+  description : E. Hamel & A. De Grandpré
+- title : GIS in R with leaflet (leaflet, ggmap, sp, maps, rgdal…) 
+  date : 2021-02-18 
+  description : A. De Grandpré & L. Arsenault-Boucher 
+- title : Big data manipulation (data.table, vroom) 
+  date : 2021-03-18 
+  description : R. Giguère-Tremblay
+- title : Time series analyses
+  date : 2021-04-15 
+  description : L. Deschamps
