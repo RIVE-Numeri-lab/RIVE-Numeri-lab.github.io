@@ -4,9 +4,12 @@
 - title : Functions and iterations
   date: 2020-02-05
   description: Charles will talk to us about removing useless repetitions in your R with *loops and functions*
-- title : This should be the next activity
-  date : 2020-09-01
-  description : Just to make sure it shows up  
-- title : Something in the future, after the activity that should show up next
-  date : 2020-10-01
-  description : Just to make sure it shows up
+- title : Functions and iteration (purrr) 
+  date : 2020-09-24 
+  description : C. Martin & J. Félix-Faure
+- title : Data manipulation II (dplyr & tidyverse) 
+  date : 2020-10-22
+  description : J. Félix-Faure & C. Martin
+- title : Data visualization II (ggplot2) 
+  date : 2020-11-19
+  description : C. Martin & C. Macarez
