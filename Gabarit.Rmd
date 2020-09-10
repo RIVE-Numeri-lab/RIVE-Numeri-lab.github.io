@@ -35,3 +35,23 @@ Et encore du code
 ```{r}
 -sum(com1*log(com1))
 ```
+
+# Maths
+On peut aussi insérer des équations en latex, comme ceci à travers 
+le texte $A = \pi*r^{2}$ ou comme ça dans son propre bloc : 
+$$E = mc^{2}$$
+
+# Du visuel
+Enfin, lorsque votre code produit des graphiques, 
+ils sont automatiquement inclus dans le document, par exemple comme ceci : 
+
+```{r}
+library(ggplot2)
+ggplot(msleep) + geom_point(aes(x = sleep_total, y = sleep_rem))
+```
+
+On peut insérer des images qui ne sont pas créées par R comme ceci : 
+![Texte si l'image ne charge pas](https://rive-numeri-lab.github.io/assets/thumbnails/rive.png)
+
+# Pour en savoir plus
+Sur le format RMarkdown, consultez [cet aide-mémoire]( https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
