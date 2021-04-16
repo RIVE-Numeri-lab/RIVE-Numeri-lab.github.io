@@ -12,7 +12,9 @@ output:
     theme: readable
 ---
 
-
+# Introduction to Google Earth Engine
+#### Estéban Hamel & Arthur de Granpré
+#### January 2021
 
 # Summary
 

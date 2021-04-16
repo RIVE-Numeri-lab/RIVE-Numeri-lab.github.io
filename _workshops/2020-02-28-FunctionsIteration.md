@@ -14,6 +14,8 @@ output:
     toc: yes
 ---
 # Functions and iteration
+#### Charles Martin
+#### February 2020
 
 # Introduction
 

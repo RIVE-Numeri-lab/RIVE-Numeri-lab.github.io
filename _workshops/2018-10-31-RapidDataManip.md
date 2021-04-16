@@ -13,6 +13,8 @@ output:
     toc: yes
 ---
 # Fast data manipulation with dplyr and its allies
+#### Charles Martin
+#### October 2018
 
 Our dataset
 ============

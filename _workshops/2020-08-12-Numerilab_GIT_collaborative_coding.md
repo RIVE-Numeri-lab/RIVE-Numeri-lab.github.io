@@ -11,7 +11,9 @@ output:
     toc: yes
     toc_float: yes
 ---
-
+# Git and collaborative coding
+#### Arthur de Grandpré
+#### August 2020
 
 
 

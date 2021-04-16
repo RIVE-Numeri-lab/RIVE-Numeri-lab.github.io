@@ -13,6 +13,9 @@ output:
     toc: yes
     self_contained: true
 ---
+# Advanced ggplot2 - Solutions to everyday problems
+#### Charles Martin
+#### October 2020
 
 This workshop assumes that you are already familiar with basic ggplot2 functions.
 If this isn't the case, please take a couple of minutes to skim through our

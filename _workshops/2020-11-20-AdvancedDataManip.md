@@ -12,7 +12,9 @@ output:
     theme: readable
     toc: yes
 ---
-
+# Advanced data manipulation with tidyr and its allies
+#### Jim Félix-Faure
+#### October 2020
 
 
 **Note** : To follow this workshop it is recommended to have already completed the following courses *Fast data manipulation with dplyr and its allies* and *Rapid data visualization with ggplot2* (available on the *Numerilab* website - see link at the bottom of this document) or to have some basics on the use of the *pipe operator*, *ggplot2* and the basic functions of the *tidyverse*.

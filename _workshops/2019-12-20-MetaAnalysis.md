@@ -14,6 +14,8 @@ output:
     toc: yes
 ---
 # Meta-analysis
+#### Charles Martin
+#### December 2019
 
 ```r
 library(dplyr) # data manipulation

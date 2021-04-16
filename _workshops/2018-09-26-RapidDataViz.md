@@ -15,6 +15,8 @@ output:
 ---
 
 # Rapid data visualization with ggplot2
+#### Charles Martin
+#### September 2018
 
 Clarifications
 ============
