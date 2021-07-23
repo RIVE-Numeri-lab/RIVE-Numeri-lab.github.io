@@ -14,3 +14,4 @@ node_modules
 npm-debug.log*
 vendor/cache/*
 .Rproj.user
+assets/css/.Rhistory
