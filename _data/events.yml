@@ -4,30 +4,55 @@
 - title : Functions and iterations
   date: 2020-02-05
   description: Charles will talk to us about removing useless repetitions in your R with *loops and functions*
-- title : Functions and iteration (purrr) 
-  date : 2020-09-24 
+- title : Functions and iteration (purrr)
+  date : 2020-09-24
   description : C. Martin & J. Félix-Faure
-- title : Data manipulation II (dplyr & tidyverse) 
+- title : Data manipulation II (dplyr & tidyverse)
   date : 2020-10-22
   description : J. Félix-Faure & C. Martin
-- title : Data visualization II (ggplot2) 
+- title : Data visualization II (ggplot2)
   date : 2020-11-19
   description : C. Martin & C. Macarez
-- title : Visualization and prediction of PCA and LDA (Linear Discriminant Analyses) 
-  date : 2020-12-10 
-  description : F. Qin & R. Giguère-Tremblay 
-- title : GoogleEarthEngine (Python or Java) 
-  date : 2021-01-14 
+- title : Visualization and prediction of PCA and LDA (Linear Discriminant Analyses)
+  date : 2020-12-10
+  description : F. Qin & R. Giguère-Tremblay
+- title : GoogleEarthEngine (Python or Java)
+  date : 2021-01-14
   description : E. Hamel & A. De Grandpré
-- title : GIS in R with leaflet (leaflet, ggmap, sp, maps, rgdal…) 
-  date : 2021-02-18 
-  description : A. De Grandpré & L. Arsenault-Boucher 
-- title : Big data manipulation (data.table, vroom) 
-  date : 2021-03-18 
+- title : GIS in R with leaflet (leaflet, ggmap, sp, maps, rgdal…)
+  date : 2021-02-18
+  description : A. De Grandpré & L. Arsenault-Boucher
+- title : Big data manipulation (data.table, vroom)
+  date : 2021-03-18
   description : R. Giguère-Tremblay
 - title : Time series analyses
-  date : 2021-04-15 
+  date : 2021-04-15
   description : L. Deschamps
 - title : Annual meeting
-  date : 2021-10-21 
+  date : 2021-10-21
   description : All RIVE students are welcomed to attend
+
+- title : Introduction to Deep Learning for Ecologists
+  date : 2021-11-04
+  description : C. Martin
+- title : Rapid data visualization with ggplot2
+  date : 2021-12-02
+  description : J. Dormoy-Boulanger
+- title : Interactive R applications with Shiny
+  date : 2020-01-13
+  description : c. Martin
+- title : Introduction to Python
+  date : 2022-02-10
+  description : J. Ortet
+- title : High performance pipelines
+  date : 2022-03-10
+  description : A. de Grandpré
+- title : Step selection function (movement analysis)
+  date : 2022-04-07
+  description : R. Leroux
+- title : Parafac
+  date : 2022-05-05
+  description : J. Dormoy-Boulanger
+- title : bart (or time series)
+  date : 2022-06-02
+  description : L. Deschamps
