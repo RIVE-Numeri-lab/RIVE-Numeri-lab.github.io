@@ -140,7 +140,7 @@ autoplot(Data[,"Unicells"]) +
   geom_point()
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 # Decomposition of the time series
 
@@ -158,7 +158,7 @@ Time-series may be composed of four abstract elements :
 autoplot(decompose(Data[,"Unicells"]))
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 # Modelling
 
@@ -296,21 +296,21 @@ Just to be sure, the residuals are the vertical distances between each data poin
 autoplot(fit.int, plot.type = c("model.ytT", "model.resids", "qqplot.model.resids"))
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 ```
 ## plot.type = model.ytT
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-12-2.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-12-2.png)<!-- -->
 
 ```
 ## plot.type = model.resids
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-12-3.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-12-3.png)<!-- -->
 
 ```
 ## plot.type = qqplot.model.resids
@@ -337,7 +337,7 @@ The `autoplot` function, applied to a forecast object, provide a fancy graph qui
 autoplot(fr.int)
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 ## Drift model
 
@@ -399,21 +399,21 @@ And evaluate it.
 autoplot(fit.drift, plot.type = c("model.ytT", "model.resids", "qqplot.model.resids"))
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 ```
 ## plot.type = model.ytT
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-17-2.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-17-2.png)<!-- -->
 
 ```
 ## plot.type = model.resids
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-17-3.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-17-3.png)<!-- -->
 
 ```
 ## plot.type = qqplot.model.resids
@@ -431,7 +431,7 @@ fr.drift <- forecast.marssMLE(fit.drift, h = 24)
 autoplot(fr.drift)
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
 
 Because we did not allow the model to capture more information, it expect the linear decreasing trend to persist in the next two years.
 
@@ -495,21 +495,21 @@ And evaluate it.
 autoplot(fit.randrift, plot.type = c("model.ytT", "model.resids", "qqplot.model.resids"))
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
 
 ```
 ## plot.type = model.ytT
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-21-2.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-21-2.png)<!-- -->
 
 ```
 ## plot.type = model.resids
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-21-3.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-21-3.png)<!-- -->
 
 ```
 ## plot.type = qqplot.model.resids
@@ -526,7 +526,7 @@ fr.randrift <- forecast.marssMLE(fit.randrift, h = 24)
 autoplot(fr.randrift)
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
 
 Even if the random-walk better captures the observed patterns, it add noise to the process equation, making the prediction far less certain (which is honest!).
 
@@ -539,7 +539,7 @@ As its name suggest, the auto-correlation captures the correlation between a tim
 gglagplot(Data[,"Unicells"], lags = 4)
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
 
 On this first graph, we can see actual values and values lagged by an order 1 lies relatively tightly on the 1:1 line, suggesting Unicells abundances at time t are strongly related to the abundances at time t-1.
 
@@ -550,7 +550,7 @@ An autocorrelation allows to visualize the autocorrelation (Acf) computed at dif
 ggAcf(Data[,"Unicells"])
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
 
 We can observe to different major auto-correlation in the Unicells abundances
 
@@ -611,28 +611,28 @@ Now we are familiar with the Acf plot, so we will also observe the auto-correlat
 autoplot(fit.auto, plot.type = c("model.ytT", "model.resids", "qqplot.model.resids", "acf.model.resids"))
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-27-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-27-1.png)<!-- -->
 
 ```
 ## plot.type = model.ytT
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-27-2.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-27-2.png)<!-- -->
 
 ```
 ## plot.type = model.resids
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-27-3.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-27-3.png)<!-- -->
 
 ```
 ## plot.type = qqplot.model.resids
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-27-4.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-27-4.png)<!-- -->
 
 ```
 ## plot.type = acf.model.resids
@@ -645,7 +645,7 @@ We can see the data have been very well (too well?) reproduced, and there is alm
 autoplot(fit.randrift, plot.type = c("acf.model.resids"))
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
 We can see the precedent model remove a lot of auto-correlation, but produced negative autocorrelation around a 3-4 month lag.
 
 Let's forecast!
@@ -657,7 +657,7 @@ fr.auto <- forecast.marssMLE(fit.auto, h = 24)
 autoplot(fr.auto)
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
 
 The prediction for the next two years are really different from the precedent model. Because the auto-regressive parameter is constant and deterministic, the interval of the prediction is reduced compared to the random-walk model. However, the auto-regressive model suggest the drift will not continue any further : it expects the system to return quickly to its mean value! We will check a little bit latter if this prediction is confirmed.
 
@@ -690,7 +690,7 @@ plot(cos.t, type = "l")
 lines(sin.t, type = "l", col = "red")
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-31-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-31-1.png)<!-- -->
 To fit a seasonal model,
 
   - we estimate B, the auto-regressive parameter
@@ -749,28 +749,28 @@ And evaluate it.
 autoplot(fit.sais, plot.type = c("model.ytT", "model.resids", "qqplot.model.resids", "acf.model.resids"))
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
 
 ```
 ## plot.type = model.ytT
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-34-2.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-34-2.png)<!-- -->
 
 ```
 ## plot.type = model.resids
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-34-3.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-34-3.png)<!-- -->
 
 ```
 ## plot.type = qqplot.model.resids
 ## Hit <Return> to see next plot (q to exit):
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-34-4.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-34-4.png)<!-- -->
 
 ```
 ## plot.type = acf.model.resids
@@ -791,7 +791,7 @@ fr.sais <- forecast.marssMLE(fit.sais, h = 24, newdata = list(c = rbind(
 autoplot(fr.sais)
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
 
 The predictions are similar to the ones from the auto-regressive model (the system should return to its mean state), but we now expect seasonal variation.
 
@@ -819,7 +819,7 @@ plot(fr.sais)
 points(121:144, DataTest[, "Unicells"], pch = 16, col = "red")
 ```
 
-![](/assets/NumeriLab_TimeSeries_English_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
+![](/assets/Numerilab_TimeSeries_English_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
 
 Wahou, that is not bad! The decreasing trend was indeed not to continue. It seems the seasonnal variation is now a little bit greater than it was, on average.
 
