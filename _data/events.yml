@@ -41,18 +41,18 @@
 - title : GoogleEarthEngine
   date : 2022-01-13
   description : E. Hamel-Jomphe
-- title : Introduction to Python
-  date : 2022-02-10
-  description : J. Ortet
+- title : Interactive R applications with Shiny
+  date : 2022-02-08
+  description : C. Martin
 - title : High performance pipelines
-  date : 2022-03-10
+  date : 2022-03-08
   description : A. de Grandpré
 - title : Step selection function (movement analysis)
-  date : 2022-04-07
+  date : 2022-04-05
   description : R. Leroux
 - title : Parafac
-  date : 2022-05-05
+  date : 2022-05-03
   description : J. Dormoy-Boulanger
 - title : bart (or time series)
-  date : 2022-06-02
+  date : 2022-05-31
   description : L. Deschamps
