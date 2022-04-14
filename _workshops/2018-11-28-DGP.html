@@ -4,6 +4,7 @@ title: "Data generating process"
 author: "Lucas Deschamps"
 date: "November 27 2018"
 layout: none
+lang: en
 ---
 
 <!DOCTYPE html>
@@ -220,7 +221,7 @@ Picasso, 1903, Celestina
 Nemobius &lt;- gen.nemobius.pop()
 ## Plot the density of data
 Nemobius %&gt;% ggplot(aes(x = abundance)) +
-  stat_density(geom = &quot;line&quot;, position = &quot;identity&quot;) + 
+  stat_density(geom = &quot;line&quot;, position = &quot;identity&quot;) +
   theme_minimal()
 N = nrow(Nemobius)</pre>
 
@@ -265,7 +266,7 @@ lambda_prior &lt;- seq(from = 0.1, to= 12, by = 0.2)</pre>
 <p>Brut force approach : let&#39;s generate data for every parameter value</p>
 
 <pre class = 'prettyprint lang-r'>## Create a data.frame to store results
-Simu &lt;- data.frame(run = rep(1:length(lambda_prior), each = N), 
+Simu &lt;- data.frame(run = rep(1:length(lambda_prior), each = N),
                           lambda_prior = rep(lambda_prior, each = N),
                           abund_sim = NA)
 ## Simulate data for each value of mu_prior
@@ -282,10 +283,10 @@ for(r in unique(Simu$run)){
 <li>Probability that our simulation produces exactly the observed data is extremely low!</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>Nemobius %&gt;% ggplot(aes(x = abundance)) + 
+<pre class = 'prettyprint lang-r'>Nemobius %&gt;% ggplot(aes(x = abundance)) +
   stat_density(data = filter(Simu, run %in% c(3:75)),
                aes(x = abund_sim, group = run), geom = &quot;line&quot;,
-               position = &quot;identity&quot;,col = &quot;blue&quot;, alpha = 0.1) + 
+               position = &quot;identity&quot;,col = &quot;blue&quot;, alpha = 0.1) +
   stat_density(geom = &quot;line&quot;, lwd = 1, position = &quot;stack&quot;) +
   theme_minimal()</pre>
 
@@ -311,15 +312,15 @@ for(r in unique(Simu$run)){
 <pre class = 'prettyprint lang-r'>## Compute observed mean
 mean_obs &lt;- mean(Nemobius$abundance)
 ## Compute simulated means
-Mean_sim &lt;- Simu %&gt;% group_by(run, lambda_prior) %&gt;% 
+Mean_sim &lt;- Simu %&gt;% group_by(run, lambda_prior) %&gt;%
   summarize(mean_sim = mean(abund_sim)) %&gt;%
   mutate(mean_dist = mean_obs - mean_sim)
 ## Plot
-Mean_sim %&gt;% ggplot(aes(x= mean_sim, y = lambda_prior)) + 
-  geom_point() + 
-  geom_smooth(method = &quot;lm&quot;, se = F) + 
-  geom_vline(aes(xintercept = mean_obs)) + 
-  xlab(&quot;Simulated mean&quot;) + 
+Mean_sim %&gt;% ggplot(aes(x= mean_sim, y = lambda_prior)) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;, se = F) +
+  geom_vline(aes(xintercept = mean_obs)) +
+  xlab(&quot;Simulated mean&quot;) +
   ylab(expression(paste(&quot;Prior &quot;, lambda))) +
   theme_minimal()</pre>
 
@@ -346,14 +347,14 @@ Mean_sim %&gt;% ggplot(aes(x= mean_sim, y = lambda_prior)) +
 <pre class = 'prettyprint lang-r'>## Extract regression parameters
 b &lt;- Mean_sim %&gt;% lm(data = ., mean_sim ~ lambda_prior) %&gt;% coef()
 ## Weight each simulated parameters
-Mean_sim &lt;- Mean_sim %&gt;% 
+Mean_sim &lt;- Mean_sim %&gt;%
   mutate(lambda_post = lambda_prior - b[2] * (mean_sim - mean_obs))
 ## Plot the posterior distribution
-Mean_sim %&gt;% ggplot(aes(lambda_post)) + 
+Mean_sim %&gt;% ggplot(aes(lambda_post)) +
   stat_density(geom = &quot;line&quot;, position = &quot;identity&quot;) +
-  geom_vline(aes(xintercept = mean_obs)) + 
-  xlab(&quot;Value of lambda&quot;) + 
-  ylab(expression(paste(&quot;P(&quot;,lambda,&quot;| Abund)&quot;))) + 
+  geom_vline(aes(xintercept = mean_obs)) +
+  xlab(&quot;Value of lambda&quot;) +
+  ylab(expression(paste(&quot;P(&quot;,lambda,&quot;| Abund)&quot;))) +
   theme_minimal()</pre>
 
 </article></slide><slide class=""><hgroup><h2>Questions and exercise</h2></hgroup><article  id="questions-and-exercise">
@@ -386,10 +387,10 @@ Nemobius &lt;- Nemolist$Nemobius
 Truea &lt;- Nemolist$Truea
 Trueb &lt;- Nemolist$Trueb
 ## Plot observed pattern
-Nemobius %&gt;% ggplot(aes(litter_thickness, abundance)) + 
-  geom_point() + 
-  theme_minimal() + 
-  xlab(&quot;Litter thickness (cm)&quot;) + 
+Nemobius %&gt;% ggplot(aes(litter_thickness, abundance)) +
+  geom_point() +
+  theme_minimal() +
+  xlab(&quot;Litter thickness (cm)&quot;) +
   ylab(&quot;Crickets abundance&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Environmental constraints</h2></hgroup><article  id="environmental-constraints-3">
@@ -477,10 +478,10 @@ y_i \sim Poisson(\lambda_i)\\
 <li>Are on the log scale -&gt; should not be too great</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>ggplot(data.frame(x = c(-20,20)), aes(x)) + 
-  stat_function(fun = dnorm, args = list(mean = 0, sd = 5)) + 
-  stat_function(fun = dstudent_t, args = list(df = 3, mu = 0, sigma = 5), lty = 2) + 
-  theme_minimal() + 
+<pre class = 'prettyprint lang-r'>ggplot(data.frame(x = c(-20,20)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 5)) +
+  stat_function(fun = dstudent_t, args = list(df = 3, mu = 0, sigma = 5), lty = 2) +
+  theme_minimal() +
   ylab(&quot;Likelihood&quot;)
 ## Or curve!!</pre>
 
@@ -506,11 +507,11 @@ y_i \sim Poisson(\lambda_i)\\
 likelihood &lt;- function(param, x, y){
   alpha = param[1]
   beta = param[2]
-  
+
   pred = exp(alpha + beta*x)
   singlelikelihoods = dpois(y, lambda = pred, log = T)
   sumll = sum(singlelikelihoods)
-  return(sumll)   
+  return(sumll)
 }</pre>
 
 </article></slide><slide class=""><hgroup><h2>Environmental constraints</h2></hgroup><article  id="environmental-constraints-13">
@@ -521,10 +522,10 @@ likelihood &lt;- function(param, x, y){
 prior &lt;- function(param){
   alpha = param[1]
   beta = param[2]
-  
+
   aprior = dnorm(alpha, mean = 0, sd = 5, log = T)
   bprior = dnorm(beta, mean = 0, sd = 5, log = T)
-  
+
   return(aprior+bprior)
 }</pre>
 
@@ -600,10 +601,10 @@ summary(chain)</pre>
 
 <p>And look at the results: joint distribution</p>
 
-<pre class = 'prettyprint lang-r'>as.data.frame(chain) %&gt;% ggplot(aes(x = V1, y = V2)) + 
-  stat_density2d(aes(alpha = ..level..),geom = &quot;polygon&quot;, fill = &quot;blue&quot;) + 
+<pre class = 'prettyprint lang-r'>as.data.frame(chain) %&gt;% ggplot(aes(x = V1, y = V2)) +
+  stat_density2d(aes(alpha = ..level..),geom = &quot;polygon&quot;, fill = &quot;blue&quot;) +
   geom_point(data = data.frame(Truea = Truea, Trueb = Trueb),
-             aes(Truea, Trueb)) + 
+             aes(Truea, Trueb)) +
   theme_minimal()</pre>
 
 </article></slide><slide class=""><hgroup><h2>Environmental constraints</h2></hgroup><article  id="environmental-constraints-20">
@@ -647,12 +648,12 @@ summary(ypred_quant)</pre>
 <p>Let&#39;s have a look at the predictions!</p>
 
 <pre class = 'prettyprint lang-r'>## Plot observed and predicted patterns
-ggplot(data = ypred_quant) + 
-  geom_ribbon(aes(x, ymin = `5%`, ymax = `95%`), alpha = 0.2) + 
-  geom_line(aes(x, y = `50%`)) + 
-  geom_point(data = Nemobius, aes(litter_thickness, abundance)) + 
-  theme_minimal() + 
-  xlab(&quot;Litter thickness (cm)&quot;) + 
+ggplot(data = ypred_quant) +
+  geom_ribbon(aes(x, ymin = `5%`, ymax = `95%`), alpha = 0.2) +
+  geom_line(aes(x, y = `50%`)) +
+  geom_point(data = Nemobius, aes(litter_thickness, abundance)) +
+  theme_minimal() +
+  xlab(&quot;Litter thickness (cm)&quot;) +
   ylab(&quot;Crickets abundance&quot;)</pre>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2><em>Congratulations!! You just fitted a Generalized Linear Model by hand!</em></h2></hgroup><article  id="congratulations-you-just-fitted-a-generalized-linear-model-by-hand">
@@ -692,12 +693,12 @@ yini &lt;- Nemolist$yini # initial values of populations
 summary(Nemobius)
 ## Plot observed patterns
 Nemobius %&gt;% ggplot(aes(x = times, y = Prey)) +
-  geom_point(col = &quot;blue&quot;) + 
-  geom_line(col = &quot;blue&quot;) + 
-  geom_point(aes(y = Pred), col = &quot;red&quot;) + 
-  geom_line(aes(y = Pred), col = &quot;red&quot;) + 
+  geom_point(col = &quot;blue&quot;) +
+  geom_line(col = &quot;blue&quot;) +
+  geom_point(aes(y = Pred), col = &quot;red&quot;) +
+  geom_line(aes(y = Pred), col = &quot;red&quot;) +
   ylab(&quot;Biomass (Nemobius and predators)&quot;) +
-  xlab(&quot;Years after the beginning&quot;) + 
+  xlab(&quot;Years after the beginning&quot;) +
   theme_minimal()</pre>
 
 </article></slide><slide class=""><hgroup><h2>Population dynamics</h2></hgroup><article  id="population-dynamics-2">
@@ -827,10 +828,10 @@ rstan::traceplot(fit_exp, pars = c(&quot;theta&quot;, &quot;z_init&quot;))
 y_rep &lt;- extract(fit_exp, pars = &quot;y_rep&quot;)$y_rep
 z_init &lt;- extract(fit_exp, pars = &quot;z_init&quot;)$z_init
 prey_rep &lt;- y_rep[,,1]; pred_rep &lt;- y_rep[,,2]
-prey_init &lt;- z_init[,1]; pred_init &lt;- z_init[,2]; 
+prey_init &lt;- z_init[,1]; pred_init &lt;- z_init[,2];
 prey_quant &lt;- as.data.frame(t(apply(cbind(prey_init, prey_rep), 2,
                                           quantile, c(0.1, 0.5, 0.90) )))
-pred_quant &lt;- as.data.frame(t(apply(cbind(pred_init, pred_rep), 2, 
+pred_quant &lt;- as.data.frame(t(apply(cbind(pred_init, pred_rep), 2,
                                           quantile, c(0.1, 0.5, 0.90) )))</pre>
 
 </article></slide><slide class=""><hgroup><h2>Population dynamics</h2></hgroup><article  id="population-dynamics-11">
@@ -842,12 +843,12 @@ bayesplot::ppc_dens_overlay(Nemostan$y[,1], prey_rep)
 bayesplot::ppc_dens_overlay(Nemostan$y[,2], pred_rep)
 ## Observed vs. predicted patterns
 ggplot() + geom_ribbon(data = prey_quant, alpha = 0.3,
-            aes(x = 1:nrow(prey_quant), ymin = `10%`, ymax = `90%`)) + 
+            aes(x = 1:nrow(prey_quant), ymin = `10%`, ymax = `90%`)) +
   geom_ribbon(data = pred_quant, alpha = 0.3,
-              aes(x = 1:nrow(pred_quant), ymin = `10%`, ymax = `90%`)) + 
-  geom_point(data = Nemobius, aes(x = times, y = Prey), col = &quot;blue&quot;) + 
+              aes(x = 1:nrow(pred_quant), ymin = `10%`, ymax = `90%`)) +
+  geom_point(data = Nemobius, aes(x = times, y = Prey), col = &quot;blue&quot;) +
   geom_point(data = Nemobius, aes(x = times, y = Pred), col = &quot;red&quot;) +
-  geom_line(data = Nemobius, aes(x = times, y = Prey), col = &quot;blue&quot;) + 
+  geom_line(data = Nemobius, aes(x = times, y = Prey), col = &quot;blue&quot;) +
   geom_line(data = Nemobius, aes(x = times, y = Pred), col = &quot;red&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Population dynamics</h2></hgroup><article  id="population-dynamics-12">

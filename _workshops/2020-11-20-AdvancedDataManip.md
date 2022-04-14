@@ -5,6 +5,7 @@ category: Data exploration
 title: "Advanced data manipulation with tidyr and its allies"
 author: "Jim Félix-Faure"
 date: "22/10/2020"
+lang: en
 output:
   html_document:
     highlight: haddock
@@ -61,22 +62,22 @@ Tbl_Weight
 2 B                3      2      3      3
 ```
 How to compute the average weight of each observation?
-How to draw a graph representing the weight of each observation over time? 
+How to draw a graph representing the weight of each observation over time?
 
-Not so easy, unless you reorganize the data. Here the objective is twofold: 
+Not so easy, unless you reorganize the data. Here the objective is twofold:
 
 * create a variable `Year` grouping the years present in the name of the columns.
 * create a variable `Weight` grouping the weight values keeping the correspondence with the years.
 
 
 ```r
-Tbl_WeightTidy <- Tbl_Weight %>% 
+Tbl_WeightTidy <- Tbl_Weight %>%
   pivot_longer(
     cols = !Observation, # Columns to be used
     names_to = "Year", # Variable where the column names will be stored
     names_transform = list(Year = as.integer), # Choice of variable type for names_to
     values_to = "Weight" # Variable where the values will be stored
-  ) 
+  )
 Tbl_WeightTidy
 ```
 
@@ -161,7 +162,7 @@ Again, it is not easy to graph the relationship between `pH` and `O2` and the un
 
 
 ```r
-Tbl_WaterTidy <- Tbl_Water %>% 
+Tbl_WaterTidy <- Tbl_Water %>%
   pivot_wider(names_from = Measure, # column that contains the variable names
               values_from = Value # column that contains the values
               )
@@ -208,23 +209,23 @@ Tbl_Effect
 ```
 # A tibble: 3 x 2
   Molecule Result
-  <chr>    <chr> 
+  <chr>    <chr>
 1 A        87/112
-2 B        23/48 
-3 C        34/89 
+2 B        23/48
+3 C        34/89
 ```
 We want to calculate the ratio between positive and tested animals.
 
 The `separate()` function allows you to split the contents of one `character` column into several other `character` or `numeric` columns. It cuts out every character that is neither a number nor a letter. If necessary, the separator can be specified manually with the argument `sep=""`.
 
 ```r
-Tbl_Effect %>% 
+Tbl_Effect %>%
   separate(
     col = Result, # which column to separate
     into = c("Positive_animals", "Tested_animals"), # how to call the new columns
     convert = TRUE, # convert the new columns to the appropriate type
     remove = TRUE # remove the former column
-  ) %>% 
+  ) %>%
   mutate(Ratio = Positive_animals/Tested_animals)
 ```
 
@@ -407,7 +408,7 @@ anti_join(Tbl_Site, Tbl_Result, by = "Site")
 
 When the structure of the data tables is similar, it is sometimes preferable to bind these tables to form a single one.
 
-In this example, we will use land-use data collected in 1970 and 2020 on the same site. In 2020, the areas of each site have been added. 
+In this example, we will use land-use data collected in 1970 and 2020 on the same site. In 2020, the areas of each site have been added.
 
 
 ```r
@@ -547,7 +548,7 @@ bind_rows("1970" = Tbl_Site1970, "2020" = Tbl_Site2020, .id = "Year")
 # Manipulation of *NA*
 
 In a data table, missing values (`NA`) are often a source of problems and difficulties.  
-To avoid problems, some machines use a specific code to signify missing or outlier data, for example `9999` or `-9999`. Sometimes it is when entering our data that we use a code, for example `"NoData"`. 
+To avoid problems, some machines use a specific code to signify missing or outlier data, for example `9999` or `-9999`. Sometimes it is when entering our data that we use a code, for example `"NoData"`.
 
 In a case like this, to perform analyses we may want to:
 
@@ -560,7 +561,7 @@ Here is an example:
 
 ```r
 Tbl_Temperature <- tibble(Site = c("A", "A", "A", "B", "B", "B"),
-             Month = c("January", "NoData", "September", "January", "June", "September"), 
+             Month = c("January", "NoData", "September", "January", "June", "September"),
              Temp = c(-12, 16, 13, 9999, 19, 15 ))
 Tbl_Temperature
 ```
@@ -581,8 +582,8 @@ One value is missing in the `Month` variable (`NoData`) and one value is identif
 
 
 ```r
-Tbl_TempNA <- Tbl_Temperature %>% 
-  mutate(Month = na_if(Month, "NoData")) %>% 
+Tbl_TempNA <- Tbl_Temperature %>%
+  mutate(Month = na_if(Month, "NoData")) %>%
   mutate(Temp = na_if(Temp, 9999))
 Tbl_TempNA
 ```
@@ -624,8 +625,8 @@ Tbl_TempNA
 
 
 ```r
-Tbl_TempNA %>% 
-  mutate(Month = replace_na(Month, "June")) %>% 
+Tbl_TempNA %>%
+  mutate(Month = replace_na(Month, "June")) %>%
   mutate(Temp = replace_na(Temp, -17))
 ```
 
@@ -732,5 +733,3 @@ Safe memory help for the `tidyr` package:
 More generally and to complete on the  `tidyverse`:
 
 * https://www.tidyverse.org/
-
-

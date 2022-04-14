@@ -5,6 +5,7 @@ title: "Meta-analysis"
 author: "Charles Martin"
 layout: default
 rbloggers: true
+lang: en
 output:
   html_document:
     highlight: haddock

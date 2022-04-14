@@ -6,6 +6,7 @@ layout: default
 author: "Charles Martin"
 date: "February 28 2020"
 rbloggers: true
+lang: en
 output:
   html_document:
     highlight: haddock

@@ -5,6 +5,7 @@ title: "Time Series with MARSS"
 author: "Lucas Deschamps & Isabelle Gosselin"
 date: "May 2021"
 category : Stats
+lang: en
 ---
 
 # Time Series with MARSS

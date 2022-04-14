@@ -5,8 +5,9 @@ category : GIS
 title: "Introduction to Google Earth Engine"
 author: "Estéban Hamel & Arthur de Granpré"
 date: "January 14th 2021"
-output: 
-  html_document: 
+lang: en
+output:
+  html_document:
     highlight: haddock
     keep_md: yes
     theme: readable
@@ -33,13 +34,13 @@ Earth Engine is online software from Google that allows users to manipulate and 
 
 # Step 1: Interface overview
 
-First, you need to have a Google account to access the GEE plateform. 
+First, you need to have a Google account to access the GEE plateform.
 
-You can sign up to GEE with your Gmail identifiant to the following link: [https://signup.earthengine.google.com/#!/](https://signup.earthengine.google.com/#!/). 
+You can sign up to GEE with your Gmail identifiant to the following link: [https://signup.earthengine.google.com/#!/](https://signup.earthengine.google.com/#!/).
 
-Once you register to GEE, you can access the code editor to this link: [https://code.earthengine.google.com/](https://code.earthengine.google.com/). 
+Once you register to GEE, you can access the code editor to this link: [https://code.earthengine.google.com/](https://code.earthengine.google.com/).
 
-Here's some information about the interface. 
+Here's some information about the interface.
 
 
 <img src="/assets/GEE/imgs2//fig01_interface.png" width="1214" />
@@ -112,7 +113,7 @@ To import a dataset, you have to import it from Earth Engine database. To do so,
 print(srtm);
 ```
 
-- To display "srtm" layer, use the tool Map.addLayer. 
+- To display "srtm" layer, use the tool Map.addLayer.
 
 
 ```
@@ -144,7 +145,7 @@ Map.addLayer(srtm, {min: 0, max: 400, palette: ['blue', 'yellow', 'red']},"Eleva
 
 
 ```
-// Create a hillshade layer 
+// Create a hillshade layer
 var hillshade = ee.Terrain.hillshade(srtm);
 
 // Display hillshade map
@@ -183,22 +184,22 @@ var pnm_s2=sent2
 
 // Query for number of picture corresponding to all filters
 print(pnm_s2.size(),"n. images");
-                              
-```
-
-The previous code allows us to display many images at the same time. The next one will be preferencially select the best images according to filter applied. 
-
 
 ```
-// Create an object that contain the satellite image selected 
+
+The previous code allows us to display many images at the same time. The next one will be preferencially select the best images according to filter applied.
+
+
+```
+// Create an object that contain the satellite image selected
 var pnm_i = sent2
     .filterBounds(pnm) // Geographical filter
     .filterDate("2020-07-01", "2020-09-30") // Temporal filter
     .sort("CLOUD_COVERAGE_ASSESSMENT") // Filter for image clearness
-    .first(); // Select the less cloudy image 
+    .first(); // Select the less cloudy image
 
 print(pnm_i,"Best image");
-      
+
 ```
 
 
@@ -210,10 +211,10 @@ var pnm_i2 = sent2
     .sort("CLOUD_COVERAGE_ASSESSMENT")
     .select(1);  //first index is 0, so the 2nd best image will be selected by 1
 print(pnm_i2, "2nd best image");
-      
+
 ```
 
-- In order to display the image created previously, use the Map.addLayer tool and define visualization parameters for the red, blue and green bands. 
+- In order to display the image created previously, use the Map.addLayer tool and define visualization parameters for the red, blue and green bands.
 
 
 ```
@@ -230,8 +231,8 @@ Map.addLayer(pnm_i,rgb_colour,"Sentinel-2 Image");
 
 # Step 5: Display a satellite image with the boundaries of a shapefile
 
- In the previous step you worked with the landmark placed in La Mauricie National Park. It would be also possible to import a shapefile in order to work within a specific area. In this step you will have to import a shapefile and associate it to the National Park in order to display an image exclusively in this area. 
- 
+ In the previous step you worked with the landmark placed in La Mauricie National Park. It would be also possible to import a shapefile in order to work within a specific area. In this step you will have to import a shapefile and associate it to the National Park in order to display an image exclusively in this area.
+
 - First go in the assets tabs --> New --> Shapefiles
 
 <img src="/assets/GEE/imgs2//fig09_shp.png" width="766" />
@@ -240,7 +241,7 @@ Map.addLayer(pnm_i,rgb_colour,"Sentinel-2 Image");
 
 <img src="/assets/GEE/imgs2//fig10_shp2.png" width="862" />
 
-- To validate the importation, take a look at the task manager in the right panel. Once the file is uploaded, the download bar should be full. When you update the asset tab, you should see your shapefile layer imported in the assets tabs in the left panel. 
+- To validate the importation, take a look at the task manager in the right panel. Once the file is uploaded, the download bar should be full. When you update the asset tab, you should see your shapefile layer imported in the assets tabs in the left panel.
 
 <img src="/assets/GEE/imgs2//fig11_shp3.png" width="900" />
 
@@ -248,7 +249,7 @@ Map.addLayer(pnm_i,rgb_colour,"Sentinel-2 Image");
 
 <img src="/assets/GEE/imgs2//fig12_shp4.png" width="900" />
 
-- This line could have worked too. It defines a variable from your shapefile layer. 
+- This line could have worked too. It defines a variable from your shapefile layer.
 
 
 ```
@@ -256,7 +257,7 @@ Map.addLayer(pnm_i,rgb_colour,"Sentinel-2 Image");
 var pnm_poly = ee.FeatureCollection('users/XXX/PNM_poly');
 ```
 
-- When the shapefile is imported, it is easy to display the satellite image for the shapefile area with the clip tool. 
+- When the shapefile is imported, it is easy to display the satellite image for the shapefile area with the clip tool.
 
 
 ```
@@ -270,18 +271,18 @@ Map.addLayer(pnm_i.clip(shape_pnm),rgb_colour,"Satellite Image cropped");
 
 Another exercise with Google Earth Engine is to create a new layer which contains a calculated band like NDVI index (Normalized Difference Vegetation Index).
 
-This type of index is often used to highlight some element of an existing image. In the case of NDVI, it is a ratio between reflectance of red and near infrared bands that highlight the presence of vegetation in an image. The formula to calculate NDVI is shown here. 
+This type of index is often used to highlight some element of an existing image. In the case of NDVI, it is a ratio between reflectance of red and near infrared bands that highlight the presence of vegetation in an image. The formula to calculate NDVI is shown here.
 
 $$NDVI = \frac{NIR-RED}{NIR+RED} $$
-- There is different method to calculate this kind of layer. 
+- There is different method to calculate this kind of layer.
 
 1. By using a function.
 
 
 ```
-// Creating the function 
+// Creating the function
 var ndvi = function (x) {
-  var result=x.normalizedDifference(["B8", "B4"]).rename("NDVI"); 
+  var result=x.normalizedDifference(["B8", "B4"]).rename("NDVI");
   return x.addBands(result);
 };
 
@@ -338,7 +339,7 @@ print(classNames);
 ```
 var bands = ['B2', 'B3', 'B4', 'B8']; // Define the bands to use for the classification
 
-// Create the training dataset 
+// Create the training dataset
 var training = pnm_i.select(bands).sampleRegions({
   collection: classNames,
   properties: ['landcover'],
@@ -441,7 +442,7 @@ Export.image.toDrive({
 
 GEE also allows you to create different type of charts to look at the distribution of the data. In this step, you will take the elevation layer that you will clip to La Mauricie National Park to create a chart about height distribution in this area.
 
-- Create the elevation layer for the National Park area. 
+- Create the elevation layer for the National Park area.
 
 
 ```
@@ -453,7 +454,7 @@ print(elevation1,"Elevation 1");
 Map.addLayer(elevation1, {min: 0, max: 400, palette: ['blue', 'yellow', 'red']},"Elevation colour pnm");
 ```
 
-- Use the tool ui.Chart.image.histogram() to create a histogram that summarizes the distribution of heights in the National Park and print the result in the console. Other types of charts are available depending on the data you have and the type of graph you need. 
+- Use the tool ui.Chart.image.histogram() to create a histogram that summarizes the distribution of heights in the National Park and print the result in the console. Other types of charts are available depending on the data you have and the type of graph you need.
 
 
 ```
@@ -475,7 +476,7 @@ var options = {
   vAxis: {title: 'Frequency'},
   series: {
     0: {color: 'magenta'}
-  }}; 
+  }};
 
 // Create the improved graph
 var Chart2 = ui.Chart.image.histogram(

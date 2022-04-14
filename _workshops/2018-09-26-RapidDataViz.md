@@ -5,6 +5,7 @@ category: Data exploration
 title: "Rapid data visualization with ggplot2"
 author: "Charles Martin"
 date: "September 26 2018"
+lang: en
 includes_a_video: no
 output:
   html_document:

@@ -5,6 +5,7 @@ category: Data exploration
 title: "Fast data manipulation with dplyr and its allies"
 author: "Charles Martin"
 date: "30 octobre 2018"
+lang: en
 output:
   html_document:
     highlight: haddock
@@ -19,7 +20,7 @@ output:
 Our dataset
 ============
 
-As in the previous workshop, we'll use the mammal sleep dataset from `ggplot2` to run our examples : 
+As in the previous workshop, we'll use the mammal sleep dataset from `ggplot2` to run our examples :
 
 ```r
 library(ggplot2)

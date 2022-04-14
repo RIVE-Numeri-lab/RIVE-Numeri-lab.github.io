@@ -4,6 +4,7 @@ title: "Resource selection function"
 author: "Riwan Leroux"
 date: "April 2022"
 category: Stats
+lang: en
 output:
   html_document:
     highlight: haddock

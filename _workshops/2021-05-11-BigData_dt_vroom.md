@@ -5,6 +5,7 @@ category : Data exploration
 title: "Big Data Manipulation"
 author: "Roxanne Giguère-Tremblay & Arthur de Grandpré"
 date: "May 2021"
+lang: en
 output:
   html_document:
     highlight: haddock
@@ -84,15 +85,15 @@ The data.table package can be installed using either CRAN for the latest
 stable build, or Github for the newest features.
 
     # installing data.table
-    # from CRAN 
+    # from CRAN
     install.packages('data.table')
 
-    # from Github 
+    # from Github
     install.packages("data.table",
                      repos="https://Rdatatable.gitlab.io/data.table")
 
     # check version and update
-    data.table::update.dev.pkg() # Workshop built on version 1.14.1. 
+    data.table::update.dev.pkg() # Workshop built on version 1.14.1.
 
     # load the library
     library("data.table")
@@ -134,8 +135,8 @@ computer.
     ## 5       0.055     7
     ## 6       0.120     8
 
-    # 
-    #.csv creation 
+    #
+    #.csv creation
      write.csv(dset, "abalone.csv")
 
 Reading data
@@ -152,7 +153,7 @@ Since objects of class *data.table* are made from a *data.frame*, all
 functions accepting a *data.frame* should work with *data.table*
 
     dset <- fread("abalone.csv")  
-    head(dset) # To visualy confirm data structure 
+    head(dset) # To visualy confirm data structure
 
     ##    V1 Type LongestShell Diameter Height WholeWeight ShuckedWeight VisceraWeight
     ## 1:  1    M        0.455    0.365  0.095      0.5140        0.2245        0.1010
@@ -182,19 +183,19 @@ visualize the read speed difference between *read.csv* and *fread*.
 
     # Create a large .csv file
     set.seed(100) # set random seed so all runs are the same
-    m <- data.frame(matrix(runif(1000000), nrow=1000000)) 
+    m <- data.frame(matrix(runif(1000000), nrow=1000000))
     write.csv(m, "m2.csv", row.names = F)
 
     # Time taken by read.csv to import
     system.time({m_df <- read.csv("m2.csv")})
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   2.135   0.066   2.219
 
     # Time taken by fread to import
     system.time({m_dt <- fread("m2.csv")})
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   0.045   0.008   0.053
 
 ### Converting a data.frame into a data.table
@@ -356,9 +357,9 @@ select.
     ## 5:    I    0.255     7
     ## 6:    I    0.300     8
 
-    # equivalent to 
+    # equivalent to
     # dset_dt[,c("Type","Diameter","Rings")]
-    # equivalent to 
+    # equivalent to
     # dset_dt[,c(1,3,9)]
 
 ### Dropping columns
@@ -644,7 +645,7 @@ Using chains is also faster than not using them.
     output <- dt1[order(Type), ]
     output})
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   0.001   0.000   0.002
 
     system.time({output <- dset_dt[, .(mean_dia=mean(Dia),
@@ -652,7 +653,7 @@ Using chains is also faster than not using them.
                          mean_masse=mean(WholeWeight)), by=Type][order(Type), ]
     output})
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   0.002   0.000   0.002
 
 ### The *.SD* object and *lapply()*
@@ -774,12 +775,12 @@ This reference can give more information on the topic :
 <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-keys-fast-subset.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-keys-fast-subset.html</a>
 
     setkey(dset_dt, Rings) # set the key(s)
-    # for multiple reference columns, use setkey(dt, v1, v2) 
+    # for multiple reference columns, use setkey(dt, v1, v2)
     key(dset_dt) # determine which key is in action
 
     ## [1] "Rings"
 
-    head(dset_dt) # visualize ordering by key 
+    head(dset_dt) # visualize ordering by key
 
     ##     V1 Type LongestShell   Dia Height WholeWeight ShuckedWeight VisceraWeight
     ## 1: 237    I        0.075 0.055  0.010      0.0020        0.0010        0.0005
@@ -895,17 +896,17 @@ to multiple thousand times faster.
 
     system.time(for (i in 1:100000) DF[i,1] <- i)
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##  29.844  28.071  66.122
 
     system.time(for (i in 1:100000) DT[i,V1:=i])
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##  42.324   0.606  47.545
 
     system.time(for (i in 1:100000) set(DT,i,1L,i))
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   0.261   0.000   0.262
 
 Using *data.table* with other packages
@@ -950,8 +951,8 @@ with *data.frames* such as *ggplot2* ou other packages from the
 
     ## [1] "data.table" "data.frame"
 
-    dset_dt %>% 
-      filter(Type == "M") # But this doesn't run faster than a data frame. 
+    dset_dt %>%
+      filter(Type == "M") # But this doesn't run faster than a data frame.
 
     ##         V1 Type LongestShell   Dia Height WholeWeight ShuckedWeight
     ##    1:  521    M        0.210 0.150  0.050      0.0385        0.0155
@@ -1059,7 +1060,7 @@ numerical variables.
     ## Delimiter: ","
     ## chr [1]: Type
     ## dbl [9]: ...1, LongestShell, Diameter, Height, WholeWeight, ShuckedWeight, VisceraWeight...
-    ## 
+    ##
     ## Use `spec()` to retrieve the guessed column specification
     ## Pass a specification to the `col_types` argument to quiet this message
 
@@ -1083,7 +1084,7 @@ column format.
     ## Delimiter: ","
     ## chr [1]: Type
     ## dbl [9]: ...1, LongestShell, Diameter, Height, WholeWeight, ShuckedWeight, VisceraWeight...
-    ## 
+    ##
     ## Use `spec()` to retrieve the guessed column specification
     ## Pass a specification to the `col_types` argument to quiet this message
 
@@ -1099,11 +1100,11 @@ Let’s see the time difference between both methods.
     ## Delimiter: ","
     ## chr [1]: Type
     ## dbl [9]: ...1, LongestShell, Diameter, Height, WholeWeight, ShuckedWeight, VisceraWeight...
-    ## 
+    ##
     ## Use `spec()` to retrieve the guessed column specification
     ## Pass a specification to the `col_types` argument to quiet this message
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   0.022   0.002   0.023
 
     system.time({t_abdelim <- vroom("abalone.csv", delim = ",")})
@@ -1115,11 +1116,11 @@ Let’s see the time difference between both methods.
     ## Delimiter: ","
     ## chr [1]: Type
     ## dbl [9]: ...1, LongestShell, Diameter, Height, WholeWeight, ShuckedWeight, VisceraWeight...
-    ## 
+    ##
     ## Use `spec()` to retrieve the guessed column specification
     ## Pass a specification to the `col_types` argument to quiet this message
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   0.018   0.002   0.017
 
 And now the read time difference between data.table and vroom for the
@@ -1127,7 +1128,7 @@ database created previously, “m2.csv” .
 
     system.time({dt_m2 <- fread("m2.csv")})
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   0.050   0.024   0.174
 
     system.time({v_m2 <- vroom("m2.csv", delim = ",")})
@@ -1136,11 +1137,11 @@ database created previously, “m2.csv” .
     ## Columns: 1
     ## Delimiter: ","
     ## dbl [1]: matrix.runif.1e.06...nrow...1e.06.
-    ## 
+    ##
     ## Use `spec()` to retrieve the guessed column specification
     ## Pass a specification to the `col_types` argument to quiet this message
 
-    ##    user  system elapsed 
+    ##    user  system elapsed
     ##   0.064   0.009   0.026
 
 -   If we use “;” the columns will be “chr” and “,” for “dbl”
@@ -1159,7 +1160,7 @@ example.
 
     files <- dir_ls(glob = "abalone*csv") # Seeks all files containing abalone and csv in the working directory
 
-    files 
+    files
 
     ## abalone.csv      abalone_copy.csv
 
@@ -1173,23 +1174,23 @@ example.
     ## Delimiter: ","
     ## chr [1]: Type
     ## dbl [9]: ...1, LongestShell, Diameter, Height, WholeWeight, ShuckedWeight, VisceraWeight...
-    ## 
+    ##
     ## Use `spec()` to retrieve the guessed column specification
     ## Pass a specification to the `col_types` argument to quiet this message
 
     ## # A tibble: 8,354 x 10
     ##     ...1 Type  LongestShell Diameter Height WholeWeight ShuckedWeight
     ##    <dbl> <chr>        <dbl>    <dbl>  <dbl>       <dbl>         <dbl>
-    ##  1     1 M            0.455    0.365  0.095       0.514        0.224 
+    ##  1     1 M            0.455    0.365  0.095       0.514        0.224
     ##  2     2 M            0.35     0.265  0.09        0.226        0.0995
-    ##  3     3 F            0.53     0.42   0.135       0.677        0.256 
-    ##  4     4 M            0.44     0.365  0.125       0.516        0.216 
+    ##  3     3 F            0.53     0.42   0.135       0.677        0.256
+    ##  4     4 M            0.44     0.365  0.125       0.516        0.216
     ##  5     5 I            0.33     0.255  0.08        0.205        0.0895
-    ##  6     6 I            0.425    0.3    0.095       0.352        0.141 
-    ##  7     7 F            0.53     0.415  0.15        0.778        0.237 
-    ##  8     8 F            0.545    0.425  0.125       0.768        0.294 
-    ##  9     9 M            0.475    0.37   0.125       0.509        0.216 
-    ## 10    10 F            0.55     0.44   0.15        0.894        0.314 
+    ##  6     6 I            0.425    0.3    0.095       0.352        0.141
+    ##  7     7 F            0.53     0.415  0.15        0.778        0.237
+    ##  8     8 F            0.545    0.425  0.125       0.768        0.294
+    ##  9     9 M            0.475    0.37   0.125       0.509        0.216
+    ## 10    10 F            0.55     0.44   0.15        0.894        0.314
     ## # … with 8,344 more rows, and 3 more variables: VisceraWeight <dbl>,
     ## #   ShellWeight <dbl>, Rings <dbl>
 
@@ -1209,7 +1210,7 @@ the “id=” argument to add a column refering to the original file.
     ## Delimiter: ","
     ## chr [1]: Type
     ## dbl [9]: ...1, LongestShell, Diameter, Height, WholeWeight, ShuckedWeight, VisceraWeight...
-    ## 
+    ##
     ## Use `spec()` to retrieve the guessed column specification
     ## Pass a specification to the `col_types` argument to quiet this message
 
@@ -1218,12 +1219,12 @@ the “id=” argument to add a column refering to the original file.
     ## # A tibble: 6 x 11
     ##   source  ...2 Type  LongestShell Diameter Height WholeWeight ShuckedWeight
     ##   <chr>  <dbl> <chr>        <dbl>    <dbl>  <dbl>       <dbl>         <dbl>
-    ## 1 abalo…     1 M            0.455    0.365  0.095       0.514        0.224 
+    ## 1 abalo…     1 M            0.455    0.365  0.095       0.514        0.224
     ## 2 abalo…     2 M            0.35     0.265  0.09        0.226        0.0995
-    ## 3 abalo…     3 F            0.53     0.42   0.135       0.677        0.256 
-    ## 4 abalo…     4 M            0.44     0.365  0.125       0.516        0.216 
+    ## 3 abalo…     3 F            0.53     0.42   0.135       0.677        0.256
+    ## 4 abalo…     4 M            0.44     0.365  0.125       0.516        0.216
     ## 5 abalo…     5 I            0.33     0.255  0.08        0.205        0.0895
-    ## 6 abalo…     6 I            0.425    0.3    0.095       0.352        0.141 
+    ## 6 abalo…     6 I            0.425    0.3    0.095       0.352        0.141
     ## # … with 3 more variables: VisceraWeight <dbl>, ShellWeight <dbl>, Rings <dbl>
 
 ### Compressed files
@@ -1272,9 +1273,9 @@ match (starts with “T”, ends with “e”, etc.)
     ## # A tibble: 6 x 3
     ##    ...1 Height ShellWeight
     ##   <dbl>  <dbl>       <dbl>
-    ## 1     1  0.095       0.15 
-    ## 2     2  0.09        0.07 
-    ## 3     3  0.135       0.21 
+    ## 1     1  0.095       0.15
+    ## 2     2  0.09        0.07
+    ## 3     3  0.135       0.21
     ## 4     4  0.125       0.155
     ## 5     5  0.08        0.055
     ## 6     6  0.095       0.12
@@ -1285,7 +1286,7 @@ match (starts with “T”, ends with “e”, etc.)
     ## * `` -> ...1
 
     ## # A tibble: 6 x 1
-    ##   Type 
+    ##   Type
     ##   <chr>
     ## 1 M    
     ## 2 M    
@@ -1302,9 +1303,9 @@ match (starts with “T”, ends with “e”, etc.)
     ## # A tibble: 6 x 5
     ##   Height WholeWeight ShuckedWeight VisceraWeight ShellWeight
     ##    <dbl>       <dbl>         <dbl>         <dbl>       <dbl>
-    ## 1  0.095       0.514        0.224         0.101        0.15 
-    ## 2  0.09        0.226        0.0995        0.0485       0.07 
-    ## 3  0.135       0.677        0.256         0.142        0.21 
+    ## 1  0.095       0.514        0.224         0.101        0.15
+    ## 2  0.09        0.226        0.0995        0.0485       0.07
+    ## 3  0.135       0.677        0.256         0.142        0.21
     ## 4  0.125       0.516        0.216         0.114        0.155
     ## 5  0.08        0.205        0.0895        0.0395       0.055
     ## 6  0.095       0.352        0.141         0.0775       0.12
@@ -1313,7 +1314,7 @@ match (starts with “T”, ends with “e”, etc.)
 
 Changing column names is less intuitive than with data.table.
 
-    vroom("abalone.csv", col_select = list(Sexe = Type, Dia = Diameter, everything())) # "everything()" selects all other variables (info @ ?everything()). 
+    vroom("abalone.csv", col_select = list(Sexe = Type, Dia = Diameter, everything())) # "everything()" selects all other variables (info @ ?everything()).
 
     ## New names:
     ## * `` -> ...1
@@ -1321,16 +1322,16 @@ Changing column names is less intuitive than with data.table.
     ## # A tibble: 4,177 x 10
     ##    Sexe    Dia  ...1 LongestShell Height WholeWeight ShuckedWeight VisceraWeight
     ##    <chr> <dbl> <dbl>        <dbl>  <dbl>       <dbl>         <dbl>         <dbl>
-    ##  1 M     0.365     1        0.455  0.095       0.514        0.224         0.101 
+    ##  1 M     0.365     1        0.455  0.095       0.514        0.224         0.101
     ##  2 M     0.265     2        0.35   0.09        0.226        0.0995        0.0485
-    ##  3 F     0.42      3        0.53   0.135       0.677        0.256         0.142 
-    ##  4 M     0.365     4        0.44   0.125       0.516        0.216         0.114 
+    ##  3 F     0.42      3        0.53   0.135       0.677        0.256         0.142
+    ##  4 M     0.365     4        0.44   0.125       0.516        0.216         0.114
     ##  5 I     0.255     5        0.33   0.08        0.205        0.0895        0.0395
     ##  6 I     0.3       6        0.425  0.095       0.352        0.141         0.0775
-    ##  7 F     0.415     7        0.53   0.15        0.778        0.237         0.142 
-    ##  8 F     0.425     8        0.545  0.125       0.768        0.294         0.150 
-    ##  9 M     0.37      9        0.475  0.125       0.509        0.216         0.112 
-    ## 10 F     0.44     10        0.55   0.15        0.894        0.314         0.151 
+    ##  7 F     0.415     7        0.53   0.15        0.778        0.237         0.142
+    ##  8 F     0.425     8        0.545  0.125       0.768        0.294         0.150
+    ##  9 M     0.37      9        0.475  0.125       0.509        0.216         0.112
+    ## 10 F     0.44     10        0.55   0.15        0.894        0.314         0.151
     ## # … with 4,167 more rows, and 2 more variables: ShellWeight <dbl>, Rings <dbl>
 
 If we want to modify all column names so they have a similar format
@@ -1342,11 +1343,11 @@ package
 
     library("janitor")
 
-    ## 
+    ##
     ## Attaching package: 'janitor'
 
     ## The following objects are masked from 'package:stats':
-    ## 
+    ##
     ##     chisq.test, fisher.test
 
     head(vroom("abalone.csv", .name_repair = ~ make_clean_names(., case = "all_caps")))
@@ -1356,19 +1357,19 @@ package
     ## Delimiter: ","
     ## chr [1]: TYPE
     ## dbl [9]: X, LONGEST_SHELL, DIAMETER, HEIGHT, WHOLE_WEIGHT, SHUCKED_WEIGHT, VISCERA_WEIGH...
-    ## 
+    ##
     ## Use `spec()` to retrieve the guessed column specification
     ## Pass a specification to the `col_types` argument to quiet this message
 
     ## # A tibble: 6 x 10
     ##       X TYPE  LONGEST_SHELL DIAMETER HEIGHT WHOLE_WEIGHT SHUCKED_WEIGHT
     ##   <dbl> <chr>         <dbl>    <dbl>  <dbl>        <dbl>          <dbl>
-    ## 1     1 M             0.455    0.365  0.095        0.514         0.224 
+    ## 1     1 M             0.455    0.365  0.095        0.514         0.224
     ## 2     2 M             0.35     0.265  0.09         0.226         0.0995
-    ## 3     3 F             0.53     0.42   0.135        0.677         0.256 
-    ## 4     4 M             0.44     0.365  0.125        0.516         0.216 
+    ## 3     3 F             0.53     0.42   0.135        0.677         0.256
+    ## 4     4 M             0.44     0.365  0.125        0.516         0.216
     ## 5     5 I             0.33     0.255  0.08         0.205         0.0895
-    ## 6     6 I             0.425    0.3    0.095        0.352         0.141 
+    ## 6     6 I             0.425    0.3    0.095        0.352         0.141
     ## # … with 3 more variables: VISCERA_WEIGHT <dbl>, SHELL_WEIGHT <dbl>,
     ## #   RINGS <dbl>
 
@@ -1387,12 +1388,12 @@ imported object in the R environment.
     ## # A tibble: 6 x 11
     ##    ...1 Type  LongestShell Diameter Height WholeWeight ShuckedWeight
     ##   <dbl> <chr>        <dbl>    <dbl>  <dbl>       <dbl>         <dbl>
-    ## 1     1 M            0.455    0.365  0.095       0.514        0.224 
+    ## 1     1 M            0.455    0.365  0.095       0.514        0.224
     ## 2     2 M            0.35     0.265  0.09        0.226        0.0995
-    ## 3     3 F            0.53     0.42   0.135       0.677        0.256 
-    ## 4     4 M            0.44     0.365  0.125       0.516        0.216 
+    ## 3     3 F            0.53     0.42   0.135       0.677        0.256
+    ## 4     4 M            0.44     0.365  0.125       0.516        0.216
     ## 5     5 I            0.33     0.255  0.08        0.205        0.0895
-    ## 6     6 I            0.425    0.3    0.095       0.352        0.141 
+    ## 6     6 I            0.425    0.3    0.095       0.352        0.141
     ## # … with 4 more variables: VisceraWeight <dbl>, ShellWeight <dbl>, Rings <dbl>,
     ## #   new <dbl>
 

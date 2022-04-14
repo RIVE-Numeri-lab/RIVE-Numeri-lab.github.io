@@ -5,8 +5,9 @@ title: "Git and collaborative coding"
 category: Reproductibility
 author: "Arthur de Grandpré"
 date: "August 12 2020"
-output: 
-  html_document: 
+lang: en
+output:
+  html_document:
     keep_md: yes
     toc: yes
     toc_float: yes
@@ -30,7 +31,7 @@ Previous workshops have been :
 - Largely based on the R environment  
 
 - Providing a strong foundation in numeracy
-  
+
 But, as most of us are ecologists as opposed to professional programmers, our previous workshops had foregone an important dimension of data science, i.e. basic *coding hygiene* that should be expected to :  
 
 - Ensure reproducibility of analysis   
@@ -45,7 +46,7 @@ Regardless of whether you are working alone or in collaboration with others, we 
 # Planning
 
 The goal of this workshop is that by the end of the hour and a half, attendees are able to figure out their own recipe for version control and efficient collaborative coding.  
-  
+
 To do so, we will go through:  
 
 - Basic annotation tips  
@@ -55,14 +56,14 @@ To do so, we will go through:
 - How to ensure archiving of scripts (version control, backups, etc.)  
 
 - How to share your scripts and their results  
-  
+
 # Important note
 
 <img src="Numerilab_GIT_collaborative_coding_files/figure-html/warningsign-1.png" style="display: block; margin: auto;" />
-   
-There is no single best recipe for preparing, cleaning and safekeeping your work. The following is just based on personal experience and research, but the most important thing is to find your own way of being efficient with sufficient clarity to be able to share your work. 
+
+There is no single best recipe for preparing, cleaning and safekeeping your work. The following is just based on personal experience and research, but the most important thing is to find your own way of being efficient with sufficient clarity to be able to share your work.
 See https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970 for more insight on the topic.    
-  
+
 This is mostly an effort to make sure everyone has some basic reflexes when working on their scripts.  
 
 # Annotate for reproducibility
@@ -96,8 +97,8 @@ CS = ClassStat(rc)
 Scripts that work, or have worked in the past, but that would be really difficult to use again since they contain absolutely no indication about what they are supposed to do, or what the data are and how they are transformed.
 
 There are many ways to tackle reproducibility of an analysis; the easiest is to plan your code for it since $T_0$.  
-  
-This can be done by: 
+
+This can be done by:
 
 - Working with **projects**
 - Not procrastinating on the use of # *everywhere* to annotate your code (don't hesitate to over describe, and even discuss results in some cases)  
@@ -147,10 +148,10 @@ r3[r3>(-10)]=1 ; r3[r3==(-10)]=0 # 1 is vegetation and 0 is the rest
 # transform the binary image into a raster where every vegetation patch has an ID
 p=rasterToPolygons(r3, dissolve=T) # turns the raster into polygons, dissolve set as TRUE will merge adjacent polygons of equal value
 p=disaggregate(p) # disaggregate will separate non touching polygons of the same class
-pr=rasterize(p,r3) # rasterize will transform the polygons into a raster where all classes have their own ID 
+pr=rasterize(p,r3) # rasterize will transform the polygons into a raster where all classes have their own ID
 ps=PatchStat(pr) # ps will contain landscape patch statistics for every patch.
 
-# and so on... 
+# and so on...
 
 ### end of landscape metrics extraction
 ```
@@ -165,7 +166,7 @@ ps=PatchStat(pr) # ps will contain landscape patch statistics for every patch.
 # Storage and Safekeeping
 
 Another most important element of reproducibility is being able to keep the original work.  
-  
+
 There are many different ways to safely keep your data and scripts.  
 
 
@@ -189,9 +190,9 @@ In most cases, both local and remote backups are necessary.
 - Local is useful for larger files (very large datasets, high resolution images).  
 - Remote allows for easier access by different users, or through different platforms, but might be unreliable.  
 - Some services are not considered “secure” for sensitive data. For example, many universities prefer institutional OneDrive accounts over Dropbox or Google Drive. Some collaborators (e.g., government ministries) may not allow you to store some of their data on some cloud services. Check with your IT service and your collaborators before uploading datasets that might include sensitive information.  
-  
+
 Some parts of the *same project*, such as large datasets, can be local only, while others can be hosted remotely, such as scripts.  
-  
+
 **So what should be saved, where and how?**  
 It depends on the project, collaborators, etc. (plan ahead)
 
@@ -201,7 +202,7 @@ At one point or another, most of us realize that the way we organize our scripts
 
 This happened to me when I started collaborating with others...  
 Multiple scripts with multiple collaborators for the same project.  
-  
+
 All of us had different versions of scripts and databases in multiple locations. Those screenshots are from my laptop, AFTER cleaning up.
 
 Location 1
@@ -244,7 +245,7 @@ It is based on **repositories** containing the latest updates *commited* by any 
 
 **Commits** act as snapshots, which can always be reverted to a previous state (e.g. a prior commit).  
 
-Being easily *decentralized*, it is especially effective for collaborative work using GitHub, or Gitlab notably. 
+Being easily *decentralized*, it is especially effective for collaborative work using GitHub, or Gitlab notably.
 
 ## Basic Git workflow
 
@@ -289,7 +290,7 @@ GitHub is basically a cloud service for Git.
 It allows users to publish their repositories privately or publicly, allowing other users to clone them and collaborate.
 It interacts very efficiently with the Git language and has a very nice GUI application (GitHub Desktop)
 
-Specs: 
+Specs:
 - no user disk quotas  
 - hard limit of 100Gb / repo  
 - hard limit of 100Mb / file (!)  
@@ -301,10 +302,9 @@ This means:
 ## Git as a language vs Git as a tool
 
 The most basic Git implementations can be very difficult at first because Git is foremost a *programming language*.  
-  
+
 It can be difficult to bring a new language in your workflow without making the processing feel heavier than necessary.
-  
+
 Many alternatives to coding in the terminal exist when using Git, such as RStudio or GitHub Desktop. These alternatives can make using Git much easier. To learn how to use Git directly from Rstudio without having to learn a single command for the terminal, we recommend the following (free) online book by Jenny Bryan, prof of data science at UBC and senior software engineer at RStudio:
 
 https://happygitwithr.com/  
-
