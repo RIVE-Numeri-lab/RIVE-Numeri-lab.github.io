@@ -37,12 +37,32 @@ plugins:
 
 # Ajouts par Charles
 
-collections: 
+collections:
   workshops:
     output: true
-    permalink: /workshops/:title
+    permalink: /en/workshops/:title
+  ateliers:
+    output: true
+    permalink: /fr/ateliers/:title
   analysis_projects:
     output: true
     permalink: /analysis_projects/:title
   news:
     output: true
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      lang: "fr"
+  -
+    scope:
+      path: "fr"
+    values:
+      lang: "fr"
+  -
+    scope:
+      path: "en"
+    values:
+      lang: "en"
