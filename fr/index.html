@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Home
-fr_url: /fr/
+title: Accueil
+en_url : "/en/"
 ---
 
   <style>
@@ -12,11 +12,11 @@ fr_url: /fr/
   </style>
 
   <div class="jumbotron">
-      <h1>Welcome to the Numerilab</h1>
-      <p>Numeracy, noun : <br />
-        the ability to understand and work with numbers.
+      <h1>Bienvenue au Numérilab</h1>
+      <p>Numératie, nom : <br />
+        Capacité d'une personne à comprendre et à utiliser des concepts mathématiques, <br />lui permettant de maîtriser suffisamment l'information quantitative et spatiale pour être fonctionnelle en société.
       </p>
-      <p><a href="/en/about" role="button">Learn more &raquo;</a></p>
+      <p><a href="/fr/a_propos" role="button">En savoir plus &raquo;</a></p>
     </div>
   </div>
 
@@ -29,7 +29,7 @@ fr_url: /fr/
     {% if today <= event_date %}
        {% if event_count == 0 %}
        <div>
-         <h2>Next event</h2>
+         <h2>Prochain événement</h2>
          {{ event.date | date: "%b %d, %Y"}}<br /><br />
           {{ event.title }}
         </div>
@@ -40,21 +40,21 @@ fr_url: /fr/
 
 
       <div>
-        <h2>Latest workshop</h2>
+        <h2>Dernier atelier</h2>
         <img class="homepage_thumbnail" src="/assets/thumbnails/{{ site.workshops.last.thumbnail | default: "rive.png"}}"/>
         <p>{{ site.workshops.last.title }}</p>
-        <p style="clear:both"><a role="button" href="{{ site.workshops.last.url }}">View details &raquo;</a></p>
+        <p style="clear:both"><a role="button" href="{{ site.workshops.last.url }}">Voir les détails &raquo;</a></p>
       </div>
       <div>
-        <h2>Latest news</h2>
+        <h2>Nouvelles récentes</h2>
         <p>{{ site.news.last.title }}</p>
-        <p><a role="button" href="{{ site.news.last.url }}">View details &raquo;</a></p>
+        <p><a role="button" href="{{ site.news.last.url }}">Voir les détails &raquo;</a></p>
       </div>
       <div>
-        <h2>Latest analysis project</h2>
+        <h2>Projet récent</h2>
         <img class="homepage_thumbnail" src="/assets/thumbnails/{{ site.analysis_projects.last.thumbnail | default: "rive.png"}}"/>
         <p>{{ site.analysis_projects.last.title }}</p>
-        <p style="clear:both"><a role="button" href="{{ site.analysis_projects.last.url }}">View details &raquo;</a></p>
+        <p style="clear:both"><a role="button" href="{{ site.analysis_projects.last.url }}">Voir les détails &raquo;</a></p>
       </div>
 
 
