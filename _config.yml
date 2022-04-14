@@ -46,9 +46,14 @@ collections:
     permalink: /fr/ateliers/:title
   analysis_projects:
     output: true
-    permalink: /analysis_projects/:title
+    permalink: /en/analysis_projects/:title
   news:
     output: true
+    permalink: /en/news/:title
+  nouvelles:
+    output: true
+    permalink: /fr/nouvelles/:title
+
 
 defaults:
   -

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Mentoring
+title: Mentorat
 en_url: /en/mentoring
 ---
 # Mentorat
