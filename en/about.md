@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About
+fr_url: /fr/a_propos
 ---
 # About us
 ## Objectives
