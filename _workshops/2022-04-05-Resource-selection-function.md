@@ -5,6 +5,7 @@ author: "Riwan Leroux"
 date: "April 2022"
 category: Stats
 lang: en
+fr_url: /fr/ateliers/resource-selection-function
 output:
   html_document:
     highlight: haddock
