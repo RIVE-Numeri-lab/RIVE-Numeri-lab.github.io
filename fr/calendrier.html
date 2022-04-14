@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Calendar
-fr_url: /fr/calendrier
+title: Calendrier
+en_url: /en/calendar
 ---
-<h1>Calendar</h2>
+<h1>Calendrier</h2>
 
-<h2> Upcoming events</h2>
+<h2>Événements à venir</h2>
   <dl class="event_list">
   {% for event in site.data.events %}
     {% assign today = 'now' | date: '%s' %}
@@ -16,7 +16,7 @@ fr_url: /fr/calendrier
       {% endif %}
   {% endfor %}
 </dl>
-<h2> Past events</h2>
+<h2>Événements passés</h2>
 <dl class="event_list">
   {% for event in site.data.events reversed %}
     {% assign today = 'now' | date: '%s' %}

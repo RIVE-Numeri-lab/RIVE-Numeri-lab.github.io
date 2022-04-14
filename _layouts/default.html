@@ -14,14 +14,25 @@
 <body>
   <nav>
     	<ul>
-        <li><a id="homelink" href="/">NumeriLab</a></li>
+        <li><a id="homelink" href="/{{ page.lang }}/">NumeriLab</a></li>
         <div id = "navig_dropdown">
+          {% if page.lang == "fr" %}
+          <li><a class="nav-link" href = "/fr/nouvelles">Nouvelles</a></li>
+          <li><a class="nav-link" href = "/fr/calendrier">Calendrier</a></li>
+          <li><a class="nav-link" href = "/fr/ateliers">Ateliers</a></li>
+          <li><a class="nav-link" href = "/fr/projets_analyses">Projets d'analyse</a></li>
+          <li><a class="nav-link" href = "/fr/mentorat">Mentorat</a></li>
+          <li><a class="nav-link" href = "/fr/a_propos">À propos</a></li>
+          <li><a class="nav-link" href="{{ page.en_url }}">En</a></li>
+          {% else %}
           <li><a class="nav-link" href = "/en/news">News</a></li>
           <li><a class="nav-link" href = "/en/calendar">Calendar</a></li>
           <li><a class="nav-link" href = "/en/workshops">Workshops</a></li>
           <li><a class="nav-link" href = "/en/analysis_projects">Analysis projects</a></li>
           <li><a class="nav-link" href = "/en/mentoring">Mentoring</a></li>
           <li><a class="nav-link" href = "/en/about">About us</a></li>
+          <li><a class="nav-link" href="{{ page.fr_url }}">Fr</a></li>
+          {% endif %}
         </div>
         <li><a href="#" class="toggler"><svg class="bi bi-list" width="23px" height="23px" viewBox="3 3 11 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -42,7 +53,11 @@
       </a>
 
     </span>
+    {% if page.lang == "fr" %}
+    Tous droits réservés 2019-2022, dernière mise à jour {{ site.time | date: "%Y-%m-%d"  }}
+    {% else %}
     Copyright 2019-2022, last updated on {{ site.time | date: "%b %d, %Y"  }}
+    {% endif %}
 
   </footer>
   {% include cookie-consent.html %}
