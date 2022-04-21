@@ -1,17 +1,16 @@
 ---
+layout: default
 thumbnail: purrr.png
 category: Programmation
 title: "Fonctions et itération"
-layout: default
 author: "Charles Martin"
-date: "28 février 2020"
+date: "February 2020"
 output:
   html_document:
     highlight: haddock
     keep_md: yes
     theme: readable
     toc: yes
-lang: "fr"
 en_url: "/en/workshops/FunctionsIterations"
 
 ---
