@@ -902,5 +902,5 @@ resultats %>%
   facet_wrap(~term, scale = "free_y", ncol = 1)
 ```
 
-![](PresentationFR_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
+![](/assets/FunctionsIteration_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
 
