@@ -13,6 +13,8 @@ output:
     keep_md: yes
     theme: readable
     toc: yes
+redirect_from: "/workshops/RapidDataViz"
+fr_url: "/fr/ateliers"
 ---
 
 # Rapid data visualization with ggplot2

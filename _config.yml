@@ -22,6 +22,7 @@ url: "https://rive-numeri-lab.github.io/" # the base hostname & protocol for you
 # Build settings
 markdown: kramdown
 plugins:
+  - jekyll-redirect-from
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

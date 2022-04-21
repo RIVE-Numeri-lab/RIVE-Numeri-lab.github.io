@@ -12,6 +12,8 @@ output:
     keep_md: yes
     theme: readable
     toc: yes
+redirect_from: "/workshops/RapidDataManip"
+fr_url: "/fr/ateliers"
 ---
 # Fast data manipulation with dplyr and its allies
 #### Charles Martin

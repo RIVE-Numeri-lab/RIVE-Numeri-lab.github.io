@@ -2,6 +2,7 @@
 layout: default
 title: About
 fr_url: /fr/a_propos
+redirect_from: "/about"
 ---
 # About us
 ## Objectives

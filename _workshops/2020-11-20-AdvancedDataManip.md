@@ -12,6 +12,8 @@ output:
     keep_md: yes
     theme: readable
     toc: yes
+redirect_from: "/workshops/AdvancedDataManip"
+fr_url: "/fr/ateliers"
 ---
 # Advanced data manipulation with tidyr and its allies
 #### Jim Félix-Faure

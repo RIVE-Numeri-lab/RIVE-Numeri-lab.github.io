@@ -10,6 +10,8 @@ output:
   html_document:
     highlight: haddock
     theme: readable
+redirect_from: "/workshops/BigData_dt_vroom"
+fr_url: "/fr/ateliers"
 ---
 # Big Data Manipulation
 #### Roxanne Giguère-Tremblay & Arthur de Grandpré

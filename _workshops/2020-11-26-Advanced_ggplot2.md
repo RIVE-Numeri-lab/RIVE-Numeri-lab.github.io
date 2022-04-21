@@ -13,6 +13,8 @@ output:
     theme: readable
     toc: yes
     self_contained: true
+redirect_from: "/workshops/Advanced_ggplot2"
+fr_url: "/fr/ateliers"
 ---
 # Advanced ggplot2 - Solutions to everyday problems
 #### Charles Martin

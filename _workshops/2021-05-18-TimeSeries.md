@@ -6,6 +6,8 @@ author: "Lucas Deschamps & Isabelle Gosselin"
 date: "May 2021"
 category : Stats
 lang: en
+fr_url: "/fr/ateliers"
+redirect_from: "/workshops/TimeSeries"
 ---
 
 # Time Series with MARSS

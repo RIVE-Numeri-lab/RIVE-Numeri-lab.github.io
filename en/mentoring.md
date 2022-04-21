@@ -2,6 +2,8 @@
 layout: default
 title: Mentoring
 fr_url: /fr/mentorat
+redirect_from: "/mentoring"
+permalink: "/en/mentoring"
 ---
 # Mentoring
 

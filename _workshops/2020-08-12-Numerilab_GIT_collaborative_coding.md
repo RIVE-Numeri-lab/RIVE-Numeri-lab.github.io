@@ -11,6 +11,8 @@ output:
     keep_md: yes
     toc: yes
     toc_float: yes
+redirect_from: "/workshops/Numerilab_GIT_collaborative_coding"
+fr_url: "/fr/ateliers"
 ---
 # Git and collaborative coding
 #### Arthur de Grandpré
