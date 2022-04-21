@@ -13,6 +13,8 @@ output:
     self_contained: no
     theme: readable
     toc: yes
+redirect_from: "/workshops/MetaAnalysis"
+fr_url: "/fr/ateliers"
 ---
 # Meta-analysis
 #### Charles Martin

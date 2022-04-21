@@ -13,6 +13,8 @@ output:
     keep_md: yes
     theme: readable
     toc: yes
+redirect_from: "/workshops/FunctionsIteration"
+fr_url: "/fr/ateliers"
 ---
 # Functions and iteration
 #### Charles Martin

@@ -11,6 +11,8 @@ output:
     highlight: haddock
     keep_md: yes
     theme: readable
+redirect_from: "/workshops/EarthEngine"
+fr_url: "/fr/ateliers"
 ---
 
 # Introduction to Google Earth Engine
