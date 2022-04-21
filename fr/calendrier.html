@@ -11,7 +11,7 @@ en_url: /en/calendar
     {% assign today = 'now' | date: '%s' %}
     {% assign event_date = event.date | date: '%s' %}
     {% if today <= event_date %}
-      <dt>{{ event.date | date: "%b %d, %Y"}}</dt>
+      <dt>{{ event.date | date: "%Y-%m-%d"}}</dt>
       <dd>{{ event.title }}</dd>
       {% endif %}
   {% endfor %}
@@ -22,7 +22,7 @@ en_url: /en/calendar
     {% assign today = 'now' | date: '%s' %}
     {% assign event_date = event.date | date: '%s' %}
     {% if today > event_date %}
-      <dt>{{ event.date| date: "%b %d, %Y" }}</dt><dd> {{ event.title }}</dd>
+      <dt>{{ event.date| date: "%Y-%m-%d" }}</dt><dd> {{ event.title }}</dd>
       {% endif %}
   {% endfor %}
 </dl>

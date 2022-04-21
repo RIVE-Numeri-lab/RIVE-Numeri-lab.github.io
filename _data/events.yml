@@ -1,47 +1,47 @@
-- title: Meta-analysis workshop
+- title: Introduction aux méta-analyses
   date: 2019-12-12
   description: Charles will entertain us about the in and outs of meta-analysis
 - title : Functions and iterations
   date: 2020-02-05
   description: Charles will talk to us about removing useless repetitions in your R with *loops and functions*
-- title : Functions and iteration (purrr)
+- title : Fonctions et itération (purrr)
   date : 2020-09-24
   description : C. Martin & J. Félix-Faure
-- title : Data manipulation II (dplyr & tidyverse)
+- title : Manipulation de données II (dplyr & tidyverse)
   date : 2020-10-22
   description : J. Félix-Faure & C. Martin
-- title : Data visualization II (ggplot2)
+- title : Visualisation de données II (ggplot2)
   date : 2020-11-19
   description : C. Martin & C. Macarez
-- title : Visualization and prediction of PCA and LDA (Linear Discriminant Analyses)
+- title : Visualisation et prédictions avec la PCA et la LDA (Linear Discriminant Analyses)
   date : 2020-12-10
   description : F. Qin & R. Giguère-Tremblay
-- title : GoogleEarthEngine (Python or Java)
+- title : GoogleEarthEngine
   date : 2021-01-14
   description : E. Hamel & A. De Grandpré
-- title : GIS in R with leaflet (leaflet, ggmap, sp, maps, rgdal…)
+- title : GIS dans R avec leaflet (leaflet, ggmap, sp, maps, rgdal…)
   date : 2021-02-18
   description : A. De Grandpré & L. Arsenault-Boucher
 - title : Big data manipulation (data.table, vroom)
   date : 2021-03-18
   description : R. Giguère-Tremblay
-- title : Time series analyses
+- title : L'analyse des séries temporelles
   date : 2021-04-15
   description : L. Deschamps
-- title : Annual meeting
+- title : Rencontre annuelle
   date : 2021-10-21
   description : All RIVE students are welcomed to attend
 
-- title : Introduction to Deep Learning for Ecologists
+- title : Introduction à l'aprentissage profond (deep learning) en écologie
   date : 2021-11-04
   description : C. Martin
-- title : Rapid data visualization with ggplot2
+- title : Visualisation rapide des données avec ggplot2
   date : 2021-12-02
   description : J. Dormoy-Boulanger
 - title : GoogleEarthEngine
   date : 2022-01-13
   description : E. Hamel-Jomphe
-- title : Interactive R applications with Shiny
+- title : Applications R intéractives avec Shiny
   date : 2022-02-08
   description : C. Martin
 - title : High performance pipelines
@@ -50,12 +50,12 @@
 - title : Resource selection function
   date : 2022-04-05
   description : R. Leroux
-- title : Master class with Guillaume Blanchet
+- title : Classe de maître avec Guillaume Blanchet
   date : 2022-04-20
   description : A special event hosted by the Numerilab
-- title : Introduction to PARAFAC analysis
+- title : Introduction aux analyses PARAFAC
   date : 2022-05-03
   description : J. Dormoy-Boulanger
-- title : Time Series Analysis
+- title : L'analyse des séries temporelles
   date : 2022-05-31
   description : L. Deschamps

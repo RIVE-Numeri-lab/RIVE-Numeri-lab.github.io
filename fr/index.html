@@ -31,7 +31,7 @@ redirect_from: "/"
        {% if event_count == 0 %}
        <div>
          <h2>Prochain événement</h2>
-         {{ event.date | date: "%b %d, %Y"}}<br /><br />
+         {{ event.date | date: "%Y-%m-%d"}}<br /><br />
           {{ event.title }}
         </div>
         {% endif %}
@@ -51,12 +51,12 @@ redirect_from: "/"
         <p>{{ site.nouvelles.last.title }}</p>
         <p><a role="button" href="{{ site.nouvelles.last.url }}">Voir les détails &raquo;</a></p>
       </div>
-      <div>
+      <!-- <div>
         <h2>Projet récent</h2>
         <img class="homepage_thumbnail" src="/assets/thumbnails/{{ site.analysis_projects.last.thumbnail | default: "rive.png"}}"/>
         <p>{{ site.analysis_projects.last.title }}</p>
         <p style="clear:both"><a role="button" href="{{ site.analysis_projects.last.url }}">Voir les détails &raquo;</a></p>
       </div>
-
+-->
 
   </div>

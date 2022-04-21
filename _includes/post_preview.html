@@ -4,7 +4,7 @@
         </div>
       <div class="post_preview">
           <h3>{{ post.title }}</h3>
-          {{ post.date | date: "%b %Y" }}<br /><br />
+          {{ post.date | date: "%Y-%m" }}<br /><br />
           <a href="{{ post.url }}" class="stretched-link">{% if post.lang=="en" %}Continue reading{% else %}Lire la suite{% endif %}</a>
       </div>
       {% if post.includes_a_video %}
