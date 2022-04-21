@@ -5,12 +5,15 @@ en_url: "/en/workshops"
 ---
 <h1>Ateliers</h1>
 
+<p style="clear:both;">N.B nos ateliers seront progressivement traduits en français. Pour consulter
+la liste des ateliers disponibles en anglais, <a href="/en/workshops">suivez ce lien</a>.</p>
+
 {% comment -%}
 Attention, il ne faut pas mettre d'espaces dans les items dans cette liste.
 Idéalement on construirait cette liste à partir des valeurs contenus dans la collection...
 Mais le langage ne semble pas le permettre pour le moment
 {% endcomment %}
-{% assign categories = "Stats" | split: ',' %}
+{% assign categories = "Stats,Programmation" | split: ',' %}
 
 {% for category in categories %}
 
@@ -23,6 +26,3 @@ Mais le langage ne semble pas le permettre pour le moment
   {% endfor %}
 
 {% endfor %}
-
-<p style="clear:both;">N.B nos ateliers seront progressivement traduits en français. Pour consulter
-la liste des ateliers disponibles en anglais, <a href="/en/workshops">suivez ce lien</a>.</p>

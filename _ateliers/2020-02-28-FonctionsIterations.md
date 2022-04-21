@@ -1,48 +1,48 @@
 ---
 thumbnail: purrr.png
-category: Programming
-title: "Functions and iteration"
+category: Programmation
+title: "Fonctions et itération"
 layout: default
 author: "Charles Martin"
-date: "February 28 2020"
-rbloggers: true
-lang: en
+date: "28 février 2020"
 output:
   html_document:
     highlight: haddock
     keep_md: yes
     theme: readable
     toc: yes
-redirect_from: "/workshops/FunctionsIteration"
-fr_url: "/fr/ateliers/FonctionsIterations"
+lang: "fr"
+en_url: "/en/workshops/FunctionsIterations"
+
 ---
-# Functions and iteration
+# Fonctions and itération
 #### Charles Martin
-#### February 2020
+#### Février 2020
 
 # Introduction
 
-Functions in R allow us to automate things, instead of copy-pasting code.
+Les fonctions permettent d'automatiser des choses plutôt que de copier-coller.
 
-3 major advantages :
+3 avantages majeurs : 
 
-* Functions can have names, so it makes code easier to read
-* If your requirements change, you only have one place where to change your code
-* It minimises the risks associated with copy-pasting (e.g. forgetting to change a variable name, etc.)
+* On peut nommer les fonctions, pour rendre notre code plus facile à lire
+* Si nos besoins changent, on a un seul endroit où modifier le code
+* Minimise les risques d'erreur associés au copier-coller (oublier de changer un nom de variable etc.)
 
-# When to write a function?
-It is commonly recommended that start writing a function whenever you copy-paste
-some code for the second time (i.e. you have 3 copies of the code)
+# Quand écrire une fonction?
 
-For example, if you have the relative abundance of species in 3 communities :
+Une bonne pratique est de penser à écrire une fonction au moment où on copie-colle
+du code pour la 2e fois (i.e. on en a maintenant 3 copies)
+
+Par exemple, si on a l'abondance relative des espèces dans 3 communautés
 
 ```r
 com1 = c(0.5,0.3,0.2)
-com2 = c(0.7,0.2,0.1)
+com2 = c(0.7,0.2,0.1,0.1)
 com3 = c(0.9,0.1)
 ```
 
-You could calculate Shannon diversity for the first community with :
+On pourrait calculer la diversité de Shannon pour la première comme ceci : 
 
 ```r
 -sum(com1*log(com1))
@@ -51,14 +51,14 @@ You could calculate Shannon diversity for the first community with :
 ```
 [1] 1.029653
 ```
-And then for the second and third one with :
+Ensuite la deuxième et la troisième
 
 ```r
 -sum(com2*log(com2))
 ```
 
 ```
-[1] 0.8018186
+[1] 1.032077
 ```
 
 ```r
@@ -69,13 +69,12 @@ And then for the second and third one with :
 [1] 0.325083
 ```
 
-At this point, we've copy-pasted our code twice, so it is time to turn it
-into a function...
+On a copié-collé 2 fois, il est temps d'écrire une fonction... 
 
-A good first step when writing a function is to determine what the function
-needs, what are its inputs. In this case, the function needs the
-relative abundances of a community. Let's call them `p`, like in the traditional
-notation.
+Une bonne première étape pour écrire une fonction est de déterminer de quoi 
+la fonction a besoin, quelles sont ses entrées. Ici, se sont les abondances 
+relatives dans la communautés. Appellons-les `p`, comme dans la formule
+traditionnelle
 
 ```r
 p <- com1
@@ -92,16 +91,17 @@ p <- com2
 ```
 
 ```
-[1] 0.8018186
+[1] 1.032077
 ```
-Notice that I immediately test my code, to make sure that I've extracted
-everything that I neede to make the code work.
+Remarquez que je teste immédiatement mon code, pour m'assurer que j'ai extrait
+tout ce dont il avait besoin pour fonctionner
 
-Then, you only need to wrap this code and tell R that you function needs
-one argument, `p`
+Ensuite, il ne reste qu'à emballer ce code et à indiquer à R que notre code nécéssite
+un seul argument, soit `p`
 
-If you don't mention anything, a function in R returns the result of the
-last command it executes
+Si on ne mentionne rien, une fonction renvoie le résultat de la dernière commande
+exécutée.
+
 
 ```r
 diversite_shannon <- function(p) {
@@ -119,7 +119,7 @@ diversite_shannon(com2)
 ```
 
 ```
-[1] 0.8018186
+[1] 1.032077
 ```
 
 ```r
@@ -130,21 +130,22 @@ diversite_shannon(com3)
 [1] 0.325083
 ```
 
-Our code is now much more readable AND easier to maintain
+Notre code est maintenant beaucoup lisible ET facile d'entretien
 
-(yes, we're still copy-pasting some stuff...)
+(oui, nous avons encore du copier-coller...)
 
-# Conditional execution
+# Exécution conditionnelle
 
-You can insert conditional statements inside your functions (anywhere in fact), using the `if` keyword
+On peut insérer des conditions à l'intérieur de nos fonctions (partout en fait), 
+à l'aide du mot-clé `if`
 
-The typical structure of an IF statement goes like this :
+La structure d'un IF se définit comme ceci : 
 
 ```r
 if (condition) {
-  # gets run if condition is true
+  # s'exécute si c'est vrai
 } else {
-  # gets run if condition is false
+  # s'exécute si c'est faux
 }
 ```
 
@@ -172,23 +173,23 @@ salutations("Charles")
 [1] "Allo Charles"
 ```
 
-Note that it is optional for your function to return a value
+Remarquez qu'il n'est pas nécéssaire de retourner une valeur ou de travailler
+avec cette valeur de retour.
 
-# Arguments
+# Les arguments
 
-Functions in R can have as many arguments as you wish
+Les fonctions peuvent posséder autant d'arguments que l'on désire
 
-Usually, in R, the first arguments contain data, whereas the last ones contain
-details about how to do the calculations.
+Habituellement, dans R, les premiers arguments contiennent les données, et les derniers
+détails sur comme faire le calcul. 
 
-These arguments about calculation details can have default values, which
-the user only has to change if needed.
+Les arguments concernant les détails du calcul peuvent avoir des valeurs par défaut
 
 ```r
 pile_face <- function(n,probabilite_pile = 0.5) {
   sample(
     c("pile","face"),
-    size = n,
+    size = n, 
     prob = c(probabilite_pile,1 - probabilite_pile),
     replace = TRUE
   )
@@ -197,9 +198,9 @@ pile_face(25)
 ```
 
 ```
- [1] "face" "face" "pile" "face" "face" "pile" "pile" "pile" "pile" "face"
-[11] "pile" "pile" "face" "pile" "pile" "pile" "face" "pile" "face" "face"
-[21] "pile" "face" "pile" "pile" "pile"
+ [1] "face" "face" "face" "face" "face" "pile" "pile" "pile" "face" "face"
+[11] "pile" "face" "pile" "pile" "pile" "face" "face" "pile" "face" "face"
+[21] "pile" "pile" "pile" "face" "face"
 ```
 
 ```r
@@ -208,21 +209,20 @@ pile_face(25, 0.9)
 
 ```
  [1] "pile" "pile" "pile" "pile" "pile" "pile" "pile" "pile" "pile" "pile"
-[11] "pile" "pile" "pile" "pile" "pile" "pile" "face" "pile" "pile" "pile"
-[21] "face" "pile" "pile" "pile" "pile"
+[11] "pile" "pile" "pile" "pile" "face" "pile" "pile" "pile" "pile" "pile"
+[21] "pile" "pile" "pile" "face" "pile"
 ```
 
-## Defensive programming
+## Vérification des valeurs passées aux arguments
 
-When you become comfortable with writing functions, there will rapidly
-come a point where you won't remember how you coded everything inside
-every function you've written and the constaints associated.
+Lorsque l'on devient comfortable avec l'écriture de fonction et qu'on en utilise
+beaucoup, on arrive rapidement un point où ne se rapelle plus le détail du 
+code à l'intérieur de chaque fonction et ses contraintes associées.
 
-For example, our function to calculate Shannon's diversity expects to receive
-relative frequencies. The calculation is not defined if the sum of the `p` values
-is not 1.
+Par exemple, notre fonction de diversité de Shannon s'attend à recevoir les probabilités
+relatives, le calcul n'est pas défini si la somme des *p* n'est pas 1.
 
-However, our function let's us *do* the calculation on absolute numbers
+Pourtant notre fonction nous laisse faire le calcul, même sur des abondances absolues
 
 ```r
 diversite_shannon(c(1,5,25,12))
@@ -232,8 +232,8 @@ diversite_shannon(c(1,5,25,12))
 [1] -118.338
 ```
 
-To protect our future-self, we can add some checks, which will stop the
-calculations if some condition is not met.
+Pour se protéger contre notre futur-nous, on peut inclure des vérifications, 
+qui arrêtent la fonction si les conditions ne sont pas respectées... 
 
 ```r
 diversite_shannon <- function(p) {
@@ -247,7 +247,7 @@ diversite_shannon(c(1,5,25,12))
 Error in diversite_shannon(c(1, 5, 25, 12)): sum(p) == 1 is not TRUE
 ```
 
-You can also write more user-friendly messages with just a little more code
+On peut aussi écrire des messages d'erreur plus user-friendly, avec un petit plus de code...
 
 ```r
 diversite_shannon <- function(p) {
@@ -263,15 +263,17 @@ diversite_shannon(c(1,5,25,12))
 Error in diversite_shannon(c(1, 5, 25, 12)): L'argument p doit contenir des probabilités relatives, dont la somme est 1.
 ```
 
-## The special dot-dot-dot (...) argument
+## L'argument spécial dot-dot-dot (...)
 
-Function definitions in R can also contain a special argument named dot-dot-dot.
-This argument, if present, will catch every argument that the function received and
-was not explicitely named in the function definition.
+Les fonctions R peuvent contenir un argument spécial nommé dot-dot-dot.
+Cet argument, si il est présent, attrape tous les arguments qui ne sont pas attrapés
+par des noms.
 
-It can be especially useful to send these arguments back to another function.
+Il peut être très pratique, entre autres, pour passer des arguments aux fonctions suivantes.
 
-If anytime you need an histogram you like to have it blue instead of white, you could create your own function, which calls the original, adding you favorite or often used options:
+Si par exemple chaque fois que l'on fait un histogramme on lui remet les mêmes 
+couleurs, on pourrait se créer notre propre fonction, qui appelle l'originale 
+avec nos arguments préférés : 
 
 ```r
 bleustogram <- function(...){
@@ -280,19 +282,20 @@ bleustogram <- function(...){
 bleustogram(rnorm(50))
 ```
 
-![](/assets/FunctionsIteration_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](PresentationFR_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 ```r
 bleustogram(rlnorm(100))
 ```
 
-![](/assets/FunctionsIteration_files/figure-html/unnamed-chunk-13-2.png)<!-- -->
+![](PresentationFR_files/figure-html/unnamed-chunk-13-2.png)<!-- -->
 
 
-# Many exit points
+# Plusieurs points de retour
 
-An R function can contain many points where it stops to return a value. In this
-case, these points need to be defined explicitely :
+Une fonction R peut contenir plusieurs point où elle s'arrête pour retourner
+une valeur. Il faut alors nommer ces points explicitement... 
+
 
 ```r
 diversite <- function(p, indice = "shannon") {
@@ -319,14 +322,16 @@ diversite(c(0.5,0.3,0.2), indice = "simpson")
 [1] 0.38
 ```
 
-# About the environment
+# Notes à propos de l'environnement
 
-Anything that you create inside a function exist only there, and cannot be
-accessed from the outside. Objects are reset every the functio is called.
+Tout ce qui est créé à l'intérieur d'une fonction n'existe que dans la fonction, 
+et n'est pas accessible de l'extérieur. Les objets sont remis à zéro chaque fois que la 
+fonction est appellée.
 
-A special feature of R is that, if a variable is not defined inside a function,
-R will also search outside of it, in the global environment, for an object
-having the same name.
+Par contre, une des particularités de R et que si une variable n'est pas définie à l'intérieur
+d'une fonction, R va aussi chercher à l'extérieur, dans l'environnement global
+pour voir si elle existe.
+
 
 ```r
 b <- 2
@@ -368,34 +373,32 @@ d
 Error in eval(expr, envir, enclos): object 'd' not found
 ```
 
-This is why it is important to be very careful while extracting the arguments
-necessary to your function. It is important to restart your R session
-once in a while, to make sure that things are not "accidently working" because
-an object with a particular name exist in your working environment.
+C'est pourquoi il faut être très prudent lorsque l'on extrait les arguments
+nécéssaires à une fonction et qu'il est très important de redémarrer notre
+session de R de temps à autre, pour être certain qu'il n'y a pas une variable avec
+un nom dérangeant qui survivrait dans notre environnement de travail
 
-# Introducing interation
+# Introduction à l'itération
 
-Beside function, another programming technique to reduce code duplication
-is the use of iterations (syn. repetitions)
+Outre l'utilisation de fonctions, une autre technique pour réduire la duplication
+dans votre code (et donc les bug et le copier-coller) se nomme l'itération (syn. répétition)
 
-There are two styles of iteration in R :
-Imperative programming and functional programming.
+Il existe deux style d'itération principaux dans R : 
+la programmation impérative et la programmation fonctionnelle.
 
-Imperative programming includes FOR and WHILE loops. It is often the most
-intuitive way to begin, because the concepts are explicit.
+La programmation impérative inclut les boucles FOR et WHILE. C'est souvent 
+la façon la plus intuitive de commencer car les concepts sont explicites.
 
-Consequently, imperative programming involves lots of "plumbing code", that
-repeats itself from a loop to another and "drowns" the actual intent of the code.
-Functional programming allows us to extract to the core task of our
-code and produces denser, easier to read and maintain code.
+Par contre, la programmation impérative implique beaucoup de code de plomberie
+qui revient d'une boucle à l'autre et qui noie l'intention réelle du code. La
+programmation fonctionelle permet d'extraire le coeur du problème, 
+et de produire du code plus dense, plus facile à lire et qui crée moins d'erreurs
 
-# FOR loops
+# Les boucle FOR
 
-Let's start with the Baby Shark lyrics :
-https://genius.com/Pinkfong-baby-shark-lyrics
+Prenons l'exemple de la chanson Baby Shark : https://genius.com/Pinkfong-baby-shark-lyrics
 
-If one wanted to automate the writing of the first verse of the song, we
-could write :
+Si on veut automatiser l'écriture du premier couplet de la chanson, on peut écrire : 
 
 ```r
 for (i in 1:3) {
@@ -410,12 +413,12 @@ print("Baby shark!")
 [1] "Baby shark, doo doo doo doo doo doo"
 [1] "Baby shark!"
 ```
-A FOR loop has 2 main components :
-* The first line defines how many times we wish to do the loop
-* The code between {} defines the code we wish to repeat.
+Une boucle FOR a 2 composantes principales : 
+La première ligne qui définit combien de fois effectuer la boucle
+Le code entre `{}` qui définit ce que l'on veut répéter à chaque itération
 
-Each iteration doesn't need to do an identical job, their action can be
-customized based on the index the loop is currently at.
+Les itérations n'ont pas nécéssairement besoin de faire un travail identique, 
+elles peuvent faire chacune une action personnalisée basée sur l'indice
 
 ```r
 mots = c("Baby shark","Mommy shark","It's the end")
@@ -430,9 +433,8 @@ for (i in seq_along(mots)) { # vs. 1:length(mots)
 [1] "It's the end, doo doo doo doo doo doo"
 ```
 
-## Nesting
-You probably saw that one coming from a mile, but you can also nest loops
-inside one another:
+## Imbrication
+Vous me voyez probablement venir, on peut aussi imbriquer des boucles les unes dans les autres
 
 ```r
 mots = c("Baby shark","Mommy shark","It's the end")
@@ -459,15 +461,12 @@ for (i in seq_along(mots)) {
 [1] "It's the end!"
 ```
 
-## Keeping a result for each iteration
+## Conserver un résultat pour chaque itération
+On peut aussi conserver un résultat pour chacune des itérations.
+Auquel cas, il est fortement recommandé de pré-allouer notre objet de résultats
+avant de commencer. C'est la clé pour obtenir des boucles rapides dans R.
 
-In a loop, it is often useful to keep the result of some calculation
-at each iteration. In such a case, it is strongly recommended to pre-allocate
-our result object before the loop begins. This is the key to fast
-loops in R.
-
-For example, let's prepare a loop that would calculate the absolute value
-of a series of numbers
+Par exemple, si on se prépare une boucle qui calcule la valeur absolue d'une série de nombres
 
 ```r
 nombres <- c(-1,0,1,-5)
@@ -482,31 +481,31 @@ valeurs_absolues
 [1] 1 0 1 5
 ```
 
-## Unknown number of iterations
+## Nombre d'itération inconnu
 
-When you don't know beforehand how many times our loop will run, there
-exist a second R structure which allows this kind of iteration :
-the `while` loop.
+Lorsque l'on ne sait pas d'avance combien de fois notre boucle s'effectuera,
+il existe une autre structure de R permettant ce type d'itération : `while`
 
-These loops are particularly useful in simulations.
+Cette instruction est particulièrement pratique pour les simulations.
 
-For example, let's run some code to determine how many coin tosses are
-needed to obtain a sequence of 3 *heads* in a row.
+Par exemple, combien de tirages à pile-ou-face doit-on faire avant d'obtenir 
+3 *pile* de suite?
+
 
 ```r
 tirages <- 0
 piles_de_suite <- 0
 
 while (piles_de_suite < 3) {
-
+  
   resultat <- pile_face(1)
-
+  
   if ((resultat) == "pile") {
     piles_de_suite <- piles_de_suite + 1
   } else {
     piles_de_suite <- 0
   }
-
+  
   tirages <- tirages + 1
 }
 
@@ -514,32 +513,37 @@ tirages
 ```
 
 ```
-[1] 33
+[1] 26
 ```
-# The Map family of functions
+# La famille Map
 
-As said before, iteration can be tackly in a completely different way, using functionnal programming. In R, the `purrr` package contains many functions that allows us to do functional programming in a simple and intuitive way.
+Le concept d'itération peut être attaqué d'une manière complètement différente
+avec la programmation fonctionelle. Dans R, il existe le package `purrr` contenant
+plusieurs fonctions permettant d'attaquer la programmation fonctionelle de façon
+simple et intuitive.
+
 
 ```r
 library(purrr)
 ```
 
-The principle behind each of these functions is all the same : instead of
-writing the code that makes the loop work, you give it a function and
-a series of elements to apply it on.
 
-There are many `map` functions, depending on the return type you want
-to obtain.
+Le principe est toujours le même : plutôt que de fournir le code qui structure la boucle,
+on fournit à `map` une fonction et une série d'éléments sur lesquels 
+appliquer cette fonction.
 
-* `map` returns a list
-* `map_lgl` returns `TRUE`/`FALSE`
-* `map_int` returns integers
-* `map_dbl` returns floating point numbers
-* `map_chr` returns text
-* `map_df` returns a data.frame object
+Il existe une série de fonctions `map` selon le type de résultat que l'on veut
+obtenir : 
 
-Let's revisit our code snippet about absolute values. It could be converted to
-this simple piece of code
+* `map` retourne une liste (objet `list` dans R)
+* `map_lgl` retourne des `TRUE`/`FALSE`
+* `map_int` retourne des entiers
+* `map_dbl` retourne des nombres à virgule
+* `map_chr` retourne du texte
+* `map_df` retourne un tableau de données
+
+Si on reprend par exemple notre code sur les valeurs absolues, il pourrait être
+converti en ceci
 
 ```r
 nombres <- c(-1,0,1,-5)
@@ -551,10 +555,10 @@ valeurs_absolues
 [1] 1 0 1 5
 ```
 
-We thus save a lot of `plumbing` code about how to make that loop
+On s'épargne toute la plomberie sur comment faire la boucle.
 
-You can also give `map` a custom made function, e.g. let's say you wanted
-to calculate the absolute value of these numbers and then add 10.
+On peut aussi passer une fonction que l'on crée nous même, p. ex. si on voulait
+faire valeur absolue + 10
 
 ```r
 nombres <- c(-1,0,1,-5)
@@ -568,8 +572,9 @@ map_dbl(nombres, ma_fonction)
 [1] 11 10 11 15
 ```
 
-If this custom made function is used only in this code, you can
-define it anonymously inside the map function :
+Si la fonction ne sera utilisée qu'à ce moment et jamais ailleurs,
+elle peut être définie de façon anonyme, à même l'appel à `map`
+
 
 ```r
 nombres <- c(-1,0,1,-5)
@@ -580,34 +585,34 @@ map_dbl(nombres, function(x) {abs(x) + 10})
 [1] 11 10 11 15
 ```
 
-Generally, this use is limited to short pieces of code.
+On limite généralement ce genre d'utilisation au code plutôt court.
 
 ## Les raccourcis inclus
-## Shortcuts included in `map` functions
 
-One of the advantages of the `map` functions in `purrr` package is that
-it enables us to cut the *obvious* parts of our code with shortcuts :
+Un des avantages des fonctions `map` du package `purrr` est qu'ils
+permettent de couper la partie évidente de ce code avec des raccourcis : 
 
-  ```r
-  nombres <- c(-1,0,1,-5)
-  map_dbl(nombres, ~ abs(.) + 10)
-  ```
+```r
+nombres <- c(-1,0,1,-5)
+map_dbl(nombres, ~ abs(.) + 10)
+```
 
-  ```
-  [1] 11 10 11 15
-  ```
-You can replace the `function` part with a `~` and the name of the
-variable with a dot.
+```
+[1] 11 10 11 15
+```
+On peut remplacer la partie `function` etc. par un `~` et le nom de la variable
+par un point.
 
-# Managing issues
+# Gérer les problèmes
 
-When using `map` functions on long series of data, it can happen that our
-function fails for a reason or another.
-When a problem happens, the `map` function stops, with an error message, but
-you don't retrieve all the instances that worked before the issue.
+Lorsque l'on utilise les fonctions `map` sur de longues séries de données, il 
+peut arriver que notre fonction échoue pour une raison ou pour une autre. 
+Lorsqu'un problème survient, la fonction map s'arrête, avec un message d'erreur, 
+mais on ne récupère pas les résultats partiels construits jusque là 
+(contrairement aux boucles FOR)
 
-Let's go back to our Shannon diversity function. If one of our communities
-does not contain relative frequencies, we loose all the remaining results...
+Si on reprend par exemple notre fonction sur la diversité de Shannon, si
+on a une communauté erronée, on perd l'ensemble de nos résultats...
 
 ```r
 communautes <- list(
@@ -623,10 +628,11 @@ map_dbl(communautes,diversite_shannon)
 Error in .f(.x[[i]], ...): L'argument p doit contenir des probabilités relatives, dont la somme est 1.
 ```
 
-The `purrr` package contains many adverbs to manage these kinds of situations.
-In each case, these adverbs *wrap* our function by modifying it's behaviour in
-case of errors. Here we're only seing the simplest case, `possibly`, to which you need to supply a value in case of error.
-
+Le package `purrr` inclut plusieurs adverbes pour gérer ce genre de situations.
+Dans chaque cas, leur travail est *d'emballer* notre fonction en modifiant son 
+comportement en cas d'erreur. Je vous présente uniquement le cas le plus simple,
+l'adverbe `possibly` auquel on fournit la valeur à mettre dans les sorties en cas de 
+problèmes
 
 ```r
 map_dbl(communautes,possibly(diversite_shannon,NA))
@@ -636,7 +642,7 @@ map_dbl(communautes,possibly(diversite_shannon,NA))
 [1] 1.029653 0.325083       NA
 ```
 
-# There is also a map function to build data.frames
+# Il existe aussi une fonction map pour créer des tableaux de données
 
 ```r
 map_df(communautes,function(x){
@@ -655,8 +661,8 @@ map_df(communautes,function(x){
 3        3 -26.321688  110.00
 ```
 
-This function can also me tremendously useful when you need to read a bunch of
-csv files from a folder and bind them in a single data.frame
+On peut de cette façon rassembler une série de fichiers csv dans un 
+même tableau de données
 
 ```r
 fichiers <- list.files(
@@ -667,9 +673,10 @@ fichiers <- list.files(
 tableau <- map_df(fichiers,read.csv)
 ```
 
-# data.frames on input *and * output
+# Tableaux de données en entrée et en sortie
 
-To illustrate this case, let's imagine a scenario where you have explored the relationship between body weight and brain weight in mammals.
+Mise en situation : nous avons exploré la relation entre le poids du corps et le poids du cerveau des mammifères
+
 
 ```r
 library(ggplot2)
@@ -696,7 +703,7 @@ The following objects are masked from 'package:base':
 ```r
 data(msleep)
 
-msleep %>%
+msleep %>% 
   ggplot(aes(x = bodywt, y = brainwt)) +
   geom_point(aes(color = vore)) +
   scale_x_log10() +
@@ -707,12 +714,11 @@ msleep %>%
 Warning: Removed 27 rows containing missing values (geom_point).
 ```
 
-![](/assets/FunctionsIteration_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
+![](PresentationFR_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
 
-You would now like to run a regression per group to compare the
-parameter values.
+On voudrait maintenant rouler une régression par groupe pour comparer les paramètres
 
-First, let's see how we'd do that for a single group, the herbivores :
+Essayons de voir comme on l'aurait fait pour un seul groupe : 
 
 ```r
 x <- msleep %>% filter(vore == "herbi")
@@ -726,8 +732,8 @@ Call:
 lm(formula = log(brainwt) ~ log(bodywt), data = x)
 
 Residuals:
-     Min       1Q   Median       3Q      Max
--0.79504 -0.28970 -0.08648  0.19723  1.12209
+     Min       1Q   Median       3Q      Max 
+-0.79504 -0.28970 -0.08648  0.19723  1.12209 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
@@ -738,11 +744,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.4864 on 18 degrees of freedom
   (12 observations deleted due to missingness)
-Multiple R-squared:  0.9713,	Adjusted R-squared:  0.9697
+Multiple R-squared:  0.9713,	Adjusted R-squared:  0.9697 
 F-statistic: 609.1 on 1 and 18 DF,  p-value: 2.484e-15
 ```
 
-It is not necessarily simple to extract the slope estimate from this model object to put them in a data.frame object.
+Si on veut aller récupérer ces chiffres pour les mettre dans un tableau,
+ce n'est pas nécssairement simple
+
 
 ```r
 str(m)
@@ -786,7 +794,7 @@ List of 13
   .. ..- attr(*, "order")= int 1
   .. ..- attr(*, "intercept")= int 1
   .. ..- attr(*, "response")= int 1
-  .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv>
+  .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
   .. ..- attr(*, "predvars")= language list(log(brainwt), log(bodywt))
   .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. ..- attr(*, "names")= chr [1:2] "log(brainwt)" "log(bodywt)"
@@ -803,7 +811,7 @@ List of 13
   .. .. ..- attr(*, "order")= int 1
   .. .. ..- attr(*, "intercept")= int 1
   .. .. ..- attr(*, "response")= int 1
-  .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv>
+  .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
   .. .. ..- attr(*, "predvars")= language list(log(brainwt), log(bodywt))
   .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. .. ..- attr(*, "names")= chr [1:2] "log(brainwt)" "log(bodywt)"
@@ -817,10 +825,12 @@ m$coefficients
 ```
 
 ```
-(Intercept) log(bodywt)
-  -4.942134    0.742122
+(Intercept) log(bodywt) 
+  -4.942134    0.742122 
 ```
-In the `tidyverse`, there is a package made especially for such situations, to extract numbers from models and put them in a data.frame.
+Dans le `tidyverse` il existe un package fait exprès pour extraire les résultats
+des modèles et les mettre sous forme de tableau
+
 
 ```r
 library(broom)
@@ -835,7 +845,7 @@ tidy(m)
 2 log(bodywt)    0.742    0.0301      24.7 2.48e-15
 ```
 
-You could also have been interest in model-level numbers instead :
+On aurait pu aussi s'intéresser aux résultats du modèle plutôt qu'au paramètres
 
 ```r
 glance(m)
@@ -849,11 +859,12 @@ glance(m)
 # … with 2 more variables: deviance <dbl>, df.residual <int>
 ```
 
-Now we have in hand everything we need to calculate a regression model per group
+
+Maintenant, on a tout ce qu'il faut pour calculer une régression par groupe
 
 ```r
-resultats <- msleep %>%
-  group_by(vore) %>%
+resultats <- msleep %>% 
+  group_by(vore) %>% 
   group_modify(function(x,...){
     m <- lm(log(brainwt)~log(bodywt),data = x)
     tidy(m)
@@ -878,17 +889,19 @@ resultats
 10 <NA>    log(bodywt)    0.837    0.194       4.33 2.28e- 2
 ```
 
-See that, just as when building functions, we made sure to test our code
-before integrating in the iteration code
+Voyez que comme pour les boucles, on s'est assuré de faire fonctionner notre
+code avant de l'intégrer au processus d'itéation
 
-You can then vizualize all these coefficients in a single, synthetic plot.
+On peut maintenant se faire une belle visualisation de tout celà en une seule 
+commande
 
 ```r
-resultats %>%
+resultats %>% 
   ggplot(aes(x = vore, y = estimate)) +
   geom_point() +
   geom_linerange(aes(ymin = estimate-std.error, ymax = estimate+std.error)) +
   facet_wrap(~term, scale = "free_y", ncol = 1)
 ```
 
-![](/assets/FunctionsIteration_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
+![](PresentationFR_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
+
