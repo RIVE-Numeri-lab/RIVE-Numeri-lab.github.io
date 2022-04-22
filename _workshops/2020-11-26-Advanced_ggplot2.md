@@ -14,7 +14,7 @@ output:
     toc: yes
     self_contained: true
 redirect_from: "/workshops/Advanced_ggplot2"
-fr_url: "/fr/ateliers"
+fr_url: "/fr/ateliers/Advanced_ggplot2"
 ---
 # Advanced ggplot2 - Solutions to everyday problems
 #### Charles Martin
