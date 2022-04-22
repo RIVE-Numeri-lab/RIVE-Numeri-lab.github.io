@@ -1,41 +1,38 @@
 ---
-thumbnail: Rlogo.png
-category: Data synthesis
-title: "Meta-analysis"
-author: "Charles Martin"
 layout: default
-rbloggers: true
-lang: en
+category: Stats
+thumbnail: Rlogo.png
+title: "Méta-analyses"
+author: "Charles Martin"
+date: "December 2019"
 output:
   html_document:
     highlight: haddock
     keep_md: yes
-    self_contained: no
     theme: readable
     toc: yes
-redirect_from: "/workshops/MetaAnalysis"
-fr_url: "/fr/ateliers/MetaAnalyses"
+en_url: "/en/workshops/MetaAnalysis"
 ---
-# Meta-analysis
+# Méta-analyses
 #### Charles Martin
-#### December 2019
+#### Décembre 2019
 
 ```r
 library(dplyr) # data manipulation
-library(ggplot2) # visualizations
-library(metafor) # ready-made meta-analysis code
-library(gt) # nice tables
+library(ggplot2) # visualisations
+library(metafor) # meta analyses déjà prêtes
+library(gt) # beaux tableaux
 ```
-# Basic principle
-## Scientific question
-Does playing Mozart to newborns improves their IQ?
+# Principe
+## Question de départ
+Question de départ : Est-ce que jouer du Mozart aux nouveaux-nés augmente leur QI?
 
-You look a bit around and find 3 studies :
+Vous trouvez 3 études :
 
 ```r
 etudes <- data.frame(
   article = c("A","B","C"),
-  y = c(0.5, 0.01, -0.1), # 0 no effect, <0 negative effect, >0 positive effect
+  y = c(0.5, 0.01, -0.1), # 0 pas d'effet, <0 effet négatif, >0 effet positif
   n = c(10,150,12),
   v = c(0.04,0.01, 0.03) # variance
 )
@@ -46,7 +43,7 @@ etudes %>% gt
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#venbpdcebl .gt_table {
+#crthyfcstu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -65,13 +62,13 @@ etudes %>% gt
   /* table.border.top.color */
 }
 
-#venbpdcebl .gt_heading {
+#crthyfcstu .gt_heading {
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
 }
 
-#venbpdcebl .gt_title {
+#crthyfcstu .gt_title {
   color: #000000;
   font-size: 125%;
   /* heading.title.font.size */
@@ -82,7 +79,7 @@ etudes %>% gt
   border-bottom-width: 0;
 }
 
-#venbpdcebl .gt_subtitle {
+#crthyfcstu .gt_subtitle {
   color: #000000;
   font-size: 85%;
   /* heading.subtitle.font.size */
@@ -93,7 +90,7 @@ etudes %>% gt
   border-top-width: 0;
 }
 
-#venbpdcebl .gt_bottom_border {
+#crthyfcstu .gt_bottom_border {
   border-bottom-style: solid;
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
@@ -102,7 +99,7 @@ etudes %>% gt
   /* heading.border.bottom.color */
 }
 
-#venbpdcebl .gt_column_spanner {
+#crthyfcstu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
@@ -110,7 +107,7 @@ etudes %>% gt
   padding-bottom: 4px;
 }
 
-#venbpdcebl .gt_col_heading {
+#crthyfcstu .gt_col_heading {
   color: #000000;
   background-color: #FFFFFF;
   /* column_labels.background.color */
@@ -123,11 +120,11 @@ etudes %>% gt
   margin: 10px;
 }
 
-#venbpdcebl .gt_sep_right {
+#crthyfcstu .gt_sep_right {
   border-right: 5px solid #FFFFFF;
 }
 
-#venbpdcebl .gt_group_heading {
+#crthyfcstu .gt_group_heading {
   padding: 8px;
   color: #000000;
   background-color: #FFFFFF;
@@ -151,7 +148,7 @@ etudes %>% gt
   vertical-align: middle;
 }
 
-#venbpdcebl .gt_empty_group_heading {
+#crthyfcstu .gt_empty_group_heading {
   padding: 0.5px;
   color: #000000;
   background-color: #FFFFFF;
@@ -175,37 +172,37 @@ etudes %>% gt
   vertical-align: middle;
 }
 
-#venbpdcebl .gt_striped {
+#crthyfcstu .gt_striped {
   background-color: #f2f2f2;
 }
 
-#venbpdcebl .gt_from_md > :first-child {
+#crthyfcstu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#venbpdcebl .gt_from_md > :last-child {
+#crthyfcstu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#venbpdcebl .gt_row {
+#crthyfcstu .gt_row {
   padding: 10px;
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
 }
 
-#venbpdcebl .gt_stub {
+#crthyfcstu .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #A8A8A8;
   padding-left: 12px;
 }
 
-#venbpdcebl .gt_stub.gt_row {
+#crthyfcstu .gt_stub.gt_row {
   background-color: #FFFFFF;
 }
 
-#venbpdcebl .gt_summary_row {
+#crthyfcstu .gt_summary_row {
   background-color: #FFFFFF;
   /* summary_row.background.color */
   padding: 6px;
@@ -214,13 +211,13 @@ etudes %>% gt
   /* summary_row.text_transform */
 }
 
-#venbpdcebl .gt_first_summary_row {
+#crthyfcstu .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#venbpdcebl .gt_table_body {
+#crthyfcstu .gt_table_body {
   border-top-style: solid;
   /* table_body.border.top.style */
   border-top-width: 2px;
@@ -235,55 +232,55 @@ etudes %>% gt
   /* table_body.border.bottom.color */
 }
 
-#venbpdcebl .gt_footnote {
+#crthyfcstu .gt_footnote {
   font-size: 90%;
   /* footnote.font.size */
   padding: 4px;
   /* footnote.padding */
 }
 
-#venbpdcebl .gt_sourcenote {
+#crthyfcstu .gt_sourcenote {
   font-size: 90%;
   /* sourcenote.font.size */
   padding: 4px;
   /* sourcenote.padding */
 }
 
-#venbpdcebl .gt_center {
+#crthyfcstu .gt_center {
   text-align: center;
 }
 
-#venbpdcebl .gt_left {
+#crthyfcstu .gt_left {
   text-align: left;
 }
 
-#venbpdcebl .gt_right {
+#crthyfcstu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#venbpdcebl .gt_font_normal {
+#crthyfcstu .gt_font_normal {
   font-weight: normal;
 }
 
-#venbpdcebl .gt_font_bold {
+#crthyfcstu .gt_font_bold {
   font-weight: bold;
 }
 
-#venbpdcebl .gt_font_italic {
+#crthyfcstu .gt_font_italic {
   font-style: italic;
 }
 
-#venbpdcebl .gt_super {
+#crthyfcstu .gt_super {
   font-size: 65%;
 }
 
-#venbpdcebl .gt_footnote_glyph {
+#crthyfcstu .gt_footnote_glyph {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="venbpdcebl" style="overflow-x:auto;"><!--gt table start-->
+<div id="crthyfcstu" style="overflow-x:auto;"><!--gt table start-->
 <table class='gt_table'>
 <tr>
 <th class='gt_col_heading gt_center' rowspan='1' colspan='1'>article</th>
@@ -315,7 +312,7 @@ etudes %>% gt
 <!--gt table end-->
 </div><!--/html_preserve-->
 
-## A simplistic way
+## Façon bête
 
 ```r
 etudes %>%
@@ -329,8 +326,8 @@ etudes %>%
 1    0.1366667
 ```
 
-## Weighted mean
-When we talk about *mean*, we usually refer to the arithmetic mean :
+## Moyenne pondérée
+Moyenne arithmétique standard
 
 ```r
 (1 + 2 + 3 + 4) / 4
@@ -340,7 +337,7 @@ When we talk about *mean*, we usually refer to the arithmetic mean :
 [1] 2.5
 ```
 
-Implicitly, we give an equal weight to all items :
+Implicitement, on donne un poids égal à chaque élément :
 
 ```r
 (1*1 + 1*2 + 1*3 + 1*4) / (1 + 1 + 1 + 1)
@@ -350,7 +347,7 @@ Implicitly, we give an equal weight to all items :
 [1] 2.5
 ```
 
-But we could also have given more weight to some items, for example giving more weight to more recent entries
+Mais on aurait pu donner un poids plus grand à certains éléments, p. ex. donner plus de poids aux plus récents
 
 ```r
 (0.125*1 + 0.25*2 + 0.5*3 + 1*4) / (0.125 + 0.25 + 0.5 + 1)
@@ -360,7 +357,7 @@ But we could also have given more weight to some items, for example giving more 
 [1] 3.266667
 ```
 
-There's an R function that does this for us :
+Il existe une fonction de R qui nous permet de faire ce travail :
 
 ```r
 weighted.mean(
@@ -372,28 +369,30 @@ weighted.mean(
 ```
 [1] 3.266667
 ```
-## A meta-analysis is a weighted mean
-The most precise studies will have more weight in our calculation of the average effect.
 
-One classical way to do this is to use the inverse of variance as weights.
+## La méta-analyse est une moyenne pondérée
+Plus une étude est précise, plus son poids sera élevé dans le calcul de l'effet moyen
 
-### IMPORTANT CAVEAT : there are two definitions of *variance*
+Une des façons classiques est d'utiliser comme poids l'inverse de la variance.
 
-The classical definition is usually defined on a sample as  :
+### ATTENTION : il existe deux définitions de *variance*
+
+La variance classique d'un échantillon est habituellement définie par :
 `v = sum( (x-mean(x))^2 / (length(x)-1) )`
 
-From which we can calculate the standard deviation of our sample :  : `sd = sqrt(v)`.
+Celle-ci nous permet de calculer l'écart-type d'un échantillon : `sd = sqrt(v)`.
 
-Both these measures are of descriptive nature.
+Ces deux mesures sont des statistiques descriptives.
 
-You also probably remember that, to go from the standard deviation of a sample to the standard error of a parameter (i.e. the error around its estimate), we use the formula :
+On se rapelle que, pour passer de l'écart-type d'un échantillon à l'erreur type d'un paramètre (l'erreur autour de son estimé), on utilise la formule :
+
 `se = sd / sqrt(n)`
 
-On the other hand, in the Borenstein book (see refs at bottom), when they talk about variance, they (implicitly) talk about the variance of the error around a parameter (sampling variance), which is :
+Par contre, dans le livre de Borenstein, lorsque l'on parle de variance, on parle plutôt de la variance autour d'un estimé (la variance de l'erreur, *sampling variance*), qui correspond à l'erreur type au carré :
 `v = se^2`
 
-## Calculation examples
-Knowing the above, we can now calculate our first meta-analysis :
+## Exemples de calculs
+Et donc, on peut calculer notre première méta-analyse comme ceci :
 
 ```r
 etudes %>%
@@ -406,7 +405,7 @@ etudes %>%
   effet_pondere
 1    0.06421053
 ```
-With the `metafor` package, we arrive to the exact same number :
+Avec le package `metafor`, on a le même calcul :
 
 ```r
 m <- rma(
@@ -433,63 +432,63 @@ estimate      se    zval    pval    ci.lb   ci.ub
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
-This function also gives the the confidence interval around our mean value (and some other things we'll look into later).
+Mais en plus on obtient un intervalle de confiance autour de notre valeur moyenne (et d'autres choses que l'on verra plus tard).
 
-In this case, the 95% confidence interval of our summary effect does not exclude zero, so there is not significant effect to play Mozart to newborns.
+Dans notre cas, l'intervalle de confiance à 95% de notre effet n'exlut pas zéro, donc pas d'effet significatif de jouer du Mozart aux nouveaux-nés
 
-# Selecting studies
-It is always a good idea to search for studies in a reproducible way, e.g. by searching on the Scopus database
-(https://www2.scopus.com/search/form.uri?display=basic):
+# Sélection des études
+Toujours mieux d'utiliser une méthode reproductible, p. ex. de définir une recherche dans Scopus (https://www2.scopus.com/search/form.uri?display=basic):
 `TITLE-ABS-KEY ( music  AND  ( baby  OR  toddler  OR  newborn )  AND  ( iq  OR  intelligence ) ) `
 
-Then you can export that list of studies to *freeze* your search.
+Puis exportez cette liste d'articles pour *figer* votre recherche.
 
-It is often recommended to scan the references from each these articles to make sure you have not missed anything.
+Il est souvent recommandé d'inspecter la bibliographie de chacun des articles pour être certains que vous n'avez rien manqué.
 
-Also, keep a detailed trace of all the dataset building and filtering steps. You'll need to cite these steps with their associated numbers when writing your manuscript. E.g. :
+Aussi, gardez une trace détaillée de toutes les étapes de construction et d'élimination. Vous aurez besoin de les citer dans le texte (ou sous forme la d'un diagramme PRISMA). P. ex.
 
-* &#35; of studies found in the Scopus search
-* &#35; of studies found from references
-* &#35; of duplicate studies eliminated
-* &#35; of studies eliminated by reading the abstract
-* &#35; of studies eliminated for other criteria (wrong taxonomic group, lacking necessary data, etc.)
-* &#35; of studies included in the meta-analysis
+* nb. articles trouvés dans la recherche Scopus
+* nb. articles ajoutés à partir des bibliographies
+* nb. doublons éliminés
+* nb. d'articles éliminés à la lecture du résumé
+* nb. d'articles éliminés pour d'autres critères (mauvais groupe taxonomique, manque de données, méthodes douteuses etc.)
+* nb. d'articles inclus dans la méta-analyse
+* nb. nombre de lignes/études inclus
 
-# Effect size
+# Taille de l'effet
 
-## The issue
-It is unlikely that all the studies you've found measured the target effect in exactly the same way.
+## Problématique
+Il est peu probable que l'ensemble de vos études aient mesuré l'effet recherché exactement de la même manière.
 
-In our example, we could for example find :
+Dans notre exemple, on pourrait retrouver :
 
-* a correlation between the number of music hours per week and IQ
-* a T test between groups with and without music
-* a slope between the number of songs played daily and IQ
-* a slope between the number of classic music albums owned by the parents and IQ
+* une corrélation entre le nombre d'heures de musique par semaine et le QI
+* un test de T entre les groupes avec et sans musique
+* une pente entre le nombre de pièces musicales par jour et le QI
+* une pente entre le nombre de disques de musique classique possédé par les parents et le QI
 
-Correlations are scale independent, but for the other measurements, the numbers found are highly dependent on the scale of the X variable, and will need to be standardized for comparison purposes.
+Une mesure comme la corrélation ne possède pas d'échelle, mais les autres sont dépendantes de la façon dont elles ont été mesurées et devront être standardisées pour être comparées
 
-## Standardizing effect sizes
-There are dozens of ways to standardize effect sizes, depending on the nature of the data at hand (mean differences, slopes, proportions, etc.)
+## Standardisation de la taille des effets
+Il existe des dizaines de façons de standardiser les mesures, selon que l'on parle de différences de moyennes, de pentes, de comparaisons de proportions, etc.
 
-In all cases, the idea is to find a measure that can remove scale differences.
+Dans tous les cas, l'idée est de trouver une mesure qui fait abstraction de l'échelle.
 
-E.g. for mean differences, one often uses Cohen's *d*. Its calculate looks a lot like the calculation for a *t* statistic :
+P. ex., pour les différences de moyennes, on utilise souvent le *d* de Cohen. Son calcul ressemble beaucoup au calcul de la statistique de *t* :
 
 `d = (x1 - x2) / S_within`
 
-A variance (*sensu* Borenstein et al. 2011) formula is also associated with each of these standardized effect sizes.
+Pour chacune de ces mesures de taille d'effet, il existe aussi une mesure de variance (*sensu* Borenstein et al. 2011).
 
 `V_d = (n1 + n2 / n1*n2) + (d^2 / 2*(n1+n2))`
 
-It can also happen that some measures, although on a standardized scale, also need to be converted because their distributional properties are not appropriate for meta-analysis calculations. E.g. Pearson's *r* must be converted into Fisher's *z* because *r*'s variance is not homogenous across the spectrum of values.
+Parfois, certaines mesures doivent aussi être converties parce que leur distribution ne convient pas à des calculs de méta-analyse. P. ex., le *r* de la corrélation doit être convertit en *z* de Fisher, parce que la variance de *r* n'est pas homogène à travers le spectre des valeurs.
 
 `z = 0.5 * log((1+r)/(1-r))`
 
 `V_z = 1/(n-3)`
 
-## Automation
-The `metafor` package includes a function which can facilitate effect size calculations. It is nevertheless limited to one type of conversion per call (e.g. from correlation to Fisher's *z*) :
+## Automatisation
+Il existe une fonction dans metafor qui permet de faciliter le calcul des effets standardisés. Par contre, il faut que toutes nos mesures soient d'un même type (p. ex. toutes des corrélations)
 
 ```r
 etudes2 <- data.frame(
@@ -510,7 +509,7 @@ escalc(
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tatvyaxmro .gt_table {
+#nytxbtsfzy .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -529,13 +528,13 @@ escalc(
   /* table.border.top.color */
 }
 
-#tatvyaxmro .gt_heading {
+#nytxbtsfzy .gt_heading {
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
 }
 
-#tatvyaxmro .gt_title {
+#nytxbtsfzy .gt_title {
   color: #000000;
   font-size: 125%;
   /* heading.title.font.size */
@@ -546,7 +545,7 @@ escalc(
   border-bottom-width: 0;
 }
 
-#tatvyaxmro .gt_subtitle {
+#nytxbtsfzy .gt_subtitle {
   color: #000000;
   font-size: 85%;
   /* heading.subtitle.font.size */
@@ -557,7 +556,7 @@ escalc(
   border-top-width: 0;
 }
 
-#tatvyaxmro .gt_bottom_border {
+#nytxbtsfzy .gt_bottom_border {
   border-bottom-style: solid;
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
@@ -566,7 +565,7 @@ escalc(
   /* heading.border.bottom.color */
 }
 
-#tatvyaxmro .gt_column_spanner {
+#nytxbtsfzy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
@@ -574,7 +573,7 @@ escalc(
   padding-bottom: 4px;
 }
 
-#tatvyaxmro .gt_col_heading {
+#nytxbtsfzy .gt_col_heading {
   color: #000000;
   background-color: #FFFFFF;
   /* column_labels.background.color */
@@ -587,11 +586,11 @@ escalc(
   margin: 10px;
 }
 
-#tatvyaxmro .gt_sep_right {
+#nytxbtsfzy .gt_sep_right {
   border-right: 5px solid #FFFFFF;
 }
 
-#tatvyaxmro .gt_group_heading {
+#nytxbtsfzy .gt_group_heading {
   padding: 8px;
   color: #000000;
   background-color: #FFFFFF;
@@ -615,7 +614,7 @@ escalc(
   vertical-align: middle;
 }
 
-#tatvyaxmro .gt_empty_group_heading {
+#nytxbtsfzy .gt_empty_group_heading {
   padding: 0.5px;
   color: #000000;
   background-color: #FFFFFF;
@@ -639,37 +638,37 @@ escalc(
   vertical-align: middle;
 }
 
-#tatvyaxmro .gt_striped {
+#nytxbtsfzy .gt_striped {
   background-color: #f2f2f2;
 }
 
-#tatvyaxmro .gt_from_md > :first-child {
+#nytxbtsfzy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tatvyaxmro .gt_from_md > :last-child {
+#nytxbtsfzy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tatvyaxmro .gt_row {
+#nytxbtsfzy .gt_row {
   padding: 10px;
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
 }
 
-#tatvyaxmro .gt_stub {
+#nytxbtsfzy .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #A8A8A8;
   padding-left: 12px;
 }
 
-#tatvyaxmro .gt_stub.gt_row {
+#nytxbtsfzy .gt_stub.gt_row {
   background-color: #FFFFFF;
 }
 
-#tatvyaxmro .gt_summary_row {
+#nytxbtsfzy .gt_summary_row {
   background-color: #FFFFFF;
   /* summary_row.background.color */
   padding: 6px;
@@ -678,13 +677,13 @@ escalc(
   /* summary_row.text_transform */
 }
 
-#tatvyaxmro .gt_first_summary_row {
+#nytxbtsfzy .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#tatvyaxmro .gt_table_body {
+#nytxbtsfzy .gt_table_body {
   border-top-style: solid;
   /* table_body.border.top.style */
   border-top-width: 2px;
@@ -699,55 +698,55 @@ escalc(
   /* table_body.border.bottom.color */
 }
 
-#tatvyaxmro .gt_footnote {
+#nytxbtsfzy .gt_footnote {
   font-size: 90%;
   /* footnote.font.size */
   padding: 4px;
   /* footnote.padding */
 }
 
-#tatvyaxmro .gt_sourcenote {
+#nytxbtsfzy .gt_sourcenote {
   font-size: 90%;
   /* sourcenote.font.size */
   padding: 4px;
   /* sourcenote.padding */
 }
 
-#tatvyaxmro .gt_center {
+#nytxbtsfzy .gt_center {
   text-align: center;
 }
 
-#tatvyaxmro .gt_left {
+#nytxbtsfzy .gt_left {
   text-align: left;
 }
 
-#tatvyaxmro .gt_right {
+#nytxbtsfzy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tatvyaxmro .gt_font_normal {
+#nytxbtsfzy .gt_font_normal {
   font-weight: normal;
 }
 
-#tatvyaxmro .gt_font_bold {
+#nytxbtsfzy .gt_font_bold {
   font-weight: bold;
 }
 
-#tatvyaxmro .gt_font_italic {
+#nytxbtsfzy .gt_font_italic {
   font-style: italic;
 }
 
-#tatvyaxmro .gt_super {
+#nytxbtsfzy .gt_super {
   font-size: 65%;
 }
 
-#tatvyaxmro .gt_footnote_glyph {
+#nytxbtsfzy .gt_footnote_glyph {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="tatvyaxmro" style="overflow-x:auto;"><!--gt table start-->
+<div id="nytxbtsfzy" style="overflow-x:auto;"><!--gt table start-->
 <table class='gt_table'>
 <tr>
 <th class='gt_col_heading gt_center' rowspan='1' colspan='1'>etude</th>
@@ -776,27 +775,28 @@ escalc(
 <!--gt table end-->
 </div><!--/html_preserve-->
 
-## Uniformization
-One of the issue you'll often face is that you'll find many different measurement types (correlations, mean differences, etc.) and that each of these will convert to a different standardize effect size. You'll often come to a point where you have Cohen's *d*s, Fisher's *z*s and Hedge's *g* to analyze together.
+## Uniformisation
+Un des problèmes auquel on fait souvent face, est que nous avons plusieurs types de mesures (corrélations, différences de moyennes, etc.) et que la taille d'effet standardisée pour chacun peut être différente. On arrive souvent à un point où on a des *d* de Cohen, des *z* des Fisher, des *g* de Hedges etc.
 
-There is a whole chapter in the Borenstein book dedicated solely to the conversions between effect sizes. You just need to patiently look them up.
+Il existe tout un chapitre du livre de Borenstein consacré uniquement aux conversions entre les tailles d'effet, tous les calculs sont là!
 
-## Classic ecological issues
-In ecology, you'll often be studying phenomenons that are described by slopes. These slopes will need to be manually converted to be included in the meta-analysis, and this conversion is not necessarily simple.
+## Problématiques typiques à l'écologie
+Si vous étudiez des pentes, vous devrez les convertir manuellement en corrélations avant leur inclusion. Ce n'est pas nécéssairement simple.
 
-If you have access to the raw that, know that the formula to calculate a regression slope is :
+Si vous avez accès aux données brutes, sachant que la formule de la pente est :
 `slope = r*(Sy / Sx)`
-you can convert a slope to a correlation by dividing it by the `Sy/Sx` ratio.
+on peut convertir une pente en corrélation en la divisant par le ratio `Sy/Sx`
 
-Otherwise, if you don't have access to standard deviations, it is also possible to calculate standardized from *t* values and *df*. Equations are in a hard to read paper from 1982 (Friedman, Simplified determination of statistical power, magnitude of effect and research sample sizes. Educ Psychol Meas 42:521–526).
+Par contre, si vous n'avez pas accès aux écarts-types, il est possible d'y arriver par un chemin plus tortueux incluant la valeur de *t* et les degrés de liberté. Les équations sont dans un article difficile à trouver de 1982. Vous passerez me voir rendu là...
 
-## For our example
+## Pour notre exemple
 
-The data used in our study were already in a standardized effect size : the log-response ratio.
+Les données utilisées pour notre étude de cas étaient déjà prêtes dans un effet
+standardisé, le log-response ratio.
 
-I.e. the log of the ratio between with and without music responses
+Autrement dit, le log du ratio entre les réponses avec et sans musique.
 
-Without the log transformation, our numbers would have looked like :
+Sans le log, nos chiffres auraient ressemblé à
 
 ```r
 etudes %>%
@@ -808,7 +808,7 @@ etudes %>%
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#huarfryrtv .gt_table {
+#wctoayqwwr .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -827,13 +827,13 @@ etudes %>%
   /* table.border.top.color */
 }
 
-#huarfryrtv .gt_heading {
+#wctoayqwwr .gt_heading {
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
 }
 
-#huarfryrtv .gt_title {
+#wctoayqwwr .gt_title {
   color: #000000;
   font-size: 125%;
   /* heading.title.font.size */
@@ -844,7 +844,7 @@ etudes %>%
   border-bottom-width: 0;
 }
 
-#huarfryrtv .gt_subtitle {
+#wctoayqwwr .gt_subtitle {
   color: #000000;
   font-size: 85%;
   /* heading.subtitle.font.size */
@@ -855,7 +855,7 @@ etudes %>%
   border-top-width: 0;
 }
 
-#huarfryrtv .gt_bottom_border {
+#wctoayqwwr .gt_bottom_border {
   border-bottom-style: solid;
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
@@ -864,7 +864,7 @@ etudes %>%
   /* heading.border.bottom.color */
 }
 
-#huarfryrtv .gt_column_spanner {
+#wctoayqwwr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
@@ -872,7 +872,7 @@ etudes %>%
   padding-bottom: 4px;
 }
 
-#huarfryrtv .gt_col_heading {
+#wctoayqwwr .gt_col_heading {
   color: #000000;
   background-color: #FFFFFF;
   /* column_labels.background.color */
@@ -885,11 +885,11 @@ etudes %>%
   margin: 10px;
 }
 
-#huarfryrtv .gt_sep_right {
+#wctoayqwwr .gt_sep_right {
   border-right: 5px solid #FFFFFF;
 }
 
-#huarfryrtv .gt_group_heading {
+#wctoayqwwr .gt_group_heading {
   padding: 8px;
   color: #000000;
   background-color: #FFFFFF;
@@ -913,7 +913,7 @@ etudes %>%
   vertical-align: middle;
 }
 
-#huarfryrtv .gt_empty_group_heading {
+#wctoayqwwr .gt_empty_group_heading {
   padding: 0.5px;
   color: #000000;
   background-color: #FFFFFF;
@@ -937,37 +937,37 @@ etudes %>%
   vertical-align: middle;
 }
 
-#huarfryrtv .gt_striped {
+#wctoayqwwr .gt_striped {
   background-color: #f2f2f2;
 }
 
-#huarfryrtv .gt_from_md > :first-child {
+#wctoayqwwr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#huarfryrtv .gt_from_md > :last-child {
+#wctoayqwwr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#huarfryrtv .gt_row {
+#wctoayqwwr .gt_row {
   padding: 10px;
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
 }
 
-#huarfryrtv .gt_stub {
+#wctoayqwwr .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #A8A8A8;
   padding-left: 12px;
 }
 
-#huarfryrtv .gt_stub.gt_row {
+#wctoayqwwr .gt_stub.gt_row {
   background-color: #FFFFFF;
 }
 
-#huarfryrtv .gt_summary_row {
+#wctoayqwwr .gt_summary_row {
   background-color: #FFFFFF;
   /* summary_row.background.color */
   padding: 6px;
@@ -976,13 +976,13 @@ etudes %>%
   /* summary_row.text_transform */
 }
 
-#huarfryrtv .gt_first_summary_row {
+#wctoayqwwr .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#huarfryrtv .gt_table_body {
+#wctoayqwwr .gt_table_body {
   border-top-style: solid;
   /* table_body.border.top.style */
   border-top-width: 2px;
@@ -997,55 +997,55 @@ etudes %>%
   /* table_body.border.bottom.color */
 }
 
-#huarfryrtv .gt_footnote {
+#wctoayqwwr .gt_footnote {
   font-size: 90%;
   /* footnote.font.size */
   padding: 4px;
   /* footnote.padding */
 }
 
-#huarfryrtv .gt_sourcenote {
+#wctoayqwwr .gt_sourcenote {
   font-size: 90%;
   /* sourcenote.font.size */
   padding: 4px;
   /* sourcenote.padding */
 }
 
-#huarfryrtv .gt_center {
+#wctoayqwwr .gt_center {
   text-align: center;
 }
 
-#huarfryrtv .gt_left {
+#wctoayqwwr .gt_left {
   text-align: left;
 }
 
-#huarfryrtv .gt_right {
+#wctoayqwwr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#huarfryrtv .gt_font_normal {
+#wctoayqwwr .gt_font_normal {
   font-weight: normal;
 }
 
-#huarfryrtv .gt_font_bold {
+#wctoayqwwr .gt_font_bold {
   font-weight: bold;
 }
 
-#huarfryrtv .gt_font_italic {
+#wctoayqwwr .gt_font_italic {
   font-style: italic;
 }
 
-#huarfryrtv .gt_super {
+#wctoayqwwr .gt_super {
   font-size: 65%;
 }
 
-#huarfryrtv .gt_footnote_glyph {
+#wctoayqwwr .gt_footnote_glyph {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="huarfryrtv" style="overflow-x:auto;"><!--gt table start-->
+<div id="wctoayqwwr" style="overflow-x:auto;"><!--gt table start-->
 <table class='gt_table'>
 <tr>
 <th class='gt_col_heading gt_center' rowspan='1' colspan='1'>article</th>
@@ -1081,12 +1081,12 @@ etudes %>%
 <!--gt table end-->
 </div><!--/html_preserve-->
 
-Which can be read as : 64% increase, 1% increase and 10% decrease of IQ.
+Autrement dit, 64% d'augmentation, 1% d'augmentation et 10% de diminution du QI
 
-Such ratios, although easy to understand, become a problem once entered into a model because of asymmetries. When the denominator of the ratio is larger, the ratio can take almost any value and get into real large numbers, although if the denominator of the ratio is smaller, the ratio is "stuck" between 0 and 1 :
+Par contre, le problème lorsque l'on modélise de tels ratios est que la partie <1 est "coincée" entre 0 et 1, alors que la partie >1 peut exploser dans des valeurs très grandes. Les mesures ne sont pas symétriques à gauche et à droite de 1
 
 ```r
-1/100 # 0.99 under 1
+1/100 # 0.99 sous 1
 ```
 
 ```
@@ -1094,16 +1094,16 @@ Such ratios, although easy to understand, become a problem once entered into a m
 ```
 
 ```r
-100/1 # 99 above 1
+100/1 # 99 au dessus de 1
 ```
 
 ```
 [1] 100
 ```
-Le log transformation can re-establish this symmetry
+La transformation log permet de rétablir cette symétrie
 
 ```r
-log(1/100) # 4.6 below zero
+log(1/100) # 4.6 sous zéro
 ```
 
 ```
@@ -1111,15 +1111,15 @@ log(1/100) # 4.6 below zero
 ```
 
 ```r
-log(100/1) # 4.6 above zero
+log(100/1) # 4.6 au-dessus de zéro
 ```
 
 ```
 [1] 4.60517
 ```
 
-# Visualization
-The classical way to visualize a meta-analysis is with what is called a forest plot :
+# Visualisation
+La visualisation classique d'une méta-analyse est ce que l'on nomme le forest plot :
 
 ```r
 forest(m, order = "obs", slab = etudes$article)
@@ -1127,13 +1127,14 @@ forest(m, order = "obs", slab = etudes$article)
 
 ![](/assets/MA_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
-Each line from the plot is a study.
-The effect size measured in each study is displayed, along with its confidence interval.
-The size of the square corresponds to the weight of the study in the calculation.
+Chaque étude est représentée par une ligne.
+L'effet mesurée dans chaque étude est affiché, avec son intervalle de confiance.
+La taille du point correspond au poids de l'étude dans le calcul.
 
-The last line is the summarized effect, as calculated above.
+La dernière ligne correspond à l'effet global, tel que calculé plus haut.
 
-Sometimes it can be helpful to back-transform the standardized effect size to a version easier to interpret :
+Il peut parfois être utile de convertir la taille de l'effet à l'inverse (*back-transform*) pour retourner à une version plus facile à interpréter.
+
 
 ```r
 exp(0.06 - 0.09)
@@ -1151,14 +1152,14 @@ exp(0.06 + 0.22)
 [1] 1.32313
 ```
 
-So, the summarized effect size is somewhere between a 32% increase and a 3% decrease in IQ
+Donc, la vraie taille de l'effet est quelque part entre une augmentation de 32% et une diminution de 3% (95% des chances que...)
 
-# The publication bias
+# Le fameux biais de publication
 
-One issue that needs to be addressed when doing a meta-analysis is that it could happen that results that did not fit the expected results were simply not published.
+Un des problèmes avec une méta-analyse basée sur la littérature est qu'il pourrait arriver que les études contraires aux résultats communément attendus n'aient pas été publiées, qu'ils soient restées dans les tiroirs.
 
-## Visualization
-One way to visualize this issue is with a funnel plot.
+## Visualisation
+Une des façons de visualiser ce problème est grâce au diagramme en entonnoir (*funnel plot*)
 
 ```r
 funnel(m)
@@ -1166,12 +1167,14 @@ funnel(m)
 
 ![](/assets/MA_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
-On the *y* axis, you have the precision of each study and on the *x* axis, the effect size reported.
-Normally, the more precise a study is, the closer it should be to the synthesized effect. At the bottom of the funnel, the less precise studies should vary more around the mean.
+En y, on trouve la précision de chaque étude, et en x, l'estimé comme tel. Normalement, plus une étude est précise, plus elle devrait être près de la moyenne globale. Dans le bas de l'entonnoir, les études les moins précises devraient varier plus autour de la moyenne.
 
-You need to be particularly wary of publication bias if points in this plot are strongly asymmetrical.
+Il faut être particulièrement vigilant si ce diagramme n'est pas symétrique (e.g. si il y a beaucoup plus de points d'un côté que de l'autre).
 
-## Statistical tests
+## Tests statistiques
+Il existe aussi des tests statistiques pour valider nos impressions du *funnel plot*.
+
+
 ```r
 regtest(m, model = "lm", predictor = "sei")
 ```
@@ -1185,9 +1188,7 @@ predictor: standard error
 
 test for funnel plot asymmetry: t = 0.6405, df = 1, p = 0.6373
 ```
-
-The classic Egger test, in short, is a regression of the estimate on the standard error.
-
+Le test de Egger classique est essentiellement une régression de l'estimé en fonction de l'erreur type
 (`lm(y~sqrt(v), weights = 1/v, data = etudes)`)
 
 ```r
@@ -1199,11 +1200,11 @@ etudes %>%
 
 ![](/assets/MA_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
 
-There are other ways to test for publication bias, for example with sensitivity analyses.
+Il existe d'autres façons de tester pour le biais de publication, par exemple par des analyses de sensibilité.
 
-One of these methods is the Trim & Fill procure. An algorithm estimates how many studies are missing on one side of the analysis, and then recalculates our summarized effect by adding *ghost studies*. This new estimate **must not be interpreted as a more valid result**. It must only be used to evaluate the sensitivity of our results.
+Une de ces méthodes est le Trim & Fill. L'algorithme estime combien d'études sont manquantes d'un côté de l'analyse, puis recalcule notre estimé en ajoutant ces *études fantômes*. Ce nouvel estimé ne doit pas être interprété comme étant plus valide que l'original, il doit être uniquement utilisé pour évaluer la robustesse/sensibilité de nos résultats.
 
-(in this example, we are using another dataset because there are not missing studies in our example)
+(exemple avec un autre jeu de données, puisqu'il n'y en a pas de manquantes de le nôtre)
 
 ```r
 res <- rma(yi, vi, data = dat.hackshaw1998)
@@ -1240,25 +1241,25 @@ estimate      se    zval    pval   ci.lb   ci.ub
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-# Random effects models?
 
-Up until now, we have described a simple meta-analysis model, where we assumed that, in the absence of measurement noise, all studies would have given exactly the same result.
+# Modèle à effets fixes vs. modèle à effets aléatoire
 
-It is possible (and almost always the case in ecology), that the effect size depends on the context in which the study was performed or on the group of individuals selected.
+Jusqu'ici, nous avons exploré un modèle simple de méta-analyse, où nous assumions qu'en l'absence d'erreur (de bruit, etc.), toutes les études auraient dû nous donner le même résultat.
 
-In our Mozart example, one could easily imagine that the effect of classic music might be context sensitive, depending on the cultural context.
+Il est possible par contre (et c'est presque toujours le cas en écologie), que la taille de l'effet dépende en fait du contexte dans lequel l'étude a été effectuée ou du groupe d'individus étudiés.
 
-If it is the case, we are not looking for an absolute and identical effect size anymore. We assume that there exists a population of possible effect sizes, which depend on measurement the context. The error (or noise) on our effect size then has two sources : the internal error in each study, and the between study variability. In this case, we need to apply a random effects model.
+Dans notre exemple de l'effet de Mozart, on pourrait envisager un scénario où l'effet de la musique soit p. ex. différent selon le contexte culturel.
+
+À ce moment, nous ne cherchons plus un seul effet synthétique absolu, identique à toutes les études. Nous assumons qu'il existe une population d'effets possibles qui dépendent du contexte. L'erreur dans l'effet mesuré provient alors de deux sources : l'erreur interne à chaque étude, et la variabilité entre les études (tau). On doit alors appliquer un modèle avec effets aléatoires.
 
 ## Implications
 
-The random effects model adds an additional variance component, which must also be estimated. Model calculations are then more complex and must use maximum likelihood methods, instead of ordinary least squares in the fixed effects model.
+Le modèle à effets aléatoires ajoute une composante de variance supplémentaire qui doit être estimée dans le modèle (tau^2). Le calcul est donc plus complexe et doit passer par la vraisemblance maximale (et les possibles erreurs de convergence etc.) alors que le modèle fixe peut être résolu par la méthode des moindres carrés.
 
-The important thing to consider is that, the weight given to each study will be calculated differently in random effects models. Since our model must be representative of the between-study variability, it must be more balanced in its calculation. Even if a study is very imprecise, the information it brings about between-study variability must still be accounted for (and vice versa, a highly precise study will have a lower weight, because it must not completely erase the between-study differences)
+Plus important conceptuellement, le poids donné à chaque étude sera différent dans le modèle à effets aléatoires. Puisque notre modèle doit être représentatif de la variabilité inter-études, il doit être plus équilibré dans son attribution des poids. Même si une étude est peu précise, l'information qu'elle apporte quand à la variabilité inter-études doit tout de même être prise en compte (et vice-versa, une étude très précise devra avoir un poids moins grand pour ne pas faire complètement disparaître l'effet des autres)
 
-
-## Calculations
-In the `metafor` package, random effects models are adjusted with the same function as fixed effects, only removing the `method = 'FE'` argument.
+## Calcul
+Dans le package `metafor`, les modèles à effets aléatoires sont ajustés avec la même fonction que le modèle à effets fixes, mais en ne spécifiant pas la méthode `FE`
 
 ```r
 m2 <- rma(
@@ -1290,13 +1291,14 @@ estimate      se    zval    pval    ci.lb   ci.ub
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-This result is very close to the original one, but more conservative. I.e. it is less influenced by the highly precise study.
+Le résultat est semblable au précédent, mais il est plus conservateur, moins influencé par la grande étude très précise.
 
-The results output now contains additional information. Tau^2 is the between-study variance. I^2 is the proportion of the total variance that comes from the between-study heterogeneity. The higher this number, the more different the studies are from one another.
+Notre tableau des résultats contient maintenant des informations supplémentaires. Tau^2 est la variance inter-études (qui a peu d'importance en absolu).
+I^2 par contre est beaucoup plus intéressant, puisqu'il s'agit de la proportion de la variabilité totale du jeu de données qui provient de l'hétérogénéité inter-études. Plus ce chiffre est élevé, plus les études sont différentes entre elles.
 
-The output also contains a test for heterogeneity, which determines if the between-study heterogeneity is statistically significant or now. Although intuitively one could use this value to determine if we need a random effects model or not, most authors recommend that, if you have theoretical reasons to use a random effects model, just apply that model, disregarding the results from this test.
+Nos résultats (comme les précédents) fournissent le résultat d'un test d'hétérogénéité, qui nous informe si l'hétérogénéité est significative ou non. On pourrait être tenté de se baser sur ce test pour savoir si on doit utiliser un modèle à effets aléatoires ou non, mais comme pour les effets aléatoires dans un modèle de régression, si conceptuellement on devrait mettre l'effet aléatoire, il est fortement recommandé de simplement l'ajouter au modèle.
 
-# References
+# Références
 Borenstein, M., Hedges, L. V., Higgins, J. P., & Rothstein, H. R. (2011). Introduction to meta-analysis. John Wiley & Sons.
 
-Viechtbauer, W. (2010). Conducting meta-analyses in R with the metafor package. Journal of Statistical Software, 36(3), 1-48. URL: http://www.jstatsoft.org/v36/i03/
+Viechtbauer, W. (2010). Conducting meta-analyses in R with the metafor package. Journal of Statistical Software, 36(3), 1-48. URL: [http://www.jstatsoft.org/v36/i03/](http://www.jstatsoft.org/v36/i03/)
