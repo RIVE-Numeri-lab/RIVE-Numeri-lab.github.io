@@ -13,7 +13,7 @@ output:
     theme: readable
     toc: yes
 redirect_from: "/workshops/RapidDataManip"
-fr_url: "/fr/ateliers"
+fr_url: "/fr/ateliers/RapidDataManip"
 ---
 # Fast data manipulation with dplyr and its allies
 #### Charles Martin
