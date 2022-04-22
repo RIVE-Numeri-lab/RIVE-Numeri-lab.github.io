@@ -14,7 +14,7 @@ output:
     theme: readable
     toc: yes
 redirect_from: "/workshops/RapidDataViz"
-fr_url: "/fr/ateliers"
+fr_url: "/fr/ateliers/RapidDataViz"
 ---
 
 # Rapid data visualization with ggplot2
