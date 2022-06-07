@@ -12,7 +12,7 @@ output:
     keep_md: yes
     theme: readable
 redirect_from: "/workshops/EarthEngine"
-fr_url: "/fr/ateliers"
+fr_url: "/fr/ateliers/EarthEngine"
 ---
 
 # Introduction to Google Earth Engine
