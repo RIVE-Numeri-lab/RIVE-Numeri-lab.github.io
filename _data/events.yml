@@ -59,3 +59,34 @@
 - title : "PARAFAC partie 2 : Analyse PARAFAC et validation de modèle"
   date : 2022-05-31
   description : J. Dormoy-Boulanger
+
+- title : "Introduction à Python"
+  date : 2022-10-13
+  description : C. Martin 
+- title : "Nettoyage de données et imputation"
+  date : 2022-11-10
+  description : J. Dormoy-Boulanger
+- title : "Fonctions et itérations"
+  date : 2022-12-08
+  description : L. Provençal
+- title : "Numérilab spécial sur le modèles mixtes"
+  date : 2022-12-14
+  description : M. Pépino
+- title : "Méta-analyses"
+  date : 2023-01-19
+  description : J. Dormoy-Boulanger
+- title : "Google EarthEngine"
+  date : 2023-02-09
+  description : E. Hamel-Jomphe
+- title : "Leaflet"
+  date : 2023-03-09
+  description : À confirmer
+- title : "Google Trends et analyses verbatim (à confirmer)"
+  date : 2023-04-06
+  description : À déterminer
+- title : "Analyses de mouvement (à confirmer)"
+  date : 2023-05-04
+  description : À déterminer
+- title : "Analyses bioinformatiques (dada2) et ordinations canoniques"
+  date : 2023-06-01
+  description : R. Giguère-Tremblay
