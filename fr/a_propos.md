@@ -11,22 +11,21 @@ Les ateliers sont développés par et pour les étudiant.e.s gradué.e.s du RIVE
 Faire rayonner le RIVE par la création de ce site web, récapitulant l'ensemble des méthodes enseignées
 durant les ateliers, ainsi que celles développées par les membres du RIVE pendant leurs activités de recherche.
 
-## Équipe (2021-2022)
+## Équipe (2022-2023)
 ### Professeurs :
 - Vincent Maire
 - Marco Rodriguez
-- Vincent Fugère
 
 ### Comité étudiant
-- Arthur de Grandpré
 - Roxanne Giguère-Tremblay
 - Jade Dormoy-Boulanger
-- Riwan Leroux
+- Esteban Hamel-Jomphe
+- Laurie Provençal
 
 ### Animatrices et animateurs
-- Juliette Ortet
-- Esteban Hamel-Jomphe
+- Arthur de Grandpré
 - Lucas Deschamps
+- Alex Gélinas
 
 ### Professionnel de recherche
 - Charles Martin

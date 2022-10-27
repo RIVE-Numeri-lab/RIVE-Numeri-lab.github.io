@@ -14,18 +14,17 @@ Showcase the RIVE's abilities by the creation of this website, containing a reca
 ### Professors :
 - Vincent Maire
 - Marco Rodriguez
-- Vincent Fugère
 
 ### Student Committee
-- Arthur de Grandpré
 - Roxanne Giguère-Tremblay
 - Jade Dormoy-Boulanger
-- Riwan Leroux
+- Esteban Hamel-Jomphe
+- Laurie Provençal
 
 ### Instructors
-- Juliette Ortet
-- Esteban Hamel-Jomphe
+- Arthur de Grandpré
 - Lucas Deschamps
+- Alex Gélinas
 
 ### Research professional
 - Charles Martin
