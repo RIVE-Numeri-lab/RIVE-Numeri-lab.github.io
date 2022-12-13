@@ -71,8 +71,8 @@ Ensuite la deuxième et la troisième
 On a copié-collé 2 fois, il est temps d'écrire une fonction... 
 
 Une bonne première étape pour écrire une fonction est de déterminer de quoi 
-la fonction a besoin, quelles sont ses entrées. Ici, se sont les abondances 
-relatives dans la communautés. Appellons-les `p`, comme dans la formule
+la fonction a besoin, quelles sont ses entrées. Ici, ce sont les abondances 
+relatives dans la communautés. Appelons-les `p`, comme dans la formule
 traditionnelle
 
 ```r
@@ -95,7 +95,7 @@ p <- com2
 Remarquez que je teste immédiatement mon code, pour m'assurer que j'ai extrait
 tout ce dont il avait besoin pour fonctionner
 
-Ensuite, il ne reste qu'à emballer ce code et à indiquer à R que notre code nécéssite
+Ensuite, il ne reste qu'à emballer ce code et à indiquer à R que notre code nécessite
 un seul argument, soit `p`
 
 Si on ne mentionne rien, une fonction renvoie le résultat de la dernière commande
@@ -172,7 +172,7 @@ salutations("Charles")
 [1] "Allo Charles"
 ```
 
-Remarquez qu'il n'est pas nécéssaire de retourner une valeur ou de travailler
+Remarquez qu'il n'est pas nécessaire de retourner une valeur ou de travailler
 avec cette valeur de retour.
 
 # Les arguments
@@ -214,8 +214,8 @@ pile_face(25, 0.9)
 
 ## Vérification des valeurs passées aux arguments
 
-Lorsque l'on devient comfortable avec l'écriture de fonction et qu'on en utilise
-beaucoup, on arrive rapidement un point où ne se rapelle plus le détail du 
+Lorsque l'on devient confortable avec l'écriture de fonction et qu'on en utilise
+beaucoup, on arrive rapidement un point où ne se rappelle plus le détail du 
 code à l'intérieur de chaque fonction et ses contraintes associées.
 
 Par exemple, notre fonction de diversité de Shannon s'attend à recevoir les probabilités
@@ -265,7 +265,7 @@ Error in diversite_shannon(c(1, 5, 25, 12)): L'argument p doit contenir des prob
 ## L'argument spécial dot-dot-dot (...)
 
 Les fonctions R peuvent contenir un argument spécial nommé dot-dot-dot.
-Cet argument, si il est présent, attrape tous les arguments qui ne sont pas attrapés
+Cet argument, s'il est présent, attrape tous les arguments qui ne sont pas attrapés
 par des noms.
 
 Il peut être très pratique, entre autres, pour passer des arguments aux fonctions suivantes.
@@ -292,7 +292,7 @@ bleustogram(rlnorm(100))
 
 # Plusieurs points de retour
 
-Une fonction R peut contenir plusieurs point où elle s'arrête pour retourner
+Une fonction R peut contenir plusieurs points où elle s'arrête pour retourner
 une valeur. Il faut alors nommer ces points explicitement... 
 
 
@@ -325,9 +325,9 @@ diversite(c(0.5,0.3,0.2), indice = "simpson")
 
 Tout ce qui est créé à l'intérieur d'une fonction n'existe que dans la fonction, 
 et n'est pas accessible de l'extérieur. Les objets sont remis à zéro chaque fois que la 
-fonction est appellée.
+fonction est appelée.
 
-Par contre, une des particularités de R et que si une variable n'est pas définie à l'intérieur
+Par contre, une des particularités de R est que si une variable n'est pas définie à l'intérieur
 d'une fonction, R va aussi chercher à l'extérieur, dans l'environnement global
 pour voir si elle existe.
 
@@ -373,7 +373,7 @@ Error in eval(expr, envir, enclos): object 'd' not found
 ```
 
 C'est pourquoi il faut être très prudent lorsque l'on extrait les arguments
-nécéssaires à une fonction et qu'il est très important de redémarrer notre
+nécessaires à une fonction et qu'il est très important de redémarrer notre
 session de R de temps à autre, pour être certain qu'il n'y a pas une variable avec
 un nom dérangeant qui survivrait dans notre environnement de travail
 
@@ -382,7 +382,7 @@ un nom dérangeant qui survivrait dans notre environnement de travail
 Outre l'utilisation de fonctions, une autre technique pour réduire la duplication
 dans votre code (et donc les bug et le copier-coller) se nomme l'itération (syn. répétition)
 
-Il existe deux style d'itération principaux dans R : 
+Il existe deux styles d'itération principaux dans R : 
 la programmation impérative et la programmation fonctionnelle.
 
 La programmation impérative inclut les boucles FOR et WHILE. C'est souvent 
@@ -390,10 +390,10 @@ la façon la plus intuitive de commencer car les concepts sont explicites.
 
 Par contre, la programmation impérative implique beaucoup de code de plomberie
 qui revient d'une boucle à l'autre et qui noie l'intention réelle du code. La
-programmation fonctionelle permet d'extraire le coeur du problème, 
+programmation fonctionnelle permet d'extraire le coeur du problème, 
 et de produire du code plus dense, plus facile à lire et qui crée moins d'erreurs
 
-# Les boucle FOR
+# Les boucles FOR
 
 Prenons l'exemple de la chanson Baby Shark : https://genius.com/Pinkfong-baby-shark-lyrics
 
@@ -416,7 +416,7 @@ Une boucle FOR a 2 composantes principales :
 La première ligne qui définit combien de fois effectuer la boucle
 Le code entre `{}` qui définit ce que l'on veut répéter à chaque itération
 
-Les itérations n'ont pas nécéssairement besoin de faire un travail identique, 
+Les itérations n'ont pas nécessairement besoin de faire un travail identique, 
 elles peuvent faire chacune une action personnalisée basée sur l'indice
 
 ```r
@@ -517,8 +517,8 @@ tirages
 # La famille Map
 
 Le concept d'itération peut être attaqué d'une manière complètement différente
-avec la programmation fonctionelle. Dans R, il existe le package `purrr` contenant
-plusieurs fonctions permettant d'attaquer la programmation fonctionelle de façon
+avec la programmation fonctionnelle. Dans R, il existe le package `purrr` contenant
+plusieurs fonctions permettant d'attaquer la programmation fonctionnelle de façon
 simple et intuitive.
 
 
@@ -556,7 +556,7 @@ valeurs_absolues
 
 On s'épargne toute la plomberie sur comment faire la boucle.
 
-On peut aussi passer une fonction que l'on crée nous même, p. ex. si on voulait
+On peut aussi passer une fonction que l'on crée nous-même, p. ex. si on voulait
 faire valeur absolue + 10
 
 ```r
@@ -607,7 +607,7 @@ par un point.
 Lorsque l'on utilise les fonctions `map` sur de longues séries de données, il 
 peut arriver que notre fonction échoue pour une raison ou pour une autre. 
 Lorsqu'un problème survient, la fonction map s'arrête, avec un message d'erreur, 
-mais on ne récupère pas les résultats partiels construits jusque là 
+mais on ne récupère pas les résultats partiels construits jusque-là 
 (contrairement aux boucles FOR)
 
 Si on reprend par exemple notre fonction sur la diversité de Shannon, si
@@ -748,7 +748,7 @@ F-statistic: 609.1 on 1 and 18 DF,  p-value: 2.484e-15
 ```
 
 Si on veut aller récupérer ces chiffres pour les mettre dans un tableau,
-ce n'est pas nécssairement simple
+ce n'est pas nécessairement simple
 
 
 ```r
@@ -844,7 +844,7 @@ tidy(m)
 2 log(bodywt)    0.742    0.0301      24.7 2.48e-15
 ```
 
-On aurait pu aussi s'intéresser aux résultats du modèle plutôt qu'au paramètres
+On aurait pu aussi s'intéresser aux résultats du modèle plutôt qu'aux paramètres
 
 ```r
 glance(m)
@@ -889,9 +889,9 @@ resultats
 ```
 
 Voyez que comme pour les boucles, on s'est assuré de faire fonctionner notre
-code avant de l'intégrer au processus d'itéation
+code avant de l'intégrer au processus d'itération
 
-On peut maintenant se faire une belle visualisation de tout celà en une seule 
+On peut maintenant se faire une belle visualisation de tout cela en une seule 
 commande
 
 ```r
