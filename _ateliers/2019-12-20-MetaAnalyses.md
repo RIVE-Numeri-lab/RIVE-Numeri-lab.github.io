@@ -1137,19 +1137,19 @@ Il peut parfois être utile de convertir la taille de l'effet à l'inverse (*bac
 
 
 ```r
-exp(0.06 - 0.09)
+exp(-0.09)
 ```
 
 ```
-[1] 0.9704455
+[1] 0.9139312
 ```
 
 ```r
-exp(0.06 + 0.22)
+exp(0.22)
 ```
 
 ```
-[1] 1.32313
+[1] 1.246077
 ```
 
 Donc, la vraie taille de l'effet est quelque part entre une augmentation de 32% et une diminution de 3% (95% des chances que...)
@@ -1302,3 +1302,5 @@ Nos résultats (comme les précédents) fournissent le résultat d'un test d'hé
 Borenstein, M., Hedges, L. V., Higgins, J. P., & Rothstein, H. R. (2011). Introduction to meta-analysis. John Wiley & Sons.
 
 Viechtbauer, W. (2010). Conducting meta-analyses in R with the metafor package. Journal of Statistical Software, 36(3), 1-48. URL: [http://www.jstatsoft.org/v36/i03/](http://www.jstatsoft.org/v36/i03/)
+
+Viechtbauer, W. (2021). The metafor Package: A Meta-Analysis Package for R. [https://www.metafor-project.org/doku.php/metafor](https://www.metafor-project.org/doku.php/metafor)

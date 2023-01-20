@@ -1136,19 +1136,19 @@ The last line is the summarized effect, as calculated above.
 Sometimes it can be helpful to back-transform the standardized effect size to a version easier to interpret :
 
 ```r
-exp(0.06 - 0.09)
+exp(-0.09)
 ```
 
 ```
-[1] 0.9704455
+[1] 0.9139312
 ```
 
 ```r
-exp(0.06 + 0.22)
+exp(0.22)
 ```
 
 ```
-[1] 1.32313
+[1] 1.246077
 ```
 
 So, the summarized effect size is somewhere between a 32% increase and a 3% decrease in IQ
@@ -1300,3 +1300,5 @@ The output also contains a test for heterogeneity, which determines if the betwe
 Borenstein, M., Hedges, L. V., Higgins, J. P., & Rothstein, H. R. (2011). Introduction to meta-analysis. John Wiley & Sons.
 
 Viechtbauer, W. (2010). Conducting meta-analyses in R with the metafor package. Journal of Statistical Software, 36(3), 1-48. URL: http://www.jstatsoft.org/v36/i03/
+
+Viechtbauer, W. (2021). The metafor Package: A Meta-Analysis Package for R. [https://www.metafor-project.org/doku.php/metafor](https://www.metafor-project.org/doku.php/metafor)
