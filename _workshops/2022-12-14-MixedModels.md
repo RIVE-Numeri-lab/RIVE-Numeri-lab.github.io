@@ -78,7 +78,7 @@ ggplot(data=dat,aes(x=x,y=y))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 ### Analyses
 
@@ -134,7 +134,7 @@ ggplot(data=dat,aes(x=x,y=y))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 ### Assumptions
 
@@ -147,7 +147,7 @@ par(mfrow=c(1,2))
 plot(mod,which=c(1,2))
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 
 ## Mixed-models: varying-intercepts
@@ -206,7 +206,7 @@ ggplot(data=dat,aes(x=x,y=y,col=g))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 
 ### Analyses
@@ -369,7 +369,7 @@ ggplot(data=dat,aes(x=x,y=y,col=g))+
   theme(legend.position="none")
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 
 ### Assumptions
@@ -388,33 +388,33 @@ You can used default functions to verify this first assumption. Note that this a
 plot(mod)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 ```r
 plot(mod,g~resid(.,type="p"),abline=0)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-12-2.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-12-2.png)<!-- -->
 
 ```r
 plot(mod,resid(.,type="p")~fitted(.)|g,abline=0,lty=2)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-12-3.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-12-3.png)<!-- -->
 
 ```r
 #Normality of residuals
 qqnorm(mod,~resid(.))
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-12-4.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-12-4.png)<!-- -->
 
 ```r
 #Some idea of goodness-of-fit
 plot(mod,y~fitted(.),id=0.05,adj=-0.3)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-12-5.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-12-5.png)<!-- -->
 
 After adding residuals and fitted values to the data frame, you can also reproduce similar graphs using *ggplot*.
 
@@ -429,7 +429,7 @@ ggplot(data=dat,aes(x=fit,y=res,col=g))+
   theme(legend.position="none")
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 ```r
 #Boxplot could also be used to see variation of residuals among groups
@@ -441,7 +441,7 @@ ggplot(data=dat,aes(x=g,y=res))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-13-2.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-13-2.png)<!-- -->
 
 ```r
 #Normality of residuals
@@ -452,7 +452,7 @@ ggplot(dat,aes(sample = res))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-13-3.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-13-3.png)<!-- -->
 
 ```r
 #Prediction: a rough idea of goodness-of-fit
@@ -464,7 +464,7 @@ ggplot(data=dat,aes(x=fit,y=y,col=g))+
   theme(legend.position="none")
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-13-4.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-13-4.png)<!-- -->
 
 **Assumption 2: random effects**
 
@@ -479,7 +479,7 @@ As before, you can use default functions or customize graphic output using *ggpl
 qqnorm(mod,~ranef(.))
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 ```r
 #Second option: ggplot
@@ -490,7 +490,7 @@ ggplot(ran,aes(sample = ran[,1]))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-14-2.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-14-2.png)<!-- -->
 
 
 Violation of assumptions could include dependencies or heteroscedasticity among the within-group errors that can be modeled with correlation structure or the specification of the Variance-Covariance matrices for the random effects, respectively. Even if I encourage to adequately specify how to model the fixed and random effects, mixed models are generally robust to violations of these assumptions (Schielzeth et al. 2020).
@@ -588,7 +588,7 @@ ggplot(data=dat,aes(x=x,y=y,col=g))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 
 ### Analyses
@@ -798,7 +798,7 @@ ggplot(data=dat,aes(x=x,y=y,col=g))+
   theme(legend.position="none")
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 
 ### Testing random component
 
@@ -849,14 +849,14 @@ As for the varying-intercept model, the same assumptions applied and could be ve
 pairs(mod1diag,~ranef(.))
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
 
 ```r
 #Normality of random effects
 qqnorm(mod1diag,~ranef(.))
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-23-2.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-23-2.png)<!-- -->
 
 
 ### Further readings
@@ -894,7 +894,7 @@ ggplot(data=datG,aes(x=log10TL,y=log10M,col=Family))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
 
 ### Blind linear mixed model
 
@@ -952,7 +952,7 @@ ggplot(data=datG,aes(x=log10TL,y=log10M,col=Family))+
   theme(legend.position="none")
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-26-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-26-1.png)<!-- -->
 
 
 Do we stop the modelling here ?
@@ -967,7 +967,7 @@ We can't stop without checking at the assumptions of the model. We first check f
 plot(mod0,resid(.)~fitted(.)|Family,abline=0,lty=2)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-27-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-27-1.png)<!-- -->
 
 Do we stop the modelling here ?
 
@@ -1026,7 +1026,7 @@ mod2 = lme(log10M~log10TL*Zone,random=~log10TL|Family,data=datG,method="REML")
 plot(mod2,resid(.,type="p")~fitted(.),abline=0,lty=2)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
 
 This plot shows that the variability of the residuals is higher for low fitted values, meaning heteroscedasticity of the residuals. This heteroscedasticity seems to come from different variation of the residuals according to the *Zone* variable, as shown in the plot below:
 
@@ -1035,7 +1035,7 @@ This plot shows that the variability of the residuals is higher for low fitted v
 plot(mod2,resid(.,type="p")~fitted(.)|Zone,abline=0,lty=2)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-31-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-31-1.png)<!-- -->
 
 We can model this heteroscedasticity using the *weights* argument and the *varIdent* function as follow:
 
@@ -1057,7 +1057,7 @@ mod2H     2  9 -1915.376 -1878.781 966.6881 1 vs 2 48.3578  <.0001
 plot(mod2H,resid(.,type="p")~fitted(.)|Zone,abline=0,lty=2)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-32-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-32-1.png)<!-- -->
 
 Model comparison based on AIC and log-likelihood ratio test show that modelling heteroscedasticity improves model fit. Residual variability is also more homogeneous in the two habitats. After choosing the better random and fixed components and including the *Zone* variable to model heteroscedasticity, we now have a model that better captures the data variability. We can stop the modelling here.
 
@@ -1111,7 +1111,7 @@ ggplot(data=datG,aes(x=log10TL,y=log10M,col=Zone))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
 
 This best model shows that we have a random variation of the length-mass relationship according to the family and that this relationship is different in the two types of habitat, the slope being slower in the pelagic habitat. We finish, however, with a general though: is the length-mass relationship is really different according to the habitat type or, alternatively, the relationship shift according to the size (total length) of the individual? Since the overlap of total length according to the habitat is low, we can completely distinguish these two possible explanations. This outlines the importance to have the right data in hand to answer ecological question.
 
@@ -1140,7 +1140,7 @@ ggplot(data=dat,aes(x=BC,fill=as.factor(Y)))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
 
 
 ### Negative binomial distribution
@@ -1226,7 +1226,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 The negative binomial model outperforms the Poisson model. Plots of fitted values versus Pearson residuals show how residuals are reduced and better distributed for the negative binomial distribution.
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
 
 You can use the *summary* function to look at the results of the model.
 
@@ -1400,7 +1400,7 @@ ggplot(dat,aes(x=as.factor(pres),y=Temp))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-42-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-42-1.png)<!-- -->
 
 
 ## NLME: walleye growth curve
@@ -1430,7 +1430,7 @@ ggplot(data=dat,aes(x=Age,y=TL,col=LakeName))+
   theme_bw()
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-43-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-43-1.png)<!-- -->
 
 
 ### VBGF
@@ -1460,7 +1460,7 @@ ggplot(data=newDat,aes(x=age,y=TL))+
 ## Warning: Ignoring unknown parameters: linewidth
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-44-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-44-1.png)<!-- -->
 
 
 ### nls and nlsList
@@ -1497,7 +1497,7 @@ Achieved convergence tolerance: 8.025e-06
 plot(mod.nls,LakeName~resid(.),abline=0)
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-45-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-45-1.png)<!-- -->
 
 The *nlsList* function from the *nlme* package fits the non linear model by group and can be used to feed the NLME model. Plotting the estimates and confidence intervals of the parameters informs us which of the parameters should be incorporated to random effect into the model.
 
@@ -1539,7 +1539,7 @@ Residual standard error: 33.61449
 plot(intervals(mod.lis),layout=c(3,1))
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-46-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-46-1.png)<!-- -->
 
 ### nlme
 
@@ -1642,7 +1642,7 @@ ggplot(data=dat,aes(x=Age,y=TL,col=LakeName))+
 ## Ignoring unknown parameters: linewidth
 ```
 
-![](Mixed_Models_files/figure-html/unnamed-chunk-48-1.png)<!-- -->
+![](/assets/Mixed_Models_files/figure-html/unnamed-chunk-48-1.png)<!-- -->
 
 Note that we could smooth the lines by calculating predicted values on a new data frame by specifying regular intervals in age using the *expand.grid* function as illustrated in the GLMM case study. The parameters estimates at the lake level could be obtained with the *coef* function:
 
