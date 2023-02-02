@@ -13,8 +13,11 @@ output:
   toc_float: true
 ---
 # Mixed models with R
+{:.no_toc}
 ## Marc Pépino
+{:.no_toc}
 ## December 2022
+{:.no_toc}
 
 <style>
 body {
@@ -29,6 +32,9 @@ text-align: justify}
   });
 </script>
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+* TOC
+{:toc}
 
 ## Introduction
 Linear mixed models (LMM) are natural extension of the simple linear regression and are now among the most standard and powerful techniques use to model ecological data. We first show this extension using simulations as I'm convinced that we well understand a model if we are able to simulate it. Simulations are also a precious help for teaching statistics. Using simulations, we wish to understand the output of mixed models that gives more information than the simple p-values, especially the variance structure of the data. We finally show how to apply mixed models to three cases studies, exploring linear mixed models and their extensions to generalized linear mixed models (GLMM) and non linear mixed models (NLME). At each step (i.e., data download, model fitting, model validation), we will use graphics to visualize what we have in hand. Without graphics, we walk blind and risk straying far from what we think we are modeling. We will explore LMM and their extensions using Pinheiro and Bates (2000) as the main reference book. Other complementary books include, but not limited to, Faraway (2006), Gelman and Hill (2006) for a soft transition to Bayesian modelling, and the Zuur et al. (2009) for practical applications of mixed models to ecological data and, probably, the most popular book consulted by students. An introduction to mixed models could also be found in articles like Wagner et al. (2006), Bolker (2009) or Harrison et al. (2018).
