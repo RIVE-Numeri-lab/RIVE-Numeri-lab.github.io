@@ -16,8 +16,13 @@ en_url: "/en/workshops/Advanced_ggplot2"
 ---
 
 # ggplot2 avancé - problèmes et solutions
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### Octobre 2020
+{:.no_toc}
+* TOC
+{:toc}
 
 Cette formation assume que vous êtes déjà familières avec les fonctions de base de ggplot2. Si ce n'est pas le cas, prenez le temps de parcourir la formation de base [https://numerilab.io/fr/ateliers/RapidDataViz](https://numerilab.io/fr/ateliers/RapidDataViz) avant de poursuivre.
 

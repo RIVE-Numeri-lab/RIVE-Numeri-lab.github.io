@@ -15,8 +15,13 @@ en_url: "/en/workshops/RapidDataManip"
 ---
 
 # Manipulation rapide de bases de données avec dplyr et ses alliés
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### Octobre 2018
+{:.no_toc}
+* TOC
+{:toc}
 
 Notre jeu de données
 ============

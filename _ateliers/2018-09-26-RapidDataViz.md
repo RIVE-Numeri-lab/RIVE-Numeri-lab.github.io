@@ -15,8 +15,13 @@ en_url : "/en/workshops/RapidDataViz"
 ---
 
 # Visualisation rapide des données avec ggplot2
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### Septembre 2018
+{:.no_toc}
+* TOC
+{:toc}
 
 Clarification
 ============

@@ -15,8 +15,13 @@ en_url: "/en/workshops/FunctionsIterations"
 
 ---
 # Fonctions and itération
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### Février 2020
+{:.no_toc}
+* TOC
+{:toc}
 
 # Introduction
 

@@ -15,7 +15,11 @@ lang : "fr"
 en_url: "/en/workshops"
 ---
 # Classe de maître avec Guillaume Blanchet
+{:.no_toc}
 #### Avril 2022
+{:.no_toc}
+* TOC
+{:toc}
 
 Ce code permet de reproduire l'analyse de données
 improvisée par Guillaume Blanchet lors de sa participation à l'activité

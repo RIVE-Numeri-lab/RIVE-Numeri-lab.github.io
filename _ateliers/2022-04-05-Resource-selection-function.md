@@ -15,12 +15,15 @@ output:
 ---
 
 # Resource selection function
+{:.no_toc}
 #### Riwan Leroux
+{:.no_toc}
 #### Avril 2022
+{:.no_toc}
 
 
-
-
+* TOC
+{:toc}
 
 ## Introduction
 

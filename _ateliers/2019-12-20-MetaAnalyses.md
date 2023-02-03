@@ -14,8 +14,14 @@ output:
 en_url: "/en/workshops/MetaAnalysis"
 ---
 # Méta-analyses
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### Décembre 2019
+{:.no_toc}
+
+* TOC
+{:toc}
 
 ```r
 library(dplyr) # data manipulation

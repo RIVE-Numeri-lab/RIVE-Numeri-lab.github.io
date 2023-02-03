@@ -16,8 +16,13 @@ output:
 en_url: "/en/workshops/EarthEngine"
 ---
 # Introduction à Google Earth Engine
+{:.no_toc}
 #### Esteban Hamel et Arthur de Grandpré
+{:.no_toc}
 #### Janvier 2021
+{:.no_toc}
+* TOC
+{:toc}
 
 # Résumé
 Cet atelier Numérilab a pour objectif d'introduire la plateforme Google Earth Engine (GEE) et certaines de ses fonctionnalités.  
