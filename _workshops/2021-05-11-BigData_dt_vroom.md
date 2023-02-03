@@ -14,8 +14,14 @@ redirect_from: "/workshops/BigData_dt_vroom"
 fr_url: "/fr/ateliers"
 ---
 # Big Data Manipulation
+{:.no_toc}
 #### Roxanne Giguère-Tremblay & Arthur de Grandpré
+{:.no_toc}
 #### May 2021
+{:.no_toc}
+
+* TOC
+{:toc}
 
 Context : Big Data
 ==================

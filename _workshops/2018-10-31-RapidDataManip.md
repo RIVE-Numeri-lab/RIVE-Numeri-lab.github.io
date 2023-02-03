@@ -16,8 +16,14 @@ redirect_from: "/workshops/RapidDataManip"
 fr_url: "/fr/ateliers/RapidDataManip"
 ---
 # Fast data manipulation with dplyr and its allies
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### October 2018
+{:.no_toc}
+
+* TOC
+{:toc}
 
 Our dataset
 ============
@@ -632,7 +638,7 @@ msleep %>%
 
 
 This workshop was prepared with...
-------
+========
 
 ```r
 sessionInfo()

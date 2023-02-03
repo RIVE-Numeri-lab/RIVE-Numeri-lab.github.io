@@ -16,10 +16,14 @@ redirect_from: "/workshops/Resource-selection-function-numerilab"
 ---
 
 # Resource selection function
+{:.no_toc}
 #### Riwan Leroux
+{:.no_toc}
 #### April 2022
+{:.no_toc}
 
-
+* TOC
+{:toc}
 
 
 

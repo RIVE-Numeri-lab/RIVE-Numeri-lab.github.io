@@ -17,8 +17,14 @@ redirect_from: "/workshops/FunctionsIteration"
 fr_url: "/fr/ateliers/FonctionsIterations"
 ---
 # Functions and iteration
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### February 2020
+{:.no_toc}
+
+* TOC
+{:toc}
 
 # Introduction
 

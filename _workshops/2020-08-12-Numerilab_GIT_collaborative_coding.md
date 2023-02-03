@@ -15,9 +15,14 @@ redirect_from: "/workshops/Numerilab_GIT_collaborative_coding"
 fr_url: "/fr/ateliers"
 ---
 # Git and collaborative coding
+{:.no_toc}
 #### Arthur de Grandpré
+{:.no_toc}
 #### August 2020
+{:.no_toc}
 
+* TOC
+{:toc}
 
 
 

@@ -11,8 +11,14 @@ redirect_from: "/workshops/TimeSeries"
 ---
 
 # Time Series with MARSS
+{:.no_toc}
 #### Lucas Deschamps & Isabelle Gosselin
+{:.no_toc}
 #### May 2021
+{:.no_toc}
+
+* TOC
+{:toc}
 
 # Introduction
 

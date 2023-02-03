@@ -17,8 +17,14 @@ redirect_from: "/workshops/Advanced_ggplot2"
 fr_url: "/fr/ateliers/Advanced_ggplot2"
 ---
 # Advanced ggplot2 - Solutions to everyday problems
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### October 2020
+{:.no_toc}
+
+* TOC
+{:toc}
 
 This workshop assumes that you are already familiar with basic ggplot2 functions.
 If this isn't the case, please take a couple of minutes to skim through our
@@ -30,7 +36,7 @@ collect all of the commons issues ggplot2 users have come to my desk with in the
 past couple of years. I then tried to organize these problems by theme, but this
 workshop is still a mixed collection of unrelated issues.
 
-# Highliting information
+# Highlighting information
 
 ## Annotations
 

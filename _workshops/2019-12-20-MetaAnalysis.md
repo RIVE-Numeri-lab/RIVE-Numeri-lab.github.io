@@ -17,8 +17,14 @@ redirect_from: "/workshops/MetaAnalysis"
 fr_url: "/fr/ateliers/MetaAnalyses"
 ---
 # Meta-analysis
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### December 2019
+{:.no_toc}
+
+* TOC
+{:toc}
 
 ```r
 library(dplyr) # data manipulation

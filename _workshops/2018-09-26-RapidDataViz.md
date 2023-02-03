@@ -18,8 +18,14 @@ fr_url: "/fr/ateliers/RapidDataViz"
 ---
 
 # Rapid data visualization with ggplot2
+{:.no_toc}
 #### Charles Martin
+{:.no_toc}
 #### September 2018
+{:.no_toc}
+
+* TOC
+{:toc}
 
 Clarifications
 ============

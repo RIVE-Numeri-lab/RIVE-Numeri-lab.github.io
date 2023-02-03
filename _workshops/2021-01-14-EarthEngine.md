@@ -16,9 +16,14 @@ fr_url: "/fr/ateliers/EarthEngine"
 ---
 
 # Introduction to Google Earth Engine
+{:.no_toc}
 #### Estéban Hamel & Arthur de Granpré
+{:.no_toc}
 #### January 2021
+{:.no_toc}
 
+* TOC
+{:toc}
 # Summary
 
 This workshop is an introduction to Google Earth Engine (GEE).

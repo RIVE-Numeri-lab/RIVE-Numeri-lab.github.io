@@ -16,8 +16,14 @@ redirect_from: "/workshops/AdvancedDataManip"
 fr_url: "/fr/ateliers"
 ---
 # Advanced data manipulation with tidyr and its allies
+{:.no_toc}
 #### Jim Félix-Faure
+{:.no_toc}
 #### October 2020
+{:.no_toc}
+
+* TOC
+{:toc}
 
 
 **Note** : To follow this workshop it is recommended to have already completed the following courses *Fast data manipulation with dplyr and its allies* and *Rapid data visualization with ggplot2* (available on the *Numerilab* website - see link at the bottom of this document) or to have some basics on the use of the *pipe operator*, *ggplot2* and the basic functions of the *tidyverse*.
