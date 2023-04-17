@@ -1157,7 +1157,7 @@ exp(0.22)
 [1] 1.246077
 ```
 
-So, the summarized effect size is somewhere between a 32% increase and a 3% decrease in IQ
+So, the summarized effect size is somewhere between a 25% increase and a 9% decrease in IQ
 
 # The publication bias
 

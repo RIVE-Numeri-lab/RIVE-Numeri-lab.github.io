@@ -1158,7 +1158,7 @@ exp(0.22)
 [1] 1.246077
 ```
 
-Donc, la vraie taille de l'effet est quelque part entre une augmentation de 32% et une diminution de 3% (95% des chances que...)
+Donc, la vraie taille de l'effet est quelque part entre une augmentation de 25% et une diminution de 9% (95% des chances que...)
 
 # Le fameux biais de publication
 
