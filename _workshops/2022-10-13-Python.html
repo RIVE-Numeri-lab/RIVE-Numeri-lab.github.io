@@ -1,0 +1,3128 @@
+---
+thumbnail: python.png
+category: Programmation
+layout: default
+title: "Introduction à Python"
+author: "Charles Martin"
+date: "2022-10-13"
+lang: fr
+---
+
+  <style>
+
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  
+<section id="mise-en-place" class="cell markdown" id="JX-CEI-OPxTT">
+<h1>Introduction à Python</h1>
+<h3>Charles Martin</h3>
+<h3>Octobre 2022</h3>
+<h1>Mise en place</h1>
+</section>
+<div class="cell markdown" id="Oxo81vROPzuC">
+<p>Python est un language de programmation général. Contrairement à R ou à MATLAB, il n'a pas été conçu spécifiquement pour l'analyse et la visualisation de données. C'est pourquoi la plupart du code que nous utiliserons aujourd'hui provient de librairies de codes ayant été créées pour ces usages spécifiques.</p>
+<p>Bien que beaucoup de systèmes d'exploitation sont livrés avec une version de Python pré-installée (entre autres Ubuntu, MacOS, etc.), sa configuration, l'installation de libraries, etc. peut être relativement périlleux pour un ou une débutante.</p>
+<p>C'est pourquoi pour cet atelier, nous travaillerons plutôt avec Python sur Google Colab (<a href="https://colab.research.google.com/" class="uri">https://colab.research.google.com/</a>). Colab est un service offert par Google, où on peut se créer un cahier de notes (Jupyter Notebook) dans lequel on peut mélanger du code (entre autres en Python) et du texte (sous format Markdown). Comme tout les logiciels nécessaires sont déjà pré-installés, nous économiserons BEAUCOUP de temps de configuration.</p>
+<p>On peut d'ailleurs, immédiatement, vérifier que notre cahier de notes fonctionne bien en lançant une première commande de test</p>
+</div>
+<div class="cell code" data-execution_count="46" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="k2X9OvuuvfcK" data-outputId="1782a1f7-bf4f-4dab-d2aa-ca98f58f2e70">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Hello, World!
+</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="16T_X_pcRx8p">
+<p>Cela dit, si jamais vous envie de travailler directement sur vos ordinateurs, je vous conseille d'installer Python à travers un gestionnaire de librairies (par exemple Anaconda). Cette façon de faire vous permettra, entre autres, d'éviter les conflits de versions entre vos différents projets.</p>
+</div>
+<section id="les-bases-de-python" class="cell markdown" id="LrNC5xrXxOHH">
+<h1>Les bases de Python</h1>
+</section>
+<div class="cell markdown" id="l7bfGMKSvx_B">
+<p>Python peut s'utiliser comme une calculatrice</p>
+</div>
+<div class="cell code" data-execution_count="47" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="VOnX0c3RvxED" data-outputId="7a95655f-d09c-41f1-b80b-dbfadf829121">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></span></code></pre></div>
+<div class="output execute_result" data-execution_count="47">
+<pre><code>2</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="48" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="VPqGPToPv7vS" data-outputId="b16e6d48-7690-4f06-a880-773294dd29f0">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="op">*</span><span class="dv">5</span></span></code></pre></div>
+<div class="output execute_result" data-execution_count="48">
+<pre><code>15</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="xOm0VG2WwBX9">
+<p>Les exposants sont différents de ceux que l'on voit souvent (i.e. 2^5)</p>
+</div>
+<div class="cell code" data-execution_count="49" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="bu60qKDsv9MZ" data-outputId="72e6bf75-caa2-4a4a-929b-e38206ce9f01">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">8</span></span></code></pre></div>
+<div class="output execute_result" data-execution_count="49">
+<pre><code>256</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="5NcvYtugwFr2">
+<p>On peut garder nos résultats dans un objet</p>
+</div>
+<div class="cell code" data-execution_count="50" id="bN_vAIRnwA8V">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mon_resultat <span class="op">=</span> <span class="dv">3</span><span class="op">+</span><span class="dv">2</span></span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="51" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="gbW-1ikxwO4z" data-outputId="306da8aa-2d05-4f4b-bccd-b3c808b2cb55">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mon_resultat<span class="op">*</span><span class="dv">6</span></span></code></pre></div>
+<div class="output execute_result" data-execution_count="51">
+<pre><code>30</code></pre>
+</div>
+</div>
+<section id="les-listes" class="cell markdown" id="FLVMMibmTzSL">
+<h2>Les listes</h2>
+</section>
+<div class="cell markdown" id="h0xnqtwYSD53">
+<p>Nous n'aurons ici (évidemment!) pas le temps de tout explorer les structures de données et fonctions possibles de Python.</p>
+<p>Nous prendrons tout de même le temps d'en apprivoiser une, qui devrait être la plus utile, soit les listes</p>
+</div>
+<div class="cell code" data-execution_count="52" id="Z1UKq-AVSdDb">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>especes <span class="op">=</span> [<span class="st">&#39;bouleau&#39;</span>,<span class="st">&#39;érable&#39;</span>,<span class="st">&#39;chêne&#39;</span>]</span></code></pre></div>
+</div>
+<div class="cell markdown" id="xxxJlHXKSmOu">
+<p>On peut accéder aux divers éléments d'une liste à partir de leur index, qui commence à 0 (plutôt qu'à 1, c'est une vieille guerre de programmeurs)</p>
+</div>
+<div class="cell code" data-execution_count="53" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="rquJBr1USyeF" data-outputId="76816364-7880-4d16-bbd1-26eef3aa473e">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(especes[<span class="dv">0</span>])</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>bouleau
+</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="_7pl7pCAS9m3">
+<p>On peut aussi modifier les éléments d'une liste</p>
+</div>
+<div class="cell code" data-execution_count="54" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="bhtlFw8KS_vS" data-outputId="76768418-58b0-4046-b4b7-993bcccad6d6">
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>especes[<span class="dv">2</span>] <span class="op">=</span> <span class="st">&#39;sapin&#39;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(especes)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[&#39;bouleau&#39;, &#39;érable&#39;, &#39;sapin&#39;]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="erDbwAqJTFOv">
+<p>En ajouter, etc.</p>
+</div>
+<div class="cell code" data-execution_count="55" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="EQ2P_LLBTGew" data-outputId="cd0d1d2e-10b8-42af-e334-f435d7e2376b">
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>especes.append(<span class="st">&#39;épinette&#39;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(especes)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[&#39;bouleau&#39;, &#39;érable&#39;, &#39;sapin&#39;, &#39;épinette&#39;]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="A3ZqC_qCqSzg">
+<p>Remarquez dans l'exemple précédent l'utilisation de la syntaxe object.fonction.</p>
+<p>Nous n'irons pas trop creux dans ces détails aujourd'hui, mais puisque Python est un language orienté-objet, chacun des objets possède une série d'actions (des fonctions) qu'ils peuvent accomplir et de données associées. Pour accédér à ces derniers, on utilise la notation objet.méthode ou objet.donnée.</p>
+</div>
+<div class="cell markdown" id="jsQD_VwUTYX_">
+<p>On peut aussi supprimer des items, soit par position, ou par leur valeur directement</p>
+</div>
+<div class="cell code" data-execution_count="56" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="S6gOO4oaTcfd" data-outputId="542bce93-1384-4da1-874f-3fa7ff330255">
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> especes[<span class="dv">1</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>especes.remove(<span class="st">&#39;bouleau&#39;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(especes)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[&#39;sapin&#39;, &#39;épinette&#39;]
+</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="CfkuYtIRYCWc">
+<p>Remarquez que si vous utilisez la méthode par valeur, seule la première valeur sera supprimée si vous travaillez de cette façon.</p>
+</div>
+<section id="les-boucles-et-les-fonctions" class="cell markdown" id="BgFNYOMUT4IP">
+<h2>Les boucles et les fonctions</h2>
+</section>
+<div class="cell markdown" id="_4IGi366T7zW">
+<p>Pour automatiser les choses en Python, on peut entre autres, utiliser des fonctions et des boucles</p>
+</div>
+<div class="cell markdown" id="Cl8Uea6_UIAK">
+<p>On peut par exemple imprimer le nom de chacune des espèces comme ceci</p>
+</div>
+<div class="cell code" data-execution_count="57" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="ZfIO5ptSUFlP" data-outputId="5f530c92-f420-4db2-a730-4c90b1627dfb">
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> espece <span class="kw">in</span> especes :</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(espece)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>sapin
+épinette
+</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="TUXU-ym0wSNX">
+<p>Remarquez que, dans Python, <strong>les espaces devant le code sont conventionnés et importants</strong>.</p>
+<p>Tout le texte qui est en retrait fait partie de la boucle. Pas besoin d'accolades, de parenthèses, etc. C'est très élégant!</p>
+</div>
+<div class="cell markdown" id="WQ05nMZCU9xm">
+<p>On peut aussi se créer une fonction qui, par exemple, vérifie si notre espèce est une épinette</p>
+</div>
+<div class="cell code" data-execution_count="58" id="IrrTuM5bVE45">
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cest_une_epinette(x) :</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> x <span class="op">==</span> <span class="st">&#39;épinette&#39;</span> :</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;oui&quot;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> :</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;non&quot;</span></span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="59" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="dul_WXxwVWAO" data-outputId="81071643-583b-4b54-aa13-ad25ff632bc5">
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> espece <span class="kw">in</span> especes : </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(espece)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(cest_une_epinette(espece))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>sapin
+non
+épinette
+oui
+</code></pre>
+</div>
+</div>
+<section id="les-dictionnaires-de-données" class="cell markdown" id="bahmMpJNOs-M">
+<h2>Les dictionnaires de données</h2>
+</section>
+<div class="cell markdown" id="q8-IhNh7OvR_">
+<p>Une autre structure de données importante de Python se nomme les dictionnaires de données. Alors que les listes ne contiennent que des séries de valeurs, les dictionnaires contiennent des paires d'associations clé-valeur.</p>
+<p>Ils sont définis en utilisant les accolades plutôt que les parenthèses carrées.</p>
+</div>
+<div class="cell code" data-execution_count="60" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="sdSOE8O1PPwV" data-outputId="6855b398-6279-4c11-99b1-e7602b2711dd">
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>infos <span class="op">=</span> {<span class="st">&#39;nom&#39;</span> : <span class="st">&#39;charles&#39;</span>, <span class="st">&#39;age&#39;</span> : <span class="dv">42</span>, <span class="st">&#39;ville&#39;</span>: <span class="st">&#39;Trois-Rivières&#39;</span>}</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>infos</span></code></pre></div>
+<div class="output execute_result" data-execution_count="60">
+<pre><code>{&#39;nom&#39;: &#39;charles&#39;, &#39;age&#39;: 42, &#39;ville&#39;: &#39;Trois-Rivières&#39;}</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="ZIHj_jiyPf6S">
+<p>On accède tout de même aux éléments d'un dictionnaire à l'aide des parenthèses carrées</p>
+</div>
+<div class="cell code" data-execution_count="61" data-colab="{&quot;height&quot;:35,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="I90oIXHvPkgU" data-outputId="6148748d-ea82-4817-f3da-4b10851983e7">
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>infos[<span class="st">&#39;nom&#39;</span>]</span></code></pre></div>
+<div class="output execute_result" data-execution_count="61">
+<div class="sourceCode" id="cb29"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span><span class="st">&quot;string&quot;</span><span class="fu">}</span></span></code></pre></div>
+</div>
+</div>
+<div class="cell markdown" id="4TTtQ-nZPs4v">
+<p>On peut obtenir l'ensemble des clés ou des valeurs comme ceci :</p>
+</div>
+<div class="cell code" data-execution_count="62" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="AbXrVaFPPwTd" data-outputId="1343a2ea-1543-43e0-b784-29c3fd245cf4">
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(infos.keys())</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(infos.values())</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>dict_keys([&#39;nom&#39;, &#39;age&#39;, &#39;ville&#39;])
+dict_values([&#39;charles&#39;, 42, &#39;Trois-Rivières&#39;])
+</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="cIYcneImQI-3">
+<p>Il est possible de combiner différentes structures de données pour former des objets complexes, comme par exemple une liste de dictionnaires :</p>
+</div>
+<div class="cell code" data-execution_count="63" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="L4TiEHzWQO06" data-outputId="bc021957-d84a-4f2d-f828-5a253e43a7b3">
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>repondants <span class="op">=</span> [</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;nom&#39;</span> : <span class="st">&#39;Charles&#39;</span>, <span class="st">&#39;language&#39;</span> : <span class="st">&#39;R&#39;</span>},</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;nom&#39;</span> : <span class="st">&#39;Alex&#39;</span>, <span class="st">&#39;language&#39;</span> : <span class="st">&#39;Python&#39;</span>}</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> repondant <span class="kw">in</span> repondants : </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(repondant[<span class="st">&#39;nom&#39;</span>]<span class="op">+</span><span class="st">&#39; préfère &#39;</span> <span class="op">+</span> repondant[<span class="st">&#39;language&#39;</span>])</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Charles préfère R
+Alex préfère Python
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="63" id="M-wGCYtJTPTs">
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+<section id="vectorisation-des-opérations" class="cell markdown" id="YrzKA7v9Gbld">
+<h2>Vectorisation des opérations</h2>
+</section>
+<div class="cell markdown" id="0gb3y_YkGfD6">
+<p>Contrairement à plusieurs languages créés expressément pour l'analyse de données, Python n'est pas un language naturellement vectorisé.</p>
+<p>Si on se prépare une liste et que l'on veut multiplier tous ses items par 2, on ne peut <strong>PAS</strong> faire ceci :</p>
+</div>
+<div class="cell code" data-execution_count="64" id="mWSzFvqrGxXP">
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>liste <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="65" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="t-cS81RVG3gh" data-outputId="c550f38f-9f6d-4a41-9991-67702700f19e">
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>liste<span class="op">*</span><span class="dv">2</span></span></code></pre></div>
+<div class="output execute_result" data-execution_count="65">
+<pre><code>[1, 2, 3, 4, 1, 2, 3, 4]</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="iw4X6loLG9Y0">
+<p>On pourrait évidemment contourner le problème avec des boucles</p>
+</div>
+<div class="cell code" data-execution_count="66" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="5ksaLLnJHHoB" data-outputId="0306aacd-eb00-4cf4-93c3-fe8bbdc998e6">
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>nouvelle_liste <span class="op">=</span> []</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chiffre <span class="kw">in</span> liste : </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  nouvelle_liste.append(chiffre<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>nouvelle_liste</span></code></pre></div>
+<div class="output execute_result" data-execution_count="66">
+<pre><code>[2, 4, 6, 8]</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="9hifoggMH4SC">
+<p>Python possède une notation plus compacte pour ce genre de problèmes, que l'on pourrait traduire par les listes en compréhension (List Comprehension)</p>
+</div>
+<div class="cell code" data-execution_count="67" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="eP9FLjRTIDBD" data-outputId="b8db45ad-1425-478e-a1b2-dc0269cb68f5">
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>[x <span class="op">*</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> liste]</span></code></pre></div>
+<div class="output execute_result" data-execution_count="67">
+<pre><code>[2, 4, 6, 8]</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="7yjBptbMq5VQ">
+<p>Il s'agit d'une structure très compacte, permettant de créer une liste à partir d'une autre liste.</p>
+</div>
+<div class="cell markdown" id="b_2leNVnIjXU">
+<p>Enfin, si vous avez beaucoup d'algèbre vectoriel ou matriciel à faire, il sera probablement plus simple d'utiliser la librairie prévue à cet effet, qui se nomme NumPy.</p>
+<p>NumPy (et toutes les autres librairies nécessaires à l'atelier) sont déjà installées sur Colab.</p>
+<p>Sur vos ordinateurs personnels, on installe NumPy par la ligne de commande (terminal), par exemple comme ceci :</p>
+<p><code>pip install numpy</code></p>
+<p>Dans Python, lorsque l'on active une librarie, tout le code chargé est associé à un préfixe, que l'on peut modifier au moment de l'activation</p>
+</div>
+<div class="cell code" data-execution_count="68" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="rbNa-4HHI6sg" data-outputId="e3d7f97f-d33f-4e70-f20b-d72fbb9daf98">
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>tableau <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tableau)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tableau<span class="op">*</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[1 2 3 4]
+[2 4 6 8]
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="69" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="-KbIBA1MJZAj" data-outputId="50ca0223-ab64-4782-c629-3ad48a23ecb6">
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>matrice <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>],[<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>]])</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matrice)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[[1 2 3 4]
+ [5 6 7 8]]
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="70" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="cK49YELHKQty" data-outputId="668ce861-cf70-4bc0-82b8-81e61356e91c">
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matrice.dot(tableau))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>[30 70]
+</code></pre>
+</div>
+</div>
+<section id="les-tableaux-de-données-pandas" class="cell markdown" id="Hso5DHq7xWnA">
+<h1>Les tableaux de données pandas</h1>
+</section>
+<div class="cell markdown" id="A8_T7jefxbwL">
+<p>Il existe une librairie gérant les tableaux de données de façon beaucoup plus appropriée que les listes ou les dictionnaires lorsqu'il s'agit de l'analyse statistiques de données. Cette librairie se nomme pandas.</p>
+<p>Elle tient son nom d'une structure de données commune en économie, les PANel DAta.</p>
+</div>
+<div class="cell code" data-execution_count="71" id="DHUcXT-JxfaT">
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+</div>
+<section id="charger-et-vérifier-les-données" class="cell markdown" id="wmRsEnSGEAyT">
+<h2>Charger et vérifier les données</h2>
+</section>
+<div class="cell markdown" id="xurILFRay9EJ">
+<p>La fonction de pandas pour charger des données se nomme read_csv.</p>
+<p>Pour se simplifier la vie, nous allons charger des données directement disponibles sur le web</p>
+</div>
+<div class="cell code" data-execution_count="72" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="FVzkDpaHzC6U" data-outputId="1a2b7c43-ea2f-4bf2-ecc5-abb788977338">
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv&#39;</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>iris</span></code></pre></div>
+<div class="output execute_result" data-execution_count="72">
+
+  <div id="df-c46a10ea-f4bb-40f9-bf8a-297bf058fc30">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-c46a10ea-f4bb-40f9-bf8a-297bf058fc30')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-c46a10ea-f4bb-40f9-bf8a-297bf058fc30 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-c46a10ea-f4bb-40f9-bf8a-297bf058fc30');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell markdown" id="2fDKtnzHrMEh">
+<p>Si jamais vos données sont en format Excel, il existe aussi une fonction read_excel permettant de les lire directement, sans passer par le format CSV.</p>
+</div>
+<div class="cell markdown" id="OMfCOf9qEGNh">
+<p>Une fois les données chargées, il est important de vérifier le contenu de notre tableau de données, par exemple avec la méthode info :</p>
+</div>
+<div class="cell code" data-execution_count="73" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="SfW0Bg-MENTK" data-outputId="76d221c6-b1a7-4528-e903-483fbc49a2d5">
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>iris.info()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 5 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   sepal_length  150 non-null    float64
+ 1   sepal_width   150 non-null    float64
+ 2   petal_length  150 non-null    float64
+ 3   petal_width   150 non-null    float64
+ 4   species       150 non-null    object 
+dtypes: float64(4), object(1)
+memory usage: 6.0+ KB
+</code></pre>
+</div>
+</div>
+<section id="trier-les-observations" class="cell markdown" id="jbgg5OdBa-Jx">
+<h2>Trier les observations</h2>
+</section>
+<div class="cell markdown" id="ehC6BAUZbNcr">
+<p>En ordre croissant</p>
+</div>
+<div class="cell code" data-execution_count="74" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="7f40geNEbCHC" data-outputId="4830d6d4-4807-4484-d44e-c2b8f1b16ae6">
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>iris.sort_values(<span class="st">&#39;sepal_length&#39;</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="74">
+
+  <div id="df-420cafa0-4040-45c6-99c6-1f20cdefb24f">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>4.3</td>
+      <td>3.0</td>
+      <td>1.1</td>
+      <td>0.1</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>4.4</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>4.4</td>
+      <td>3.0</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4.4</td>
+      <td>2.9</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>4.5</td>
+      <td>2.3</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>7.7</td>
+      <td>2.8</td>
+      <td>6.7</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>7.7</td>
+      <td>2.6</td>
+      <td>6.9</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>7.7</td>
+      <td>3.8</td>
+      <td>6.7</td>
+      <td>2.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>7.7</td>
+      <td>3.0</td>
+      <td>6.1</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>7.9</td>
+      <td>3.8</td>
+      <td>6.4</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-420cafa0-4040-45c6-99c6-1f20cdefb24f')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-420cafa0-4040-45c6-99c6-1f20cdefb24f button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-420cafa0-4040-45c6-99c6-1f20cdefb24f');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell markdown" id="SLfd-ncYbQK0">
+<p>Ou en ordre décroissant</p>
+</div>
+<div class="cell code" data-execution_count="75" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="MBpKR30ubS_d" data-outputId="94656411-7a71-4f96-d467-e29b985d595e">
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>iris.sort_values(<span class="st">&#39;sepal_length&#39;</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="75">
+
+  <div id="df-a89c1737-9824-40b7-bbbc-4903e1d966b4">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>131</th>
+      <td>7.9</td>
+      <td>3.8</td>
+      <td>6.4</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>7.7</td>
+      <td>3.0</td>
+      <td>6.1</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>7.7</td>
+      <td>2.8</td>
+      <td>6.7</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>7.7</td>
+      <td>3.8</td>
+      <td>6.7</td>
+      <td>2.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>7.7</td>
+      <td>2.6</td>
+      <td>6.9</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>4.5</td>
+      <td>2.3</td>
+      <td>1.3</td>
+      <td>0.3</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>4.4</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>4.4</td>
+      <td>3.0</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4.4</td>
+      <td>2.9</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>4.3</td>
+      <td>3.0</td>
+      <td>1.1</td>
+      <td>0.1</td>
+      <td>setosa</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-a89c1737-9824-40b7-bbbc-4903e1d966b4')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-a89c1737-9824-40b7-bbbc-4903e1d966b4 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-a89c1737-9824-40b7-bbbc-4903e1d966b4');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell markdown" id="ivni_v1k51Ns">
+<p>##Sélectionner des lignes</p>
+</div>
+<div class="cell markdown" id="4NFu9CvC1cSP">
+<p>Il existe plusieurs façon de sélectionner des lignes ou des colonnes avec pandas, mais la façon la plus générale est d'utiliser l'opérateur loc.</p>
+<p>Ce dernier peut accepter soit un liste de valeurs booléennes, soit des étiquettes ou une séquence entre deux étiquettes.</p>
+<p>Cet opérateur vous permet aussi de sélectionner simultanément une liste de colonnes ET de lignes dans la même opération.</p>
+</div>
+<div class="cell code" data-execution_count="76" data-colab="{&quot;height&quot;:1617,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="OfOjHBCb1bSm" data-outputId="a7dfdfea-e28d-4745-8478-8da045ca2670">
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>iris.loc[iris.species <span class="op">==</span> <span class="st">&quot;virginica&quot;</span>]</span></code></pre></div>
+<div class="output execute_result" data-execution_count="76">
+
+  <div id="df-163c54cc-b9e7-46e3-9788-de061e4bd1f7">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>100</th>
+      <td>6.3</td>
+      <td>3.3</td>
+      <td>6.0</td>
+      <td>2.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>5.8</td>
+      <td>2.7</td>
+      <td>5.1</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>7.1</td>
+      <td>3.0</td>
+      <td>5.9</td>
+      <td>2.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>6.3</td>
+      <td>2.9</td>
+      <td>5.6</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.8</td>
+      <td>2.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>7.6</td>
+      <td>3.0</td>
+      <td>6.6</td>
+      <td>2.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>4.9</td>
+      <td>2.5</td>
+      <td>4.5</td>
+      <td>1.7</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>7.3</td>
+      <td>2.9</td>
+      <td>6.3</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>6.7</td>
+      <td>2.5</td>
+      <td>5.8</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>7.2</td>
+      <td>3.6</td>
+      <td>6.1</td>
+      <td>2.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>6.5</td>
+      <td>3.2</td>
+      <td>5.1</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>6.4</td>
+      <td>2.7</td>
+      <td>5.3</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>6.8</td>
+      <td>3.0</td>
+      <td>5.5</td>
+      <td>2.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>5.7</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>5.8</td>
+      <td>2.8</td>
+      <td>5.1</td>
+      <td>2.4</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>6.4</td>
+      <td>3.2</td>
+      <td>5.3</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.5</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>7.7</td>
+      <td>3.8</td>
+      <td>6.7</td>
+      <td>2.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>7.7</td>
+      <td>2.6</td>
+      <td>6.9</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>6.0</td>
+      <td>2.2</td>
+      <td>5.0</td>
+      <td>1.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>6.9</td>
+      <td>3.2</td>
+      <td>5.7</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>5.6</td>
+      <td>2.8</td>
+      <td>4.9</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>7.7</td>
+      <td>2.8</td>
+      <td>6.7</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>6.3</td>
+      <td>2.7</td>
+      <td>4.9</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>6.7</td>
+      <td>3.3</td>
+      <td>5.7</td>
+      <td>2.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>7.2</td>
+      <td>3.2</td>
+      <td>6.0</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>6.2</td>
+      <td>2.8</td>
+      <td>4.8</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>6.1</td>
+      <td>3.0</td>
+      <td>4.9</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>6.4</td>
+      <td>2.8</td>
+      <td>5.6</td>
+      <td>2.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>129</th>
+      <td>7.2</td>
+      <td>3.0</td>
+      <td>5.8</td>
+      <td>1.6</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>7.4</td>
+      <td>2.8</td>
+      <td>6.1</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>7.9</td>
+      <td>3.8</td>
+      <td>6.4</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>132</th>
+      <td>6.4</td>
+      <td>2.8</td>
+      <td>5.6</td>
+      <td>2.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>6.3</td>
+      <td>2.8</td>
+      <td>5.1</td>
+      <td>1.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>134</th>
+      <td>6.1</td>
+      <td>2.6</td>
+      <td>5.6</td>
+      <td>1.4</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>7.7</td>
+      <td>3.0</td>
+      <td>6.1</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>6.3</td>
+      <td>3.4</td>
+      <td>5.6</td>
+      <td>2.4</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>6.4</td>
+      <td>3.1</td>
+      <td>5.5</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>4.8</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>6.9</td>
+      <td>3.1</td>
+      <td>5.4</td>
+      <td>2.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>6.7</td>
+      <td>3.1</td>
+      <td>5.6</td>
+      <td>2.4</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>6.9</td>
+      <td>3.1</td>
+      <td>5.1</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>5.8</td>
+      <td>2.7</td>
+      <td>5.1</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>143</th>
+      <td>6.8</td>
+      <td>3.2</td>
+      <td>5.9</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>6.7</td>
+      <td>3.3</td>
+      <td>5.7</td>
+      <td>2.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-163c54cc-b9e7-46e3-9788-de061e4bd1f7')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-163c54cc-b9e7-46e3-9788-de061e4bd1f7 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-163c54cc-b9e7-46e3-9788-de061e4bd1f7');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell markdown" id="ABpQ6MKoTQuF">
+<p>Remarquez que, si on accède à une seule colonne à la fois et que le nom de la colonne est un identifiant valide de Python (pas d'espace, pas d'accents, etc.), on peut l'accéder directement avec un .variable plutôt que ['variable']</p>
+</div>
+<section id="sélectionner-des-colonnes" class="cell markdown" id="aoK3FB_m59Rs">
+<h2>Sélectionner des colonnes</h2>
+</section>
+<div class="cell markdown" id="zDQAj2XN3VSf">
+<p>Le principe est le même pour sélectionner des colonnes. On doit par contre à ce moment spécifier quelles lignes on veut obtenir (ou spécifier toutes les lignes, comme ceci)</p>
+</div>
+<div class="cell code" data-execution_count="77" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kgrmqSR63S42" data-outputId="5d4b4868-8f8a-4b8f-9fd8-75b7f82715d8">
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>iris.loc[:,[<span class="st">&quot;sepal_width&quot;</span>, <span class="st">&quot;species&quot;</span>]]</span></code></pre></div>
+<div class="output execute_result" data-execution_count="77">
+
+  <div id="df-98548231-2349-4eae-9982-5e648f592ac4">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3.5</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.0</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.1</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.6</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>2.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>3.4</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 2 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-98548231-2349-4eae-9982-5e648f592ac4')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-98548231-2349-4eae-9982-5e648f592ac4 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-98548231-2349-4eae-9982-5e648f592ac4');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell markdown" id="KoLJLC61UcKg">
+<p>Et comme discuté, on peut combiner les deux opérations dans une même commande :</p>
+</div>
+<div class="cell code" data-execution_count="78" data-colab="{&quot;height&quot;:1617,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="xdKXlkvD32Rq" data-outputId="522abe1c-a99f-4899-a7c1-0507a6a2004b">
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>iris.loc[iris.species <span class="op">==</span> <span class="st">&quot;virginica&quot;</span>,[<span class="st">&quot;sepal_width&quot;</span>, <span class="st">&quot;species&quot;</span>]]</span></code></pre></div>
+<div class="output execute_result" data-execution_count="78">
+
+  <div id="df-fec08d82-1cb2-4452-b99b-9e061ba22a13">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>100</th>
+      <td>3.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>2.7</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>2.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>2.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>2.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>2.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>3.6</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>3.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>2.7</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>2.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>2.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>3.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>3.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>2.6</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>2.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>3.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>2.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>2.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>2.7</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>3.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>3.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>2.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>2.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>129</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>2.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>3.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>132</th>
+      <td>2.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>2.8</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>134</th>
+      <td>2.6</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>3.4</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>3.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>3.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>3.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>3.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>2.7</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>143</th>
+      <td>3.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>3.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>2.5</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>3.4</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>3.0</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-fec08d82-1cb2-4452-b99b-9e061ba22a13')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-fec08d82-1cb2-4452-b99b-9e061ba22a13 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-fec08d82-1cb2-4452-b99b-9e061ba22a13');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell markdown" id="BZ6k_QHh4vxr">
+<p>Remarquez que le tableau original n'est pas affecté par ces opérations. Si on veut conserver le résultat, on doit le garder dans un objet</p>
+</div>
+<div class="cell code" data-execution_count="79" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="4qqEBGoW49QW" data-outputId="ad5933c9-57f4-4fcf-e99a-70c403f70f14">
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>iris.shape</span></code></pre></div>
+<div class="output execute_result" data-execution_count="79">
+<pre><code>(150, 5)</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="80" id="0UgK486f5SqG">
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>iris_modifie <span class="op">=</span> iris.loc[iris.species <span class="op">==</span> <span class="st">&quot;virginica&quot;</span>,[<span class="st">&quot;sepal_width&quot;</span>, <span class="st">&quot;species&quot;</span>]]</span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="81" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="RGcQzPye5Syg" data-outputId="4fe29467-b41b-4ce8-e1b6-0e74290da3fd">
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>iris.shape</span></code></pre></div>
+<div class="output execute_result" data-execution_count="81">
+<pre><code>(150, 5)</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="82" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="VfiLtBPY5TAf" data-outputId="0322d3fa-db6c-46ae-805c-c5dbc42ec56a">
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>iris_modifie.shape</span></code></pre></div>
+<div class="output execute_result" data-execution_count="82">
+<pre><code>(50, 2)</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="bY7myKUa6MAP">
+<p>##Ajouter des colonnes</p>
+</div>
+<div class="cell code" data-execution_count="83" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="HWK7_pQprZwv" data-outputId="1e97a5fa-672c-43bd-fee0-af1697ae09a1">
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>iris.assign(ratio <span class="op">=</span> iris.sepal_length <span class="op">/</span> iris.petal_length)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="83">
+
+  <div id="df-2ad11c21-c128-4ffd-bb4e-fa274b992510">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+      <th>ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>3.642857</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>3.500000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>3.615385</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>3.066667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>3.571429</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>1.288462</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+      <td>1.260000</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+      <td>1.250000</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>1.148148</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+      <td>1.156863</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 6 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-2ad11c21-c128-4ffd-bb4e-fa274b992510')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-2ad11c21-c128-4ffd-bb4e-fa274b992510 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-2ad11c21-c128-4ffd-bb4e-fa274b992510');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<section id="résumer-les-données" class="cell markdown" id="flSOg5TI7M83">
+<h2>Résumer les données</h2>
+</section>
+<div class="cell markdown" id="zx5O2IzG7QPF">
+<p>Pour avoir un aperçu de l'ensemble des statistiques descriptives de notre tableau de données, on peut utiliser la fonction describe</p>
+</div>
+<div class="cell code" data-execution_count="84" data-colab="{&quot;height&quot;:300,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="3vEcGGX97YW6" data-outputId="186ae0a4-33e1-4302-abc9-019cce4a4ca2">
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>iris.describe()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="84">
+
+  <div id="df-ea50687e-90f4-41b6-a472-79c2e8ac3693">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>150.000000</td>
+      <td>150.000000</td>
+      <td>150.000000</td>
+      <td>150.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>5.843333</td>
+      <td>3.057333</td>
+      <td>3.758000</td>
+      <td>1.199333</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.828066</td>
+      <td>0.435866</td>
+      <td>1.765298</td>
+      <td>0.762238</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>4.300000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>0.100000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>5.100000</td>
+      <td>2.800000</td>
+      <td>1.600000</td>
+      <td>0.300000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5.800000</td>
+      <td>3.000000</td>
+      <td>4.350000</td>
+      <td>1.300000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>6.400000</td>
+      <td>3.300000</td>
+      <td>5.100000</td>
+      <td>1.800000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>7.900000</td>
+      <td>4.400000</td>
+      <td>6.900000</td>
+      <td>2.500000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-ea50687e-90f4-41b6-a472-79c2e8ac3693')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-ea50687e-90f4-41b6-a472-79c2e8ac3693 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-ea50687e-90f4-41b6-a472-79c2e8ac3693');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell markdown" id="OaW9-KtEZLe3">
+<p>Si on a besoin de résumer nos données de façon plus fine, on peut spécifier les fonctions et les colonnes manuellement</p>
+</div>
+<div class="cell code" data-execution_count="85" data-colab="{&quot;height&quot;:175,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kWK1JAWpZWlr" data-outputId="f478b89e-a830-45ee-be1e-e9eac0291be1">
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>iris.loc[:,[<span class="st">&#39;sepal_length&#39;</span>, <span class="st">&#39;petal_length&#39;</span>]].agg([<span class="st">&#39;mean&#39;</span>,<span class="st">&#39;min&#39;</span>,<span class="st">&#39;max&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
+<div class="output execute_result" data-execution_count="85">
+
+  <div id="df-4bd83aad-7ab4-40da-aabf-98e2bb1a2bc8">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>petal_length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mean</th>
+      <td>5.843333</td>
+      <td>3.758</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>4.300000</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>7.900000</td>
+      <td>6.900</td>
+    </tr>
+    <tr>
+      <th>count</th>
+      <td>150.000000</td>
+      <td>150.000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-4bd83aad-7ab4-40da-aabf-98e2bb1a2bc8')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-4bd83aad-7ab4-40da-aabf-98e2bb1a2bc8 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-4bd83aad-7ab4-40da-aabf-98e2bb1a2bc8');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell markdown" id="m4i7gyNaafMb">
+<p>On peut aussi appliquer nos résumés sur des groupes en particulier</p>
+</div>
+<div class="cell code" data-execution_count="86" data-colab="{&quot;height&quot;:175,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="OiROLeu6alL4" data-outputId="ab4a7a91-9b7b-470c-c4f4-1edde0fb07cf">
+<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>iris.groupby(<span class="st">&#39;species&#39;</span>)[[<span class="st">&#39;sepal_length&#39;</span>, <span class="st">&#39;petal_length&#39;</span>]].mean()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="86">
+
+  <div id="df-6c31b7cd-957a-4e44-aea9-3f6d98ec507b">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>petal_length</th>
+    </tr>
+    <tr>
+      <th>species</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>setosa</th>
+      <td>5.006</td>
+      <td>1.462</td>
+    </tr>
+    <tr>
+      <th>versicolor</th>
+      <td>5.936</td>
+      <td>4.260</td>
+    </tr>
+    <tr>
+      <th>virginica</th>
+      <td>6.588</td>
+      <td>5.552</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-6c31b7cd-957a-4e44-aea9-3f6d98ec507b')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-6c31b7cd-957a-4e44-aea9-3f6d98ec507b button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-6c31b7cd-957a-4e44-aea9-3f6d98ec507b');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<section id="visualisation-avec-matplotlib" class="cell markdown" id="ig8yKYbJYfnl">
+<h1>Visualisation avec matplotlib</h1>
+</section>
+<div class="cell markdown" id="1E17PFRocBtu">
+<p>Le module classique pour la visualisation de données avec Python se nomme matplotlib. En général, les gens utilisent en particulier la collection de fonctions nommée pyplot, qui vise à reproduire l'interface graphique de MATLAB dans Python</p>
+</div>
+<div class="cell code" data-execution_count="87" id="olMXpJxxeCAA">
+<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+</div>
+<section id="explorer-chaque-variable-individuellement" class="cell markdown" id="dZBnE5u_vKG4">
+<h2>Explorer chaque variable individuellement</h2>
+</section>
+<div class="cell markdown" id="FJPujldRen1c">
+<p>Pour créer un histogramme de fréquences, la fonction se nomme hist.</p>
+</div>
+<div class="cell code" data-execution_count="88" data-colab="{&quot;height&quot;:319,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="rkQf5JnXetgM" data-outputId="e14cb981-281f-440e-9e04-60b8af556df8">
+<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>plt.hist(<span class="st">&#39;sepal_length&#39;</span>, data <span class="op">=</span> iris)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="88">
+<pre><code>(array([ 9., 23., 14., 27., 16., 26., 18.,  6.,  5.,  6.]),
+ array([4.3 , 4.66, 5.02, 5.38, 5.74, 6.1 , 6.46, 6.82, 7.18, 7.54, 7.9 ]),
+ &lt;a list of 10 Patch objects&gt;)</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/02f7373379c561584aab203256a9aaaa8684f2e1.png" /></p>
+</div>
+</div>
+<div class="cell markdown" id="zsqieBmYdc6Y">
+<p>Comme matplotlib et pandas sont extrêmement bien intégrés, il existe, pour la plupart des visualisations, une façon de les appeller directement à partir du tableau de données</p>
+</div>
+<div class="cell code" data-execution_count="89" data-colab="{&quot;height&quot;:283,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="76BwwJaIdoi_" data-outputId="a801505f-ce3e-425d-f72d-ea243b139fd3">
+<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>iris.sepal_length.plot.hist()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="89">
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f17e8c77a50&gt;</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/3964266c8b663aa75618ac98d3014a42cff15497.png" /></p>
+</div>
+</div>
+<div class="cell markdown" id="ClLzxV1ffO7N">
+<p>On peut ensuite apporter des modifications à ce graphique (ou au précédent), puis demander à le réafficher</p>
+</div>
+<div class="cell code" data-execution_count="90" data-colab="{&quot;height&quot;:298,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="WJMVNWzcfSM5" data-outputId="10a6ddbb-57e5-49e5-f4ce-a46241f1ac53">
+<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>iris.sepal_length.plot.hist()</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Fréquence&quot;</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Longueur des sépales&quot;</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="90">
+<pre><code>Text(0.5, 0, &#39;Longueur des sépales&#39;)</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/9fd6bdd37421a15b25dcf9388c857eddd038e65d.png" /></p>
+</div>
+</div>
+<div class="cell markdown" id="BhhW3vIzMVQv">
+<p>Si jamais vous travaillez avec matplotlib dans un script plutôt que sur Jupyter, vous devrez appeller plt.show() pour afficher votre graphique. Ici, Jupyter le fait pour vous.</p>
+</div>
+<div class="cell markdown" id="T5u0saJ-g3Yw">
+<p>Si nos données sont qualitatives, on emploie plutôt un diagramme à bandes.</p>
+<p>Il faut par contre calculer d'abord nous même les dénombremenets de chacune des classes</p>
+</div>
+<div class="cell code" data-execution_count="91" data-colab="{&quot;height&quot;:322,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kvH6tEF4g7bj" data-outputId="23433a5d-d4a6-405a-cc6b-487a27f9c782">
+<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>iris.species.value_counts().plot.bar()</span></code></pre></div>
+<div class="output execute_result" data-execution_count="91">
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f17e8b20150&gt;</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/6824415a4a8f48fce5278fbcfae36132984ce98a.png" /></p>
+</div>
+</div>
+<section id="explorer-les-relations-entre-deux-variables" class="cell markdown" id="tRUeqzVcvP09">
+<h2>Explorer les relations entre deux variables</h2>
+</section>
+<div class="cell markdown" id="3W3oJwE0kU4S">
+<p>Pour regarder la relation entre deux variables quantiatives, on a bien sûr accès au classique nuage de points</p>
+</div>
+<div class="cell code" data-execution_count="92" data-colab="{&quot;height&quot;:298,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="FMBhjjJQkaYw" data-outputId="016b45c9-ba01-43e2-9064-3b990b53047c">
+<div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>iris.plot.scatter(<span class="st">&#39;petal_length&#39;</span>, <span class="st">&#39;petal_width&#39;</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="92">
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f17e8af49d0&gt;</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/c7ebabdb88ff5d7832d41ee2a8bbf36bb6189e99.png" /></p>
+</div>
+</div>
+<div class="cell markdown" id="kHG1pmN8pu91">
+<p>Et je vous montre rapidement comment changer la couleur des points parce que j'ai eu <em>un peu</em> de difficulté à trouver comment pour une variable qualitative.</p>
+<p>La clé est de d'abord se créer un dictionnaire associant chacune des espèces à une couleur.</p>
+<p>Puis au moment de créer le graphique, d'associer chaque valeur d'espèce à une valeur de couleur avec la méthode map.</p>
+</div>
+<div class="cell code" data-execution_count="93" data-colab="{&quot;height&quot;:298,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="EpgdyiDupoF7" data-outputId="2ba6610f-211e-4a68-f0c9-278f9136e593">
+<div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>couleurs <span class="op">=</span> {<span class="st">&#39;setosa&#39;</span>:<span class="st">&#39;red&#39;</span>, <span class="st">&#39;virginica&#39;</span>:<span class="st">&#39;green&#39;</span>, <span class="st">&#39;versicolor&#39;</span>:<span class="st">&#39;blue&#39;</span>}</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>iris.plot.scatter(<span class="st">&#39;petal_length&#39;</span>,<span class="st">&#39;petal_width&#39;</span>,c<span class="op">=</span>iris.species.<span class="bu">map</span>(couleurs))</span></code></pre></div>
+<div class="output execute_result" data-execution_count="93">
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f17e8a8be90&gt;</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/4b6fdcd190c7ccac77344f54562cccfbc8830028.png" /></p>
+</div>
+</div>
+<div class="cell markdown" id="qVThTTq6qZ72">
+<p>Si on veut explorer la relation entre une variable qualitative et une quantitative, il y a évidemment le boxplot</p>
+</div>
+<div class="cell code" data-execution_count="94" data-colab="{&quot;height&quot;:319,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="jQFbbtUpqfbA" data-outputId="4fd40627-44eb-442a-f95a-64b9ff3eba16">
+<div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>iris.boxplot(column<span class="op">=</span><span class="st">&#39;sepal_length&#39;</span>,by<span class="op">=</span><span class="st">&#39;species&#39;</span>, grid <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="94">
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f17e89f8150&gt;</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/074051402b208d470170d354c69363cc5b40fe8b.png" /></p>
+</div>
+</div>
+<section id="un-petit-clin-doeil-à-r" class="cell markdown" id="WNGCoHhLLVrT">
+<h2>Un petit clin d'oeil à R</h2>
+</section>
+<div class="cell markdown" id="ZKd43URkVe_g">
+<p>Si jamais vous vous ennuyez de ggplot2, l'ensemble de la librairie a été ré-implémentée en Python dans la librairie plotnine.</p>
+<p>Remarquez qu'il existe tout de même certaines petites nuances vs. le code R. Vous ne pourrez pas copier-coller directement votre code.</p>
+</div>
+<div class="cell code" data-execution_count="95" data-colab="{&quot;height&quot;:470,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="B5D5FuPELTzF" data-outputId="5d3501a1-1169-4243-e63c-31a5f1d209c6">
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, aes,geom_point</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>ggplot(iris) <span class="op">+</span> aes(x <span class="op">=</span> <span class="st">&quot;sepal_length&quot;</span>, y <span class="op">=</span> <span class="st">&quot;sepal_width&quot;</span>) <span class="op">+</span> geom_point()</span></code></pre></div>
+<div class="output display_data">
+<p><img src="/assets/Python/f85c95b7edd8a081eba2d85ed72820dd999aa794.png" /></p>
+</div>
+<div class="output execute_result" data-execution_count="95">
+<pre><code>&lt;ggplot: (8733791616949)&gt;</code></pre>
+</div>
+</div>
+<section id="tests-statistiques-avec-scipy" class="cell markdown" id="-M4HwSmMYjqg">
+<h1>Tests statistiques avec scipy</h1>
+</section>
+<div class="cell markdown" id="4iiiTpzDg2Iy">
+<p>Les tests statistiques classiques dans Python sont fournis par la collection de fonctions stats dans le module scipy</p>
+</div>
+<div class="cell code" data-execution_count="96" id="cwJVTzlGwFi3">
+<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code></pre></div>
+</div>
+<div class="cell markdown" id="_ajXAXhSvvc0">
+<p>Si vous voulez par exemple appliquer un test de T pour variance inégales</p>
+</div>
+<div class="cell code" data-execution_count="97" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="zC3XZPYtwOtp" data-outputId="ba730b13-c697-4f30-b540-14ef03948ef2">
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_ind(</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>    iris.loc[iris.species <span class="op">==</span> <span class="st">&quot;virginica&quot;</span>, <span class="st">&#39;petal_length&#39;</span>],</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>    iris.loc[iris.species <span class="op">==</span> <span class="st">&quot;setosa&quot;</span>, <span class="st">&#39;petal_length&#39;</span>],</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>    equal_var <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="97">
+<pre><code>Ttest_indResult(statistic=49.98618625709594, pvalue=9.26962758534569e-50)</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="Q_j1yum2wxkO">
+<p>Si vous voulez mesurer une corrélationn de Pearson (et obtenir la valeur de p correspondante)</p>
+</div>
+<div class="cell code" data-execution_count="98" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="Knxhhs6Cw6So" data-outputId="db026bc4-f911-42ce-9799-0303cdda17c9">
+<div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>stats.pearsonr(</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>    iris.petal_length,</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>    iris.sepal_length</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="98">
+<pre><code>(0.8717537758865831, 1.0386674194498099e-47)</code></pre>
+</div>
+</div>
+<section id="lapprentissage-automatique-machine-learning-avec-scikit-learn" class="cell markdown" id="j7CyS0BTYnNB">
+<h1>L'apprentissage automatique (Machine Learning) avec scikit-learn</h1>
+</section>
+<div class="cell markdown" id="uyBwQdQ9xfK7">
+<p>La référence en matière d'aprentissage automatique (Machine Learning) est sans aucun doute le module Python nommé scikit-learn</p>
+</div>
+<section id="exemple-avec-un-random-forest" class="cell markdown" id="hS1gUSdj3Ckq">
+<h2>Exemple avec un Random Forest</h2>
+</section>
+<div class="cell markdown" id="umD1jBhC2iJo">
+<p>Voici comment on pourrait par exemple appliquer un modèle de classification Random Forest à nos données.</p>
+<p>Remarquez qu'il faut d'abord encoder notre variable qualitative en numérique pour que le modèle la comprenne...</p>
+</div>
+<div class="cell code" data-execution_count="99" id="UMjgswXIki7E">
+<div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>le <span class="op">=</span> LabelEncoder()</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> le.fit_transform(iris.species)</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.loc[:,[<span class="st">&#39;sepal_length&#39;</span>,<span class="st">&#39;sepal_width&#39;</span>]]</span></code></pre></div>
+</div>
+<div class="cell markdown" id="8X7EqlKBmClY">
+<p>On peut ensuite lancer le modèle et voir à quel point cela fonctionne bien!</p>
+</div>
+<div class="cell code" data-execution_count="100" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="HZXHOLu2yS69" data-outputId="27f9101b-db99-4f54-ce09-5557359db131">
+<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>rf <span class="op">=</span> RandomForestClassifier()</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>rf.fit(X,Y)</span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a>rf.score(X,Y)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="100">
+<pre><code>0.9266666666666666</code></pre>
+</div>
+</div>
+<section id="exemple-avec-une-acp" class="cell markdown" id="d2HRBUAS3Gga">
+<h2>Exemple avec une ACP</h2>
+</section>
+<div class="cell markdown" id="sOUG5hUp3LnB">
+<p>La librairie sklearn contient une fonction pour calculer une analyse en composantes principales nommé PCA dans le module decomposition. L'ACP se trouve à cet endroit, puisqu'il s'agit, dans le language de la science des données, d'une technique d'apprentissage non-supervisée.</p>
+<p>Remarquez que la fonction applique toujours son calcul à la matrice de variance/covariance. Vous devrez vous-même centrer-réduire vos données pour utiliser la matrice de corrélation.</p>
+<p>Une fonction pour effectuer cette opération (StandardScaler) se trouve dans le module preprocessing de sklearn.</p>
+</div>
+<div class="cell code" data-execution_count="101" id="YnWniv-YIHwG">
+<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>donnees_pour_acp <span class="op">=</span> iris.drop(columns<span class="op">=</span><span class="st">&#39;species&#39;</span>)</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>acp <span class="op">=</span> PCA()</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>coordonnees_acp <span class="op">=</span> acp.fit_transform(donnees_pour_acp)</span></code></pre></div>
+</div>
+<div class="cell markdown" id="VW7OdapOKNxj">
+<p>Voici comment récupérer les eigenvectors</p>
+</div>
+<div class="cell code" data-execution_count="102" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="_-6hLMpnKRnN" data-outputId="982cb792-84bb-4fcc-9239-a975f823417c">
+<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>acp.components_</span></code></pre></div>
+<div class="output execute_result" data-execution_count="102">
+<pre><code>array([[ 0.36138659, -0.08452251,  0.85667061,  0.3582892 ],
+       [ 0.65658877,  0.73016143, -0.17337266, -0.07548102],
+       [-0.58202985,  0.59791083,  0.07623608,  0.54583143],
+       [-0.31548719,  0.3197231 ,  0.47983899, -0.75365743]])</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="7cM80aLCKRx2">
+<p>Les eigenvalues</p>
+</div>
+<div class="cell code" data-execution_count="103" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="eEu2DrN2I3aV" data-outputId="445ae437-4f13-40aa-960f-bef20da1c954">
+<div class="sourceCode" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>acp.explained_variance_</span></code></pre></div>
+<div class="output execute_result" data-execution_count="103">
+<pre><code>array([4.22824171, 0.24267075, 0.0782095 , 0.02383509])</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="z-qhdj-iSlXu">
+<p>Et la fraction de la variance expliquée par chacun des axes</p>
+</div>
+<div class="cell code" data-execution_count="104" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="bmWrclanK_tu" data-outputId="0ea9efba-c0b1-4899-bfdc-063deb2cb3eb">
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>acp.explained_variance_ratio_</span></code></pre></div>
+<div class="output execute_result" data-execution_count="104">
+<pre><code>array([0.92461872, 0.05306648, 0.01710261, 0.00521218])</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="74y3vXGkSnFM">
+<p>Enfin, on peut aussi utiliser matplotlib pour visualiser les deux premiers axes de notre ACP comme ceci :</p>
+</div>
+<div class="cell code" data-execution_count="105" data-colab="{&quot;height&quot;:287,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="qcFJFrklSs6e" data-outputId="2b3339c9-746e-4775-c778-10623dcb8f6e">
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(coordonnees_acp[:,<span class="dv">0</span>], coordonnees_acp[:,<span class="dv">1</span>])</span></code></pre></div>
+<div class="output execute_result" data-execution_count="105">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f17d0756750&gt;</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/2a5a4fd61646298c46a4863c6bbf63ffb32f0762.png" /></p>
+</div>
+</div>
+<div class="cell markdown" id="zaBQaBfKAD3B">
+<p>On peut aussi tracer les variables dans le nouveau système d'axes. Par contre, il faut utiliser une boucle pour y arriver, parce que la fonction plt.arrow ne trace qu'une flèche à la fois</p>
+</div>
+<div class="cell code" data-execution_count="106" data-colab="{&quot;height&quot;:287,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="mzZRjOZnAK95" data-outputId="491a0fe0-1b46-4181-b7b9-e44b4da1046a">
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>PC1 <span class="op">=</span> acp.components_[<span class="dv">0</span>]</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>PC2 <span class="op">=</span> acp.components_[<span class="dv">1</span>]</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(PC1)):</span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>  plt.arrow(<span class="dv">0</span>, <span class="dv">0</span>, PC1[i], PC2[i], head_width <span class="op">=</span> <span class="fl">0.05</span>)</span>
+<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>  plt.text(PC1[i], PC2[i],<span class="bu">list</span>(donnees_pour_acp)[i])</span>
+<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, linestyle <span class="op">=</span> <span class="st">&quot;--&quot;</span>)</span>
+<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, linestyle <span class="op">=</span> <span class="st">&quot;--&quot;</span>)</span>
+<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>)</span>
+<span id="cb102-10"><a href="#cb102-10" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="106">
+<pre><code>(-1.0, 1.0)</code></pre>
+</div>
+<div class="output display_data">
+<p><img src="/assets/Python/ddedb1c00029b567a0dacffb23cf6747b559a6bc.png" /></p>
+</div>
+</div>
+<div class="cell markdown" id="71bVOC2RNY3Y">
+<p>Comme ceci n'est pas un atelier de statistiques, je vous laisse le plaisir de mettre à l'échelle les deux données (eigenvectors et points) dans un même graphique avec le scaling de votre choix ;-)</p>
+</div>
+<section id="ressources" class="cell markdown" id="SounV3IjNlYi">
+<h1>Ressources</h1>
+</section>
+<div class="cell markdown" id="GjySA2nkNnwp">
+<p>Voici en terminant deux ressources qui m'ont été utiles pour construire cet atelier :</p>
+<p>Si vous voulez vraiment apprendre Python, le livre le plus recommandé à l'heure actuelle est <strong><em>Python Crash Course, 2nd edition, par Eric Matthes</em></strong>. Au delà des 200 premières pages vous enseignant les bases de Python, les 300 autres sont consacrées à 3 projets vous montrant les différentes facettes du language : un jeu comprenant une interface visuelle, un projet d'analyse de données et une application Web.</p>
+<p>Si jamais vous voulez appliquer ce que vous avez vu dans vos cours de statistiques avec Python (et pour chaque bout de code voir l'équivalent en R), je vous conseille <strong><em>Practical Statistics for Data Scientists, Second Edition, par Bruce, Bruce et Gedeck</em></strong>. Il s'agit à la fois d'un des rares livres présentant ses exemples en deux languages et il offre, à mon avis, juste le bon niveau de détail pour quelqu'un qui veut appliquer correctement les bonnes techniques statistiques, sans avoir l'ambition de devenir statistien pour autant.</p>
+</div>
