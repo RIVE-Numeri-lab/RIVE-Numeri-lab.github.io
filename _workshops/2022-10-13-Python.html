@@ -380,8 +380,10 @@ Alex préfère Python
 <h2>Vectorized operations</h2>
 </section>
 <div class="cell markdown" id="0gb3y_YkGfD6">
-<p>Contrairement à plusieurs languages créés expressément pour l'analyse de données, Python n'est pas un language naturellement vectorisé.</p>
-<p>Si on se prépare une liste et que l'on veut multiplier tous ses items par 2, on ne peut <strong>PAS</strong> faire ceci :</p>
+<p>	Unlike many languages created expressly for data analysis, Python is not a naturally vectorized language.</p>
+
+<p>	If we are preparing a list and we want to multiply all its items by 2, we can NOT do this:</p>
+	
 </div>
 <div class="cell code" data-execution_count="64" id="mWSzFvqrGxXP">
 <div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>liste <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span></code></pre></div>
@@ -393,7 +395,7 @@ Alex préfère Python
 </div>
 </div>
 <div class="cell markdown" id="iw4X6loLG9Y0">
-<p>On pourrait évidemment contourner le problème avec des boucles</p>
+<p>We could obviously work around the problem with loops</p>
 </div>
 <div class="cell code" data-execution_count="66" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="5ksaLLnJHHoB" data-outputId="0306aacd-eb00-4cf4-93c3-fe8bbdc998e6">
 <div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>nouvelle_liste <span class="op">=</span> []</span>
@@ -407,7 +409,7 @@ Alex préfère Python
 </div>
 </div>
 <div class="cell markdown" id="9hifoggMH4SC">
-<p>Python possède une notation plus compacte pour ce genre de problèmes, que l'on pourrait traduire par les listes en compréhension (List Comprehension)</p>
+<p>Python has a more compact notation for this kind of problem : list comprehension</p>
 </div>
 <div class="cell code" data-execution_count="67" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="eP9FLjRTIDBD" data-outputId="b8db45ad-1425-478e-a1b2-dc0269cb68f5">
 <div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>[x <span class="op">*</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> liste]</span></code></pre></div>
@@ -416,14 +418,14 @@ Alex préfère Python
 </div>
 </div>
 <div class="cell markdown" id="7yjBptbMq5VQ">
-<p>Il s'agit d'une structure très compacte, permettant de créer une liste à partir d'une autre liste.</p>
+<p>It is a very compact structure, allowing to create a list from another list.</p>
 </div>
 <div class="cell markdown" id="b_2leNVnIjXU">
-<p>Enfin, si vous avez beaucoup d'algèbre vectoriel ou matriciel à faire, il sera probablement plus simple d'utiliser la librairie prévue à cet effet, qui se nomme NumPy.</p>
-<p>NumPy (et toutes les autres librairies nécessaires à l'atelier) sont déjà installées sur Colab.</p>
-<p>Sur vos ordinateurs personnels, on installe NumPy par la ligne de commande (terminal), par exemple comme ceci :</p>
+<p>Finally, if you have a lot of vector or matrix algebra to do, it will probably be easier to use the library provided for this purpose, which is called NumPy.</p>
+<p>NumPy (and all the other libraries needed for the workshop) are already installed on Colab.</p>
+<p>On your personal computers, we install NumPy by the command line (terminal), for example like this:</p>
 <p><code>pip install numpy</code></p>
-<p>Dans Python, lorsque l'on active une librarie, tout le code chargé est associé à un préfixe, que l'on peut modifier au moment de l'activation</p>
+<p>In Python, when you activate a library, all the loaded code is associated with a prefix, which can be modified at the time of activation</p>
 </div>
 <div class="cell code" data-execution_count="68" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="rbNa-4HHI6sg" data-outputId="e3d7f97f-d33f-4e70-f20b-d72fbb9daf98">
 <div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -454,21 +456,23 @@ Alex préfère Python
 </div>
 </div>
 <section id="les-tableaux-de-données-pandas" class="cell markdown" id="Hso5DHq7xWnA">
-<h1>Les tableaux de données pandas</h1>
+<h1>Panda data frames</h1>
 </section>
 <div class="cell markdown" id="A8_T7jefxbwL">
-<p>Il existe une librairie gérant les tableaux de données de façon beaucoup plus appropriée que les listes ou les dictionnaires lorsqu'il s'agit de l'analyse statistiques de données. Cette librairie se nomme pandas.</p>
-<p>Elle tient son nom d'une structure de données commune en économie, les PANel DAta.</p>
+<p>There is a library that manages tables of data much more appropriately than lists or dictionaries when it comes to statistical analysis of data. This library is called pandas.</p>
+
+<p>It takes its name from a common data structure in economics, PANel DAta.</p>
 </div>
 <div class="cell code" data-execution_count="71" id="DHUcXT-JxfaT">
 <div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
 <section id="charger-et-vérifier-les-données" class="cell markdown" id="wmRsEnSGEAyT">
-<h2>Charger et vérifier les données</h2>
+<h2>Loading and verifying data</h2>
 </section>
 <div class="cell markdown" id="xurILFRay9EJ">
-<p>La fonction de pandas pour charger des données se nomme read_csv.</p>
-<p>Pour se simplifier la vie, nous allons charger des données directement disponibles sur le web</p>
+<p>	The pandas function for loading data is called read_csv.</p>
+
+<p>	To simplify life, we will load data directly available on the web</p>
 </div>
 <div class="cell code" data-execution_count="72" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="FVzkDpaHzC6U" data-outputId="1a2b7c43-ea2f-4bf2-ecc5-abb788977338">
 <div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv&#39;</span>)</span>
@@ -674,10 +678,13 @@ Alex préfère Python
 </div>
 </div>
 <div class="cell markdown" id="2fDKtnzHrMEh">
-<p>Si jamais vos données sont en format Excel, il existe aussi une fonction read_excel permettant de les lire directement, sans passer par le format CSV.</p>
+<p>	If ever your data is in Excel format, there is also a read_excel function allowing you to read them directly, without going through the CSV format.</p>
+
+	
+	
 </div>
 <div class="cell markdown" id="OMfCOf9qEGNh">
-<p>Une fois les données chargées, il est important de vérifier le contenu de notre tableau de données, par exemple avec la méthode info :</p>
+<p>Once the data is loaded, it is important to check the contents of our data array, for example with the info method:</p>
 </div>
 <div class="cell code" data-execution_count="73" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="SfW0Bg-MENTK" data-outputId="76d221c6-b1a7-4528-e903-483fbc49a2d5">
 <div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>iris.info()</span></code></pre></div>
@@ -698,10 +705,10 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <section id="trier-les-observations" class="cell markdown" id="jbgg5OdBa-Jx">
-<h2>Trier les observations</h2>
+<h2>Sorting data</h2>
 </section>
 <div class="cell markdown" id="ehC6BAUZbNcr">
-<p>En ordre croissant</p>
+<p>In ascending order</p>
 </div>
 <div class="cell code" data-execution_count="74" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="7f40geNEbCHC" data-outputId="4830d6d4-4807-4484-d44e-c2b8f1b16ae6">
 <div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>iris.sort_values(<span class="st">&#39;sepal_length&#39;</span>)</span></code></pre></div>
@@ -906,7 +913,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="SLfd-ncYbQK0">
-<p>Ou en ordre décroissant</p>
+<p>Or in descending order</p>
 </div>
 <div class="cell code" data-execution_count="75" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="MBpKR30ubS_d" data-outputId="94656411-7a71-4f96-d467-e29b985d595e">
 <div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>iris.sort_values(<span class="st">&#39;sepal_length&#39;</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
@@ -1111,12 +1118,13 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="ivni_v1k51Ns">
-<p>##Sélectionner des lignes</p>
+<h2>Selecting rows</h2>
 </div>
 <div class="cell markdown" id="4NFu9CvC1cSP">
-<p>Il existe plusieurs façon de sélectionner des lignes ou des colonnes avec pandas, mais la façon la plus générale est d'utiliser l'opérateur loc.</p>
-<p>Ce dernier peut accepter soit un liste de valeurs booléennes, soit des étiquettes ou une séquence entre deux étiquettes.</p>
-<p>Cet opérateur vous permet aussi de sélectionner simultanément une liste de colonnes ET de lignes dans la même opération.</p>
+	<p>There are several ways to select rows or columns with pandas, but the most general way is to use the loc operator.</p>
+	<p>The latter can accept either a list of Boolean values, or labels or a sequence between two labels.</p>
+	<p>This operator also allows you to simultaneously select a list of columns AND rows in the same operation.</p>
+	
 </div>
 <div class="cell code" data-execution_count="76" data-colab="{&quot;height&quot;:1617,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="OfOjHBCb1bSm" data-outputId="a7dfdfea-e28d-4745-8478-8da045ca2670">
 <div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>iris.loc[iris.species <span class="op">==</span> <span class="st">&quot;virginica&quot;</span>]</span></code></pre></div>
@@ -1632,13 +1640,13 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="ABpQ6MKoTQuF">
-<p>Remarquez que, si on accède à une seule colonne à la fois et que le nom de la colonne est un identifiant valide de Python (pas d'espace, pas d'accents, etc.), on peut l'accéder directement avec un .variable plutôt que ['variable']</p>
+<p>Note that, if only one column is accessed at a time and the column name is a valid Python identifier (no spaces, no accents, etc.), it can be accessed directly with a . variable rather than ['variable']</p>
 </div>
 <section id="sélectionner-des-colonnes" class="cell markdown" id="aoK3FB_m59Rs">
-<h2>Sélectionner des colonnes</h2>
+<h2>Selecting columns</h2>
 </section>
 <div class="cell markdown" id="zDQAj2XN3VSf">
-<p>Le principe est le même pour sélectionner des colonnes. On doit par contre à ce moment spécifier quelles lignes on veut obtenir (ou spécifier toutes les lignes, comme ceci)</p>
+<p>The principle is the same for selecting columns. On the other hand, we must at this time specify which lines we want to obtain (or specify all the lines, like this)</p>
 </div>
 <div class="cell code" data-execution_count="77" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kgrmqSR63S42" data-outputId="5d4b4868-8f8a-4b8f-9fd8-75b7f82715d8">
 <div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>iris.loc[:,[<span class="st">&quot;sepal_width&quot;</span>, <span class="st">&quot;species&quot;</span>]]</span></code></pre></div>
@@ -1807,7 +1815,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="KoLJLC61UcKg">
-<p>Et comme discuté, on peut combiner les deux opérations dans une même commande :</p>
+<p>And as discussed, we can combine the two operations in the same command:</p>
 </div>
 <div class="cell code" data-execution_count="78" data-colab="{&quot;height&quot;:1617,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="xdKXlkvD32Rq" data-outputId="522abe1c-a99f-4899-a7c1-0507a6a2004b">
 <div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>iris.loc[iris.species <span class="op">==</span> <span class="st">&quot;virginica&quot;</span>,[<span class="st">&quot;sepal_width&quot;</span>, <span class="st">&quot;species&quot;</span>]]</span></code></pre></div>
@@ -2170,7 +2178,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="BZ6k_QHh4vxr">
-<p>Remarquez que le tableau original n'est pas affecté par ces opérations. Si on veut conserver le résultat, on doit le garder dans un objet</p>
+<p>Note that the original table is not affected by these operations. If we want to keep the result, we have to keep it in an object</p>
 </div>
 <div class="cell code" data-execution_count="79" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="4qqEBGoW49QW" data-outputId="ad5933c9-57f4-4fcf-e99a-70c403f70f14">
 <div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>iris.shape</span></code></pre></div>
@@ -2194,7 +2202,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="bY7myKUa6MAP">
-<p>##Ajouter des colonnes</p>
+<h2>Adding columns</h2>
 </div>
 <div class="cell code" data-execution_count="83" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="HWK7_pQprZwv" data-outputId="1e97a5fa-672c-43bd-fee0-af1697ae09a1">
 <div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>iris.assign(ratio <span class="op">=</span> iris.sepal_length <span class="op">/</span> iris.petal_length)</span></code></pre></div>
@@ -2411,10 +2419,10 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <section id="résumer-les-données" class="cell markdown" id="flSOg5TI7M83">
-<h2>Résumer les données</h2>
+<h2>Summarizing data</h2>
 </section>
 <div class="cell markdown" id="zx5O2IzG7QPF">
-<p>Pour avoir un aperçu de l'ensemble des statistiques descriptives de notre tableau de données, on peut utiliser la fonction describe</p>
+<p>To get an overview of all the descriptive statistics of our data table, we can use the describe function</p>
 </div>
 <div class="cell code" data-execution_count="84" data-colab="{&quot;height&quot;:300,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="3vEcGGX97YW6" data-outputId="186ae0a4-33e1-4302-abc9-019cce4a4ca2">
 <div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>iris.describe()</span></code></pre></div>
@@ -2585,7 +2593,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="OaW9-KtEZLe3">
-<p>Si on a besoin de résumer nos données de façon plus fine, on peut spécifier les fonctions et les colonnes manuellement</p>
+<p>If we need to summarize our data more finely, we can specify functions and columns manually</p>
 </div>
 <div class="cell code" data-execution_count="85" data-colab="{&quot;height&quot;:175,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kWK1JAWpZWlr" data-outputId="f478b89e-a830-45ee-be1e-e9eac0291be1">
 <div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>iris.loc[:,[<span class="st">&#39;sepal_length&#39;</span>, <span class="st">&#39;petal_length&#39;</span>]].agg([<span class="st">&#39;mean&#39;</span>,<span class="st">&#39;min&#39;</span>,<span class="st">&#39;max&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
@@ -2718,7 +2726,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="m4i7gyNaafMb">
-<p>On peut aussi appliquer nos résumés sur des groupes en particulier</p>
+<p>We can also apply our summaries to specific groups</p>
 </div>
 <div class="cell code" data-execution_count="86" data-colab="{&quot;height&quot;:175,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="OiROLeu6alL4" data-outputId="ab4a7a91-9b7b-470c-c4f4-1edde0fb07cf">
 <div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>iris.groupby(<span class="st">&#39;species&#39;</span>)[[<span class="st">&#39;sepal_length&#39;</span>, <span class="st">&#39;petal_length&#39;</span>]].mean()</span></code></pre></div>
@@ -2851,19 +2859,19 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <section id="visualisation-avec-matplotlib" class="cell markdown" id="ig8yKYbJYfnl">
-<h1>Visualisation avec matplotlib</h1>
+<h1>Data visualization with matlplotlib</h1>
 </section>
 <div class="cell markdown" id="1E17PFRocBtu">
-<p>Le module classique pour la visualisation de données avec Python se nomme matplotlib. En général, les gens utilisent en particulier la collection de fonctions nommée pyplot, qui vise à reproduire l'interface graphique de MATLAB dans Python</p>
+<p>The classic module for data visualization with Python is called matplotlib. In general, people especially use the collection of functions named pyplot, which aims to replicate MATLAB's plotting interface in Python</p>
 </div>
 <div class="cell code" data-execution_count="87" id="olMXpJxxeCAA">
 <div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 </div>
 <section id="explorer-chaque-variable-individuellement" class="cell markdown" id="dZBnE5u_vKG4">
-<h2>Explorer chaque variable individuellement</h2>
+<h2>Exploring each variable variable individually</h2>
 </section>
 <div class="cell markdown" id="FJPujldRen1c">
-<p>Pour créer un histogramme de fréquences, la fonction se nomme hist.</p>
+<p>To create a frequency histogram, the function is called hist.</p>
 </div>
 <div class="cell code" data-execution_count="88" data-colab="{&quot;height&quot;:319,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="rkQf5JnXetgM" data-outputId="e14cb981-281f-440e-9e04-60b8af556df8">
 <div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>plt.hist(<span class="st">&#39;sepal_length&#39;</span>, data <span class="op">=</span> iris)</span></code></pre></div>
@@ -2877,7 +2885,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="zsqieBmYdc6Y">
-<p>Comme matplotlib et pandas sont extrêmement bien intégrés, il existe, pour la plupart des visualisations, une façon de les appeller directement à partir du tableau de données</p>
+<p>As matplotlib and pandas are extremely well integrated, there is, for most visualizations, a way to call them directly from the data table</p>
 </div>
 <div class="cell code" data-execution_count="89" data-colab="{&quot;height&quot;:283,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="76BwwJaIdoi_" data-outputId="a801505f-ce3e-425d-f72d-ea243b139fd3">
 <div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>iris.sepal_length.plot.hist()</span></code></pre></div>
@@ -2889,7 +2897,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="ClLzxV1ffO7N">
-<p>On peut ensuite apporter des modifications à ce graphique (ou au précédent), puis demander à le réafficher</p>
+<p>You can then make changes to this graph (or the previous one), then ask to display it again</p>
 </div>
 <div class="cell code" data-execution_count="90" data-colab="{&quot;height&quot;:298,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="WJMVNWzcfSM5" data-outputId="10a6ddbb-57e5-49e5-f4ce-a46241f1ac53">
 <div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>iris.sepal_length.plot.hist()</span>
@@ -2903,11 +2911,11 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="BhhW3vIzMVQv">
-<p>Si jamais vous travaillez avec matplotlib dans un script plutôt que sur Jupyter, vous devrez appeller plt.show() pour afficher votre graphique. Ici, Jupyter le fait pour vous.</p>
+<p>If you ever work with matplotlib in a script rather than on Jupyter, you will need to call plt.show() to display your plot. Here, Jupyter does it for you.</p>
 </div>
 <div class="cell markdown" id="T5u0saJ-g3Yw">
-<p>Si nos données sont qualitatives, on emploie plutôt un diagramme à bandes.</p>
-<p>Il faut par contre calculer d'abord nous même les dénombremenets de chacune des classes</p>
+<p>If our data is qualitative, we use a bar chart instead.</p>
+<p>On the other hand, we must first calculate ourselves the counts of each class</p>
 </div>
 <div class="cell code" data-execution_count="91" data-colab="{&quot;height&quot;:322,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kvH6tEF4g7bj" data-outputId="23433a5d-d4a6-405a-cc6b-487a27f9c782">
 <div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>iris.species.value_counts().plot.bar()</span></code></pre></div>
@@ -2919,10 +2927,10 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <section id="explorer-les-relations-entre-deux-variables" class="cell markdown" id="tRUeqzVcvP09">
-<h2>Explorer les relations entre deux variables</h2>
+<h2>Exploring relationships between two variables</h2>
 </section>
 <div class="cell markdown" id="3W3oJwE0kU4S">
-<p>Pour regarder la relation entre deux variables quantiatives, on a bien sûr accès au classique nuage de points</p>
+<p>To look at the relationship between two quantitative variables, we of course have access to the classic scatter plot</p>
 </div>
 <div class="cell code" data-execution_count="92" data-colab="{&quot;height&quot;:298,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="FMBhjjJQkaYw" data-outputId="016b45c9-ba01-43e2-9064-3b990b53047c">
 <div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>iris.plot.scatter(<span class="st">&#39;petal_length&#39;</span>, <span class="st">&#39;petal_width&#39;</span>)</span></code></pre></div>
@@ -2934,9 +2942,9 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="kHG1pmN8pu91">
-<p>Et je vous montre rapidement comment changer la couleur des points parce que j'ai eu <em>un peu</em> de difficulté à trouver comment pour une variable qualitative.</p>
-<p>La clé est de d'abord se créer un dictionnaire associant chacune des espèces à une couleur.</p>
-<p>Puis au moment de créer le graphique, d'associer chaque valeur d'espèce à une valeur de couleur avec la méthode map.</p>
+<p>And I'll quickly show you how to change the color of the dots because I had <em>a little</em> trouble figuring out how for a categorical variable.</p>
+<p>The key is to first create a dictionary associating each species with a color.</p>
+<p>Then when creating the graph, associate each species value with a color value with the map method.</p>
 </div>
 <div class="cell code" data-execution_count="93" data-colab="{&quot;height&quot;:298,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="EpgdyiDupoF7" data-outputId="2ba6610f-211e-4a68-f0c9-278f9136e593">
 <div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>couleurs <span class="op">=</span> {<span class="st">&#39;setosa&#39;</span>:<span class="st">&#39;red&#39;</span>, <span class="st">&#39;virginica&#39;</span>:<span class="st">&#39;green&#39;</span>, <span class="st">&#39;versicolor&#39;</span>:<span class="st">&#39;blue&#39;</span>}</span>
@@ -2949,7 +2957,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="qVThTTq6qZ72">
-<p>Si on veut explorer la relation entre une variable qualitative et une quantitative, il y a évidemment le boxplot</p>
+<p>If you want to explore the relationship between a qualitative variable and a quantitative one, there is obviously the boxplot</p>
 </div>
 <div class="cell code" data-execution_count="94" data-colab="{&quot;height&quot;:319,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="jQFbbtUpqfbA" data-outputId="4fd40627-44eb-442a-f95a-64b9ff3eba16">
 <div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>iris.boxplot(column<span class="op">=</span><span class="st">&#39;sepal_length&#39;</span>,by<span class="op">=</span><span class="st">&#39;species&#39;</span>, grid <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
@@ -2964,8 +2972,8 @@ memory usage: 6.0+ KB
 <h2>Un petit clin d'oeil à R</h2>
 </section>
 <div class="cell markdown" id="ZKd43URkVe_g">
-<p>Si jamais vous vous ennuyez de ggplot2, l'ensemble de la librairie a été ré-implémentée en Python dans la librairie plotnine.</p>
-<p>Remarquez qu'il existe tout de même certaines petites nuances vs. le code R. Vous ne pourrez pas copier-coller directement votre code.</p>
+<p>If you ever get bored of ggplot2, the entire library has been re-implemented in Python in the plotnine library.</p>
+<p>Note that there are still some small nuances vs. the R code. You will not be able to directly copy and paste your code.</p>
 </div>
 <div class="cell code" data-execution_count="95" data-colab="{&quot;height&quot;:470,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="B5D5FuPELTzF" data-outputId="5d3501a1-1169-4243-e63c-31a5f1d209c6">
 <div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, aes,geom_point</span>
@@ -2979,16 +2987,16 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <section id="tests-statistiques-avec-scipy" class="cell markdown" id="-M4HwSmMYjqg">
-<h1>Tests statistiques avec scipy</h1>
+<h1>Statistical tests with scipy</h1>
 </section>
 <div class="cell markdown" id="4iiiTpzDg2Iy">
-<p>Les tests statistiques classiques dans Python sont fournis par la collection de fonctions stats dans le module scipy</p>
+<p>Classic statistical tests in Python are provided by the collection of stats functions in the scipy module</p>
 </div>
 <div class="cell code" data-execution_count="96" id="cwJVTzlGwFi3">
 <div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code></pre></div>
 </div>
 <div class="cell markdown" id="_ajXAXhSvvc0">
-<p>Si vous voulez par exemple appliquer un test de T pour variance inégales</p>
+<p>If you want for example to apply a T test for unequal variance</p>
 </div>
 <div class="cell code" data-execution_count="97" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="zC3XZPYtwOtp" data-outputId="ba730b13-c697-4f30-b540-14ef03948ef2">
 <div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_ind(</span>
@@ -3001,7 +3009,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="Q_j1yum2wxkO">
-<p>Si vous voulez mesurer une corrélationn de Pearson (et obtenir la valeur de p correspondante)</p>
+<p>If you want to measure a Pearson correlation (and get the corresponding p-value)</p>
 </div>
 <div class="cell code" data-execution_count="98" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="Knxhhs6Cw6So" data-outputId="db026bc4-f911-42ce-9799-0303cdda17c9">
 <div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>stats.pearsonr(</span>
@@ -3013,17 +3021,17 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <section id="lapprentissage-automatique-machine-learning-avec-scikit-learn" class="cell markdown" id="j7CyS0BTYnNB">
-<h1>L'apprentissage automatique (Machine Learning) avec scikit-learn</h1>
+<h1>Machine Learning with scikit-learn</h1>
 </section>
 <div class="cell markdown" id="uyBwQdQ9xfK7">
-<p>La référence en matière d'aprentissage automatique (Machine Learning) est sans aucun doute le module Python nommé scikit-learn</p>
+<p>The benchmark for Machine Learning is undoubtedly the Python module named scikit-learn</p>
 </div>
 <section id="exemple-avec-un-random-forest" class="cell markdown" id="hS1gUSdj3Ckq">
-<h2>Exemple avec un Random Forest</h2>
+<h2>Example with a Random Forest</h2>
 </section>
 <div class="cell markdown" id="umD1jBhC2iJo">
-<p>Voici comment on pourrait par exemple appliquer un modèle de classification Random Forest à nos données.</p>
-<p>Remarquez qu'il faut d'abord encoder notre variable qualitative en numérique pour que le modèle la comprenne...</p>
+<p>Here is how, for example, we could apply a Random Forest classification model to our data.</p>
+<p>Note that we must first encode our qualitative variable in numeric so that the model understands it...</p>
 </div>
 <div class="cell code" data-execution_count="99" id="UMjgswXIki7E">
 <div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
@@ -3034,7 +3042,7 @@ memory usage: 6.0+ KB
 <span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.loc[:,[<span class="st">&#39;sepal_length&#39;</span>,<span class="st">&#39;sepal_width&#39;</span>]]</span></code></pre></div>
 </div>
 <div class="cell markdown" id="8X7EqlKBmClY">
-<p>On peut ensuite lancer le modèle et voir à quel point cela fonctionne bien!</p>
+<p>We can then run the model and see how well it works!</p>
 </div>
 <div class="cell code" data-execution_count="100" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="HZXHOLu2yS69" data-outputId="27f9101b-db99-4f54-ce09-5557359db131">
 <div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
@@ -3048,12 +3056,12 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <section id="exemple-avec-une-acp" class="cell markdown" id="d2HRBUAS3Gga">
-<h2>Exemple avec une ACP</h2>
+<h2>Example with a PCA</h2>
 </section>
 <div class="cell markdown" id="sOUG5hUp3LnB">
-<p>La librairie sklearn contient une fonction pour calculer une analyse en composantes principales nommé PCA dans le module decomposition. L'ACP se trouve à cet endroit, puisqu'il s'agit, dans le language de la science des données, d'une technique d'apprentissage non-supervisée.</p>
-<p>Remarquez que la fonction applique toujours son calcul à la matrice de variance/covariance. Vous devrez vous-même centrer-réduire vos données pour utiliser la matrice de corrélation.</p>
-<p>Une fonction pour effectuer cette opération (StandardScaler) se trouve dans le module preprocessing de sklearn.</p>
+<p>The sklearn library contains a function to calculate a principal component analysis named PCA in the decomposition module. PCA is there, since it is, in data science parlance, an unsupervised learning technique.</p>
+<p>Note that the function always applies its calculation to the variance/covariance matrix. You will have to center-reduce your data yourself to use the correlation matrix.</p>
+<p>A function to perform this operation (StandardScaler) can be found in the preprocessing module of sklearn.</p>
 </div>
 <div class="cell code" data-execution_count="101" id="YnWniv-YIHwG">
 <div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
@@ -3064,7 +3072,7 @@ memory usage: 6.0+ KB
 <span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>coordonnees_acp <span class="op">=</span> acp.fit_transform(donnees_pour_acp)</span></code></pre></div>
 </div>
 <div class="cell markdown" id="VW7OdapOKNxj">
-<p>Voici comment récupérer les eigenvectors</p>
+<p>Here's how to extract the eigenvectors</p>
 </div>
 <div class="cell code" data-execution_count="102" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="_-6hLMpnKRnN" data-outputId="982cb792-84bb-4fcc-9239-a975f823417c">
 <div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>acp.components_</span></code></pre></div>
@@ -3085,7 +3093,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="z-qhdj-iSlXu">
-<p>Et la fraction de la variance expliquée par chacun des axes</p>
+<p>And the variance explained by each axis</p>
 </div>
 <div class="cell code" data-execution_count="104" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="bmWrclanK_tu" data-outputId="0ea9efba-c0b1-4899-bfdc-063deb2cb3eb">
 <div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>acp.explained_variance_ratio_</span></code></pre></div>
@@ -3094,7 +3102,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="74y3vXGkSnFM">
-<p>Enfin, on peut aussi utiliser matplotlib pour visualiser les deux premiers axes de notre ACP comme ceci :</p>
+<p>Finally, we can also use matplotlib to visualize the first two axes of our PCA like this:</p>
 </div>
 <div class="cell code" data-execution_count="105" data-colab="{&quot;height&quot;:287,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="qcFJFrklSs6e" data-outputId="2b3339c9-746e-4775-c778-10623dcb8f6e">
 <div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(coordonnees_acp[:,<span class="dv">0</span>], coordonnees_acp[:,<span class="dv">1</span>])</span></code></pre></div>
@@ -3106,7 +3114,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="zaBQaBfKAD3B">
-<p>On peut aussi tracer les variables dans le nouveau système d'axes. Par contre, il faut utiliser une boucle pour y arriver, parce que la fonction plt.arrow ne trace qu'une flèche à la fois</p>
+<p>You can also plot variables in the new axis system. However, you have to use a loop to do this, because the plt.arrow function only draws one arrow at a time</p>
 </div>
 <div class="cell code" data-execution_count="106" data-colab="{&quot;height&quot;:287,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="mzZRjOZnAK95" data-outputId="491a0fe0-1b46-4181-b7b9-e44b4da1046a">
 <div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>PC1 <span class="op">=</span> acp.components_[<span class="dv">0</span>]</span>
@@ -3127,13 +3135,13 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="71bVOC2RNY3Y">
-<p>Comme ceci n'est pas un atelier de statistiques, je vous laisse le plaisir de mettre à l'échelle les deux données (eigenvectors et points) dans un même graphique avec le scaling de votre choix ;-)</p>
+<p>As this is not a statistics workshop, I leave you the pleasure of scaling the two data (eigenvectors and points) in the same graph with the scaling of your choice ;-)</p>
 </div>
 <section id="ressources" class="cell markdown" id="SounV3IjNlYi">
-<h1>Ressources</h1>
+<h1>Resources</h1>
 </section>
 <div class="cell markdown" id="GjySA2nkNnwp">
-<p>Voici en terminant deux ressources qui m'ont été utiles pour construire cet atelier :</p>
-<p>Si vous voulez vraiment apprendre Python, le livre le plus recommandé à l'heure actuelle est <strong><em>Python Crash Course, 2nd edition, par Eric Matthes</em></strong>. Au delà des 200 premières pages vous enseignant les bases de Python, les 300 autres sont consacrées à 3 projets vous montrant les différentes facettes du language : un jeu comprenant une interface visuelle, un projet d'analyse de données et une application Web.</p>
-<p>Si jamais vous voulez appliquer ce que vous avez vu dans vos cours de statistiques avec Python (et pour chaque bout de code voir l'équivalent en R), je vous conseille <strong><em>Practical Statistics for Data Scientists, Second Edition, par Bruce, Bruce et Gedeck</em></strong>. Il s'agit à la fois d'un des rares livres présentant ses exemples en deux languages et il offre, à mon avis, juste le bon niveau de détail pour quelqu'un qui veut appliquer correctement les bonnes techniques statistiques, sans avoir l'ambition de devenir statistien pour autant.</p>
+<p>Here are two resources that have been useful to me in building this workshop:</p>
+<p>If you really want to learn Python, the most recommended book right now is <strong><em>Python Crash Course, 2nd edition, by Eric Matthes</em></strong>. Beyond the first 200 pages teaching you the basics of Python, the other 300 are devoted to 3 projects showing you the different facets of the language: a game including a visual interface, a data analysis project and a Web application.</p>
+<p>If you ever want to apply what you have seen in your statistics courses with Python (and for each piece of code see the equivalent in R), I recommend <strong><em>Practical Statistics for Data Scientists, Second Edition, by Bruce, Bruce and Gedeck</em></strong>. It is both one of the few books presenting his examples in two languages and it offers, in my opinion, just the right level of detail for someone who wants to apply good statistical techniques correctly, without having the ambition to become a statistician for all that.</p>
 </div>
