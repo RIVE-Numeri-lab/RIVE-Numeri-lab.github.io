@@ -5,7 +5,7 @@ layout: default
 title: "Introduction to Python"
 author: "Charles Martin"
 date: "2022-10-13"
-lang: fr
+lang: en
 ---
 
   <style>
@@ -156,7 +156,7 @@ lang: fr
 
 <p>Although many operating systems come with a version of Python pre-installed (including Ubuntu, MacOS, etc.), its configuration, the installation of libraries, etc. can be relatively perilous for a beginner.</p>
 
-<p>This is why for this workshop, we will rather work with Python on Google Colab (<a href="https://colab.research.google.com/" class="uri">https://colab.research.google.com/</a>). Colab is a service offered by Google, where you can create a notebook (Jupyter Notebook) in which you can mix code (among others in Python) and text (in Markdown format). As all the necessary software is already pre-installed, we will save a LOT of configuration time.</p>
+<p>This is why for this workshop, we will work with Python on Google Colab (<a href="https://colab.research.google.com/" class="uri">https://colab.research.google.com/</a>). Colab is a service offered by Google, where you can create a Jupyter notebook in which you can mix code (Python and others) and text (in Markdown format). As all the necessary software is already pre-installed, we will save a LOT of configuration time.</p>
 
 <p>We can also, immediately, check that our notebook works well by launching a first test command</p>
 
@@ -271,7 +271,7 @@ lang: fr
 </div>
 </div>
 <div class="cell markdown" id="CfkuYtIRYCWc">
-<p>Note that if you use the by-value method, only the first value will be removed if you work this way.</p>
+<p>Note that if you use the by-value method, only the first value will be removed.</p>
 </div>
 <section id="les-boucles-et-les-fonctions" class="cell markdown" id="BgFNYOMUT4IP">
 <h2>Loops and functions</h2>
@@ -292,7 +292,8 @@ lang: fr
 </div>
 </div>
 <div class="cell markdown" id="TUXU-ym0wSNX">
-<p>	Note that, in Python, <strong>spaces in front of code are conventional and important.</strong></p>
+<p>	Note that, in Python, <strong>whitespace usage is part of the language structure, i.e. it is not purely
+	cosmetic as in other languages.</strong></p>
 
 <p>	All text that is indented is part of the loop. No need for braces, parentheses, etc. It's very elegant!</p>
 
@@ -459,7 +460,7 @@ Alex préfère Python
 <h1>Panda data frames</h1>
 </section>
 <div class="cell markdown" id="A8_T7jefxbwL">
-<p>There is a library that manages tables of data much more appropriately than lists or dictionaries when it comes to statistical analysis of data. This library is called pandas.</p>
+<p>There is a library that manages data frames much more appropriately than lists or dictionaries when it comes to statistical analysis of data. This library is called pandas.</p>
 
 <p>It takes its name from a common data structure in economics, PANel DAta.</p>
 </div>
@@ -472,7 +473,7 @@ Alex préfère Python
 <div class="cell markdown" id="xurILFRay9EJ">
 <p>	The pandas function for loading data is called read_csv.</p>
 
-<p>	To simplify life, we will load data directly available on the web</p>
+<p>	To simplify, we will load data directly available on the web</p>
 </div>
 <div class="cell code" data-execution_count="72" data-colab="{&quot;height&quot;:424,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="FVzkDpaHzC6U" data-outputId="1a2b7c43-ea2f-4bf2-ecc5-abb788977338">
 <div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv&#39;</span>)</span>
@@ -678,13 +679,13 @@ Alex préfère Python
 </div>
 </div>
 <div class="cell markdown" id="2fDKtnzHrMEh">
-<p>	If ever your data is in Excel format, there is also a read_excel function allowing you to read them directly, without going through the CSV format.</p>
+<p>	If your data is in Excel format, there is also a read_excel function allowing you to read them directly, without going through the CSV format.</p>
 
 	
 	
 </div>
 <div class="cell markdown" id="OMfCOf9qEGNh">
-<p>Once the data is loaded, it is important to check the contents of our data array, for example with the info method:</p>
+<p>Once the data is loaded, it is important to check the contents our data, for example with the info method:</p>
 </div>
 <div class="cell code" data-execution_count="73" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="SfW0Bg-MENTK" data-outputId="76d221c6-b1a7-4528-e903-483fbc49a2d5">
 <div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>iris.info()</span></code></pre></div>
@@ -2593,7 +2594,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="OaW9-KtEZLe3">
-<p>If we need to summarize our data more finely, we can specify functions and columns manually</p>
+<p>If we need finer control, we can specify functions and columns manually</p>
 </div>
 <div class="cell code" data-execution_count="85" data-colab="{&quot;height&quot;:175,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kWK1JAWpZWlr" data-outputId="f478b89e-a830-45ee-be1e-e9eac0291be1">
 <div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>iris.loc[:,[<span class="st">&#39;sepal_length&#39;</span>, <span class="st">&#39;petal_length&#39;</span>]].agg([<span class="st">&#39;mean&#39;</span>,<span class="st">&#39;min&#39;</span>,<span class="st">&#39;max&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
@@ -2885,7 +2886,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="zsqieBmYdc6Y">
-<p>As matplotlib and pandas are extremely well integrated, there is, for most visualizations, a way to call them directly from the data table</p>
+<p>As matplotlib and pandas are extremely well integrated, there is, for most visualizations, a way to call them directly from the data frame</p>
 </div>
 <div class="cell code" data-execution_count="89" data-colab="{&quot;height&quot;:283,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="76BwwJaIdoi_" data-outputId="a801505f-ce3e-425d-f72d-ea243b139fd3">
 <div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>iris.sepal_length.plot.hist()</span></code></pre></div>
@@ -2915,7 +2916,7 @@ memory usage: 6.0+ KB
 </div>
 <div class="cell markdown" id="T5u0saJ-g3Yw">
 <p>If our data is qualitative, we use a bar chart instead.</p>
-<p>On the other hand, we must first calculate ourselves the counts of each class</p>
+<p>Unlike the previous example, here we must first calculate the counts for each class</p>
 </div>
 <div class="cell code" data-execution_count="91" data-colab="{&quot;height&quot;:322,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="kvH6tEF4g7bj" data-outputId="23433a5d-d4a6-405a-cc6b-487a27f9c782">
 <div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>iris.species.value_counts().plot.bar()</span></code></pre></div>
@@ -2942,7 +2943,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="kHG1pmN8pu91">
-<p>And I'll quickly show you how to change the color of the dots because I had <em>a little</em> trouble figuring out how for a categorical variable.</p>
+<p>And I'll quickly show you how to change the color of the dots because I had <em>a little</em> trouble figuring out how to do it for a categorical variable.</p>
 <p>The key is to first create a dictionary associating each species with a color.</p>
 <p>Then when creating the graph, associate each species value with a color value with the map method.</p>
 </div>
@@ -2969,10 +2970,10 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <section id="un-petit-clin-doeil-à-r" class="cell markdown" id="WNGCoHhLLVrT">
-<h2>Un petit clin d'oeil à R</h2>
+<h2>A hint of R</h2>
 </section>
 <div class="cell markdown" id="ZKd43URkVe_g">
-<p>If you ever get bored of ggplot2, the entire library has been re-implemented in Python in the plotnine library.</p>
+<p>If you ever miss ggplot2, the entire library has been re-implemented in Python in the plotnine library.</p>
 <p>Note that there are still some small nuances vs. the R code. You will not be able to directly copy and paste your code.</p>
 </div>
 <div class="cell code" data-execution_count="95" data-colab="{&quot;height&quot;:470,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="B5D5FuPELTzF" data-outputId="5d3501a1-1169-4243-e63c-31a5f1d209c6">
@@ -3024,7 +3025,7 @@ memory usage: 6.0+ KB
 <h1>Machine Learning with scikit-learn</h1>
 </section>
 <div class="cell markdown" id="uyBwQdQ9xfK7">
-<p>The benchmark for Machine Learning is undoubtedly the Python module named scikit-learn</p>
+<p>Most Machine Learning algorithms are available in Python through the scikit-learn module</p>
 </div>
 <section id="exemple-avec-un-random-forest" class="cell markdown" id="hS1gUSdj3Ckq">
 <h2>Example with a Random Forest</h2>
@@ -3059,7 +3060,7 @@ memory usage: 6.0+ KB
 <h2>Example with a PCA</h2>
 </section>
 <div class="cell markdown" id="sOUG5hUp3LnB">
-<p>The sklearn library contains a function to calculate a principal component analysis named PCA in the decomposition module. PCA is there, since it is, in data science parlance, an unsupervised learning technique.</p>
+<p>The sklearn library contains a function to calculate a principal component analysis named PCA in the decomposition module. PCA is there, since it is, in data science jargon, an unsupervised learning technique.</p>
 <p>Note that the function always applies its calculation to the variance/covariance matrix. You will have to center-reduce your data yourself to use the correlation matrix.</p>
 <p>A function to perform this operation (StandardScaler) can be found in the preprocessing module of sklearn.</p>
 </div>
@@ -3084,7 +3085,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="cell markdown" id="7cM80aLCKRx2">
-<p>Les eigenvalues</p>
+<p>The eigenvalues</p>
 </div>
 <div class="cell code" data-execution_count="103" data-colab="{&quot;height&quot;:0,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}" id="eEu2DrN2I3aV" data-outputId="445ae437-4f13-40aa-960f-bef20da1c954">
 <div class="sourceCode" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>acp.explained_variance_</span></code></pre></div>
@@ -3143,5 +3144,5 @@ memory usage: 6.0+ KB
 <div class="cell markdown" id="GjySA2nkNnwp">
 <p>Here are two resources that have been useful to me in building this workshop:</p>
 <p>If you really want to learn Python, the most recommended book right now is <strong><em>Python Crash Course, 2nd edition, by Eric Matthes</em></strong>. Beyond the first 200 pages teaching you the basics of Python, the other 300 are devoted to 3 projects showing you the different facets of the language: a game including a visual interface, a data analysis project and a Web application.</p>
-<p>If you ever want to apply what you have seen in your statistics courses with Python (and for each piece of code see the equivalent in R), I recommend <strong><em>Practical Statistics for Data Scientists, Second Edition, by Bruce, Bruce and Gedeck</em></strong>. It is both one of the few books presenting his examples in two languages and it offers, in my opinion, just the right level of detail for someone who wants to apply good statistical techniques correctly, without having the ambition to become a statistician for all that.</p>
+<p>If you ever want to apply what you have seen in your statistics courses with Python (and for each piece of code see the equivalent in R), I recommend <strong><em>Practical Statistics for Data Scientists, Second Edition, by Bruce, Bruce and Gedeck</em></strong>. It is both one of the few books presenting examples in two languages and it offers, in my opinion, just the right level of detail for someone who wants to apply good statistical techniques correctly, without having the ambition to become a full-time statistician.</p>
 </div>
