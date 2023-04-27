@@ -1,12 +1,40 @@
 <style>
-    #cookie-notice {padding: 0.5rem 1rem; display: none; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #222; color: rgba(255,255,255,0.8);}
+    #cookie-notice {
+		display: none; 
+		text-align: center; 
+/*		position: fixed; 
+		bottom: 50%; 
+		left:35%;
+		width:30%; 
+		height:25%;*/
+		
+	    position: fixed;
+	    top: 40%;
+	    left: 50%;
+	    transform: translate(-50%, -40%);
+		
+		background: rgba(0,0,0,0.8); 
+		padding:3%;
+		color: rgba(255,255,255);
+		
+		box-shadow: 10px 10px 5px rgba(0,0,0,0.5);
+	}
     #cookie-notice a {display: inline-block; cursor: pointer; margin-left: 0.5rem;}
     @media (max-width: 767px) {
         #cookie-notice span {display: block; padding-top: 3px; margin-bottom: 1rem;}
         #cookie-notice a {position: relative; bottom: 4px;}
     }
 </style>
-<div id="cookie-notice"><span>We would like to use third party cookies and scripts to assess traffic on this website and justify its existence.</span><a id="cookie-notice-accept" class="btn btn-primary btn-sm">Approve</a></div>
+<div id="cookie-notice">
+
+<span>Nous aimerions utiliser des cookies et des scripts tiers pour évaluer le trafic sur ce site Web et justifier son existence.</span><br /><br /><a id="cookie-notice-accept" class="btn btn-primary btn-sm">Accepter</a>
+
+<br /><br />
+	
+	<span>We would like to use third party cookies and scripts to assess traffic on this website and justify its existence.</span><br /><br /><a id="cookie-notice-accept" class="btn btn-primary btn-sm">Approve</a>
+
+
+</div>
 <script>
     function createCookie(name,value,days) {
         var expires = "";
