@@ -90,12 +90,12 @@
 - title : "Analyses bioinformatiques (dada2)"
   date : 2023-06-01
   description : L. Astorg
-  - title : "Introduction à Keras et aux modèles de langage style ChatGPT"
+- title : "Introduction à Keras et aux modèles de langage style ChatGPT"
   date : 2023-10-16
   description : C. Martin
-  - title : "Introduction à QGIS"
+- title : "Introduction à QGIS"
   date : 2023-11-13
   description : E. Hamel-Jomphe
-  - title : "Introduction à git"
+- title : "Introduction à git"
   date : 2023-12-04
   description : J. Malko
