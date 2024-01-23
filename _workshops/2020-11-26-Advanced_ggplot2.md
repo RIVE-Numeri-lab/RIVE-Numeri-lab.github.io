@@ -3,8 +3,8 @@ layout: default
 thumbnail: ggplot2.png
 category: Data exploration
 title: "Advanced ggplot2 - Solutions to everyday problems"
-author: "Charles Martin"
-date: "October 29 2020"
+author: "Charles Martin, edited by Jade Dormoy-Boulanger"
+date: "January 2024"
 lang: en
 output:
   html_document:
@@ -18,9 +18,9 @@ fr_url: "/fr/ateliers/Advanced_ggplot2"
 ---
 # Advanced ggplot2 - Solutions to everyday problems
 {:.no_toc}
-#### Charles Martin
+#### Charles Martin, edited by Jade Dormoy-Boulanger
 {:.no_toc}
-#### October 2020
+#### January 2024
 {:.no_toc}
 
 * TOC
@@ -28,12 +28,12 @@ fr_url: "/fr/ateliers/Advanced_ggplot2"
 
 This workshop assumes that you are already familiar with basic ggplot2 functions.
 If this isn't the case, please take a couple of minutes to skim through our
-introduction to ggplot2 at https://rive-numeri-lab.github.io/workshops/RapidDataViz before
+introduction to ggplot2 at [https://numerilab.io/en/workshops/RapidDataViz](https://numerilab.io/en/workshops/RapidDataViz) before
 proceeding with this workshop.
 
 This workshop is structured in a *problems and solutions* kind of way. I tried to
 collect all of the commons issues ggplot2 users have come to my desk with in the
-past couple of years. I then tried to organize these problems by theme, but this
+past couple of years. I then tried to organize these problems by theme, but this 
 workshop is still a mixed collection of unrelated issues.
 
 # Highlighting information
@@ -57,10 +57,10 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 As you can guess from this example, the first argument of the annotate function is
 the name of the geom you would have like to use. "point" for geom_point, "text" for
@@ -68,12 +68,12 @@ geom_text, etc. You can then give values for any of the geom attributes you woul
 liked, without the need to put them in a data frame or wrap them with an aes call.
 
 ## Combining many data sources in a single plot
-Before you start building tens of annotations to add to your ggplot, you might
+Before you start building tens of annotations to add to your ggplot, you might 
 find it interesting to know that you can also tell ggplot2 to use an alternate
 data frame for some geoms instead of your main one.
 
-You could, for example, prepare a data frame with averages per vore from the
-msleep data set :
+You could, for example, prepare a data frame with averages per vore from the 
+msleep data set : 
 
 ```r
 library(dplyr)
@@ -97,24 +97,17 @@ The following objects are masked from 'package:base':
 ```
 
 ```r
-moyennes <- msleep %>%
-  group_by(vore) %>%
+moyennes <- msleep %>% 
+  group_by(vore) %>% 
   summarize(
     sleep_total = mean(sleep_total, na.rm = TRUE),
     sleep_rem = mean(sleep_rem, na.rm = TRUE)
   )
-```
-
-```
-`summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 moyennes
 ```
 
 ```
-# A tibble: 5 x 3
+# A tibble: 5 × 3
   vore    sleep_total sleep_rem
   <chr>         <dbl>     <dbl>
 1 carni         10.4       2.29
@@ -134,17 +127,17 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem, color = vore)) +
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
-To make your life easier, it is a good idea to have identical column names in both
-data.frames. But nevertheless, you can also re-map your new columns with an
+To make your life easier, it is a good idea to have identical column names in both 
+data.frames. But nevertheless, you can also re-map your new columns with an 
 aes() call if you decide to have different names.
 
-One neat little trick to highlight some data points in a plot is to surround them
-with an additional line, by adding an empty circle around each point, like this :
+One neat little trick to highlight some data points in a plot is to surround them 
+with an additional line, by adding an empty circle around each point, like this : 
 
 ```r
 ggplot(msleep, aes(x = sleep_total, y = sleep_rem, color = vore)) +
@@ -154,10 +147,10 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem, color = vore)) +
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 # Classic issues in limnology
 
@@ -167,122 +160,122 @@ Limnologists often produce plots where many variables (e.g. pH, water temperatur
 to do, but in ggplot2, it's not that simple.
 
 The reason why it's not so simple is that ggplot2's author Hadley Wickham firmly
-believes that these kind of plots can be easily abused to mislead a reader and
-should not be taken lightly (e.g. https://stackoverflow.com/questions/3099219/ggplot-with-2-y-axes-on-each-side-and-different-scales/3101876#3101876). But don't dispair, I'll walk you through the step which, once understood
+believes that these kind of plots can be easily abused to mislead a reader and 
+should not be taken lightly (e.g. [https://stackoverflow.com/questions/3099219/ggplot-with-2-y-axes-on-each-side-and-different-scales/3101876#3101876](https://stackoverflow.com/questions/3099219/ggplot-with-2-y-axes-on-each-side-and-different-scales/3101876#3101876)). But don't dispair, I'll walk you through the step which, once understood
 correctly, aren't that bad.
 
 So first, we'll build ourselves a little limnology data frame, and use it to plot our
-first variable :
+first variable : 
 
 ```r
 limno <- data.frame(
-  Profondeur = c(1,2,3,4),
+  Depth = c(1,2,3,4),
   O2 = c(90, 75, 70,68),
   Temperature = c(12.1,10.8,10.4,8.5)
 )
 ```
 
 ```r
-ggplot(limno, aes(x = Profondeur)) +
+ggplot(limno, aes(x = Depth)) +
   geom_line(aes(y = O2))
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 The first step towards displaying a secondary Y axis is to add that second variable
 to our plot. Note that for clarity reasons, I also pick different colors and linetypes
 for each variables :
 
 ```r
-ggplot(limno, aes(x = Profondeur)) +
+ggplot(limno, aes(x = Depth)) +
   geom_line(aes(y = O2), color = "blue", linetype = "dashed") +
   geom_line(aes(y = Temperature), color = "red")
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 So now both data series are displayed, but they are one the same Y-scale. Our
 plot needs to know how to scale our second line.
 
 The next step is to think about which data transformation you would need to apply
-to your Temperature variable to make its upper value equal to the Oxygen value.
+to your Temperature variable to make its upper value equal to the Oxygen value. 
 If both variables are positive, an easy way to do that is to calculate the
 ratio between the two maximums (90/12=7.5). If you multiply our Temperature values
-by 7.5, both maximums should happily coincide :
+by 7.5, both maximums should happily coincide : 
 
 ```r
-ggplot(limno, aes(x = Profondeur)) +
+ggplot(limno, aes(x = Depth)) +
   geom_line(aes(y = O2), color = "blue", linetype = "dashed") +
   geom_line(aes(y = Temperature*7.5), color = "red")
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 The last step of this process is to add the secondary Y-axis, and specifying to ggplot2
 the inverse transform of what we did before, to get our original values back :
 
 ```r
-ggplot(limno, aes(x = Profondeur)) +
+ggplot(limno, aes(x = Depth)) +
   geom_line(aes(y = O2), color = "blue", linetype = "dashed") +
   geom_line(aes(y = Temperature*7.5), color = "red") +
-  scale_y_continuous(sec.axis = sec_axis(~./7.5,name = "Température"))
+  scale_y_continuous(sec.axis = sec_axis(~./7.5,name = "Temperature"))
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 Although water depth is the driving variable for both pH and Temperature and thus
 should be on the X axis, these kind of plots are often flipped around to have
 water depth on the Y axis, to mimic the spatial structure of a lake. You can easily
 do this without changing all your x and y assignations by adding the `coord_flip`
-function to your plot :
+function to your plot : 
 
 ```r
-ggplot(limno, aes(x = Profondeur)) +
+ggplot(limno, aes(x = Depth)) +
   geom_line(aes(y = O2), color = "blue", linetype = "dashed") +
   geom_line(aes(y = Temperature*7.5), color = "red") +
-  scale_y_continuous(sec.axis = sec_axis(~./7.5,name = "Température")) +
+  scale_y_continuous(sec.axis = sec_axis(~./7.5,name = "Temperature")) +
   coord_flip()
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 To make it even more natural, you could also wish to reverse the X axis (now displayed as Y) so that the water surface (depth=0) is actually at the top :
 
 ```r
-ggplot(limno, aes(x = Profondeur)) +
+ggplot(limno, aes(x = Depth)) +
   geom_line(aes(y = O2), color = "blue", linetype = "dashed") +
   geom_line(aes(y = Temperature*7.5), color = "red") +
-  scale_y_continuous(sec.axis = sec_axis(~./7.5,name = "Température")) +
+  scale_y_continuous(sec.axis = sec_axis(~./7.5,name = "Temperature")) +
   coord_flip() +
   scale_x_reverse()
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 ## Expressions
 The last nagging little thing about the previous plot is that the number of atoms in
-the oxygen molecule should be in subscript form. To achieve this, you can use R's
+the oxygen molecule should be in subscript form. To achieve this, you can use R's 
 Latex-like purpose-built formula language called plotmath, which is used through the `expression` function.
 
-While we're finalizing this plot, I also changed the theme to make a nice publication-ready figure :
+While we're finalizing this plot, I also changed the theme to make a nice publication-ready figure : 
 
 ```r
-ggplot(limno, aes(x = Profondeur)) +
+ggplot(limno, aes(x = Depth)) +
   geom_line(aes(y = O2), color = "blue", linetype = "dashed") +
   geom_line(aes(y = Temperature*7.5), color = "red") +
-  scale_y_continuous(sec.axis = sec_axis(~./7.5,name = "Température")) +
+  scale_y_continuous(sec.axis = sec_axis(~./7.5,name = "Temperature")) +
   coord_flip() +
   scale_x_reverse() +
   labs(y = expression(O[2])) +
   theme_minimal()
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
-plotmath's syntax is entirely described on this help page : https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/plotmath.html
+plotmath's syntax is entirely described on this help page : [https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/plotmath.html](https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/plotmath.html)
 
 For example, if you wished to write the variance formula in a plot, following the
-guide should get you something like this :
+guide should get you something like this : 
 
 
 ```r
@@ -309,7 +302,7 @@ Error: <text>:3:11: unexpected '='
 
 Beside the syntax, there is additional constraint : the code used to build the expression must be valid R code. In our case, we wrote `sigma^2= ...` which would not be valid in R. You can never write something like `x^2=3` in R.
 
-If you ever need to write *invalid* code in a expression, know that you can cheat a little and assemble together little valid pieces with the `paste` function :
+If you ever need to write *invalid* code in a expression, know that you can cheat a little and assemble together little valid pieces with the `paste` function : 
 
 
 ```r
@@ -328,15 +321,15 @@ Warning in is.na(x): is.na() applied to non-(list or vector) of type
 'expression'
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
 Now that I've shown you how to get around the valid-syntax constraint, I need to tell you a
 little trick : the syntax guide stipulates that for equalities, one should use `==` instead
-of `=`, like this :
+of `=`, like this : 
 
 
 ```r
-msleep %>%
+msleep %>% 
   ggplot() +
   annotate("text",x=1,y=1,size = 10,label=
              expression(paste(
@@ -350,7 +343,7 @@ Warning in is.na(x): is.na() applied to non-(list or vector) of type
 'expression'
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 # Issues in plant ecology
 
@@ -360,7 +353,7 @@ Another case where we might need to add annotations to a plot is when we need
 to trace a regression line.
 
 First thing to know is that, there is no easy way to do this with geom_smooth(method="lm").
-That function is built to rapidly explore your data but it is not a modeling tool.
+That function is built to rapidly explore your data but it is not a modeling tool. 
 There is no simple way to extract regression parameters from there. The method
 I'm showing you here is a bit more involved, but should work with any type of models.
 
@@ -368,33 +361,33 @@ The main idea is to fit a statistical model to your data, and then add model
 predictions to the original data frame to help plot them (because, keep in mind, everything
 with ggplot2 is much simpler when your data is correctly organized in a data frame).
 
-Notice that this time, we need to clean up our data frame first, because otherwise,
+Notice that this time, we need to clean up our data frame first, because otherwise, 
 we might have some mismatched rows between our original data frame and the
 predictions from our model.
 
 ```r
 library(tidyr)
 
-bd <- msleep %>%
-  select(sleep_total, sleep_rem) %>%
+bd <- msleep %>% 
+  select(sleep_total, sleep_rem) %>% 
   drop_na
 
-m <- lm(sleep_rem ~ sleep_total, data = bd)
+m <- lm(sleep_rem ~ sleep_total, data = bd)
 
-bd <- bd %>%
+bd <- bd %>% 
   mutate(
     prediction = predict(m)
   )
 
-bd %>%
+bd %>% 
   ggplot(aes(x = sleep_total, y = sleep_rem)) +
   geom_point() +
   geom_line(aes(y = prediction), color = "royalblue")
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
-Now, to add the regression equation, we first need to find the parameter values :
+Now, to add the regression equation, we first need to find the parameter values : 
 
 ```r
 summary(m)
@@ -406,8 +399,8 @@ Call:
 lm(formula = sleep_rem ~ sleep_total, data = bd)
 
 Residuals:
-    Min      1Q  Median      3Q     Max
--1.9233 -0.5473 -0.1200  0.4791  2.7843
+    Min      1Q  Median      3Q     Max 
+-1.9233 -0.5473 -0.1200  0.4791  2.7843 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
@@ -417,15 +410,15 @@ sleep_total  0.21531    0.02459   8.756 2.92e-12 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.8634 on 59 degrees of freedom
-Multiple R-squared:  0.5651,	Adjusted R-squared:  0.5578
+Multiple R-squared:  0.5651,	Adjusted R-squared:  0.5578 
 F-statistic: 76.67 on 1 and 59 DF,  p-value: 2.916e-12
 ```
 
-Then you can add them with a text annotation, that you can combine with the `expression` function
+Then you can add them with a text annotation, that you can combine with the `expression` function
 for an ever more serious-looking equation!
 
 ```r
-bd %>%
+bd %>% 
   ggplot(aes(x = sleep_total, y = sleep_rem)) +
   geom_point() +
   geom_line(aes(y = prediction), color = "royalblue") +
@@ -443,40 +436,40 @@ Warning in is.na(x): is.na() applied to non-(list or vector) of type
 'expression'
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
 
 Note that in this case, I modify the horizontal alignment of the geom_text with `hjust="left"`. By default, geom_text is centered around the provided coordinates, but since with need to align
 two pieces of information together, it's much easier to align them to the left.
 
 ## Densities in a 2d space
-If you have collected the coordinates of many individuals and wish to produce a
-density map of these individuals to see if there are any patterns, there is
+If you have collected the coordinates of many individuals and wish to produce a 
+density map of these individuals to see if there are any patterns, there is 
 a specially made geom just for that, which is called geom_density_2d.
 
 To illustrate this function, we'll use sleep_rem and sleep_total as X and Y coordinates, but
 in a real setting, you'd be using things like latitude/longitude or northing/eating pairs.
 
 ```r
-msleep %>%
+msleep %>% 
   ggplot(aes(x = sleep_total, y = sleep_rem)) +
   geom_point() +
   geom_density_2d()
 ```
 
 ```
-Warning: Removed 22 rows containing non-finite values (stat_density2d).
+Warning: Removed 22 rows containing non-finite values (`stat_density2d()`).
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 
 You can also pick a fill color instead of lines (or a combination of both) :
 
 ```r
-msleep %>%
+msleep %>% 
   ggplot(aes(x = sleep_total, y = sleep_rem)) +
   geom_density_2d_filled() +
   geom_density_2d(color = "black") +
@@ -484,33 +477,34 @@ msleep %>%
 ```
 
 ```
-Warning: Removed 22 rows containing non-finite values (stat_density2d_filled).
+Warning: Removed 22 rows containing non-finite values
+(`stat_density2d_filled()`).
 ```
 
 ```
-Warning: Removed 22 rows containing non-finite values (stat_density2d).
+Warning: Removed 22 rows containing non-finite values (`stat_density2d()`).
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
 
 # Customizing
 
-Now let's leave limnology and ecology behind a bit and see some customizing tips when you're
+Now let's leave limnology and ecology behind a bit and see some customizing tips when you're 
 finalizing a plot before publication.
 
 ## Manually selecting colors on a discrete scale
 One common complaint about ggplot2 is that some people feel like the default color
-scheme doesn't look very *serious* or *profesionnal*.
+scheme doesn't look very *serious* or *professional*.
 
 There are many ways to change a discrete color palette in ggplot2. The first one is simply
-to pick another palette from a pre-built list. This list come from the RColorBrewer package,
-and can be found here : https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html
+to pick another palette from a pre-built list. This list come from the RColorBrewer package, 
+and can be found here : [https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html](https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html)
 
-Let's see how we could use the Pastel1 palette in a plot :
+Let's see how we could use the Pastel1 palette in a plot : 
 
 ```r
 ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
@@ -519,40 +513,40 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 27 rows containing missing values (geom_point).
+Warning: Removed 27 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
 
-You could also manually specify each color you need. There are two ways to do that. First,
-by specifying color names :
+You could also manually specify each color you need. There are two ways to do that. First, 
+by specifying color names : 
 
 ```r
 ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
   geom_point(aes(color = vore)) +
   scale_color_manual(values = c(
-    "carni" = "red",
-    "herbi" = "green",
-    "insecti" = "yellow",
+    "carni" = "red", 
+    "herbi" = "green", 
+    "insecti" = "yellow", 
     "omni" = "blue"
   ))
 ```
 
 ```
-Warning: Removed 27 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
 
-Also any color you'll think about is already predefined (tomato, chartreuse, really anything!). The complete list of defined colors is available here : http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+Also any color you'll think about is already predefined (tomato, chartreuse, really anything!). The complete list of defined colors is available here : [http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
 
 You can also *build* you own colors with an hex code defining the amount of red, blue and green
-that you color will have. These hex codes are not really user-friendly to build, but they
-are one of the ways designers define their colors, and as such, if you are looking for
+that your color will have. These hex codes are not really user-friendly to build, but they
+are one of the ways designers define their colors, and as such, if you are looking for 
 the official colors of a logo, a team, etc., you'll often find the hex codes on the Web.
 
-For instance, you could easily choose to have a Montreal Canadians
-(https://teamcolorcodes.com/montreal-canadiens-color-codes/) themed plot :
+For instance, you could easily choose to have a Montreal Canadians 
+([https://teamcolorcodes.com/montreal-canadiens-color-codes/](https://teamcolorcodes.com/montreal-canadiens-color-codes/)) themed plot : 
 
 
 ```r
@@ -567,17 +561,17 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 27 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
 
 ## Define a color gradient
 
-When the color on your plot is used to illstrate a quantitative value instead of
+When the color on your plot is used to illustrate a quantitative value instead of
 a qualitative one, you can also manually define your color gradient.
 
-First, let's build a plot using the default color palette :
+First, let's build a plot using the default color palette : 
 
 ```r
 ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
@@ -585,12 +579,12 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-25-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-25-1.png)<!-- -->
 
-You can then change these colors with the `scale_color_gradient` function :
+You can then change these colors with the `scale_color_gradient` function : 
 
 ```r
 ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
@@ -599,13 +593,13 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-26-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-26-1.png)<!-- -->
 
 If you wish to pick an alternative mid-point color, you can also specify it,
-but you need to use the `scale_color_gradient2` function istead (i.e. you now define
+but you need to use the `scale_color_gradient2` function instead (i.e. you now define
 2 gradients instead of one) :
 
 
@@ -616,15 +610,15 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-27-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-27-1.png)<!-- -->
 
 The default mid-point value is defined at 0, but you can change that value manually, as in
 the above example.
 
-Finally, you can build a gradient with any number of colors, with `scale_color_gradientn` :
+Finally, you can build a gradient with any number of colors, with `scale_color_gradientn` : 
 
 
 ```r
@@ -636,18 +630,90 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
 
 Note that all the above functions are also available for fill colors. You just need
-to replace the `color` word in the function names with `fill`, for example with
+to replace the `color` word in the function names with `fill`, for example with 
 `scale_fill_gradient2`.
+
+Also, note that there is also some colorblind friendly palettes that exist. colorBlindness, viridis and colorblinr are good examples of packages exactly for that purpose.
+
+Finally, one might want to add patterns, in addition to colors, for aesthetic reasons or to ease  plot interpretations for colorblind people. You can now do it by using the `ggpattern` package. Here's an example of a boxplot with stripes. Be aware that, for rapidity reasons, we will simply remove the NAs from the msleep data set. But in a research context, these NAs should be address properly: 
+
+
+```r
+msleep2 <- na.omit(msleep)
+
+library(ggpattern)
+
+ggplot(msleep2, aes(x = vore, y = sleep_rem, fill = vore)) +
+  geom_boxplot_pattern(stat = "boxplot")
+```
+
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
+
+
+We can also specify the pattern colors: 
+
+
+```r
+ggplot(msleep2, aes(x = vore, y = sleep_rem, fill = vore)) +
+  geom_boxplot_pattern(stat = "boxplot",
+                       pattern_color = "black",
+                       pattern_fill = "yellow")
+```
+
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
+
+At last, we can change patterns according to our groups. Beware, for some of you, there might be a little issue with geom_pattern_boxplot (ggpattern pretty new package after all). Therefore, we need to specify the `patterns` values in order to avoid having the same pattern twice in our plot. 
+
+
+```r
+#with an issue on the stripe pattern
+ggplot(msleep2, aes(x = vore, y = sleep_rem, fill = vore)) +
+  geom_boxplot_pattern(stat = "boxplot",
+                       pattern_color = "black",
+                       pattern_fill = "yellow",
+                       aes(pattern = vore))
+```
+
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-31-1.png)<!-- -->
+
+```r
+# with the correction to avoid the stripe issue
+ggplot(msleep2, aes(x = vore, y = sleep_rem, fill = vore)) +
+  geom_boxplot_pattern(stat = "boxplot",
+                       pattern = c("none", "stripe","crosshatch","circle"),
+                       pattern_color = "black",
+                       pattern_fill = "yellow",
+                       show.legend = F)
+```
+
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-31-2.png)<!-- -->
+
+Also, here I had to remove the legend, due to an other issue that makes it kind of useless. But if you use the argument "pattern " as you would use the argument fill or color in ggplot2, the legend will work just fine. Actually, ggpattern works almost just like ggplot2, except that you can have more fun...just like adding images instead of pattern:
+
+
+
+```r
+ggplot(msleep2, aes(x = vore, y = sleep_rem, fill = vore)) +
+  geom_boxplot_pattern(stat = "boxplot",
+                       pattern = "image",
+                       pattern_filename =  "https://static.wikia.nocookie.net/orville/images/9/9c/BortusCropped.jpg/revision/latest?cb=20190106062857",
+                       pattern_color = "black",
+                       pattern_fill = "yellow")
+```
+
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-32-1.png)<!-- -->
+
+Here, I've used an image from the web, but I would advise you to use images saved on your computer, just in case the URL would not work anymore. Thus, that way, you'll be also able to have a different image for each of your group. Just have fun with this feature!  
 
 ## Editing ANY text on a plot
 With ggplot2, any label you see on a plot can be modified, even some that you might
-not know they exist. The key is to know their name :
+not know they exist. The key is to know their name : 
 
 ```r
 ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
@@ -663,18 +729,18 @@ ggplot(msleep, aes(x = sleep_total, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
 
-Note that you'll rarely use title, subtitle and caption, because it is more common to
-write these informations directly in the text editor. Also, the label of any
+Note that you'll rarely use title, subtitle and caption, because it is more common to 
+write these informations directly in the text editor. Also, the label of any 
 other property you use in an `aes` call can be edited that way (`shape`, `fill`, etc.)
 
 ## The nuances of the log scale
-We'll now discuss the apparently simple operation of transform an axis to the log
-scale. The simplest, and most common way to do that is with the scale modifier functions :
+We'll now discuss the apparently simple operation of transform an axis to the log 
+scale. The simplest, and most common way to do that is with the scale modifier functions : 
 
 ```r
 ggplot(msleep, aes(x = bodywt, y = brainwt)) +
@@ -684,15 +750,15 @@ ggplot(msleep, aes(x = bodywt, y = brainwt)) +
 ```
 
 ```
-Warning: Removed 27 rows containing missing values (geom_point).
+Warning: Removed 27 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
 
-This function directly scales the values, and accordingly, changes the axes and
+This function directly scales the values, and accordingly, changes the axes and 
 the tick marks on the axes.
 
-It is a shortcut to transforming your values prior to putting them in the plot :
+It is a shortcut to transforming your values prior to putting them in the plot : 
 
 ```r
 ggplot(msleep, aes(x = log10(bodywt), y = log10(brainwt))) +
@@ -700,15 +766,15 @@ ggplot(msleep, aes(x = log10(bodywt), y = log10(brainwt))) +
 ```
 
 ```
-Warning: Removed 27 rows containing missing values (geom_point).
+Warning: Removed 27 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-31-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
 
 Sometimes though, it might happen that you
 wish to work at the log scale (e.g. to linearize a relationship) but still
 wish to have access to the original values for interpretation purposes. For
-these cases, you can use the coord_trans function :
+these cases, you can use the coord_trans function : 
 
 ```r
 ggplot(msleep, aes(x = bodywt, y = brainwt)) +
@@ -717,13 +783,13 @@ ggplot(msleep, aes(x = bodywt, y = brainwt)) +
 ```
 
 ```
-Warning: Removed 27 rows containing missing values (geom_point).
+Warning: Removed 27 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-32-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
 
 You can provide this function with any R function, for instance you can use
-the square root transform instead :
+the square root transform instead : 
 
 ```r
 ggplot(msleep, aes(x = bodywt, y = brainwt)) +
@@ -732,10 +798,10 @@ ggplot(msleep, aes(x = bodywt, y = brainwt)) +
 ```
 
 ```
-Warning: Removed 27 rows containing missing values (geom_point).
+Warning: Removed 27 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
 
 ## Modifying tick marks on a axis
 While we're working on the axes, it is also a great time to show you how to
@@ -751,34 +817,32 @@ ggplot(msleep, aes(x = bodywt, y = brainwt)) +
 ```
 
 ```
-Warning: Removed 27 rows containing missing values (geom_point).
+Warning: Removed 27 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-38-1.png)<!-- -->
 
 # Publication-ready figures
 
 ## Combining many plots in a single one.
 
-One of the most common ggplot2 questions I get asked is : how can I
+One of the most common ggplot2 questions I get asked is : how can I 
 combine many plots in a single image. The difficult aspect of this question
 is that (among other things) this functionality was not built in ggplot2. It
 comes in external libraries, and many different packages now offers ways
 to do such things. Moreover, not all of these ways of combining plots allow
 you to easily save them in a high-res file.
 
-The method I'm showing you here is the one I've found to be the most robust.
-To combine plots together, you'll need to activate (and install if necessary) the
-gridExtra library.
+The method I'm showing here is pretty new (2023) and robust to ggsave. To achieve it, you will need the patchwork package.
 
-First, let's create 3 plots, and save each of them individually in a object.
+We first prepare our plots one by one : 
 
 ```r
 g1 <- ggplot(msleep, aes(x = log(bodywt), y = awake)) + geom_point() +labs(tag = "a)")
 g1
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-39-1.png)<!-- -->
 
 ```r
 g2 <- ggplot(msleep, aes(x = awake)) + geom_histogram() +labs(tag = "b)")
@@ -789,7 +853,7 @@ g2
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-35-2.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-39-2.png)<!-- -->
 
 ```r
 g3 <- ggplot(msleep, aes(x = log(bodywt))) + geom_histogram() +labs(tag = "c)")
@@ -800,56 +864,21 @@ g3
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-35-3.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-39-3.png)<!-- -->
 
-Then, the arrangeGrob function allows us to combine them :
+Then we can combine them by using operators (here the +) : 
 
 ```r
-library(gridExtra)
+library(patchwork)
 ```
 
 ```
-
-Attaching package: 'gridExtra'
-```
-
-```
-The following object is masked from 'package:dplyr':
-
-    combine
+Warning: package 'patchwork' was built under R version 4.3.1
 ```
 
 ```r
-p <- arrangeGrob(g1,g2,g3, nrow = 1)
-```
-
-```
-`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-```
-`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-```r
-grid::grid.draw(p) # See the plot
-```
-
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
-
-```r
-ggsave("test.jpg", p, width = 9, height = 4, dpi = 300) # Save the plot to a jpg file
-```
-Just like a matrix creation call, you can change the grid layout with `nrow` and `ncol` arguments.
-
-You can also prepare more complex layouts, by building a matrix, and specifying, in each cell,
-which of the plots should go there :
-
-```r
-matrice <- rbind(c(1,1),
-              c(2,3))
-
-p <- arrangeGrob(g1,g2,g3, layout_matrix = matrice)
+p <- g1 + g2 + g3
+p
 ```
 
 ```
@@ -857,23 +886,51 @@ p <- arrangeGrob(g1,g2,g3, layout_matrix = matrice)
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
+
 ```r
-grid::grid.draw(p)
+ggsave("test.jpg", p, width = 9, height = 4, dpi = 300) # To save a plot
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+Note that, instead of using a function, the patchwork package added a new functionality to the + operator.
+
+We can also prepare some more complex layouts:  
+
+```r
+p <- (g1 | g2) / g3 
+p
+```
+
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-41-1.png)<!-- -->
 
 ```r
 ggsave("test2.jpg", p, width = 4, height = 4, dpi = 300)
 ```
 
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+By exploring the patchwork package, you will also be able to individually specify the plot's height and to add a common tittle or legend for your plots.
+
 ## Sorting the X axis of a boxplot
 
-One thing you might want to do when finalizing a figure is to change the order
+One thing you might want to do when finalizing a figure is to change the order 
 in which the X axis is presented in a boxplot. By default, ggplot2 presents
 discrete values in alphabetical order, but this does not necessarily fit your narrative.
 
-Let's start with a simple boxplot :
+Let's start with a simple boxplot : 
 
 ```r
 ggplot(msleep, aes(x = vore, y = sleep_rem)) +
@@ -881,54 +938,54 @@ ggplot(msleep, aes(x = vore, y = sleep_rem)) +
 ```
 
 ```
-Warning: Removed 22 rows containing non-finite values (stat_boxplot).
+Warning: Removed 22 rows containing non-finite values (`stat_boxplot()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-38-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-42-1.png)<!-- -->
 
 If you wish to sort the X axis in ascending order of their median in the Y axis (
 for example if you're running an ANOVA with a Tukey HSD test), there is a function
-especially made for that in the forcats package :
+especially made for that in the forcats package : 
 
 
 ```r
 library(forcats)
 library(tidyr)
 
-msleep %>%
-  drop_na() %>%
-  mutate(vore = fct_reorder(vore,sleep_rem)) %>%
+msleep %>% 
+  drop_na() %>% 
+  mutate(vore = fct_reorder(vore,sleep_rem)) %>% 
   ggplot(aes(x = vore, y = sleep_rem)) +
   geom_boxplot()
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-39-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-43-1.png)<!-- -->
 
 By default, the function sorts with the median function. You can specify any other
-R function, for example the mean :
+R function, for example the mean : 
 
 
 ```r
-msleep %>%
-  drop_na() %>%
-  mutate(vore = fct_reorder(vore,sleep_rem,mean)) %>%
+msleep %>% 
+  drop_na() %>% 
+  mutate(vore = fct_reorder(vore,sleep_rem,mean)) %>% 
   ggplot(aes(x = vore, y = sleep_rem)) +
   geom_boxplot()
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-44-1.png)<!-- -->
 
 You can also manually specify the order, with the fct_relevel function.
 
 ```r
-msleep %>%
-  drop_na() %>%
-  mutate(vore = fct_relevel(vore,"omni","insecti")) %>%
+msleep %>% 
+  drop_na() %>% 
+  mutate(vore = fct_relevel(vore,"omni","insecti")) %>% 
   ggplot(aes(x = vore, y = sleep_rem)) +
   geom_boxplot()
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-41-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-45-1.png)<!-- -->
 
 Any factor level you don't specify in the function call are added at the end of the list,
 in their original order.
@@ -936,15 +993,15 @@ in their original order.
 ## Adding little images to a plot
 
 Sometimes, you might want to add little images to a plot, for a more an even nicer
-looking figure. In order to do this, you'll need to install and activate an
+looking figure. In order to do this, you'll need to install and activate an 
 additional package called ggimage, which contains a geom_image function to do exactly this.
 
 
 ```r
 library(ggimage)
-msleep %>%
-  drop_na() %>%
-  mutate(vore = fct_relevel(vore,"omni","insecti")) %>%
+msleep %>% 
+  drop_na() %>% 
+  mutate(vore = fct_relevel(vore,"omni","insecti")) %>% 
   ggplot(aes(x = vore, y = sleep_rem)) +
   geom_boxplot() +
   geom_image(size = 0.08, aes(x = "herbi", y = 5.2, image = "https://static.thenounproject.com/png/2545-200.png")) +
@@ -953,15 +1010,15 @@ msleep %>%
   geom_image(size = 0.08,aes(x = "insecti", y = 5.2, image = "https://static.thenounproject.com/png/2546-200.png"))
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-42-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-46-1.png)<!-- -->
 
 Note that it would be a better idea to download the required images on your computer
 and let R use a local path instead (e.g. `c:\Windows\etc.`).
 
-If you have more than 2 or 3 images, it might be a better idea to store the file paths in a
+If you have more than 2 or 3 images, it might be a better idea to store the file paths in a 
 data frame instead of doing it manually like I did.
 
-Also, these little images would have been a good candidate for the annotate fonction,
+Also, these little images would have been a good candidate for the annotate function,
 but as of the publication of this workshop, the geom_image were not usable with
 the annotate function.
 
@@ -976,19 +1033,19 @@ geom_path function. It is then only a matter of patiently defining the coordinat
 data.frame(
   x = c(1,2,3,1),
   y = c(1,2,1,1)
-) %>%
+) %>% 
   ggplot(aes(x = x, y = y)) +
   geom_path()
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-43-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-47-1.png)<!-- -->
 
 ## Marginal distributions.
 If you ever need to add distributions to the margins of a scatter plot, there
 is a function built especially for that in the ggExtra package, called ggMargin.
 
 The only quirk of this function is that you must save your ggplot2 to an object
-before appending the marginal plots. You cannnot add them directly.
+before appending the marginal plots. You cannot add them directly.
 
 ```r
 library(ggExtra)
@@ -998,17 +1055,18 @@ ggMarginal(p, type = "histogram")
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-44-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-48-1.png)<!-- -->
 
 ```r
 ggMarginal(p, type = "boxplot")
 ```
 
 ```
-Warning: Removed 22 rows containing missing values (geom_point).
+Warning: Removed 22 rows containing missing values (`geom_point()`).
 ```
 
-![](/assets/Advanced_ggplot2_EN_files/figure-html/unnamed-chunk-45-1.png)<!-- -->
+![](/assets/Advanced_ggplot2_ENcorr_files/figure-html/unnamed-chunk-49-1.png)<!-- -->
+
