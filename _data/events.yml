@@ -98,10 +98,16 @@
   description : E. Hamel-Jomphe
 - title : "Introduction à git"
   date : 2023-12-11
-  description : J. Malko
+  description : J. Malko & C. Martin
 - title : "ggplot2 avancé, problèmes et solutions"
   date : 2024-01-22
-  description : J. Dormoy-Boulanger
+  description : J. Dormoy-Boulanger & V. Favreau
 - title : "Les modèles non-linéaires"
   date : 2024-02-19
   description : C. Martin
+- title : "Introduction à Quarto"
+  date : 2024-04-16
+  description : C. Martin
+- title : "Introduction au machine learning sur R: random forest et ses alternatives"
+  date : 2024-06-27
+  description : A. De Grandpré
