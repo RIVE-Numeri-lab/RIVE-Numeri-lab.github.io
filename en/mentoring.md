@@ -13,7 +13,7 @@ of charge. The mentoring program is open to all students attached to a RIVE prof
 to postgraduate, in order to facilitate progress in research (BIO1001-1006, master's, doctorate).
 
 The mentoring meetings will take place in the form of one-hour one-to-one individual meetings, in person
-or remotely, and in compliance with the safety rules related to covid-19 in force. To receive this
+or remotely. To receive this
 service, contact us at [numerilab@uqtr.ca](mailto:numerilab@uqtr.ca) with a brief description of your needs and we will put you
 in touch with one of our expert students.
 
