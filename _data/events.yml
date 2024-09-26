@@ -111,3 +111,12 @@
 - title : "Introduction au machine learning sur R: random forest et ses alternatives"
   date : 2024-06-27
   description : A. De Grandpré
+- title : "Introduction à la visualisation de données avec ggplot2"
+  date : 2024-09-26
+  description : C. Martin
+- title : "Introduction à la manipulation de données avec dplyr"
+  date : 2024-10-31
+  description : C. Martin
+- title : "Bien débuter avec Python (configuration xarray, etc.)"
+  date : 2024-11-28
+  description : M. Lalande
