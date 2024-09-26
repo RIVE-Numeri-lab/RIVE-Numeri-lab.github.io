@@ -17,15 +17,9 @@ durant les ateliers, ainsi que celles développées par les membres du RIVE pend
 - Marco Rodriguez
 
 ### Comité étudiant
-- Roxanne Giguère-Tremblay
 - Jade Dormoy-Boulanger
-- Esteban Hamel-Jomphe
-- Laurie Provençal
-
-### Animatrices et animateurs
-- Arthur de Grandpré
-- Lucas Deschamps
-- Alex Gélinas
+- Jessika Malko
+- Anne-Laure Morin
 
 ### Professionnel de recherche
 - Charles Martin

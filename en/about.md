@@ -10,21 +10,15 @@ Promote individual computing abilities by the organization of 10 workshops per y
 
 Showcase the RIVE's abilities by the creation of this website, containing a recap of all numerical methods developed or teached during the workshops, as well a those developed by the RIVE's members during their own research activities.
 
-## Team (2022-2023)
+## Team (2024-2025)
 ### Professors :
 - Vincent Maire
 - Marco Rodriguez
 
 ### Student Committee
-- Roxanne Giguère-Tremblay
 - Jade Dormoy-Boulanger
-- Esteban Hamel-Jomphe
-- Laurie Provençal
-
-### Instructors
-- Arthur de Grandpré
-- Lucas Deschamps
-- Alex Gélinas
+- Jessika Malko
+- Anne-Laure Morin
 
 ### Research professional
 - Charles Martin
