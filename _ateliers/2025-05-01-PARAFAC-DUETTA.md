@@ -1,9 +1,9 @@
 ---
-thumbnail: Rlogo.png
+thumbnail: stardom.png
 layout: default
 lang : fr
 category: Stats
-title: Atelier PARAFAC-Duetta
+title: PARAFAC Duetta
 author: "Jessika Malko"
 date: '2025-05-01'
 output:
@@ -15,7 +15,7 @@ output:
     toc_float: true
 ---
 
-# Atelier PARAFAC-Duetta
+# PARAFAC Duetta
 {:.no_toc}
 #### Jessika Malko, validé par Jade Dormoy-Boulanger
 {:.no_toc}
