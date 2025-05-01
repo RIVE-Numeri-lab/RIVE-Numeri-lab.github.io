@@ -25,7 +25,7 @@ output:
 * TOC
 {:toc}
 
-Vous pouvez vous procurer le code R ainsi qu'un échantillon d'EEMs avec lesquels vous amuser au lien suivant: <http://numerilab.io/assets/Duetta/AtelierDuetta.zip>
+Vous pouvez vous procurer le code R ainsi qu'un échantillon d'EEMs avec lesquels vous amuser au lien suivant: <https://numerilab.io/assets/Duetta/AtelierDuetta.zip>
 
 D'autres ressources intéressantes sont :
 
