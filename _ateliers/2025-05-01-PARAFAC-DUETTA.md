@@ -3,7 +3,7 @@ thumbnail: Rlogo.png
 layout: default
 lang : fr
 category: Stats
-title: Atelier PARAFAC-DUETTA
+title: Atelier PARAFAC-Duetta
 author: "Jessika Malko"
 date: 05/01/2025
 output:
@@ -15,7 +15,7 @@ output:
     toc_float: true
 ---
 
-# Atelier PARAFAC-DUETTA
+# Atelier PARAFAC-Duetta
 {:.no_toc}
 #### Jessika Malko, validé par Jade Dormoy-Boulanger
 {:.no_toc}
@@ -39,7 +39,7 @@ L'analyse PARAFAC est basée sur la spectroscopie, soit l'étude de l'absorption
 Le PARAFAC est de plus en plus utilisé depuis une 20<sup>aines</sup> d'années pour qualifier la composition chimique des matières organiques dissoute (MOD) dans l'environnement. La fluorescence fournit une matrice en 3 dimensions (**EEM**) qui mesure l'intensité de l'excitation et de l'émission d'un échantillon à différentes longueurs d'ondes.
 
 <figure>
-<img src="fig/fig1.png" alt="EEM - représentation 3D de la fluorescence" />
+<img src="/assets/Duetta/fig/fig1.png" alt="EEM - représentation 3D de la fluorescence" />
 <figcaption aria-hidden="true">EEM - représentation 3D de la fluorescence</figcaption>
 </figure>
 
@@ -48,7 +48,7 @@ Le PARAFAC est de plus en plus utilisé depuis une 20<sup>aines</sup> d'années 
 La fluorescence c'est la partie de la lumière qui est émise après qu'elle ait passée au travers de l'échantillon. La lumière absorbée excite les électrons des molécules dans l'échantillon. Quand les électrons retournent à leur état stable, ils réémettent l'énergie en différent sous-produits comme on le voit dans la figure suivante.
 
 <figure>
-<img src="fig/fig2.png" alt="Émission de la lumière" />
+<img src="/assets/Duetta/fig/fig2.png" alt="Émission de la lumière" />
 <figcaption aria-hidden="true">Émission de la lumière</figcaption>
 </figure>
 
@@ -57,7 +57,7 @@ Il y a émission de la fluorescence, en rouge, et il y a aussi l'émission de di
 En sc. environnementales, on s'intéresse à caractériser la composition des matières organiques dissoutes (MOD), car ce sont des molécules bio-réactives qui nourrissent la chaine trophique. La fluorescence est considérée une bonne technique pour ce faire puisqu'il y aurait environs 10 -- 30 % des MOD dans l'eau de rivière qui fluorescent. On voit ici une brève liste des molécules qui sont fluorescentes et celles qui ne le sont pas.
 
 <figure>
-<img src="fig/fig3.png" alt="Liste de molécules qui fluorescent" />
+<img src="/assets/Duetta/fig/fig3.png" alt="Liste de molécules qui fluorescent" />
 <figcaption aria-hidden="true">Liste de molécules qui fluorescent</figcaption>
 </figure>
 
@@ -86,14 +86,14 @@ Ci-dessous, dans l'image de gauche, on voit que la matrice EEM peut être sépar
 -   Le PEAK **M** en bleu : identifie une activité microbienne et est représenté par la composante **C5**.
 
 <figure>
-<img src="fig/fig7.png" alt="Coordonnées des 5 composantes les plus fréquentes" />
+<img src="/assets/Duetta/fig/fig7.png" alt="Coordonnées des 5 composantes les plus fréquentes" />
 <figcaption aria-hidden="true">Coordonnées des 5 composantes les plus fréquentes</figcaption>
 </figure>
 
 La numérotation des composantes (C1, C2, ...) est aléatoire et dépends du modèle. Dans Mathlab, le modèle classe les composantes en fonction de leur importance alors que dans staRdom, l'attribution semble aléatoire. Ainsi, lorsque vous allez comparer votre modèle à la base de données Open Fluor, votre C1 pourrait correspondre au C3 du modèle d'un autre chercheur.
 
 <figure>
-<img src="fig/fig8.png" alt="La Duetta" />
+<img src="/assets/Duetta/fig/fig8.png" alt="La Duetta" />
 <figcaption aria-hidden="true">La Duetta</figcaption>
 </figure>
 
@@ -135,17 +135,17 @@ eem_overview_plot(EEM, spp=9, contour = TRUE)
 
     [[1]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 
     [[2]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-2.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-2.png" width="768" />
 
 
     [[3]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-3.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-3.png" width="768" />
 
 Puisque nous nous intéressons uniquement à une portion des longueurs d'ondes incluses, nous allons découper nos EEMs pour recadrer nos résultats dans la zone d'intérêt. De ce que j'ai pu voir jusqu'à présent, cette zone est plutôt universelle d'une étude à l'autre. Ce découpage permet également d'accélérer le rendu.
 
@@ -168,17 +168,17 @@ eem_overview_plot(EEMlist, spp=9, contour = TRUE)  # Visualiser le découpage po
 
     [[1]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
 
     [[2]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-2.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-2.png" width="768" />
 
 
     [[3]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-3.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-3.png" width="768" />
 
 Si vous travaillez avec l'échantillon d'EEMs fournit, vous pourrez constater que même un découpage à une valeur 20 est insuffisant; les échantillons "sample1-2", "sample1-4", "sample2-2" et "sample4-4" présentent une coloration jaune au-dessus de la bande découpée. Mais nous le gardons ainsi pour les besoins de l'atelier.
 
@@ -191,17 +191,17 @@ eem_overview_plot(EEMlist, spp=9, contour = TRUE)    # visualisation des EEMs in
 
     [[1]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
 
 
     [[2]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-2.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-2.png" width="768" />
 
 
     [[3]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-3.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-3.png" width="768" />
 
 Regardons les échantillons "sample1-2", "sample1-4","sample2-2" et "sample4-4": notez comment l'interpolation donne un signal relativement fort pour le bruit résiduel que nous avons identifié et choisi de ne pas découper à l'étape précédente. Ceci n'est pas souhaitable. Vous devriez donc retourner à l'étape précédente pour raffiner votre découpage du scatter. Encore une fois, pour les besoins de l'atelier, nous allons poursuivre sans réaliser cette correction. Vous pourriez même choisir d'exclure complètement certains échantillons erratique sur la base visuelle des EEMs (j'ai eu à le faire pour mon projet de maîtrise : certains échantillons étant trop argileux).
 
@@ -243,25 +243,25 @@ Comparons maintenant les différents nombres de composantes pour nous aider à c
 eempf_compare(pf1n, contour = TRUE)
 ```
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-2.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-2.png" width="768" />
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-3.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-3.png" width="768" />
 
     [[1]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-4.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-4.png" width="768" />
 
 
     [[2]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-5.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-5.png" width="768" />
 
 
     [[3]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-6.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-6.png" width="768" />
 
 Ici, selon la figure \[1\] montre le nombre de composantes qui serait idéal, mais notez comment la représentation visuelle de la figure \[2\] n'est pas belle ; il y a des barres mauve foncé verticales et horizontales qui coupent les 'hot spots' des composantes qui se traduisent aussi dans la figure \[3\]. Les courbes ne sont pas toutes lisses, ce n'est pas beau et tout ça n'est pas souhaitable. \* J'ai constaté que le nombre de composantes identifiés comme étant significatif changeait à chaque fois que je roulais le modèle. On va régler cela à l'instant avec l'étape de normalisation.\*
 
@@ -281,25 +281,25 @@ pf2n <- lapply(pf2n, eempf_rescaleBC, newscale = "Fmax")
 eempf_compare(pf2n, contour = TRUE) 
 ```
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-2.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-2.png" width="768" />
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-3.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-3.png" width="768" />
 
     [[1]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-4.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-4.png" width="768" />
 
 
     [[2]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-5.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-5.png" width="768" />
 
 
     [[3]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-6.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-6.png" width="768" />
 
 À la lecture des 3 graphiques, le résultat est déjà beaucoup mieux! Dans la fig \[1\], la signifiance des composantes augmente plus on en as, \[2\] les cercles colorés ne sont plus coupés et \[3\] les courbes sont beaucoup plus lisses. Les courbes qui demeurent érratiques montrent des composantes 'limite'. Nous devrons porter une attention à ces composantes dans les étapes qui suivent: il se peut que nous ne soyons pas en mesure d faire valider un modèle si on choisit de les garder.
 
@@ -310,7 +310,7 @@ cpl <- eempf_leverage(pf2n[[4]])   # ici, le chiffre identifie le numéro du mod
 eempf_leverage_plot(cpl,qlabel=0.1)   # graphique des échantillons leviers (outliers)
 ```
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
 
 Le graphique à gauche et au centre identifient les longueurs d'ondes (*wl*) d'excitation et d'émission qui ont un grand effet de levier sur nos composantes. À droite, ce sont les noms des échantillons qui ont un grand effet et que nous allons considérer pour améliorer notre modèle. Dans la vraie vie, vous auriez aussi à faire le même exercice pour les wl. Nous allons manuellement exclure les échantillons problématiques identifiés dans le graphique de droite ("sample1-1" et "sample2-2") en les fixant dans un objet **exclude** pour nous permettre de laisser une trace du processus décisionnel itératif. Nous excluons ces échantillons de notre liste d'EEMs originel pour ensuite rouler un nouveau modèle (pf3n) sans ces échantillons leviers. Enfin, il reste à identifier les leviers qui pourraient persister et de recommencer à partir des étapes d'exclusion.
 
@@ -335,7 +335,7 @@ pf3n <- lapply(pf3n, eempf_rescaleBC, newscale = "Fmax")
 eempf_leverage_plot(eempf_leverage(pf3n[[4]]),qlabel=0.1)
 ```
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
 
 J'ai intentionnellement laissés l'ensemble de ces codes dans le même bloc puisqu'il vous faudra répéter ces étapes jusqu'à ce que vous soyez satisfait d'avoir exclus l'ensemble des échantillons levier. Cette décision est personnelle et dépendra de votre interprétation individuelle. Idéalement, ne pas exclure plus de 10 % de vos échantillons au total pour éviter un modèle trop ajusté (*over-fitting*). Vous pouvez analyser les résidus pour vous donner un coup de main dans cette décision.
 
@@ -345,17 +345,17 @@ eempf_residuals_plot(pf3n[[4]], EEMlist, residuals_only = TRUE,  spp = 9, cores 
 
     [[1]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="768" />
 
 
     [[2]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-2.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-2.png" width="768" />
 
 
     [[3]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-3.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-3.png" width="768" />
 
 Voyez comment les seules *hot-spots* qui demeurent sont les bandes des échantillons "sample1-2", "sample1-4", "sample2-2" et "sample4-4"? Ces échantillons ont donc un effet levier sur le modèle.
 
@@ -405,12 +405,12 @@ eempf_comp_load_plot(pf4[[1]], contour = TRUE)  # graphique 1) représentation v
 
     [[1]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-1.png" width="768" />
 
 
     [[2]]
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-2.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-2.png" width="768" />
 
 ... et aussi changer le nom des composantes pour enjoliver notre graphique :
 
@@ -421,7 +421,7 @@ pf4[[1]] %>%
   ggeem(contour = TRUE)
 ```
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
 
 Ensuite, il est essentiel de procéder à l'étape de validation par *split-half analysis*. Cette méthode est bien détaillée dans l'article de Murphy et al. (2013). En somme, la sortie montre l'intensité des EEMs vue de côté pour chaque sous-groupe créé lors de l'analyse. Pour chaque composante, nous devrions voir la convergeance parfaite de chacune de ces lignes. Les lignes pointillées identifient un PEAK secondaire et devrait aussi converger pour chaque sous-groupe.
 
@@ -431,7 +431,7 @@ sh <- splithalf(eem_list_ex, 5, normalise = TRUE, rand = FALSE, cores = cores, n
 splithalf_plot(sh)   # le graphique du split half analysis
 ```
 
-<img src="PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-19-1.png" width="768" />
+<img src="/assets/Duetta/PARAFAC-DUETTA.markdown_strict_files/figure-markdown_strict/unnamed-chunk-19-1.png" width="768" />
 
 On peut aussi voir la correspondance de chacun des sous-groupes par l'affichage de l'objet **tcc_sh_table**.
 
