@@ -495,4 +495,4 @@ write.csv(model, "3.Results.csv")
 
 Traditionnellement, on compare le pourcentage et non la valeur r.u. (raman units). Pour obtenir les pourcentages, c'est aussi simple que de créer une colonne qui additionne l'ensemble des composantes pour une ligne et de faire une règle de 3 pour obtenir le pourcentage des composantes pour chaque échantillon.
 
-Félécitations! Vous êtes arrivés au bout!
+Félicitations! Vous êtes arrivés au bout!
