@@ -5,7 +5,7 @@ lang : fr
 category: Stats
 title: Atelier PARAFAC-Duetta
 author: "Jessika Malko"
-date: 05/01/2025
+date: '2025-05-01'
 output:
   html_document:
     highlight: haddock
