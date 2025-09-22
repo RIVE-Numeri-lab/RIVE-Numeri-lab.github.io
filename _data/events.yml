@@ -128,4 +128,13 @@
   description : Jade Dormoy-Boulanger
 - title : "Méthode PARAFAC, la machine Duetta"
   date : 2025-05-01
-  description : Méthode PARAFAC, la machine Duetta
+  description : J. Malko
+- title : "Transition douce à l'approche bayésienne"
+  date : 2025-09-25
+  description : C. Martin
+- title : "Introduction à VS Code et aux outils reliés"
+  date : 2025-11-13
+  description : T. Laurent-St-Pierre
+- title : "Analyse des distances euclidiennes"
+  date : 2025-12-04
+  description : J. Malko
