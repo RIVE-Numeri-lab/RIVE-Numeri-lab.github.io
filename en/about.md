@@ -6,19 +6,21 @@ redirect_from: "/about"
 ---
 # About us
 ## Objectives
-Promote individual computing abilities by the organization of 10 workshops per year. Workshops will be developed and organized by the RIVE graduate students.
+Promote individual computing abilities by the organization of a dozen of workshops per year. Workshops will be developed and organized by the RIVE graduate students.
 
 Showcase the RIVE's abilities by the creation of this website, containing a recap of all numerical methods developed or teached during the workshops, as well a those developed by the RIVE's members during their own research activities.
 
-## Team (2024-2025)
+## Team (2025-2026)
 ### Professors :
 - Vincent Maire
 - Marco Rodriguez
 
 ### Student Committee
-- Jade Dormoy-Boulanger
+- Thierry Laurent-St-Pierre
 - Jessika Malko
-- Anne-Laure Morin
+- Jade Dormoy-Boulanger
+- Esteban Hamel Jomphe
+- Charles Gagnon
 
 ### Research professional
 - Charles Martin
