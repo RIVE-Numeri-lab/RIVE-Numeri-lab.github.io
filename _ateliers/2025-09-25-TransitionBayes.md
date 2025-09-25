@@ -326,7 +326,7 @@ echantillons |>
 
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 ``` r
 summary(echantillons$flipper_length_mm)
@@ -355,7 +355,7 @@ echantillons |>
 
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 Ce qui est tout à fait normal, si on réfléchit au fait que le paramètre est un terme de variance dans le modèle et que la variance ne peut jamais être négative.
 
@@ -632,13 +632,13 @@ Comparons par exemple l'évolution du paramètre pour l'effet de la longueur des
 posterior_vs_prior(m_informatif_20,"flipper_length_mm")
 ```
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-20-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-20-1.png" width="768" />
 
 ``` r
 posterior_vs_prior(m_informatif_10000,"flipper_length_mm")
 ```
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png" width="768" />
 
 ## La morale des distributions *a priori*
 
@@ -667,7 +667,7 @@ On peut ensuite regarder par exemple la distribution des valeurs attendues de po
 pp_check(a_priori_10000)
 ```
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png" width="768" />
 
 Évidemment ce n'est pas parfait. On retrouve quelques distributions de poids avec des valeurs \< 0 et certaines centrées sur des poids 2x plus grands que les originaux. Mais ces instances sont très rares. La majorité des distributions auraient eu du sens écologiquement.
 
@@ -699,7 +699,7 @@ verif_pentes |>
   ylim(2500,7000)
 ```
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-25-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-25-1.png" width="768" />
 
 Remarquez que la couche geom_abline ne construit pas les limites du graphiques. Nous avons dû le faire manuellement.
 
@@ -724,7 +724,7 @@ stan_glm(
   ylim(2500,7000)
 ```
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-26-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-26-1.png" width="768" />
 
 Vous voyez que l'*a priori* par défaut ne force rien sur notre modèle. Il est aussi probable qu'une pente soit positive que négative, et la majorité sont plutôt faibles, proche d'une pente de zéro. Certaines prédisent des poids extrêmement grands (on en devine plusieurs \> 10 000g), mais en général, la majorité est très bien. C'est ce que l'on veut trouver.
 
@@ -743,7 +743,7 @@ library(bayesplot)
 mcmc_trace(m_informatif_0)
 ```
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-27-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-27-1.png" width="768" />
 
 La fonction nous affiche donc le processus d'échantillonnage de la distribution postérieure, avec un panneau par paramètre. Ici, nous avons 4 chaînes, puisque si ne nous mentionnons rien, c'est le nombre de chaînes que `rstanarm` lance en parallèle. L'avantage d'utiliser plusieurs chaînes est que l'on peut voir si elles se sont comportées de façon équivalente, entre elles et sur l'ensemble du processus. Ce que l'on désire voir, pour chacune, est une sorte de chenille poilue, sur toute la largeur du panneau. Ce qui serait inquiétant de trouver serait, par exemple, qu'une des chaînes a seulement la moitié de la hauteur des autres, ou alors qu'elle part dans de très grandes valeurs pour quelques centaines d'itérations, etc.
 
@@ -866,7 +866,7 @@ Un des premiers outils à votre disposition est de regarder si la distribution d
 pp_check(m_informatif_0)
 ```
 
-<img src="AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-31-1.png" width="768" />
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-31-1.png" width="768" />
 
 Ce graphique compare la distribution (lissée) originale des données (la ligne noire) avec la distribution des prédictions pour chacune des combinaisons de paramètres testées par le modèle. En général, notre modèle parvient adéquatement à reproduire la distribution originale. Je vous rappelle, encore ici, il ne s'agit pas d'un test, mais d'une exploration. Si jamais des particularité des données ne sont pas bien reproduites ou la forme générale n'est pas respectée, c'est un signe qu'un meilleur modèle peut probablement être conçu pour ces données.
 
