@@ -1,7 +1,10 @@
 ---
+layout: default
+category: Stats
+thumbnail: stan.png
 title: Transition douce à l'analyse bayésienne
 author: Charles A. Martin
-date: 2025-09-09T00:00:00.000Z
+date: "Septembre 2025"
 lang: fr
 engine: knitr
 prefer-html: true
@@ -25,6 +28,9 @@ format:
     monofont: Monaco
 ---
 
+# Transition douce à l'approche bayésienne
+#### Charles Martin
+#### Septembre 2025
 
 -   [Introduction](#introduction)
 -   [Révision de l'approche fréquentiste](#révision-de-lapproche-fréquentiste)
