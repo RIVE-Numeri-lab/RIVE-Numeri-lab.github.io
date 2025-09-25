@@ -6,6 +6,7 @@ title: Transition douce à l'analyse bayésienne
 author: Charles A. Martin
 date: "Septembre 2025"
 lang: fr
+en_url: /en/workshops/BayesTransition
 engine: knitr
 prefer-html: true
 format:
