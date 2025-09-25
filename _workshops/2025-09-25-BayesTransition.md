@@ -59,9 +59,9 @@ format:
 
 # Introduction
 
-If you're like me, Bayesian statistics have probably always seemed like an ideal. Something that others do, not you. They, the real statisticians\!
+If you're like me, Bayesian statistics have probably always seemed like an ideal. Something that others do, not you. They, the real statisticians!
 
-The purpose of this workshop is to deconstruct this myth. To show you that in 2025, this approach is not only accessible but also easier to interpret and more direct. It's actually everything you would have always wanted your statistics to be\! We will even manage to approach it without any mathematical equations\!
+The purpose of this workshop is to deconstruct this myth. To show you that in 2025, this approach is not only accessible but also easier to interpret and more direct. It's actually everything you would have always wanted your statistics to be! We will even manage to approach it without any mathematical equations!
 
 The frequentist approach to statistics, i.e., the one you have been taught until now, is based on the principle that there is a fixed "true" value, the population value, for each of the parameters you want to estimate. The frequentist approach then provides you with a series of tools (T-test, ANOVA, etc.) that are designed so that, in the long run, if used a very large number of times, their statistical properties (p-value, confidence interval) will hold true.
 
@@ -69,7 +69,7 @@ From a Bayesian perspective, the uncertainty in our estimates, the probabilities
 
 The other fundamental aspect of the Bayesian approach is that it is designed as a process of updating our knowledge. Before the experiment, we have a certain amount of information and certainties. We then collect data, which allows us to update our knowledge about the phenomenon under study. This aspect is both the most powerful and the most polarizing of the Bayesian approach, as it allows, if desired, to introduce a certain subjectivity into the process.
 
-On the one hand, some will say that this subjectivity has no place in science and that each experiment should be viewed in isolation. But many will tell you that today, a large part of the replication problems facing modern science could have been avoided if the analysis of the most outlandish (or innovative\!) hypotheses had begun with a very low *prior* probability that the hypothesis was true.
+On the one hand, some will say that this subjectivity has no place in science and that each experiment should be viewed in isolation. But many will tell you that today, a large part of the replication problems facing modern science could have been avoided if the analysis of the most outlandish (or innovative!) hypotheses had begun with a very low *prior* probability that the hypothesis was true.
 
 # Review of the frequentist approach
 
@@ -146,7 +146,7 @@ speciesGentoo       521.400228  892.65574
 
 So, in short, penguin weight increases with wing length and beak size, males are heavier than females, and Chinstrap and Gentoo penguins are respectively lighter and heavier than Adelie (the reference level).
 
-Where things get complicated is when we look at the details of the statistics. For example, try to state the frequentist definition of a confidence interval without looking it up online\!
+Where things get complicated is when we look at the details of the statistics. For example, try to state the frequentist definition of a confidence interval without looking it up online!
 
 (pause)
 
@@ -271,13 +271,13 @@ speciesGentoo       554.227684  864.33638
 sigma               275.195951  311.73817
 ```
 
-That's it, you have run your first Bayesian model\! Everything is identical except for 4 characters (`stan_`).
+That's it, you have run your first Bayesian model! Everything is identical except for 4 characters (`stan_`).
 
 First, note the reassuring thing: the average parameter estimates are essentially identical to those produced by `lm`. Among other things, the effect of wing length is 17.83 g/mm vs. 17.85 g/mm, males are 466.02 g heavier than females vs. 465.4 in the frequentist approach, etc.
 
 Your figures for the Bayesian approach might be slightly different from mine, which is completely normal as it is a random sampling process.
 
-The first advantage of the Bayesian approach is that **we can directly interpret the uncertainty associated with the parameters**. For example, the 95% credibility interval for the effect of wing length ranges from 13.01 and 22.8 g/mm. So, here, we are entitled to say that there is a 95% chance that the true value of the parameter is between these two bounds\! No complicated definition, nothing about uncollected hypothetical samples. That's all: 95% chance that the true effect of wing length is between 13.01 and 22.8 g/mm.
+The first advantage of the Bayesian approach is that **we can directly interpret the uncertainty associated with the parameters**. For example, the 95% credibility interval for the effect of wing length ranges from 13.01 and 22.8 g/mm. So, here, we are entitled to say that there is a 95% chance that the true value of the parameter is between these two bounds! No complicated definition, nothing about uncollected hypothetical samples. That's all: 95% chance that the true effect of wing length is between 13.01 and 22.8 g/mm.
 
 # The Markov Chain Monte Carlo method (MCMC)
 
@@ -339,7 +339,7 @@ echantillons |>
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-9-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 ```r
 summary(echantillons$flipper_length_mm)
@@ -374,7 +374,7 @@ echantillons |>
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-12-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 This is completely normal, if we think about the fact that the parameter is a variance term in the model and that variance can never be negative.
 
@@ -657,13 +657,13 @@ For example, let's compare the evolution of the parameter for the effect of wing
 posterior_vs_prior(m_informatif_20,"flipper_length_mm")
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-20-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-20-1.png" width="768" />
 
 ```r
 posterior_vs_prior(m_informatif_10000,"flipper_length_mm")
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-21-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png" width="768" />
 
 ## The lesson of *prior* distributions
 
@@ -692,9 +692,9 @@ We can then look, for example, at the distribution of expected weight values:
 pp_check(a_priori_10000)
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-23-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png" width="768" />
 
-Obviously, this is not perfect. We find some weight distributions with values \< 0 and some centered on weights 2x greater than the originals. But these instances are very rare. The majority of the distributions would have made sense ecologically.
+Obviously, this is not perfect. We find some weight distributions with values < 0 and some centered on weights 2x greater than the originals. But these instances are very rare. The majority of the distributions would have made sense ecologically.
 
 We could also extract and plot each of the slopes (or here a sample of 100 so that it remains readable). The `a_priori_10000` object already contains a series of parameter samples, which we can extract using the `as.data.frame()` function.
 
@@ -726,9 +726,9 @@ verif_pentes |>
   ylim(2500,7000)
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-25-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-25-1.png" width="768" />
 
-Note that the geom\_abline layer does not build the graph limits. We had to do it manually.
+Note that the geom_abline layer does not build the graph limits. We had to do it manually.
 
 Here, the slopes are very tight around values that make a lot of sense, since it was our model with a very strong *prior*.
 
@@ -751,9 +751,9 @@ stan_glm(
   ylim(2500,7000)
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-26-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-26-1.png" width="768" />
 
-You can see that the default *prior* does not force anything on our model. A slope is as likely to be positive as it is to be negative, and most are rather weak, close to a slope of zero. Some predict extremely large weights (we can guess several \> 10,000g), but in general, the majority is very good. This is what we want to find.
+You can see that the default *prior* does not force anything on our model. A slope is as likely to be positive as it is to be negative, and most are rather weak, close to a slope of zero. Some predict extremely large weights (we can guess several > 10,000g), but in general, the majority is very good. This is what we want to find.
 
 # Did my MCMC work well?
 
@@ -770,13 +770,13 @@ library(bayesplot)
 mcmc_trace(m_informatif_0)
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-27-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-27-1.png" width="768" />
 
 The function therefore displays the posterior distribution sampling process, with one panel per parameter. Here, we have 4 chains, since if we don't mention anything, this is the number of chains that `rstanarm` launches in parallel. The advantage of using multiple chains is that we can see if they behaved in an equivalent way, among themselves and throughout the process. What we want to see, for each, is a kind of fuzzy caterpillar across the entire width of the panel. What would be worrying to find would be, for example, that one of the chains is only half the height of the others, or that it starts with very large values for a few hundred iterations, etc.
 
 ## R-hat?
 
-Since it can sometimes be difficult to visually interpret these graphs, a measure, named R-hat (i.e., $\\hat{R}$), was invented to guide us. Simply put, it is calculated as the square root of the ratio between the total variance of the samples and the average intra-chain variance. **If R-hat is close to 1, the chains are well mixed** and we can trust the result. If the value moves away from 1 (the threshold of 1.01 is often cited), then the chains are not well mixed. The posterior distribution has not been well explored and the result is not usable. Moreover, `rstanarm` will display a warning if this is the case.
+Since it can sometimes be difficult to visually interpret these graphs, a measure, named R-hat (i.e., $hat{R}$), was invented to guide us. Simply put, it is calculated as the square root of the ratio between the total variance of the samples and the average intra-chain variance. **If R-hat is close to 1, the chains are well mixed** and we can trust the result. If the value moves away from 1 (the threshold of 1.01 is often cited), then the chains are not well mixed. The posterior distribution has not been well explored and the result is not usable. Moreover, `rstanarm` will display a warning if this is the case.
 
 These values are accessible in several places, for example, at the end of our model's summary:
 
@@ -879,13 +879,13 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 
 Note that to get 2000 samples per chain, I had to request 4000 in total, because, unless otherwise specified, `rstanarm` instructs the algorithm to use half of the iterations to evaluate the chain's meta-parameters (e.g., how big to make the jumps between proposals, etc.), which it calls the *warm-up*. If necessary (for example, if a warning suggests it), you can also change the number of iterations allocated to the warm-up.
 
-That being said, most of the time, if you're having trouble with your chains, it's more likely that your model is misspecified. Do your *priors* make sense in relation to the data? Do you have, for example, an observation worth 1,000,000, while your *prior* is specified as $\\sim \\mathcal{N}(0,3)$, and therefore, it is almost impossible to obtain such large values?
+That being said, most of the time, if you're having trouble with your chains, it's more likely that your model is misspecified. Do your *priors* make sense in relation to the data? Do you have, for example, an observation worth 1,000,000, while your *prior* is specified as $sim mathcal{N}(0,3)$, and therefore, it is almost impossible to obtain such large values?
 
 Hence the importance of properly performing the *prior* distribution exploration.
 
 # Is my model good?
 
-Without hypothesis testing, you may feel a little lost when it comes to evaluating the quality of your statistical model\!
+Without hypothesis testing, you may feel a little lost when it comes to evaluating the quality of your statistical model!
 
 As mentioned above, the first thing to remember is that if your chains have correctly sampled the posterior distribution, your model IS interpretable. Your parameters answer the question: assuming this model and the measured data, here are the most probable values for each of the model's parameters. So, the question here is not to test the model as such, but to explore it.
 
@@ -895,7 +895,7 @@ One of the first tools at your disposal is to see if the distribution of predict
 pp_check(m_informatif_0)
 ```
 
-\<img src="/assets/AtelierTransitionBayes.markdown\_strict\_files/figure-markdown\_strict/unnamed-chunk-31-1.png" width="768" /\>
+<img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-31-1.png" width="768" />
 
 This graph compares the original (smoothed) data distribution (the black line) with the distribution of predictions for each of the parameter combinations tested by the model. In general, our model adequately manages to reproduce the original distribution. I remind you, again here, it is not a test, but an exploration. If ever particularities of the data are not well reproduced or the general shape is not respected, it is a sign that a better model can probably be designed for these data.
 
@@ -905,7 +905,7 @@ After exploring the fit of your model, you will probably want to know if it is a
 
 To do this, we will have to agree on a way to measure the quality of the model. One of the dilemmas you may be aware of regarding the quality of statistical models is that they can end up being overfitted to the data found. With enough parameters, you can reproduce any data set with precision, even perfection. But this perfect model would be of no use because it would be completely useless when faced with new data. The adage also says: *fitting is easy, predicting is hard*. However, what we want is a model that can predict correctly. That's the only time it becomes useful.
 
-This is why the recommended way to evaluate the quality of a statistical model is to use **cross-validation**. In its most extreme version, this strategy consists of fitting the model with all the data except one. Then, we evaluate the quality of the prediction for the data left aside. Then we repeat the process with each of the data points\! In English, this technique is called *leave-one-out cross validation* (loo-cv).
+This is why the recommended way to evaluate the quality of a statistical model is to use **cross-validation**. In its most extreme version, this strategy consists of fitting the model with all the data except one. Then, we evaluate the quality of the prediction for the data left aside. Then we repeat the process with each of the data points! In English, this technique is called *leave-one-out cross validation* (loo-cv).
 
 With simple models that are quick to fit, it can be relatively easy to code cross-validation in a loop and run it in a few seconds. In real life, however, this way of doing things is rarely practical. Even if your model is relatively quick to fit, for example, 30 seconds per fit, this operation could still take tens of hours if you have a few thousand observations, which is not uncommon.
 
@@ -928,7 +928,7 @@ One of the problems with this strategy is that the weights are not necessarily r
 The main advantage of this method over WAIC is that it provides for each observation the parameter *k* of the Pareto distribution that was estimated, and that this can be used to
 
 1.  Identify influential values (large *k* values)
-2.  Identify the moments when the PSIS-LOO-CV value is not reliable. The tail of the Pareto distribution becomes extremely wide beyond k \> 0.5, and therefore the associated estimates are less reliable. Simulations suggest that PSIS-LOO-CV values are no longer usable beyond k \> 0.7, and you will get warnings when the time comes.
+2.  Identify the moments when the PSIS-LOO-CV value is not reliable. The tail of the Pareto distribution becomes extremely wide beyond k > 0.5, and therefore the associated estimates are less reliable. Simulations suggest that PSIS-LOO-CV values are no longer usable beyond k > 0.7, and you will get warnings when the time comes.
 
 However, like AIC, the PSIS-LOO-CV value of a single model is absolutely not informative and cannot be interpreted as the quality of the model as such. It is a relative measure of quality.
 
@@ -974,7 +974,7 @@ All Pareto k estimates are good (k < 0.7).
 See help('pareto-k-diagnostic') for details.
 ```
 
-So, the first thing to know: PSIS-LOO-CV measures the precision of the predictions. Therefore, the higher the value, the better the model. Here, the `m_bayes` model, which contains 4 variables, produces better predictions than the one with only one variable. Its elpd\_loo value (another name for PSIS-LOO-CV) is -2464.1 vs. -2366.7.
+So, the first thing to know: PSIS-LOO-CV measures the precision of the predictions. Therefore, the higher the value, the better the model. Here, the `m_bayes` model, which contains 4 variables, produces better predictions than the one with only one variable. Its elpd_loo value (another name for PSIS-LOO-CV) is -2464.1 vs. -2366.7.
 
 Since we have all the samples, the algorithm was also able to calculate the variability around our PSIS-LOO-CV estimate, which is 13.1 on one side and 12.3 on the other.
 
@@ -1002,7 +1002,7 @@ You now have the basics to:
 
   - The ability to integrate non-informative or informative *priors* as you wish.
 
-  - The tools to explore your Markov chains to ensure that they have properly explored the posterior distribution of the parameters (visual check, Rhat, n\_eff).
+  - The tools to explore your Markov chains to ensure that they have properly explored the posterior distribution of the parameters (visual check, Rhat, n_eff).
 
   - Compare your models in a Bayesian framework, again using all the information from the posterior distribution with PSIS-LOO-CV.
 
