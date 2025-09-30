@@ -37,13 +37,13 @@ format:
 -   [Review of the frequentist approach](#review-of-the-frequentist-approach)
 -   [The Bayesian version](#the-bayesian-version)
 -   [The Markov Chain Monte Carlo method (MCMC)](#the-markov-chain-monte-carlo-method-mcmc)
--   [Integrating known *a priori* information](#integrating-known-a-priori-information)
-    -   [Non-informative *priors*](#non-informative-priors)
-    -   [Informative *priors*](#informative-priors)
-    -   [Weakly informative *priors*](#weakly-informative-priors)
+-   [Integrating prior information](#integrating-prior-information)
+    -   [Non-informative priors](#non-informative-priors)
+    -   [Informative priors](#informative-priors)
+    -   [Weakly informative priors](#weakly-informative-priors)
     -   [To what extent do new data change our knowledge?](#to-what-extent-do-new-data-change-our-knowledge)
-    -   [The lesson of *prior* distributions](#the-lesson-of-prior-distributions)
-    -   [Do my *priors* make sense?](#do-my-priors-make-sense)
+    -   [The lesson of prior distributions](#the-lesson-of-prior-distributions)
+    -   [Do my priors make sense?](#do-my-priors-make-sense)
 -   [Did my MCMC work well?](#did-my-mcmc-work-well)
     -   [Visual check](#visual-check)
     -   [R-hat?](#r-hat)
@@ -61,15 +61,15 @@ format:
 
 If you're like me, Bayesian statistics have probably always seemed like an ideal. Something that others do, not you. They, the real statisticians!
 
-The purpose of this workshop is to deconstruct this myth. To show you that in 2025, this approach is not only accessible but also easier to interpret and more direct. It's actually everything you would have always wanted your statistics to be! We will even manage to approach it without any mathematical equations!
+The purpose of this workshop is to deconstruct this myth. To show you that in 2025, this approach is not only accessible but also easier to interpret and more direct. It's actually everything you have always wanted your statistics to be! We will even manage the whole workshop without any mathematical equations!
 
 The frequentist approach to statistics, i.e., the one you have been taught until now, is based on the principle that there is a fixed "true" value, the population value, for each of the parameters you want to estimate. The frequentist approach then provides you with a series of tools (T-test, ANOVA, etc.) that are designed so that, in the long run, if used a very large number of times, their statistical properties (p-value, confidence interval) will hold true.
 
 From a Bayesian perspective, the uncertainty in our estimates, the probabilities themselves, are a consequence of our inability to measure everything in detail. Uncertainty is our tool to evaluate everything we don't understand or can't measure about a system. The data are therefore considered real and precise: this is what we have measured. The parameters, on the other hand, are the object of uncertainty. We cannot know the phenomenon precisely because we cannot measure everything.
 
-The other fundamental aspect of the Bayesian approach is that it is designed as a process of updating our knowledge. Before the experiment, we have a certain amount of information and certainties. We then collect data, which allows us to update our knowledge about the phenomenon under study. This aspect is both the most powerful and the most polarizing of the Bayesian approach, as it allows, if desired, to introduce a certain subjectivity into the process.
+The other fundamental aspect of the Bayesian approach is that it is designed as a process of knowledge update. Before the experiment, we have a certain amount of information and certainties. We then collect data, which allows us to update our knowledge about the phenomenon under study. This aspect is both the most powerful and the most polarizing of the Bayesian approach, as it allows, if needed, the introduction of some subjectivity in the process.
 
-On the one hand, some will say that this subjectivity has no place in science and that each experiment should be viewed in isolation. But many will tell you that today, a large part of the replication problems facing modern science could have been avoided if the analysis of the most outlandish (or innovative!) hypotheses had begun with a very low *prior* probability that the hypothesis was true.
+On the one hand, some will say that this subjectivity has no place in science and that each experiment should be viewed in isolation. But many will tell you that today, a large part of the replication problems faced by modern science could have been avoided if the analysis of the most outlandish (or innovative!) hypotheses had begun with a very low prior probability that the hypothesis was true.
 
 # Review of the frequentist approach
 
@@ -90,7 +90,7 @@ manchots <- penguins |>
   drop_na()
 ```
 
-Note in passing that the Bayesian approach would be perfectly suitable for imputing this missing data rather than simply eliminating it, but that's a topic for another day...
+By the way, note that the Bayesian approach would be perfectly suitable for imputing this missing data rather than simply eliminating it, but that's a topic for another day...
 
 Then, using the `lm` function, let's fit a multiple regression model that will try to answer our question:
 
@@ -198,7 +198,7 @@ This is rstanarm version 2.32.1
 options(mc.cores = parallel::detectCores()-1)
 ```
 
-Note that I am reserving one core (`-1`) so that my computer remains usable during processing. If this is not a priority for you, you can let it use all cores.
+Note that I am keeping one core (`-1`) so that my computer remains usable during processing. If this is not a priority for you, you can let it use all cores.
 
 To defuse any tension, here is the same model immediately, analyzed within a Bayesian framework:
 
@@ -399,24 +399,24 @@ Beware, however, not to take shortcuts either. We do NOT know if wing length rea
 
 And that's the whole nuance. It is still important to observe the model's residuals to see if it is well-suited to the data, if it is appropriate for the form of the relationships, etc. But deviations at this stage do not make the model uninterpretable. They are rather an indication that the model could be improved. A step in the iterative process.
 
-# Integrating known *a priori* information
+# Integrating prior information
 
-We have so far avoided the subject, but we will not be able to continue for long without talking about it. One of the major contributions of the Bayesian approach is that it allows the integration of known *a priori* information into the calculation, before starting data collection. It is directly designed as a process of updating knowledge, rather than considering each experiment as independent.
+We have so far avoided the subject, but we will not be able to continue for long without talking about it. One of the major contributions of the Bayesian approach is that it allows the integration of prior information into the calculation, before starting data collection. It is directly designed as a process of updating knowledge, rather than considering each experiment as independent.
 
-The probability distribution associated with a parameter that we saw above is in fact the *a posteriori* probability. The updated version, after confronting our prior knowledge with the new data collected. It is here that, in general, tutorials on the Bayesian approach present Bayes' theorem and its application, for example, to medical tests or doping, taking into account false positives, the baseline rate in the population, etc. All this is very interesting, but absolutely not necessary to get started with this approach.
+The probability distribution associated with a parameter that we saw above is in fact the posterior probability. The updated version, after confronting our prior knowledge with the new data collected. It is here that, in general, tutorials on the Bayesian approach present Bayes' theorem and its application, for example, to medical tests or doping, taking into account false positives, the baseline rate in the population, etc. All this is very interesting, but absolutely not necessary to get started with this approach.
 
-The important thing is to understand, I repeat, that the results obtained are an update of *a priori* knowledge by the data collected.
+The important thing is to understand, I repeat, that the results obtained are an update of prior knowledge by the data collected.
 
-But what *a priori* information should we use? There are several schools of thought for this.
+But what prior information should we use? There are several schools of thought on this.
 
-## Non-informative *priors*
+## Non-informative priors
 
-One of the most reassuring things when starting with this approach is to know that it is possible to use *priors* so vague that they have no impact on the result. With this philosophy, our results are (in simple cases) identical to those found by the maximum likelihood approach (e.g., the `glm` or `nlme` function in R), with the difference that
+One of the most reassuring things when starting with this approach is to know that it is possible to use priors so vague that they have no impact on the result. With this philosophy, our results are (in simple cases) identical to those found by the maximum likelihood approach (e.g., the `glm` or `nlme` function in R), with the difference that
 
 1.  they can be interpreted within a Bayesian framework and
 2.  we have access to all the samples of the posterior distribution to observe the distribution of the parameters, their correlations, etc.
 
-In `stan_glm`, we could have applied non-informative *priors*, for example, by mentioning that for all we know, the parameters can be ABSOLUTELY ANYTHING. They could range from -Inf to +Inf with equal probabilities for each of the values.
+In `stan_glm`, we could have applied non-informative priors, for example, by mentioning that for all we know, the parameters could be ABSOLUTELY ANYTHING. They could range from -Inf to +Inf with equal probabilities for each of the values.
 
 ```r
 m_noninformatif <- stan_glm(
@@ -477,11 +477,11 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 
 As expected, these results are almost identical to those obtained by the frequentist approach. AND also very close to those obtained with the default values, which we will discuss below.
 
-## Informative *priors*
+## Informative priors
 
-At the other end of the *prior* spectrum, we might want to precisely integrate our knowledge of the subject before starting the experiment.
+At the other end of the prior spectrum, we might want to precisely integrate our knowledge of the subject before starting the experiment.
 
-To simplify this section, we will work on a simple regression with a single parameter. The syntax for modifying the *prior* of a single parameter while keeping the other default values is not very user-friendly in `stan_glm`.
+To simplify this section, we will work on a simple regression with a single parameter. The syntax for modifying the prior of a single parameter while keeping the other default values is not very user-friendly in `stan_glm`.
 
 If, for example, an exploratory study on 20 penguins had found that the effect of wing length was 25 g/mm with a standard error of 10 g/mm, we could have integrated this information like this:
 
@@ -493,7 +493,7 @@ m_informatif_20 <- stan_glm(
 )
 ```
 
-We will now compare this model to one where we use a non-informative *prior* on this slope:
+We will now compare this model to one where we use a non-informative prior on this slope:
 
 ```r
 m_informatif_0 <- stan_glm(
@@ -627,21 +627,21 @@ log-posterior     0.0  1.0  1990
 For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).
 ```
 
-We therefore find that there is very little difference between the model with a very vague *prior* and the one based on a preliminary study. In both cases, the new data provide a lot of information compared to our prior knowledge. On the other hand, in the third model, which uses a solid study with 10,000 individuals as a *prior*, the *a posteriori* distribution of the parameter is at 30 g/mm (vs. 50 g/mm for the other two), because in this case, our prior knowledge was very strong. Even if our study on hundreds of penguins finds a higher value, our knowledge about penguins changes little.
+We therefore find that there is very little difference between the model with a very vague prior and the one based on a preliminary study. In both cases, the new data provide a lot of information compared to our prior knowledge. On the other hand, in the third model, which uses a solid study with 10,000 individuals as a prior, the posterior distribution of the parameter is at 30 g/mm (vs. 50 g/mm for the other two), because in this case, our prior knowledge was very strong. Even if our study on hundreds of penguins finds a higher value, our knowledge about penguins changes little.
 
 This is the full power of the Bayesian approach. It encapsulates our process of updating knowledge. If we have little or no information about the phenomenon before starting, the analysis lets the data speak. But if our knowledge was solid, it will be difficult to shake.
 
-I always like to think of the Bayesian approach with informative *priors* as a permanent meta-analysis. Each study moves the synthesis of our knowledge. Proportionately to the amount of information known before and that provided by the new data.
+I always like to think of the Bayesian approach with informative priors as a permanent meta-analysis. Each study moves the synthesis of our knowledge. Proportionately to the amount of information known before and provided by the new data.
 
-## Weakly informative *priors*
+## Weakly informative priors
 
-Although at first glance non-informative *priors* are attractive due to their appearance of objectivity, they are rarely the most appropriate.
+Although at first glance non-informative priors are attractive due to their appearance of objectivity, they are rarely the most appropriate.
 
 First of all, from a technical point of view, they make the task of our MCMC very complex, since the latter must explore essentially from -Inf to +Inf for each of the parameters. Also, they are not very realistic, since we know that it is not as likely to have a slope of 0 g/mm as one of 50 g/mm or one of 5,000,000 g/mm. Just by the range of weight and wing length of a penguin, we know that this is not possible.
 
-There is therefore a compromise, which is becoming increasingly popular, for cases where we do not have precise information like a preliminary study, but still have an idea of the order of magnitude of the possibilities: weakly informative *priors*. To facilitate their understanding, these are often based on standardized data (i.e., centered and scaled) and are therefore expressed in terms of standard deviation.
+There is therefore a compromise, which is becoming increasingly popular, for cases where we do not have precise information like a preliminary study, but still have an idea of the order of magnitude of the possibilities: weakly informative priors. To facilitate their understanding, these are often based on standardized data (i.e., centered and scaled) and are therefore expressed in terms of standard deviation.
 
-This is the strategy used by `stan_glm`. Unless otherwise specified (as above), the latter places a weak *prior* on your slopes, based on a normal distribution, with a mean of 0 and a standard deviation of 2.5, after having standardized your data. So, before starting the fit, the model assumes that there is a 95% chance that the slope (on the standardized scale) will be between -5 and +5 standard deviations of Y for one standard deviation of X. This seemingly "ordinary" number is in fact extremely high.
+This is the strategy used by `stan_glm`. Unless otherwise specified (as above), the latter places a weak prior on your slopes, based on a normal distribution, with a mean of 0 and a standard deviation of 2.5, after having standardized your data. So, before starting the fit, the model assumes that there is a 95% chance that the slope (on the standardized scale) will be between -5 and +5 standard deviations of Y for one standard deviation of X. This seemingly "ordinary" number is in fact extremely high.
 
 For example, the standardized effect size of Cohen's D, which is precisely in standard deviations of Y for a change of one standard deviation of X, is interpreted as a small effect around 0.1, a large effect around 0.8, and a huge effect around 2. This strategy therefore constrains the parameters within reasonable value ranges, while leaving ample freedom for the data to express themselves.
 
@@ -649,7 +649,7 @@ Since the normal distribution extends from -Inf to +Inf, if you ever find a craz
 
 ## To what extent do new data change our knowledge?
 
-One of the most direct ways to see if the collected data are meaningful or not is to compare the *prior* distribution and the posterior distribution of our parameters side by side. In `rstanarm`, the `posterior_vs_prior` function automates this task.
+One of the most direct ways to see if the collected data are meaningful or not is to compare the prior distribution and the posterior distribution of our parameters side by side. In `rstanarm`, the `posterior_vs_prior` function automates this task.
 
 For example, let's compare the evolution of the parameter for the effect of wing length, between our model with a little information (n=20) and our model with a lot of information (n=10000):
 
@@ -665,15 +665,15 @@ posterior_vs_prior(m_informatif_10000,"flipper_length_mm")
 
 <img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png" width="768" />
 
-## The lesson of *prior* distributions
+## The lesson of prior distributions
 
-The thing to remember from this discussion about *prior* distributions is therefore that they are a way of being transparent about your assumptions. To define what you know about the phenomenon before you start. It is not a way to "cheat" or manipulate the results. The Bayesian process of parameter estimation is designed specifically to update knowledge based on new data. It is made to let your data speak for themselves.
+The thing to remember from this discussion about prior distributions is therefore that they are a way of being transparent about your assumptions. To define what you know about the phenomenon before you start. It is not a way to "cheat" or manipulate the results. The Bayesian process of parameter estimation is designed specifically to update knowledge based on new data. It is made to let your data speak for themselves.
 
-## Do my *priors* make sense?
+## Do my priors make sense?
 
-One important thing to ask yourself when applying *prior* distributions to our models is: do these distributions make sense for understanding the phenomenon under study? We are not talking here about using the project data to calculate *prior* distributions in advance, that would be very dangerous: a serious form of overfitting.
+One important thing to ask yourself when applying prior distributions to our models is: do these distributions make sense for understanding the phenomenon under study? We are not talking here about using the project data to calculate prior distributions in advance, that would be very dangerous: a serious form of overfitting.
 
-However, we must absolutely take a look at the relationships that are implicit in our *priors*. We must ask ourselves: is it realistic or not that we would observe such relationships? The more complex your models become, the more it can become impossible to mentally manage this type of question. This is why it is usually recommended to perform a **prior predictive check**. The principle of this technique is to sample data, not from the posterior distribution, but directly from the *prior* distribution.
+However, we must absolutely take a look at the relationships that are implicit in our priors. We must ask ourselves: is it realistic or not that we would observe such relationships? The more complex your models become, the more it can become impossible to mentally manage this type of question. This is why it is usually recommended to perform a **prior predictive check**. The principle of this technique is to sample data, not from the posterior distribution, but directly from the prior distribution.
 
 In `rstanarm`, we can achieve this directly by fitting our model with an additional argument:
 
@@ -730,9 +730,9 @@ verif_pentes |>
 
 Note that the geom_abline layer does not build the graph limits. We had to do it manually.
 
-Here, the slopes are very tight around values that make a lot of sense, since it was our model with a very strong *prior*.
+Here, the slopes are very tight around values that make a lot of sense, since it was our model with a very strong prior.
 
-Let's now compare with the default weakly informative *priors* in rstanarm.
+Let's now compare with the default weakly informative priors in rstanarm.
 
 ```r
 stan_glm(
@@ -753,13 +753,13 @@ stan_glm(
 
 <img src="/assets/AtelierTransitionBayes.markdown_strict_files/figure-markdown_strict/unnamed-chunk-26-1.png" width="768" />
 
-You can see that the default *prior* does not force anything on our model. A slope is as likely to be positive as it is to be negative, and most are rather weak, close to a slope of zero. Some predict extremely large weights (we can guess several > 10,000g), but in general, the majority is very good. This is what we want to find.
+You can see that the default prior does not force anything on our model. A slope is as likely to be positive as it is to be negative, and most are rather weak, close to a slope of zero. Some predict extremely large weights (we can guess several > 10,000g), but in general, the majority is very good. This is what we want to find.
 
 # Did my MCMC work well?
 
 So far, we have used and explained MCMCs very briefly, but it is important to know that they do not magically always arrive at the right result.
 
-THE thing to check is whether each of the chains worked well. That is, did it properly explore the landscape around each parameter and not get stuck in a small area?
+THE thing to check is whether each of the chains mixed well. That is, did it properly explore the landscape around each parameter and not get stuck in a small area?
 
 ## Visual check
 
@@ -776,7 +776,7 @@ The function therefore displays the posterior distribution sampling process, wit
 
 ## R-hat?
 
-Since it can sometimes be difficult to visually interpret these graphs, a measure, named R-hat (i.e., $hat{R}$), was invented to guide us. Simply put, it is calculated as the square root of the ratio between the total variance of the samples and the average intra-chain variance. **If R-hat is close to 1, the chains are well mixed** and we can trust the result. If the value moves away from 1 (the threshold of 1.01 is often cited), then the chains are not well mixed. The posterior distribution has not been well explored and the result is not usable. Moreover, `rstanarm` will display a warning if this is the case.
+Since it can sometimes be difficult to visually interpret these graphs, a measure, named R-hat, was invented to guide us. Simply put, it is calculated as the square root of the ratio between the total variance of the samples and the average intra-chain variance. **If R-hat is close to 1, the chains are well mixed** and we can trust the result. If the value moves away from 1 (the threshold of 1.01 is often cited), then the chains are not well mixed. The posterior distribution has not been well explored and the result is not usable. Moreover, `rstanarm` will display a warning if this is the case.
 
 These values are accessible in several places, for example, at the end of our model's summary:
 
@@ -879,9 +879,9 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 
 Note that to get 2000 samples per chain, I had to request 4000 in total, because, unless otherwise specified, `rstanarm` instructs the algorithm to use half of the iterations to evaluate the chain's meta-parameters (e.g., how big to make the jumps between proposals, etc.), which it calls the *warm-up*. If necessary (for example, if a warning suggests it), you can also change the number of iterations allocated to the warm-up.
 
-That being said, most of the time, if you're having trouble with your chains, it's more likely that your model is misspecified. Do your *priors* make sense in relation to the data? Do you have, for example, an observation worth 1,000,000, while your *prior* is specified as $sim mathcal{N}(0,3)$, and therefore, it is almost impossible to obtain such large values?
+That being said, most of the time, if you're having trouble with your chains, it's more likely that your model is misspecified. Do your priors make sense in relation to the data? Do you have, for example, an observation worth 1,000,000, while your prior is specified as N(0,3), and therefore, it is almost impossible to obtain such large values?
 
-Hence the importance of properly performing the *prior* distribution exploration.
+Hence the importance of properly performing the prior predictive check.
 
 # Is my model good?
 
@@ -903,9 +903,9 @@ This graph compares the original (smoothed) data distribution (the black line) w
 
 After exploring the fit of your model, you will probably want to know if it is an improvement over other models you have tested. Are you moving in the right direction or not?
 
-To do this, we will have to agree on a way to measure the quality of the model. One of the dilemmas you may be aware of regarding the quality of statistical models is that they can end up being overfitted to the data found. With enough parameters, you can reproduce any data set with precision, even perfection. But this perfect model would be of no use because it would be completely useless when faced with new data. The adage also says: *fitting is easy, predicting is hard*. However, what we want is a model that can predict correctly. That's the only time it becomes useful.
+To do this, we will have to agree on a way to measure the quality of the model. One of the dilemmas you may be aware of regarding the quality of statistical models is that they can end up being overfitted to the data found. With enough parameters, you can reproduce any data set with precision, even perfection. But this perfect model would be of no use because it would be completely useless when faced with new data. The adage also says: *fitting is easy, predicting is hard*. However, what we want is a model that can predict correctly. That's the only way it becomes useful.
 
-This is why the recommended way to evaluate the quality of a statistical model is to use **cross-validation**. In its most extreme version, this strategy consists of fitting the model with all the data except one. Then, we evaluate the quality of the prediction for the data left aside. Then we repeat the process with each of the data points! In English, this technique is called *leave-one-out cross validation* (loo-cv).
+This is why the recommended way to evaluate the quality of a statistical model is to use **cross-validation**. In its most extreme version, this strategy consists of fitting the model with all the data except one. Then, we evaluate the quality of the prediction for the data left aside. Then we repeat the process with each of the data points! This particular version is usually called *leave-one-out cross validation* (loo-cv).
 
 With simple models that are quick to fit, it can be relatively easy to code cross-validation in a loop and run it in a few seconds. In real life, however, this way of doing things is rarely practical. Even if your model is relatively quick to fit, for example, 30 seconds per fit, this operation could still take tens of hours if you have a few thousand observations, which is not uncommon.
 
@@ -915,7 +915,7 @@ You may not know this, but the AIC (Akaike Information Criterion) was designed p
 
 There is, for the Bayesian approach, a similar algorithm to AIC, the WAIC, which correctly takes into account the fact that our Bayesian model provides us with a series of parameter values rather than a direct value. The latter can be used in the same way as AIC, with delta-AIC, Akaike weights allowing us to determine the probability that each model is the best, etc.
 
-However, it is currently not the recommended index for comparing models with each other, because another algorithm, PSIS-LOO-CV, can almost always do a more precise job, in addition to directly informing the user when its values become imprecise/dangerous to use.
+However, it is not currently the recommended metric to compare models with each other, because another algorithm, PSIS-LOO-CV, can almost always do a more precise job, in addition to directly informing the user when its values become imprecise/dangerous to use.
 
 ## PSIS-LOO-CV
 
@@ -934,7 +934,7 @@ However, like AIC, the PSIS-LOO-CV value of a single model is absolutely not inf
 
 ## Usage example
 
-To see how to apply model comparison with PSIS-LOO-CV, we will compare the model from the beginning of the workshop that had 4 variables to the one used for the *priors*, which contained only one.
+To see how to apply model comparison with PSIS-LOO-CV, we will compare the model from the beginning of the workshop that had 4 variables to the one used for the priors, which contained only one.
 
 ```r
 loo(m_bayes)
@@ -998,9 +998,9 @@ And that's it. It's no more complicated than that to make the transition to Baye
 
 You now have the basics to:
 
-  - Fit your models in a Bayesian framework (`stan_glm` from the `rstanarm` library) with weakly informative *priors*.
+  - Fit your models in a Bayesian framework (`stan_glm` from the `rstanarm` library) with weakly informative priors.
 
-  - The ability to integrate non-informative or informative *priors* as you wish.
+  - The ability to integrate non-informative or informative priors as you wish.
 
   - The tools to explore your Markov chains to ensure that they have properly explored the posterior distribution of the parameters (visual check, Rhat, n_eff).
 
