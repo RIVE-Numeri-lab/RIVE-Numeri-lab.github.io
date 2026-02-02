@@ -28,7 +28,15 @@ format:
     mainfont: Fira Sans Light
     monofont: Monaco
 ---
-
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  // block
+      inlineMath: [['\\(', '\\)'], ['$', '$']]                  // inline
+    }
+  };
+</script>
 # Transition douce à l'approche bayésienne
 #### Charles Martin
 #### Septembre 2025
