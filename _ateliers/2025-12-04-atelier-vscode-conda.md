@@ -264,7 +264,7 @@ conda deactivate              # Revenir à l'environnement base
 - Laisser chemin par défaut (ex: `C:\Users\YourName\miniforge3`)
 - **IMPORTANT** ⚠︎ : Cocher "Register Miniforge3 as my default Python"
 
-![Options d'installation Miniforge3](miniforge-install-options.png)
+![Options d'installation Miniforge3](/assets/atelier-vscode-conda/miniforge-install-options.png){: width="50%" }
 
 *Figure 1 : Options d'installation - Cochez "Register Miniforge3 as the system Python 3.12" pour permettre à VSCode et autres programmes de détecter automatiquement Miniforge*
 
@@ -390,7 +390,8 @@ base                  *  C:\Users\YourName\miniforge3
 geo-env                  C:\Users\YourName\miniforge3\envs\geo-env
 ```
 
-![Démonstration des commandes conda essentielles](conda-commands.gif)
+![Démonstration des commandes conda essentielles](/assets/atelier-vscode-conda/conda-commands.gif){: width="75%" }
+
 *Figure 2 : Démonstration des commandes conda - Installation des librairies avec mamba, inspection avec conda list, et activation d'environnement. L'astérisque (*) indique l'environnement actif.*
 
 ---
@@ -649,7 +650,7 @@ git commit -m "Ajouter environment.yml pour reproductibilité"
 
 ### Les panneaux principaux
 
-![Interface VSCode](vscode-layout.png)
+![Interface VSCode](/assets/atelier-vscode-conda/vscode-layout.png){: width="75%" }
 
 *Figure 3 : Interface VSCode en action - À gauche : Explorer avec arborescence de fichiers du projet. Centre : Éditeur principal affichant du code R. Bas : Panel avec onglets (Problems, Output, Terminal) - notez l'environnement Conda `(base)` actif dans le terminal. Haut : Menu et barre d'onglets pour naviguer entre fichiers ouverts.*
 
