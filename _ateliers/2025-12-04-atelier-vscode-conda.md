@@ -5,7 +5,8 @@ thumbnail: conda.png
 title: Environnements Python avec Conda
 ---
 
-# Environnements Python avec Conda : <br />Installation, utilisation et intégration dans VSCode
+# Environnements Python avec Conda
+# Installation, utilisation et intégration dans VSCode
 #### Thierry Laurent St-Pierre
 #### Mars 2026
 
@@ -165,14 +166,14 @@ Avant de choisir votre gestionnaire, il faut comprendre qu'Anaconda et Miniforge
 
 **Anaconda** est la distribution "complète" : elle installe ~250 librairies pré-compilées (NumPy, Pandas, Matplotlib, etc.) d'emblée. C'est comme recevoir un couteau suisse avec 40 outils alors que vous n'en utiliserez que 3.
 
-**Miniforge** est la distribution "minimale" : elle installe seulement Conda et laisse vous installer ce dont vous avez besoin. Plus léger, plus rapide, et plus flexible.
+**Miniforge** est la distribution "minimale" : elle installe seulement Conda et vous laisse installer ce dont vous avez besoin. Plus léger, plus rapide, et plus flexible.
 
 | Aspect | Anaconda | Miniforge |
 |--------------------|-------------------------|---------------------------|
 | **Taille installation** | ~3 GB | ~150 MB |
 | **Librairies pré-installées** | ~250 (NumPy, Pandas, etc.) | Aucune |
 | **Temps installation** | ~10-15 minutes | ~2-3 minutes |
-| **License** | Commerciale (payante pour pro) | Open Source (100% libre) |
+| **Licence** | Commerciale (payante pour pro) | Open Source (100% libre) |
 | **Canal par défaut** | `defaults` (Anaconda Inc.) | `conda-forge` (communautaire) |
 | **Idéal pour** | Débutants absolus | Projets professionnels/géomatique |
 
@@ -265,7 +266,7 @@ conda deactivate              # Revenir à l'environnement base
 ### ♦︎ Étape 2 : Installer
 
 - Double-cliquer l'exécutable
-- Accepter la license
+- Accepter la licence
 - Laisser chemin par défaut (ex: `C:\Users\YourName\miniforge3`)
 - **IMPORTANT** ⚠︎ : Cocher "Register Miniforge3 as my default Python"
 
@@ -704,7 +705,7 @@ Cliquer l'icône pour naviguer :
 
 ### Configuration post-installation
 
-Après installer l'extension Python :
+Après avoir installé l'extension Python :
 
 1. Ouvrir **Command Palette** (Ctrl+Shift+P)
 
