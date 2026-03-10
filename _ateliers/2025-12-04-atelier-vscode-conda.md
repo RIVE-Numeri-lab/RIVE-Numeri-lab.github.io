@@ -61,10 +61,15 @@ Cette formation vous guide à travers la configuration complète d'un environnem
 À la fin de cette formation, vous saurez :
 
 ★ Installer et configurer Conda (Miniforge)
+
 ★ Créer et gérer des environnements isolés
+
 ★ Installer des librairies géospatiales complexes
+
 ★ Configurer VSCode pour la géomatique et l'analyse spatiale
+
 ★ Utiliser Git et GitHub
+
 ★ Rendre vos projets reproductibles et partageable
 
 #### Structure
