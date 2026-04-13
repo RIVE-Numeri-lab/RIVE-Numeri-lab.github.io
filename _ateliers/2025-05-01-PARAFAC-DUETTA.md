@@ -521,6 +521,10 @@ Parfois, on peut ne pas vouloir créer notre propre modèle pour différentes ra
 Ici, on va importer un modèle MATLAB déjà existant et le modifier pour qu'il puisse être utilisé dans staRdom. Il s'agit du modèle du Fleuve Saint-Laurent (FSL), créé par François Guillemette avec des écahntillons pris dans le cadre de missions à bord du navire de recherche Lampsilis. Ce modèle a été réutilisé dans le [Pôle d'expertise multidisciplinaire en gestion durable du littoral du lac Saint-Pierre](https://oraprdnt.uqtr.uquebec.ca/portail/gscw031?owa_no_site=5765). Il comporte 5 composantes :  
 C1 - humique terrestre; C2 - microbien; C3 - humique terrestre; C4 - protéique, tryptophane; C5 - protéique, tyrosine. Voir la fiche K du rapport final du Pôle pour les détails sur les composantes identifiées. Ce modèle peut être raisonnablement appliqué à toute eau de rivière qui se jette dans le fleuve.
 
+Pour les étudiants de l'UQTR, vous devriez avoir accès au modèle matlab 
+directement par ce lien : 
+<https://uqtrsspt-my.sharepoint.com/:u:/g/personal/jessika_malko_uqtr_ca/IQBeNbq6M7sJQLN9DIfprFRVAXSYgZZuggxTH92a2NF_Ksw>
+
 ``` r
 parafac_matlab2R <- function(model){
   ## extract A-modes from Matlab model
