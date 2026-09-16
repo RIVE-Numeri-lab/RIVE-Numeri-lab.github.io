@@ -10,17 +10,17 @@ Promote individual computing abilities by the organization of a dozen of worksho
 
 Showcase the RIVE's abilities by the creation of this website, containing a recap of all numerical methods developed or teached during the workshops, as well a those developed by the RIVE's members during their own research activities.
 
-## Team (2025-2026)
+## Team (2026-2027)
 ### Professors :
 - Vincent Maire
 - Marco Rodriguez
 
 ### Student Committee
-- Thierry Laurent-St-Pierre
-- Jessika Malko
 - Jade Dormoy-Boulanger
-- Esteban Hamel Jomphe
-- Charles Gagnon
+- Alexandre Laborie
+- Françoise Grenier
+- Thierry Laurent-St-Pierre
+- Jawad Ziyad
 
 ### Research professional
 - Charles Martin
