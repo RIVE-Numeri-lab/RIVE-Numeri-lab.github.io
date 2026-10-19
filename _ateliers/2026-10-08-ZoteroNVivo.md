@@ -9,8 +9,8 @@ title: "Introduction à NVivo"
 
 # De la référence à l'analyse : Zotero et NVivo pour vos sources
 
-![Logo NVivo](assets/slide01-1.png)
-![Logo Zotero](assets/slide01-2.png)
+![Logo NVivo](/assets/ZoteroNVivo/slide01-1.png)
+![Logo Zotero](/assets/ZoteroNVivo/slide01-2.png)
 
 **Numérilab**
 8 octobre 2026
@@ -18,8 +18,8 @@ title: "Introduction à NVivo"
 **Françoise Grenier**
 Maîtrise en sciences de l'environnement
 
-![Logo RIVE (emblème)](assets/slide01-3.png)
-![Logo RIVE (texte)](assets/slide01-4.png)
+![Logo RIVE (emblème)](/assets/ZoteroNVivo/slide01-3.png)
+![Logo RIVE (texte)](/assets/ZoteroNVivo/slide01-4.png)
 
 ---
 
@@ -37,7 +37,7 @@ Maîtrise en sciences de l'environnement
 
 ## 2. Tout d'abord ! Téléchargement NVivo
 
-![Page de téléchargement de NVivo, avec les versions Windows 64 bits et Mac 64 bits pour étudiants et employés](assets/slide03-1.png)
+![Page de téléchargement de NVivo, avec les versions Windows 64 bits et Mac 64 bits pour étudiants et employés](/assets/ZoteroNVivo/slide03-1.png)
 
 ---
 
@@ -80,8 +80,8 @@ Une synthèse des travaux existants, organisés autour d'une question de recherc
 - Extension du navigateur
 - Ajout direct : fichier, DOI, ISBN, etc.
 
-![Extension Zotero Connector dans le navigateur, avec le menu d'enregistrement vers une collection](assets/slide06-1.png)
-![Ajout direct dans Zotero, avec une liste de références](assets/slide06-2.png)
+![Extension Zotero Connector dans le navigateur, avec le menu d'enregistrement vers une collection](/assets/ZoteroNVivo/slide06-1.png)
+![Ajout direct dans Zotero, avec une liste de références](/assets/ZoteroNVivo/slide06-2.png)
 
 ---
 
@@ -94,7 +94,7 @@ Une synthèse des travaux existants, organisés autour d'une question de recherc
 - Peut refléter la structure du document
 - Unité de base = source
 
-![Arborescence de collections dans Zotero](assets/slide07-2.png)
+![Arborescence de collections dans Zotero](/assets/ZoteroNVivo/slide07-2.png)
 
 ### Marqueurs
 
@@ -104,8 +104,8 @@ Une synthèse des travaux existants, organisés autour d'une question de recherc
 - Codes de couleur
 - Unité de base = source ou passage
 
-![Panneau de collections de Zotero](assets/slide07-1.png)
-![Liste de marqueurs (Aire, Analyse spatiale, Canada)](assets/slide07-3.png)
+![Panneau de collections de Zotero](/assets/ZoteroNVivo/slide07-1.png)
+![Liste de marqueurs (Aire, Analyse spatiale, Canada)](/assets/ZoteroNVivo/slide07-3.png)
 
 ---
 
@@ -114,7 +114,7 @@ Une synthèse des travaux existants, organisés autour d'une question de recherc
 **Important !**
 Pour l'annotation manuelle, désactiver la création automatique de marqueurs
 
-![Préférences de Zotero (onglet Général) : option d'ajout automatique de marqueurs](assets/slide08-1.png)
+![Préférences de Zotero (onglet Général) : option d'ajout automatique de marqueurs](/assets/ZoteroNVivo/slide08-1.png)
 
 ---
 
@@ -132,13 +132,13 @@ Pour l'annotation manuelle, désactiver la création automatique de marqueurs
 
 ## 9. NVivo comme outil de travail
 
-![Schéma du flux de travail NVivo : revue de la littérature, thèmes, requêtes, résultats, rapport](assets/slide10-1.png)
+![Schéma du flux de travail NVivo : revue de la littérature, thèmes, requêtes, résultats, rapport](/assets/ZoteroNVivo/slide10-1.png)
 
 ---
 
 ## 10. Interface NVivo
 
-![Interface de NVivo, avec les zones annotées : Actions (ruban), Données, Codes, Cas](assets/slide11-1.png)
+![Interface de NVivo, avec les zones annotées : Actions (ruban), Données, Codes, Cas](/assets/ZoteroNVivo/slide11-1.png)
 
 Annotations sur la capture : **Actions** (ruban), **Données**, **Codes**, **Cas**.
 
@@ -146,15 +146,15 @@ Annotations sur la capture : **Actions** (ruban), **Données**, **Codes**, **Cas
 
 ## 11. Transfert de bibliothèques — Zotero → NVivo
 
-![Bibliothèque Zotero avec menu contextuel d'exportation](assets/slide12-1.png)
-![Fenêtre d'exportation Zotero (format RIS, avec notes et fichiers)](assets/slide12-2.png)
+![Bibliothèque Zotero avec menu contextuel d'exportation](/assets/ZoteroNVivo/slide12-1.png)
+![Fenêtre d'exportation Zotero (format RIS, avec notes et fichiers)](/assets/ZoteroNVivo/slide12-2.png)
 
 ---
 
 ## 12. (Sans titre) — Importation dans NVivo
 
-![Onglet Import de NVivo, menu Bibliography](assets/slide13-1.png)
-![Fenêtre « Import from Zotero » de NVivo](assets/slide13-2.png)
+![Onglet Import de NVivo, menu Bibliography](/assets/ZoteroNVivo/slide13-1.png)
+![Fenêtre « Import from Zotero » de NVivo](/assets/ZoteroNVivo/slide13-2.png)
 
 ---
 
@@ -166,8 +166,8 @@ Les articles n'apparaissent pas tous dans la section « Files » ?
 2. Inspecter le fichier RIS
 3. Renommer les PDF dans Zotero
 
-![Importation dans NVivo, section Files](assets/slide14-1.png)
-![Préférences de Zotero pour le renommage des fichiers, avec l'annotation « Réduire la longueur des noms »](assets/slide14-2.png)
+![Importation dans NVivo, section Files](/assets/ZoteroNVivo/slide14-1.png)
+![Préférences de Zotero pour le renommage des fichiers, avec l'annotation « Réduire la longueur des noms »](/assets/ZoteroNVivo/slide14-2.png)
 
 Annotation sur la capture : **Réduire la longueur des noms**.
 
@@ -179,11 +179,11 @@ Annotation sur la capture : **Réduire la longueur des noms**.
 >
 > (Allard-Poesi, 2003, p. 246)
 
-![Schéma du codage : des codes aux catégories, thèmes/concepts et théorie, du particulier au général](assets/slide15-1.png)
+![Schéma du codage : des codes aux catégories, thèmes/concepts et théorie, du particulier au général](/assets/ZoteroNVivo/slide15-1.png)
 
 Tiré de :
 
-![Page de l'ouvrage source du schéma](assets/slide15-2.png)
+![Page de l'ouvrage source du schéma](/assets/ZoteroNVivo/slide15-2.png)
 
 ---
 
@@ -200,51 +200,51 @@ Tiré de :
 
 ## 16. Outils d'analyse et de recherche — Recherche de mots
 
-![Résultats d'une requête de recherche de mots dans NVivo (références et couverture par source)](assets/slide17-2.png)
-![Extraits de texte trouvés par la requête](assets/slide17-1.png)
+![Résultats d'une requête de recherche de mots dans NVivo (références et couverture par source)](/assets/ZoteroNVivo/slide17-2.png)
+![Extraits de texte trouvés par la requête](/assets/ZoteroNVivo/slide17-1.png)
 
 ---
 
 ## 17. Outils d'analyse et de recherche — Fréquence de mots
 
-![Nuage de mots généré par NVivo](assets/slide18-1.png)
-![Tableau de fréquence de mots dans NVivo](assets/slide18-2.png)
+![Nuage de mots généré par NVivo](/assets/ZoteroNVivo/slide18-1.png)
+![Tableau de fréquence de mots dans NVivo](/assets/ZoteroNVivo/slide18-2.png)
 
 ---
 
 ## 18. Outils d'analyse et de recherche — Matrices de codes
 
-![Résultats de la matrice de codage](assets/slide19-2.png)
+![Résultats de la matrice de codage](/assets/ZoteroNVivo/slide19-2.png)
 
 Crosstab query :
 
-![Fenêtre de configuration de la requête Matrix Coding (crosstab)](assets/slide19-1.png)
+![Fenêtre de configuration de la requête Matrix Coding (crosstab)](/assets/ZoteroNVivo/slide19-1.png)
 
 ---
 
 ## 19. Outils d'analyse et de recherche — Autocode
 
-![Carte arborescente (treemap) des thèmes générés par l'autocodage](assets/slide20-1.png)
-![Résultats de l'autocodage, nombre de références codées par source et par thème](assets/slide20-2.png)
+![Carte arborescente (treemap) des thèmes générés par l'autocodage](/assets/ZoteroNVivo/slide20-1.png)
+![Résultats de l'autocodage, nombre de références codées par source et par thème](/assets/ZoteroNVivo/slide20-2.png)
 
 ---
 
 ## 20. Outils d'analyse et de recherche — Matrice à condensés
 
-![Matrice de condensés (résumés de passages par source et par thème) dans NVivo](assets/slide21-1.png)
+![Matrice de condensés (résumés de passages par source et par thème) dans NVivo](/assets/ZoteroNVivo/slide21-1.png)
 
 ---
 
 ## 21. Pour aller plus loin
 
-![Page Lumivero consacrée à NVivo](assets/slide22-1.png)
-![Chaîne YouTube « NVivo from Lumivero »](assets/slide22-2.png)
+![Page Lumivero consacrée à NVivo](/assets/ZoteroNVivo/slide22-1.png)
+![Chaîne YouTube « NVivo from Lumivero »](/assets/ZoteroNVivo/slide22-2.png)
 
 ---
 
 ## 22. Merci ! Des questions ?
 
-[Vidéo de la diapositive](assets/slide23-video.mp4)
+[Vidéo de la diapositive](/assets/ZoteroNVivo/slide23-video.mp4)
 
 ---
 
