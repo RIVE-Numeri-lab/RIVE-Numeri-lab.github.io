@@ -3,7 +3,7 @@ thumbnail: nvivo.png
 layout: default
 lang : fr
 category: Analyse qualitative
-title: "Zotero et NVivo pour l'analyse qualitative"
+title: "De la référence à l'analyse : Zotero et NVivo pour vos sources"
 author: Françoise Grenier
 date: 2026-10-08
 ---
@@ -16,16 +16,14 @@ main p > img.logo { display: inline-block; height: 100px; max-height: none; marg
 
 # De la référence à l'analyse : Zotero et NVivo pour vos sources
 
-![Logo NVivo](/assets/ZoteroNVivo/slide01-1.png){: .logo}
-![Logo Zotero](/assets/ZoteroNVivo/slide01-2.png){: .logo}
+#### par Françoise Grenier
 
-**Numérilab**
-8 octobre 2026
-
-**Françoise Grenier**
-Maîtrise en sciences de l'environnement
+#### Octobre 2026
 
 ---
+
+![Logo NVivo](/assets/ZoteroNVivo/slide01-1.png){: .logo}
+![Logo Zotero](/assets/ZoteroNVivo/slide01-2.png){: .logo}
 
 ## 1. Plan de la séance
 
