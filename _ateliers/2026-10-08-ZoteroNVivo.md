@@ -142,8 +142,6 @@ Pour l'annotation manuelle, désactiver la création automatique de marqueurs
 
 ![Interface de NVivo, avec les zones annotées : Actions (ruban), Données, Codes, Cas](/assets/ZoteroNVivo/slide11-1.png)
 
-Annotations sur la capture : **Actions** (ruban), **Données**, **Codes**, **Cas**.
-
 ---
 
 ## 11. Transfert de bibliothèques — Zotero → NVivo
@@ -153,7 +151,7 @@ Annotations sur la capture : **Actions** (ruban), **Données**, **Codes**, **Cas
 
 ---
 
-## 12. (Sans titre) — Importation dans NVivo
+## 12. Importation dans NVivo
 
 ![Onglet Import de NVivo, menu Bibliography](/assets/ZoteroNVivo/slide13-1.png)
 ![Fenêtre « Import from Zotero » de NVivo](/assets/ZoteroNVivo/slide13-2.png)
@@ -170,8 +168,6 @@ Les articles n'apparaissent pas tous dans la section « Files » ?
 
 ![Importation dans NVivo, section Files](/assets/ZoteroNVivo/slide14-1.png)
 ![Préférences de Zotero pour le renommage des fichiers, avec l'annotation « Réduire la longueur des noms »](/assets/ZoteroNVivo/slide14-2.png)
-
-Annotation sur la capture : **Réduire la longueur des noms**.
 
 ---
 
