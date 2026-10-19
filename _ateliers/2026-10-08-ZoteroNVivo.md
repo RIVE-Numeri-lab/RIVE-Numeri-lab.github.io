@@ -244,8 +244,6 @@ Crosstab query :
 
 ## 22. Merci ! Des questions ?
 
-[Vidéo de la diapositive](/assets/ZoteroNVivo/slide23-video.mp4)
-
 ---
 
 ## 23. Sources
