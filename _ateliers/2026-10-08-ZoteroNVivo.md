@@ -6,20 +6,22 @@ category: Analyse qualitative
 title: "Introduction à NVivo"
 ---
 
+<style>
+main img { max-width: 80%; max-height: 600px; width: auto; height: auto; }
+main p > img { display: block; margin: 1em auto; }
+main p > img.logo { display: inline-block; height: 100px; max-height: none; margin: 0 12px 0 0; vertical-align: middle; }
+</style>
 
 # De la référence à l'analyse : Zotero et NVivo pour vos sources
 
-![Logo NVivo](/assets/ZoteroNVivo/slide01-1.png)
-![Logo Zotero](/assets/ZoteroNVivo/slide01-2.png)
+![Logo NVivo](/assets/ZoteroNVivo/slide01-1.png){: .logo}
+![Logo Zotero](/assets/ZoteroNVivo/slide01-2.png){: .logo}
 
 **Numérilab**
 8 octobre 2026
 
 **Françoise Grenier**
 Maîtrise en sciences de l'environnement
-
-![Logo RIVE (emblème)](/assets/ZoteroNVivo/slide01-3.png)
-![Logo RIVE (texte)](/assets/ZoteroNVivo/slide01-4.png)
 
 ---
 
