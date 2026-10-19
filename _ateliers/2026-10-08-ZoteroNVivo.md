@@ -3,7 +3,9 @@ thumbnail: nvivo.png
 layout: default
 lang : fr
 category: Analyse qualitative
-title: "Introduction à NVivo"
+title: "Zotero et NVivo pour l'analyse qualitative"
+author: Françoise Grenier
+date: 2026-10-08
 ---
 
 <style>
