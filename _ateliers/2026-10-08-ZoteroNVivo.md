@@ -1,3 +1,12 @@
+---
+thumbnail: nvivo.png
+layout: default
+lang : fr
+category: Analyse qualitative
+title: "Introduction à NVivo"
+---
+
+
 # De la référence à l'analyse : Zotero et NVivo pour vos sources
 
 ![Logo NVivo](assets/slide01-1.png)
